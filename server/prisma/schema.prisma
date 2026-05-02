@@ -1,0 +1,125 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+//
+// 🟣 ENUMS
+//
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum Priority {
+  MUST_DO
+  GOOD
+  OPTIONAL
+}
+
+enum Status {
+  NOT_STARTED
+  ATTEMPTED
+  SOLVED_WITH_HELP
+  SOLVED_INDEPENDENTLY
+  REVISED
+}
+
+//
+// 🟢 CORE TABLES
+//
+
+model User {
+  id        String         @id @default(uuid())
+  name      String?
+  email     String         @unique
+  createdAt DateTime       @default(now())
+
+  progress  UserProgress[]
+}
+
+model Topic {
+  id        String     @id @default(uuid())
+  name      String     @unique
+
+  patterns  Pattern[]
+  problems  Problem[]
+}
+
+model Pattern {
+  id        String       @id @default(uuid())
+  name      String
+  topicId   String
+  topic     Topic        @relation(fields: [topicId], references: [id])
+
+  subPatterns SubPattern[]
+  problems    Problem[]
+
+  @@unique([name, topicId])
+}
+
+model SubPattern {
+  id         String    @id @default(uuid())
+  name       String
+  patternId  String
+  pattern    Pattern   @relation(fields: [patternId], references: [id])
+
+  problems   Problem[]
+
+  @@unique([name, patternId])
+}
+
+model Problem {
+  id            String      @id @default(uuid())
+  title         String
+  leetcodeId    Int?
+  leetcodeUrl   String?
+
+  difficulty    Difficulty
+  priority      Priority
+
+  order         Int         @unique
+  phase         Int
+
+  topicId       String
+  topic         Topic       @relation(fields: [topicId], references: [id])
+
+  patternId     String
+  pattern       Pattern     @relation(fields: [patternId], references: [id])
+
+  subPatternId  String
+  subPattern    SubPattern  @relation(fields: [subPatternId], references: [id])
+
+  createdAt     DateTime    @default(now())
+
+  progress      UserProgress[]
+}
+
+//
+// 🔵 USER PROGRESS
+//
+
+model UserProgress {
+  id            String    @id @default(uuid())
+
+  userId        String
+  problemId     String
+
+  user          User      @relation(fields: [userId], references: [id])
+  problem       Problem   @relation(fields: [problemId], references: [id])
+
+  status        Status    @default(NOT_STARTED)
+  attempts      Int       @default(0)
+  lastReviewed  DateTime?
+  notes         String?
+
+  updatedAt     DateTime  @updatedAt
+
+  @@unique([userId, problemId])
+}
