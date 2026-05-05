@@ -1,0 +1,402 @@
+[
+    {
+        "order": 1,
+        "phase": "P1",
+        "pattern": "Two Pointers",
+        "subPattern": "Same Direction",
+        "difficulty": "Easy",
+        "priority": "Must Do",
+        "title": "Remove Duplicates from Sorted Array",
+        "leetcodeId": 26
+    },
+    {
+        "order": 2,
+        "phase": "P1",
+        "pattern": "Two Pointers",
+        "subPattern": "Same Direction",
+        "difficulty": "Easy",
+        "priority": "Must Do",
+        "title": "Remove Element",
+        "leetcodeId": 27
+    },
+    {
+        "order": 3,
+        "phase": "P1",
+        "pattern": "Two Pointers",
+        "subPattern": "Stable",
+        "difficulty": "Easy",
+        "priority": "Must Do",
+        "title": "Move Zeroes",
+        "leetcodeId": 283
+    },
+    {
+        "order": 4,
+        "phase": "P1",
+        "pattern": "Two Pointers",
+        "subPattern": "Opposite Direction",
+        "difficulty": "Easy",
+        "priority": "Must Do",
+        "title": "Two Sum II \u2013 Input Array Is Sorted",
+        "leetcodeId": 167
+    },
+    {
+        "order": 5,
+        "phase": "P1",
+        "pattern": "Two Pointers",
+        "subPattern": "Opposite Direction",
+        "difficulty": "Easy",
+        "priority": "Must Do",
+        "title": "Squares of a Sorted Array",
+        "leetcodeId": 977
+    },
+    {
+        "order": 6,
+        "phase": "P2",
+        "pattern": "Sliding Window",
+        "subPattern": "Fixed Window",
+        "difficulty": "Easy",
+        "priority": "Must Do",
+        "title": "Maximum Average Subarray I",
+        "leetcodeId": 643
+    },
+    {
+        "order": 7,
+        "phase": "P2",
+        "pattern": "Sliding Window",
+        "subPattern": "Variable Window",
+        "difficulty": "Medium",
+        "priority": "Must Do",
+        "title": "Longest Substring Without Repeating Characters",
+        "leetcodeId": 3
+    },
+    {
+        "order": 8,
+        "phase": "P2",
+        "pattern": "Sliding Window",
+        "subPattern": "Variable Window",
+        "difficulty": "Medium",
+        "priority": "Must Do",
+        "title": "Longest Repeating Character Replacement",
+        "leetcodeId": 424
+    },
+    {
+        "order": 9,
+        "phase": "P2",
+        "pattern": "Sliding Window",
+        "subPattern": "Variable Window",
+        "difficulty": "Medium",
+        "priority": "Must Do",
+        "title": "Permutation in String",
+        "leetcodeId": 567
+    },
+    {
+        "order": 10,
+        "phase": "P2",
+        "pattern": "Sliding Window",
+        "subPattern": "Variable Window",
+        "difficulty": "Medium",
+        "priority": "Good",
+        "title": "Minimum Size Subarray Sum",
+        "leetcodeId": 209
+    },
+    {
+        "order": 11,
+        "phase": "P3",
+        "pattern": "Prefix Sum",
+        "subPattern": "Basic",
+        "difficulty": "Easy",
+        "priority": "Must Do",
+        "title": "Running Sum of 1d Array",
+        "leetcodeId": 1480
+    },
+    {
+        "order": 12,
+        "phase": "P3",
+        "pattern": "Prefix Sum",
+        "subPattern": "Basic",
+        "difficulty": "Easy",
+        "priority": "Must Do",
+        "title": "Range Sum Query - Immutable",
+        "leetcodeId": 303
+    },
+    {
+        "order": 13,
+        "phase": "P3",
+        "pattern": "Prefix Sum",
+        "subPattern": "HashMap",
+        "difficulty": "Medium",
+        "priority": "Must Do",
+        "title": "Subarray Sum Equals K",
+        "leetcodeId": 560
+    },
+    {
+        "order": 14,
+        "phase": "P3",
+        "pattern": "Prefix Sum",
+        "subPattern": "HashMap",
+        "difficulty": "Medium",
+        "priority": "Good",
+        "title": "Continuous Subarray Sum",
+        "leetcodeId": 523
+    },
+    {
+        "order": 15,
+        "phase": "P3",
+        "pattern": "Prefix Sum",
+        "subPattern": "2D",
+        "difficulty": "Medium",
+        "priority": "Optional",
+        "title": "Range Sum Query 2D - Immutable",
+        "leetcodeId": 304
+    },
+    {
+        "order": 16,
+        "phase": "P4",
+        "pattern": "Partition",
+        "subPattern": "Basic",
+        "difficulty": "Easy",
+        "priority": "Must Do",
+        "title": "Sort Array By Parity",
+        "leetcodeId": 905
+    },
+    {
+        "order": 17,
+        "phase": "P4",
+        "pattern": "Partition",
+        "subPattern": "Basic",
+        "difficulty": "Medium",
+        "priority": "Must Do",
+        "title": "Sort Colors",
+        "leetcodeId": 75
+    },
+    {
+        "order": 18,
+        "phase": "P4",
+        "pattern": "Partition",
+        "subPattern": "Quickselect",
+        "difficulty": "Medium",
+        "priority": "Good",
+        "title": "Kth Largest Element in an Array",
+        "leetcodeId": 215
+    },
+    {
+        "order": 19,
+        "phase": "P4",
+        "pattern": "Partition",
+        "subPattern": "Quickselect",
+        "difficulty": "Medium",
+        "priority": "Optional",
+        "title": "Top K Frequent Elements",
+        "leetcodeId": 347
+    },
+    {
+        "order": 20,
+        "phase": "P5",
+        "pattern": "Binary Search",
+        "subPattern": "Basic",
+        "difficulty": "Easy",
+        "priority": "Must Do",
+        "title": "Binary Search",
+        "leetcodeId": 704
+    },
+    {
+        "order": 21,
+        "phase": "P5",
+        "pattern": "Binary Search",
+        "subPattern": "Bounds",
+        "difficulty": "Easy",
+        "priority": "Must Do",
+        "title": "First Bad Version",
+        "leetcodeId": 278
+    },
+    {
+        "order": 22,
+        "phase": "P5",
+        "pattern": "Binary Search",
+        "subPattern": "Bounds",
+        "difficulty": "Medium",
+        "priority": "Must Do",
+        "title": "Find First and Last Position",
+        "leetcodeId": 34
+    },
+    {
+        "order": 23,
+        "phase": "P5",
+        "pattern": "Binary Search",
+        "subPattern": "Answer Search",
+        "difficulty": "Medium",
+        "priority": "Good",
+        "title": "Capacity To Ship Packages",
+        "leetcodeId": 1011
+    },
+    {
+        "order": 24,
+        "phase": "P5",
+        "pattern": "Binary Search",
+        "subPattern": "Answer Search",
+        "difficulty": "Medium",
+        "priority": "Optional",
+        "title": "Split Array Largest Sum",
+        "leetcodeId": 410
+    },
+    {
+        "order": 25,
+        "phase": "P6",
+        "pattern": "Greedy",
+        "subPattern": "Basic",
+        "difficulty": "Easy",
+        "priority": "Must Do",
+        "title": "Best Time to Buy and Sell Stock",
+        "leetcodeId": 121
+    },
+    {
+        "order": 26,
+        "phase": "P6",
+        "pattern": "Greedy",
+        "subPattern": "Basic",
+        "difficulty": "Medium",
+        "priority": "Must Do",
+        "title": "Jump Game",
+        "leetcodeId": 55
+    },
+    {
+        "order": 27,
+        "phase": "P6",
+        "pattern": "Greedy",
+        "subPattern": "Advanced",
+        "difficulty": "Medium",
+        "priority": "Good",
+        "title": "Gas Station",
+        "leetcodeId": 134
+    },
+    {
+        "order": 28,
+        "phase": "P6",
+        "pattern": "Greedy",
+        "subPattern": "Advanced",
+        "difficulty": "Hard",
+        "priority": "Optional",
+        "title": "Candy",
+        "leetcodeId": 135
+    },
+    {
+        "order": 29,
+        "phase": "P7",
+        "pattern": "Intervals",
+        "subPattern": "Basic",
+        "difficulty": "Easy",
+        "priority": "Must Do",
+        "title": "Merge Intervals",
+        "leetcodeId": 56
+    },
+    {
+        "order": 30,
+        "phase": "P7",
+        "pattern": "Intervals",
+        "subPattern": "Basic",
+        "difficulty": "Medium",
+        "priority": "Must Do",
+        "title": "Insert Interval",
+        "leetcodeId": 57
+    },
+    {
+        "order": 31,
+        "phase": "P7",
+        "pattern": "Intervals",
+        "subPattern": "Advanced",
+        "difficulty": "Medium",
+        "priority": "Good",
+        "title": "Non-overlapping Intervals",
+        "leetcodeId": 435
+    },
+    {
+        "order": 32,
+        "phase": "P7",
+        "pattern": "Intervals",
+        "subPattern": "Advanced",
+        "difficulty": "Hard",
+        "priority": "Optional",
+        "title": "Minimum Number of Arrows",
+        "leetcodeId": 452
+    },
+    {
+        "order": 33,
+        "phase": "P8",
+        "pattern": "Matrix",
+        "subPattern": "Traversal",
+        "difficulty": "Easy",
+        "priority": "Must Do",
+        "title": "Spiral Matrix",
+        "leetcodeId": 54
+    },
+    {
+        "order": 34,
+        "phase": "P8",
+        "pattern": "Matrix",
+        "subPattern": "Traversal",
+        "difficulty": "Medium",
+        "priority": "Must Do",
+        "title": "Set Matrix Zeroes",
+        "leetcodeId": 73
+    },
+    {
+        "order": 35,
+        "phase": "P8",
+        "pattern": "Matrix",
+        "subPattern": "DFS",
+        "difficulty": "Medium",
+        "priority": "Good",
+        "title": "Number of Islands",
+        "leetcodeId": 200
+    },
+    {
+        "order": 36,
+        "phase": "P8",
+        "pattern": "Matrix",
+        "subPattern": "DFS",
+        "difficulty": "Hard",
+        "priority": "Optional",
+        "title": "Word Search II",
+        "leetcodeId": 212
+    },
+    {
+        "order": 37,
+        "phase": "P9",
+        "pattern": "Misc",
+        "subPattern": "Basic",
+        "difficulty": "Easy",
+        "priority": "Must Do",
+        "title": "Contains Duplicate",
+        "leetcodeId": 217
+    },
+    {
+        "order": 38,
+        "phase": "P9",
+        "pattern": "Misc",
+        "subPattern": "Hashing",
+        "difficulty": "Easy",
+        "priority": "Must Do",
+        "title": "Two Sum",
+        "leetcodeId": 1
+    },
+    {
+        "order": 39,
+        "phase": "P9",
+        "pattern": "Misc",
+        "subPattern": "Hashing",
+        "difficulty": "Medium",
+        "priority": "Good",
+        "title": "Group Anagrams",
+        "leetcodeId": 49
+    },
+    {
+        "order": 40,
+        "phase": "P9",
+        "pattern": "Misc",
+        "subPattern": "Heap",
+        "difficulty": "Medium",
+        "priority": "Optional",
+        "title": "Find Median from Data Stream",
+        "leetcodeId": 295
+    }
+]
