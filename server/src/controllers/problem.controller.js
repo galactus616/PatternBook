@@ -4,7 +4,11 @@ export const getProblems = async (req, res) => {
     try {
         const filters = req.query;
 
-        const problems = await getAllProblems(filters);
+        console.time("getAllProblems");
+
+        const problems = await getAllProblems(req.query);
+
+        console.timeEnd("getAllProblems");
 
         res.json({
             success: true,
