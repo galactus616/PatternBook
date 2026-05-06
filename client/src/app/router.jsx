@@ -1,43 +1,49 @@
+import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import LandingPage from "../pages/LandingPage";
-import DashboardPage from "../pages/DashboardPage";
-import ProblemsPage from "../pages/ProblemsPage";
 import ProtectedRoute from "./ProtectedRoute";
 import DashboardLayout from "../components/layout/DashboardLayout";
+import PageLoader from "../components/ui/PageLoader";
+
+// Lazy load pages
+const LandingPage = lazy(() => import("../pages/LandingPage"));
+const DashboardPage = lazy(() => import("../pages/DashboardPage"));
+const ProblemsPage = lazy(() => import("../pages/ProblemsPage"));
 
 const AppRouter = () => {
   return (
     <BrowserRouter>
-      <Routes>
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
 
-        {/* Public */}
-        <Route path="/" element={<LandingPage />} />
+          {/* Public */}
+          <Route path="/" element={<LandingPage />} />
 
-        {/* Protected */}
-        <Route
-          path="/dashboard"
-          element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <DashboardPage />
-              </DashboardLayout>
-            </ProtectedRoute>
-          }
-        />
+          {/* Protected */}
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <DashboardPage />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />
 
-        <Route
-          path="/problems"
-          element={
-            <ProtectedRoute>
-              <DashboardLayout>
-                <ProblemsPage />
-              </DashboardLayout>
-            </ProtectedRoute>
-          }
-        />
+          <Route
+            path="/problems"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <ProblemsPage />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />
 
-      </Routes>
+        </Routes>
+      </Suspense>
     </BrowserRouter>
   );
 };
