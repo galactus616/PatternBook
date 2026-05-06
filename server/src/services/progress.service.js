@@ -1,4 +1,5 @@
 import { prisma } from "../db/client.js";
+import { updateStreak } from "../utils/streak.helper.js";
 
 // 🔥 UPSERT PROGRESS
 export const upsertProgress = async ({
@@ -12,30 +13,33 @@ export const upsertProgress = async ({
     throw new Error("userId and problemId are required");
   }
 
-  return prisma.userProgress.upsert({
-    where: {
-      userId_problemId: {
+  const [progress] = await Promise.all([
+    prisma.userProgress.upsert({
+      where: {
+        userId_problemId: {
+          userId,
+          problemId,
+        },
+      },
+      update: {
+        ...(status && { status }),
+        ...(notes && { notes }),
+        ...(attempts !== undefined && { attempts }),
+        lastReviewed: new Date(),
+      },
+      create: {
         userId,
         problemId,
+        status: status || "NOT_STARTED",
+        notes: notes || "",
+        attempts: attempts || 0,
+        lastReviewed: new Date(),
       },
-    },
+    }),
+    updateStreak(userId)
+  ]);
 
-    update: {
-      ...(status && { status }),
-      ...(notes && { notes }),
-      ...(attempts !== undefined && { attempts }),
-      lastReviewed: new Date(),
-    },
-
-    create: {
-      userId,
-      problemId,
-      status: status || "NOT_STARTED",
-      notes: notes || "",
-      attempts: attempts || 0,
-      lastReviewed: new Date(),
-    },
-  });
+  return progress;
 };
 
 // 🔥 FETCH USER PROGRESS

@@ -1,11 +1,15 @@
-import { Search, Bell, User } from "lucide-react";
+import { Search, Bell, User, Flame } from "lucide-react";
 import { useAuth } from "../../features/auth/useAuth";
+import { useDashboard } from "../../features/dashboard/useDashboard";
 
 const Header = () => {
   const { user } = useAuth();
+  const { data: stats } = useDashboard();
+
+  const currentStreak = stats?.overall?.currentStreak || 0;
 
   return (
-    <header className="h-[58px] bg-cream/80 backdrop-blur-md border-b border-rule flex items-center justify-between px-8 sticky top-0 z-[100]">
+    <header className="h-[58px] bg-cream/80 backdrop-blur-md border-b border-rule flex items-center justify-between px-8 sticky top-0 z-100">
       {/* Search / Context */}
       <div className="flex items-center gap-6">
         <div className="relative group">
@@ -20,6 +24,18 @@ const Header = () => {
 
       {/* Actions */}
       <div className="flex items-center gap-5">
+        {/* Streak Flame */}
+        {currentStreak > 0 && (
+          <div className="flex items-center gap-1.5 px-3 py-1 bg-brand-red/5 border border-brand-red/20 rounded-full group relative cursor-help">
+            <Flame size={16} className="text-brand-red fill-brand-red animate-pulse" />
+            <span className="font-mono text-[11px] font-bold text-brand-red">{currentStreak}</span>
+            
+            <div className="absolute right-0 top-full mt-2 hidden group-hover:block w-48 p-2 bg-ink text-cream text-[9px] normal-case rounded-[4px] z-50 shadow-xl leading-relaxed text-center">
+              Your <span className="text-brand-red font-bold">{currentStreak} day streak</span> is active! Next day resets at 5:30 AM.
+            </div>
+          </div>
+        )}
+
         <button className="p-2 text-muted hover:text-ink hover:bg-cream-dark rounded-full transition-all cursor-pointer relative">
           <Bell size={18} />
           <span className="absolute top-2 right-2 w-1.5 h-1.5 bg-brand-red rounded-full border border-cream" />

@@ -7,7 +7,8 @@
         "difficulty": "Easy",
         "priority": "Must Do",
         "title": "Remove Duplicates from Sorted Array",
-        "leetcodeId": 26
+        "leetcodeId": 26,
+        "hint": "Maintain a slow pointer that only moves when you find a new unique element to swap into its next position."
     },
     {
         "order": 2,
@@ -17,7 +18,8 @@
         "difficulty": "Easy",
         "priority": "Must Do",
         "title": "Remove Element",
-        "leetcodeId": 27
+        "leetcodeId": 27,
+        "hint": "Use a secondary pointer to track the 'next available' spot for a non-target element. Overwrite the array as you scan."
     },
     {
         "order": 3,
@@ -27,7 +29,8 @@
         "difficulty": "Easy",
         "priority": "Must Do",
         "title": "Move Zeroes",
-        "leetcodeId": 283
+        "leetcodeId": 283,
+        "hint": "Similar to Remove Element—treat zero as the 'target to remove' and maintain the relative order of non-zero elements."
     },
     {
         "order": 4,
@@ -37,7 +40,8 @@
         "difficulty": "Easy",
         "priority": "Must Do",
         "title": "Two Sum II \u2013 Input Array Is Sorted",
-        "leetcodeId": 167
+        "leetcodeId": 167,
+        "hint": "Since the array is sorted, use two pointers starting from opposite ends. Shrink the range based on whether the current sum is too high or too low."
     },
     {
         "order": 5,

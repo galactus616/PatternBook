@@ -129,7 +129,7 @@ const ProblemsTable = ({ problems, isLoading }) => {
                       <div className="flex items-center gap-4 mt-2">
                         {/* High Contrast Difficulty Badge */}
                         <div className={`
-                        flex items-center gap-2 px-2 py-0.5 rounded-[2px] border font-mono text-[9px] font-black tracking-[0.1em]
+                        flex items-center gap-2 px-2 py-0.5 rounded-[2px] border font-mono text-[9px] font-black tracking-widest
                         ${prob.difficulty === 'EASY' ? 'bg-lime/10 text-lime-dark border-lime/30' :
                             prob.difficulty === 'MEDIUM' ? 'bg-accent/10 text-accent border-accent/30' :
                               'bg-brand-red/10 text-brand-red border-brand-red/30'}
@@ -202,9 +202,15 @@ const ProblemsTable = ({ problems, isLoading }) => {
                           </div>
                           <div>
                             <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Conceptual Hint</p>
-                            <p className="font-sans text-[14px] leading-relaxed text-ink/80 italic border-l-2 border-brand-red pl-4">
-                              Consider the spatial relationship of the elements. Can you solve this in-place by maintaining a "boundary" pointer that tracks the position of processed elements while the other pointer scans the array?
-                            </p>
+                            {prob.hint ? (
+                              <p className="font-sans text-[14px] leading-relaxed text-ink/80 italic border-l-2 border-brand-red pl-4">
+                                {prob.hint}
+                              </p>
+                            ) : (
+                              <p className="font-sans text-[13px] text-muted italic pl-4">
+                                No detailed hint available for this problem yet. Follow the pattern strategy above!
+                              </p>
+                            )}
                           </div>
                         </div>
                       </div>

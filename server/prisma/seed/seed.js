@@ -56,6 +56,7 @@ async function main() {
         patternId: pattern.id,
         subPatternId: subPattern.id,
         topicId: topic.id,
+        hint: item.hint || null,
       },
       create: {
         order: item.order,
@@ -68,6 +69,7 @@ async function main() {
         patternId: pattern.id,
         subPatternId: subPattern.id,
         topicId: topic.id,
+        hint: item.hint || null,
       },
     });
   }

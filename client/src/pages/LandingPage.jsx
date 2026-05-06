@@ -134,7 +134,7 @@ export default function LandingPage() {
       </nav>
 
       {/* Mobile menu */}
-      <div className={`md:hidden fixed top-[58px] left-0 right-0 z-[99] bg-cream border-b border-rule px-8 py-6 flex-col gap-[18px] transition-all duration-300 ${menuOpen ? "flex" : "hidden"}`}>
+      <div className={`md:hidden fixed top-[58px] left-0 right-0 z99 bg-cream border-b border-rule px-8 py-6 flex-col gap-[18px] transition-all duration-300 ${menuOpen ? "flex" : "hidden"}`}>
         {["Product", "Roadmap", "Pricing", "Blog"].map(l => <a key={l} href="#" className="text-[14px] text-muted no-underline">{l}</a>)}
         {isAuthenticated ? (
           <button className="w-full bg-lime text-lime-dark border-none font-sans text-[13px] font-semibold py-3.5 px-8 rounded-[4px] tracking-wide mt-2 hover:bg-lime-light transition-all duration-200" onClick={() => navigate("/dashboard")}>Go to Dashboard →</button>
@@ -151,7 +151,7 @@ export default function LandingPage() {
           </div>
 
           <div>
-            <div className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.1em] uppercase text-muted mb-10">
+            <div className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest uppercase text-muted mb-10">
               <span className="text-brand-red mr-1">01 /</span> DSA mastery platform
             </div>
             <h1 className="font-serif text-[clamp(60px,7vw,96px)] font-black leading-[0.9] tracking-tight text-ink max-w-[800px]">

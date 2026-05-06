@@ -7,6 +7,7 @@ import { prisma } from "./db/client.js";
 import problemRoutes from "./routes/problem.routes.js";
 import progressRoutes from "./routes/progress.routes.js";
 import authRoutes from "./routes/auth.routes.js";
+import dashboardRoutes from "./routes/dashboard.routes.js";
 
 
 const app = express();
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use("/v1/auth", authRoutes);
 app.use("/v1/problems", problemRoutes);
 app.use("/v1/progress", progressRoutes);
+app.use("/v1/dashboard", dashboardRoutes);
 
 app.get("/", (req, res) => {
     res.send("API is running");
