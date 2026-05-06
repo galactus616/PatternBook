@@ -1,29 +1,13 @@
 import { prisma } from "../db/client.js";
 
-export const getAllProblems = async (filters) => {
-    const {
-        difficulty,
-        priority,
-        pattern,
-        subPattern,
-        phase,
-    } = filters;
+export const getAllProblems = async (filters, userId) => {
+    const { topic } = filters;
 
     return prisma.problem.findMany({
         where: {
-            ...(difficulty && { difficulty }),
-            ...(priority && { priority }),
-            ...(phase && { phase: Number(phase) }),
-
-            ...(pattern && {
-                pattern: {
-                    name: pattern,
-                },
-            }),
-
-            ...(subPattern && {
-                subPattern: {
-                    name: subPattern,
+            ...(topic && {
+                topic: {
+                    name: topic,
                 },
             }),
         },
@@ -32,6 +16,16 @@ export const getAllProblems = async (filters) => {
             pattern: true,
             subPattern: true,
             topic: true,
+            progress: {
+                where: {
+                    userId: userId
+                },
+                select: {
+                    status: true,
+                    notes: true,
+                    attempts: true
+                }
+            }
         },
 
         orderBy: {

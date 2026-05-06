@@ -5,7 +5,7 @@ const Header = () => {
   const { user } = useAuth();
 
   return (
-    <header className="h-[58px] bg-cream/80 backdrop-blur-md border-b border-rule flex items-center justify-between px-8 sticky top-0 z-10">
+    <header className="h-[58px] bg-cream/80 backdrop-blur-md border-b border-rule flex items-center justify-between px-8 sticky top-0 z-[100]">
       {/* Search / Context */}
       <div className="flex items-center gap-6">
         <div className="relative group">

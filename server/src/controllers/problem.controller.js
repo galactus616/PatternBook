@@ -2,13 +2,8 @@ import { getAllProblems } from "../services/problem.service.js";
 
 export const getProblems = async (req, res) => {
     try {
-        const filters = req.query;
-
-        console.time("getAllProblems");
-
-        const problems = await getAllProblems(req.query);
-
-        console.timeEnd("getAllProblems");
+        const userId = req.user?.userId;
+        const problems = await getAllProblems(req.query, userId);
 
         res.json({
             success: true,
