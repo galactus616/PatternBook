@@ -76,7 +76,7 @@ const ProblemsTable = ({ problems, isLoading }) => {
                 <React.Fragment key={prob.id}>
                   <div
                     className={`
-                      grid grid-cols-[auto_1fr_auto_auto] items-center gap-6 p-5 bg-white hover:bg-cream-dark/30 transition-colors group relative
+                      grid grid-cols-[auto_1fr_auto_auto] items-center gap-6 p-5 bg-white hover:bg-cream/90 transition-colors group relative
                       ${activeMenu === prob.id ? 'z-50' : 'z-10'}
                     `}
                   >
@@ -144,7 +144,7 @@ const ProblemsTable = ({ problems, isLoading }) => {
 
                         <div className="w-1 h-1 rounded-full bg-rule/50" />
                         <span className="font-mono text-[9px] text-muted uppercase tracking-widest flex items-center gap-1">
-                          <Clock size={10} /> 15-20 min
+                          <Clock size={10} /> {prob.timeEstimate || 30} min
                         </span>
                       </div>
                     </div>
@@ -188,7 +188,7 @@ const ProblemsTable = ({ problems, isLoading }) => {
 
                   {/* Expandable Hint Drawer */}
                   {revealedHints[prob.id] && (
-                    <div className="bg-faint/50 border-x border-b border-rule/50 p-6 animate-in slide-in-from-top-2 duration-200">
+                    <div className="bg-cream border-x border-b border-rule/50 p-6 animate-in slide-in-from-top-2 duration-200">
                       <div className="flex gap-6 max-w-4xl">
                         <div className="shrink-0 pt-1">
                           <div className="w-8 h-8 rounded-full bg-ink/5 flex items-center justify-center text-ink/30 font-serif italic text-xl">i</div>

@@ -39,23 +39,34 @@ const Sidebar = () => {
         </div>
         {navItems.map((item) => (
           <NavLink
-            key={item.path}
-            to={item.path}
+            key={item.name}
+            to={item.disabled ? "#" : item.path}
+            onClick={(e) => {
+              if (item.disabled) e.preventDefault();
+            }}
             className={({ isActive }) => `
               group flex items-center gap-3 px-4 py-3 rounded-[4px] transition-all duration-200
-              ${isActive
-                ? "bg-ink text-cream shadow-lg shadow-ink/10"
-                : "text-muted hover:text-ink hover:bg-cream-dark"}
+              ${item.disabled 
+                ? "opacity-40 cursor-not-allowed text-muted grayscale" 
+                : isActive
+                  ? "bg-ink text-cream shadow-lg shadow-ink/10"
+                  : "text-muted hover:text-ink hover:bg-cream-dark cursor-pointer"}
             `}
-            disabled={item.disabled}
           >
             {({ isActive }) => (
               <>
-                <item.icon size={18} className={isActive ? "text-lime" : ""} />
-                <span className="font-sans text-[13px] font-semibold tracking-wide">{item.name}</span>
-                <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="w-1 h-1 rounded-full bg-brand-red" />
-                </div>
+                <item.icon size={18} className={isActive && !item.disabled ? "text-lime" : ""} />
+                <span className="font-sans text-[13px] font-semibold tracking-wide flex-1">{item.name}</span>
+                
+                {item.disabled ? (
+                  <span className="font-mono text-[8px] uppercase tracking-widest px-1.5 py-0.5 border border-rule/50 rounded-[2px]">
+                    Soon
+                  </span>
+                ) : (
+                  <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="w-1 h-1 rounded-full bg-brand-red" />
+                  </div>
+                )}
               </>
             )}
           </NavLink>

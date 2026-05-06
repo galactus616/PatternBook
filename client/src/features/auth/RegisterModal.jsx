@@ -152,7 +152,7 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full bg-lime text-lime-dark font-sans text-[14px] font-bold py-4 rounded-[4px] tracking-wide hover:bg-lime-light transition-all duration-200 shadow-lg flex items-center justify-center gap-2"
+                  className="w-full bg-lime text-lime-dark font-sans text-[14px] font-bold py-4 rounded-[4px] tracking-wide hover:bg-lime-light transition-all duration-200 shadow-lg flex items-center justify-center gap-2 cursor-pointer"
                 >
                   {isLoading ? <Loader2 size={18} className="animate-spin" /> : "Create your account →"}
                 </button>

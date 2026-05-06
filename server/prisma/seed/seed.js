@@ -57,6 +57,7 @@ async function main() {
         subPatternId: subPattern.id,
         topicId: topic.id,
         hint: item.hint || null,
+        timeEstimate: item.timeEstimate || null,
       },
       create: {
         order: item.order,
@@ -70,6 +71,7 @@ async function main() {
         subPatternId: subPattern.id,
         topicId: topic.id,
         hint: item.hint || null,
+        timeEstimate: item.timeEstimate || null,
       },
     });
   }

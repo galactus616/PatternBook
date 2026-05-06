@@ -8,7 +8,8 @@
         "priority": "Must Do",
         "title": "Remove Duplicates from Sorted Array",
         "leetcodeId": 26,
-        "hint": "Maintain a slow pointer that only moves when you find a new unique element to swap into its next position."
+        "hint": "Maintain a slow pointer that only moves when you find a new unique element to swap into its next position.",
+        "timeEstimate": 15
     },
     {
         "order": 2,
@@ -19,7 +20,8 @@
         "priority": "Must Do",
         "title": "Remove Element",
         "leetcodeId": 27,
-        "hint": "Use a secondary pointer to track the 'next available' spot for a non-target element. Overwrite the array as you scan."
+        "hint": "Use a secondary pointer to track the 'next available' spot for a non-target element. Overwrite the array as you scan.",
+        "timeEstimate": 25
     },
     {
         "order": 3,

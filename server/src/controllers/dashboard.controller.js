@@ -3,6 +3,9 @@ import { getDashboardStats } from "../services/dashboard.service.js";
 export const getStats = async (req, res) => {
   try {
     const userId = req.user.userId;
+    if (!userId) {
+      return res.status(401).json({ success: false, message: "Invalid user token" });
+    }
     const stats = await getDashboardStats(userId);
 
     res.json({

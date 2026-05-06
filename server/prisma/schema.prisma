@@ -102,6 +102,7 @@ model Problem {
   subPattern    SubPattern  @relation(fields: [subPatternId], references: [id])
   
   hint          String?
+  timeEstimate  Int?
 
   createdAt     DateTime    @default(now())
 

@@ -114,7 +114,7 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }) {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-ink text-cream font-sans text-[13px] font-bold py-4 rounded-[4px] tracking-wide hover:bg-ink-light transition-all duration-200 mt-2 shadow-lg flex items-center justify-center gap-2"
+              className="w-full bg-ink text-cream font-sans text-[13px] font-bold py-4 rounded-[4px] tracking-wide hover:bg-ink-light transition-all duration-200 mt-2 shadow-lg flex items-center justify-center gap-2 cursor-pointer"
             >
               {isLoading ? <Loader2 size={18} className="animate-spin" /> : "Sign in to dashboard →"}
             </button>

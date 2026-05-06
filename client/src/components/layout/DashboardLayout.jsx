@@ -1,8 +1,20 @@
-import React from "react";
+import React, { useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 
 const DashboardLayout = ({ children }) => {
+  const mainRef = useRef(null);
+  const location = useLocation();
+
+  // Scroll to top when route changes
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    if (mainRef.current) {
+      mainRef.current.scrollTo(0, 0);
+    }
+  }, [location.pathname]);
+
   return (
     <div className="min-h-screen bg-cream flex grain">
       {/* Sidebar */}
@@ -12,7 +24,7 @@ const DashboardLayout = ({ children }) => {
       <div className="flex-1 flex flex-col min-w-0">
         <Header />
         
-        <main className="flex-1 p-8 overflow-y-auto">
+        <main ref={mainRef} className="flex-1 p-8 overflow-y-auto scroll-smooth">
           <div className="max-w-[1200px] mx-auto">
             {children}
           </div>
