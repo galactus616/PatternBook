@@ -1,27 +1,35 @@
-import { useState, useEffect } from "react";
+import { useMutation } from "@tanstack/react-query";
+import { loginUser, registerUser } from "./auth.api";
+import { useAuthStore } from "../../store/useAuthStore";
 
 export const useAuth = () => {
-    const [token, setToken] = useState(null);
+  const { user, token, isAuthenticated, setAuth, clearAuth } = useAuthStore();
 
-    useEffect(() => {
-        const stored = localStorage.getItem("token");
-        if (stored) setToken(stored);
-    }, []);
+  const loginMutation = useMutation({
+    mutationFn: loginUser,
+    onSuccess: (res) => {
+      if (res.success) {
+        setAuth(res.data.user, res.data.token);
+      }
+    },
+  });
 
-    const login = (token) => {
-        localStorage.setItem("token", token);
-        setToken(token);
-    };
+  const registerMutation = useMutation({
+    mutationFn: registerUser,
+  });
 
-    const logout = () => {
-        localStorage.removeItem("token");
-        setToken(null);
-    };
+  const logout = () => {
+    clearAuth();
+  };
 
-    return {
-        token,
-        isAuthenticated: !!token,
-        login,
-        logout,
-    };
-};
+  return {
+    user,
+    token,
+    isAuthenticated,
+    login: loginMutation.mutateAsync,
+    register: registerMutation.mutateAsync,
+    logout,
+    isLoading: loginMutation.isPending || registerMutation.isPending,
+    error: loginMutation.error || registerMutation.error,
+  };
+};

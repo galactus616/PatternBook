@@ -1,22 +1,25 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import { useAuth } from "../features/auth/useAuth";
 import LoginModal from "../components/LoginModal";
 import RegisterModal from "../components/RegisterModal";
 
-/* ─── Scroll reveal hook ─────────────────────────────────────────────────── */
+/* ─── Hook ─── */
 function useReveal() {
-  const ref = useRef(null);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add("in"); },
-      { threshold: 0.1 }
-    );
-    obs.observe(el);
+  const [ref, setRef] = React.useState(null);
+  React.useEffect(() => {
+    if (!ref) return;
+    const obs = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting) {
+        e.target.classList.add("in");
+        obs.unobserve(e.target);
+      }
+    }, { threshold: 0.15 });
+    obs.observe(ref);
     return () => obs.disconnect();
-  }, []);
-  return ref;
+  }, [ref]);
+  return setRef;
 }
 
 /* ─── Data ───────────────────────────────────────────────────────────────── */
@@ -51,15 +54,19 @@ const TEAM_FEATURES = ["Everything in Pro", "Team leaderboard", "Admin dashboard
 
 /* ═══════════════════════════════════════════════════════════════════════════
    LANDING PAGE
-═══════════════════════════════════════════════════════════════════════════ */
+   ═══════════════════════════════════════════════════════════════════════════ */
 export default function LandingPage() {
   const navigate = useNavigate();
+  const { isAuthenticated, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
 
-  const openLogin = () => { setShowLogin(true); setShowRegister(false); setMenuOpen(false); };
-  const openRegister = () => { setShowRegister(true); setShowLogin(false); setMenuOpen(false); };
+  React.useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard", { replace: true });
+    }
+  }, [isAuthenticated, navigate]);
 
   const howRef = useReveal();
   const featRef = useReveal();
@@ -67,65 +74,82 @@ export default function LandingPage() {
   const pricingRef = useReveal();
   const ctaRef = useReveal();
 
-  // Double marquee items for seamless loop
   const marqueeItems = [...MARQUEE_ITEMS, ...MARQUEE_ITEMS];
+
+  const handleStart = () => {
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    } else {
+      setShowRegister(true);
+    }
+  };
 
   return (
     <div className="min-h-screen relative grain font-sans bg-cream text-ink overflow-x-hidden selection:bg-lime selection:text-lime-dark">
-
+      
+      {/* ── MODALS ── */}
       <LoginModal 
         isOpen={showLogin} 
         onClose={() => setShowLogin(false)} 
-        onSwitchToRegister={openRegister}
+        onSwitchToRegister={() => {
+          setShowLogin(false);
+          setShowRegister(true);
+        }}
       />
       <RegisterModal 
         isOpen={showRegister} 
         onClose={() => setShowRegister(false)} 
-        onSwitchToLogin={openLogin}
+        onSwitchToLogin={() => {
+          setShowRegister(false);
+          setShowLogin(true);
+        }}
       />
 
       {/* ── NAV ── */}
       <nav className="fixed top-0 left-0 right-0 z-100 grid grid-cols-[1fr_auto_1fr] items-center px-6 md:px-10 h-[58px] bg-cream/88 backdrop-blur-lg border-b border-rule">
         <div className="hidden md:flex items-center gap-8">
-          {[
-            { label: "Product", href: "#features" },
-            { label: "Roadmap", href: "#how-it-works" },
-            { label: "Pricing", href: "#pricing" },
-            { label: "Testimonials", href: "#testimonials" },
-          ].map(l => (
-            <a key={l.label} href={l.href} className="text-[12px] text-muted no-underline tracking-wide font-medium hover:text-ink transition-color duration-200">{l.label}</a>
+          {["Product", "Roadmap", "Pricing", "Blog"].map(l => (
+            <a key={l} href="#" className="text-[12px] text-muted no-underline tracking-wide font-medium hover:text-ink transition-color duration-200">{l}</a>
           ))}
         </div>
-        <div className="text-center font-serif text-[22px] font-black tracking-tight text-ink cursor-pointer select-none" onClick={() => navigate("/")}>
+        <div className="font-serif text-[20px] font-black tracking-tight cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           Pattern<em className="text-brand-red italic">Book</em>
         </div>
         <div className="flex items-center gap-3 justify-end">
-          <button className="hidden md:block bg-transparent border border-rule cursor-pointer text-[12px] text-muted font-sans py-1.5 px-4.5 rounded-[4px] tracking-wide hover:border-ink hover:text-ink transition-all duration-200" onClick={openLogin}>Sign in</button>
-          <button className="bg-ink border-none cursor-pointer text-[12px] text-cream font-sans py-2 px-5 rounded-[4px] tracking-wide font-medium hover:bg-ink-light hover:-translate-y-px transition-all duration-200" onClick={openRegister}>Get started →</button>
-          <button className="flex md:hidden flex-col gap-[5px] cursor-pointer bg-transparent border-none p-1" onClick={() => setMenuOpen(v => !v)}>
-            <span className="block w-[22px] h-[1.5px] bg-muted rounded-[2px]" />
-            <span className="block w-[22px] h-[1.5px] bg-muted rounded-[2px]" />
-            <span className="block w-[22px] h-[1.5px] bg-muted rounded-[2px]" />
+          {isAuthenticated ? (
+            <>
+              <button className="hidden md:block bg-transparent border border-rule cursor-pointer text-[12px] text-muted font-sans py-1.5 px-4.5 rounded-[4px] tracking-wide hover:border-ink hover:text-ink transition-all duration-200" onClick={() => navigate("/dashboard")}>Dashboard</button>
+              <button className="bg-ink text-cream border-none cursor-pointer text-[12px] font-bold py-1.5 px-5 rounded-[4px] tracking-wide hover:bg-ink-light transition-all duration-200" onClick={logout}>Sign out</button>
+            </>
+          ) : (
+            <>
+              <button className="hidden md:block bg-transparent border border-rule cursor-pointer text-[12px] text-muted font-sans py-1.5 px-4.5 rounded-[4px] tracking-wide hover:border-ink hover:text-ink transition-all duration-200" onClick={() => setShowLogin(true)}>Sign in</button>
+              <button className="bg-ink text-cream border-none cursor-pointer text-[12px] font-bold py-1.5 px-5 rounded-[4px] tracking-wide hover:bg-ink-light transition-all duration-200" onClick={() => setShowRegister(true)}>Get started →</button>
+            </>
+          )}
+          <button className="md:hidden bg-transparent border-none cursor-pointer p-1" onClick={() => setMenuOpen(!menuOpen)}>
+            {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
       </nav>
 
       {/* Mobile menu */}
       <div className={`md:hidden fixed top-[58px] left-0 right-0 z-[99] bg-cream border-b border-rule px-8 py-6 flex-col gap-[18px] transition-all duration-300 ${menuOpen ? "flex" : "hidden"}`}>
-        {[
-          { label: "Product", href: "#features" },
-          { label: "Roadmap", href: "#how-it-works" },
-          { label: "Pricing", href: "#pricing" },
-          { label: "Testimonials", href: "#testimonials" },
-        ].map(l => (
-          <a key={l.label} href={l.href} className="text-[14px] text-muted no-underline" onClick={() => setMenuOpen(false)}>{l.label}</a>
-        ))}
-        <button className="w-full bg-lime text-lime-dark border-none font-sans text-[13px] font-semibold py-3.5 px-8 rounded-[4px] tracking-wide mt-2 hover:bg-lime-light transition-all duration-200" onClick={openRegister}>Get started →</button>
+        {["Product", "Roadmap", "Pricing", "Blog"].map(l => <a key={l} href="#" className="text-[14px] text-muted no-underline">{l}</a>)}
+        {isAuthenticated ? (
+          <button className="w-full bg-lime text-lime-dark border-none font-sans text-[13px] font-semibold py-3.5 px-8 rounded-[4px] tracking-wide mt-2 hover:bg-lime-light transition-all duration-200" onClick={() => navigate("/dashboard")}>Go to Dashboard →</button>
+        ) : (
+          <button className="w-full bg-lime text-lime-dark border-none font-sans text-[13px] font-semibold py-3.5 px-8 rounded-[4px] tracking-wide mt-2 hover:bg-lime-light transition-all duration-200" onClick={() => setShowRegister(true)}>Get started →</button>
+        )}
       </div>
 
       {/* ── HERO ── */}
       <section className="pt-[58px] grid grid-cols-1 md:grid-cols-3 min-h-screen border-b border-rule">
-        <div className="p-10 md:p-14 md:col-span-2 md:pr-14 md:border-r border-rule flex flex-col justify-between">
+        <div className="p-10 md:p-14 md:col-span-2 md:pr-14 md:border-r border-rule flex flex-col justify-center relative overflow-hidden">
+          <div className="absolute top-[40%] right-[-10%] w-[400px] h-[400px] opacity-[0.03] pointer-events-none rotate-12">
+            <div className="w-full h-full" style={{ backgroundImage: 'radial-gradient(var(--color-ink) 1px, transparent 1px)', backgroundSize: '24px 24px' }}></div>
+          </div>
+
           <div>
             <div className="inline-flex items-center gap-2 font-mono text-[10px] tracking-[0.1em] uppercase text-muted mb-10">
               <span className="text-brand-red mr-1">01 /</span> DSA mastery platform
@@ -134,21 +158,23 @@ export default function LandingPage() {
               Stop <em className="italic text-brand-red">grinding.</em> Start thinking.
             </h1>
           </div>
-          <div className="mt-12">
+          <div className="mt-20">
             <p className="font-prose text-[20px] leading-[1.6] text-muted max-w-[600px] mb-10 italic">
               Most developers fail interviews not because they don't work hard — but because they work without structure. PatternBook fixes that.
             </p>
             <div className="flex gap-3 items-center flex-wrap">
-              <button className="cursor-pointer bg-lime text-lime-dark border-none font-sans text-[13px] font-semibold py-3.5 px-8 rounded-[4px] tracking-wide hover:bg-lime-light hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(184,255,87,0.25)] transition-all duration-200" onClick={openRegister}>Begin for free →</button>
-              <a href="#how-it-works" className="group cursor-pointer no-underline bg-transparent border-none font-sans text-[13px] text-muted tracking-wide flex items-center gap-1.5 hover:text-ink transition-colors duration-200">
+              <button className="cursor-pointer bg-lime text-lime-dark border-none font-sans text-[13px] font-semibold py-3.5 px-8 rounded-[4px] tracking-wide hover:bg-lime-light hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(184,255,87,0.25)] transition-all duration-200" onClick={handleStart}>
+                {isAuthenticated ? "Go to Dashboard →" : "Begin for free →"}
+              </button>
+              <button className="group cursor-pointer bg-transparent border-none font-sans text-[13px] text-muted tracking-wide flex items-center gap-1.5 hover:text-ink transition-colors duration-200" onClick={() => document.getElementById("how-it-works").scrollIntoView({ behavior: "smooth" })}>
                 See how it works <span className="text-[16px] inline-block transition-transform duration-200 group-hover:translate-x-1 group-hover:translate-y-1">↓</span>
-              </a>
+              </button>
             </div>
           </div>
         </div>
 
         <div className="hidden md:flex flex-col">
-          <div className="grid grid-cols-2 border-b border-rule flex-shrink-0">
+          <div className="grid grid-cols-2 border-b border-rule shrink-0">
             <div className="p-7 md:p-8 border-r border-rule">
               <div className="font-serif text-[42px] font-black tracking-tight text-ink leading-none">12<em className="text-brand-red not-italic font-black">k+</em></div>
               <div className="font-mono text-[10px] uppercase tracking-[0.08em] text-muted mt-1.5">Problems catalogued</div>
@@ -159,7 +185,7 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="flex-1 p-8 font-mono text-[12px] leading-[1.8] relative overflow-hidden">
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-lime to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-linear-to-r from-transparent via-lime to-transparent" />
             <div className="flex items-center justify-between mb-5">
               <span className="font-mono text-[10px] text-muted tracking-wide">two_sum.py · pattern: hash-map</span>
               <span className="flex items-center gap-1.5 text-[10px] text-lime-dark bg-lime/20 py-0.5 px-2.5 rounded-full font-mono">
@@ -252,7 +278,7 @@ export default function LandingPage() {
       <section id="testimonials" className="grid grid-cols-1 md:grid-cols-2 border-b border-rule reveal" ref={testiRef}>
         <div className="p-10 md:p-14 md:border-r border-rule bg-ink flex flex-col justify-between">
           <div className="font-mono text-[10px] uppercase tracking-widest text-cream/35 mb-8">04 / What people say</div>
-          <div className="font-serif text-[clamp(24px,2.8vw,34px)] font-black italic leading-[1.25] text-cream flex-1 flex items-center">
+          <div className="font-serif text-[clamp(24px,2.8vw,34px)] font-black italic leading-tight text-cream flex-1 flex items-center">
             "I studied for 8 months on LeetCode and couldn't crack Google. Two months on Codeform — offer letter in hand."
           </div>
           <div className="flex items-center gap-4 mt-10">
@@ -295,11 +321,11 @@ export default function LandingPage() {
             <div className="flex flex-col gap-3 mb-8">
               {FREE_FEATURES.map(f => (
                 <div key={f} className="flex items-center gap-2.5 text-[13px] text-muted">
-                  <div className="w-1.5 h-1.5 rounded-full bg-ink flex-shrink-0" />{f}
+                  <div className="w-1.5 h-1.5 rounded-full bg-ink shrink-0" />{f}
                 </div>
               ))}
             </div>
-            <button className="w-full cursor-pointer font-sans text-[13px] font-semibold p-3.25 rounded-[4px] border border-rule bg-transparent text-ink tracking-wide hover:border-ink hover:bg-cream-dark transition-all duration-200" onClick={openRegister}>Start free →</button>
+            <button className="w-full cursor-pointer font-sans text-[13px] font-semibold p-3.25 rounded-[4px] border border-rule bg-transparent text-ink tracking-wide hover:border-ink hover:bg-cream-dark transition-all duration-200" onClick={() => setShowRegister(true)}>Start free →</button>
           </div>
           {/* Pro */}
           <div className="p-10 md:px-9 md:py-12 border-b md:border-b-0 md:border-r border-rule bg-ink relative">
@@ -312,11 +338,11 @@ export default function LandingPage() {
             <div className="flex flex-col gap-3 mb-8">
               {PRO_FEATURES.map(f => (
                 <div key={f} className="flex items-center gap-2.5 text-[13px] text-cream/80">
-                  <div className="w-1.5 h-1.5 rounded-full bg-lime flex-shrink-0" />{f}
+                  <div className="w-1.5 h-1.5 rounded-full bg-lime shrink-0" />{f}
                 </div>
               ))}
             </div>
-            <button className="w-full cursor-pointer font-sans text-[13px] font-semibold p-3.25 rounded-[4px] border-none bg-lime text-lime-dark tracking-wide hover:bg-lime-light transition-all duration-200" onClick={openRegister}>Get Pro →</button>
+            <button className="w-full cursor-pointer font-sans text-[13px] font-semibold p-3.25 rounded-[4px] border-none bg-lime text-lime-dark tracking-wide hover:bg-lime-light transition-all duration-200" onClick={() => setShowRegister(true)}>Get Pro →</button>
           </div>
           {/* Team */}
           <div className="p-10 md:px-9 md:py-12 border-rule relative">
@@ -328,7 +354,7 @@ export default function LandingPage() {
             <div className="flex flex-col gap-3 mb-8">
               {TEAM_FEATURES.map(f => (
                 <div key={f} className="flex items-center gap-2.5 text-[13px] text-muted">
-                  <div className="w-1.5 h-1.5 rounded-full bg-ink flex-shrink-0" />{f}
+                  <div className="w-1.5 h-1.5 rounded-full bg-ink shrink-0" />{f}
                 </div>
               ))}
             </div>
@@ -342,8 +368,8 @@ export default function LandingPage() {
         <h2 className="font-serif text-[clamp(34px,4.5vw,54px)] font-black leading-[1.05] tracking-tight text-ink">
           Your next offer is<br />a <em className="italic text-brand-red">structure</em> problem.
         </h2>
-        <div className="flex flex-col gap-2.5 items-start md:items-end flex-shrink-0">
-          <button className="cursor-pointer bg-lime text-lime-dark border-none font-sans text-[14px] font-bold py-4 px-10 rounded-[4px] tracking-wide hover:bg-lime-light transition-all duration-200" onClick={openRegister}>
+        <div className="flex flex-col gap-2.5 items-start md:items-end shrink-0">
+          <button className="cursor-pointer bg-lime text-lime-dark border-none font-sans text-[14px] font-bold py-4 px-10 rounded-[4px] tracking-wide hover:bg-lime-light transition-all duration-200" onClick={() => setShowRegister(true)}>
             Start learning free →
           </button>
           <div className="font-mono text-[10px] text-muted tracking-wide text-left md:text-right">No credit card · 2 min setup · cancel anytime</div>

@@ -1,10 +1,25 @@
-import React, { useEffect } from "react";
-import { X } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { X, Loader2 } from "lucide-react";
+import { useAuth } from "../features/auth/useAuth";
 
 export default function LoginModal({ isOpen, onClose, onSwitchToRegister }) {
+  const navigate = useNavigate();
+  const { login, isLoading, error: mutationError } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const resetForm = () => {
+    setEmail("");
+    setPassword("");
+    setError("");
+  };
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      resetForm();
     } else {
       document.body.style.overflow = "unset";
     }
@@ -13,10 +28,32 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }) {
     };
   }, [isOpen]);
 
+  const handleSwitch = () => {
+    resetForm();
+    onSwitchToRegister();
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError("");
+
+    try {
+      const res = await login({ email, password });
+      if (res.success) {
+        onClose();
+        navigate("/dashboard");
+      } else {
+        setError(res.message || "Invalid credentials. Please try again.");
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || "An unexpected error occurred. Please try again.");
+    }
+  };
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4 md:p-6">
+    <div className="fixed inset-0 z-1000 flex items-center justify-center p-4 md:p-6">
       {/* Backdrop */}
       <div 
         className="absolute inset-0 bg-ink/40 backdrop-blur-sm transition-opacity" 
@@ -40,11 +77,20 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }) {
             <h2 className="font-serif text-[32px] font-black text-ink leading-none">Sign in to <br />Pattern<em className="text-brand-red italic">Book</em></h2>
           </div>
 
-          <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-5" onSubmit={handleSubmit}>
+            {(error || mutationError) && (
+              <div className="bg-brand-red/10 border border-brand-red/20 text-brand-red text-[12px] p-3 rounded-[4px] font-sans">
+                {error || mutationError?.message || "Invalid credentials. Please try again."}
+              </div>
+            )}
+            
             <div>
               <label className="block font-mono text-[10px] uppercase tracking-wider text-muted mb-2">Email Address</label>
               <input 
                 type="email" 
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="alex@example.com"
                 className="w-full bg-white/50 border border-rule px-4 py-3 rounded-[4px] font-sans text-[14px] text-ink placeholder:text-faint focus:border-ink focus:bg-white transition-all outline-none"
               />
@@ -57,6 +103,9 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }) {
               </div>
               <input 
                 type="password" 
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
                 className="w-full bg-white/50 border border-rule px-4 py-3 rounded-[4px] font-sans text-[14px] text-ink placeholder:text-faint focus:border-ink focus:bg-white transition-all outline-none"
               />
@@ -64,9 +113,10 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }) {
 
             <button 
               type="submit"
-              className="w-full bg-ink text-cream font-sans text-[13px] font-bold py-4 rounded-[4px] tracking-wide hover:bg-ink-light transition-all duration-200 mt-2 shadow-lg"
+              disabled={isLoading}
+              className="w-full bg-ink text-cream font-sans text-[13px] font-bold py-4 rounded-[4px] tracking-wide hover:bg-ink-light transition-all duration-200 mt-2 shadow-lg flex items-center justify-center gap-2"
             >
-              Sign in to dashboard →
+              {isLoading ? <Loader2 size={18} className="animate-spin" /> : "Sign in to dashboard →"}
             </button>
           </form>
 
@@ -74,7 +124,7 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }) {
             <p className="text-[13px] text-muted">
               New to PatternBook?{" "}
               <button 
-                onClick={onSwitchToRegister}
+                onClick={handleSwitch}
                 className="text-ink font-bold hover:text-brand-red transition-colors bg-transparent border-none cursor-pointer"
               >
                 Create an account
