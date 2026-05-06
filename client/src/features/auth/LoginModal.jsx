@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { X, Loader2 } from "lucide-react";
-import { useAuth } from "../features/auth/useAuth";
+import { useAuth } from "./useAuth";
 
 export default function LoginModal({ isOpen, onClose, onSwitchToRegister }) {
   const navigate = useNavigate();
@@ -55,15 +55,15 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }) {
   return (
     <div className="fixed inset-0 z-1000 flex items-center justify-center p-4 md:p-6">
       {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-ink/40 backdrop-blur-sm transition-opacity" 
+      <div
+        className="absolute inset-0 bg-ink/40 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
-      
+
       {/* Modal Content */}
       <div className="relative w-full max-w-[420px] bg-cream grain border border-rule shadow-2xl rounded-[8px] overflow-hidden animate-in fade-in zoom-in duration-300">
         <div className="absolute top-4 right-4">
-          <button 
+          <button
             onClick={onClose}
             className="p-1 hover:bg-faint rounded-full transition-colors cursor-pointer text-muted hover:text-ink"
           >
@@ -83,11 +83,11 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }) {
                 {error || mutationError?.message || "Invalid credentials. Please try again."}
               </div>
             )}
-            
+
             <div>
               <label className="block font-mono text-[10px] uppercase tracking-wider text-muted mb-2">Email Address</label>
-              <input 
-                type="email" 
+              <input
+                type="email"
                 required
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -101,8 +101,8 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }) {
                 <label className="block font-mono text-[10px] uppercase tracking-wider text-muted">Password</label>
                 <button type="button" className="font-mono text-[9px] uppercase tracking-wider text-brand-red hover:underline bg-transparent border-none cursor-pointer">Forgot?</button>
               </div>
-              <input 
-                type="password" 
+              <input
+                type="password"
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -111,7 +111,7 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }) {
               />
             </div>
 
-            <button 
+            <button
               type="submit"
               disabled={isLoading}
               className="w-full bg-ink text-cream font-sans text-[13px] font-bold py-4 rounded-[4px] tracking-wide hover:bg-ink-light transition-all duration-200 mt-2 shadow-lg flex items-center justify-center gap-2"
@@ -123,7 +123,7 @@ export default function LoginModal({ isOpen, onClose, onSwitchToRegister }) {
           <div className="mt-8 pt-8 border-t border-rule text-center">
             <p className="text-[13px] text-muted">
               New to PatternBook?{" "}
-              <button 
+              <button
                 onClick={handleSwitch}
                 className="text-ink font-bold hover:text-brand-red transition-colors bg-transparent border-none cursor-pointer"
               >

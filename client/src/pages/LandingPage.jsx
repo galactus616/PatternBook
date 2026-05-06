@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 import { useAuth } from "../features/auth/useAuth";
-import LoginModal from "../components/LoginModal";
-import RegisterModal from "../components/RegisterModal";
+import LoginModal from "../features/auth/LoginModal";
+import RegisterModal from "../features/auth/RegisterModal";
 
 /* ─── Hook ─── */
 function useReveal() {
@@ -86,19 +86,19 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen relative grain font-sans bg-cream text-ink overflow-x-hidden selection:bg-lime selection:text-lime-dark">
-      
+
       {/* ── MODALS ── */}
-      <LoginModal 
-        isOpen={showLogin} 
-        onClose={() => setShowLogin(false)} 
+      <LoginModal
+        isOpen={showLogin}
+        onClose={() => setShowLogin(false)}
         onSwitchToRegister={() => {
           setShowLogin(false);
           setShowRegister(true);
         }}
       />
-      <RegisterModal 
-        isOpen={showRegister} 
-        onClose={() => setShowRegister(false)} 
+      <RegisterModal
+        isOpen={showRegister}
+        onClose={() => setShowRegister(false)}
         onSwitchToLogin={() => {
           setShowRegister(false);
           setShowLogin(true);

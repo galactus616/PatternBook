@@ -4,6 +4,7 @@ import LandingPage from "../pages/LandingPage";
 import DashboardPage from "../pages/DashboardPage";
 import ProblemsPage from "../pages/ProblemsPage";
 import ProtectedRoute from "./ProtectedRoute";
+import DashboardLayout from "../components/layout/DashboardLayout";
 
 const AppRouter = () => {
   return (
@@ -18,7 +19,9 @@ const AppRouter = () => {
           path="/dashboard"
           element={
             <ProtectedRoute>
-              <DashboardPage />
+              <DashboardLayout>
+                <DashboardPage />
+              </DashboardLayout>
             </ProtectedRoute>
           }
         />
@@ -27,7 +30,9 @@ const AppRouter = () => {
           path="/problems"
           element={
             <ProtectedRoute>
-              <ProblemsPage />
+              <DashboardLayout>
+                <ProblemsPage />
+              </DashboardLayout>
             </ProtectedRoute>
           }
         />

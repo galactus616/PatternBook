@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { X, Loader2 } from "lucide-react";
-import { useAuth } from "../features/auth/useAuth";
+import { useAuth } from "./useAuth";
 
 export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
   const { register, isLoading, error: mutationError } = useAuth();
@@ -62,15 +62,15 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
   return (
     <div className="fixed inset-0 z-1000 flex items-center justify-center p-4 md:p-6">
       {/* Backdrop */}
-      <div 
-        className="absolute inset-0 bg-ink/40 backdrop-blur-sm transition-opacity" 
+      <div
+        className="absolute inset-0 bg-ink/40 backdrop-blur-sm transition-opacity"
         onClick={onClose}
       />
-      
+
       {/* Modal Content */}
       <div className="relative w-full max-w-[460px] bg-cream grain border border-rule shadow-2xl rounded-[8px] overflow-hidden animate-in fade-in zoom-in duration-300">
         <div className="absolute top-4 right-4">
-          <button 
+          <button
             onClick={onClose}
             className="p-1 hover:bg-faint rounded-full transition-colors cursor-pointer text-muted hover:text-ink"
           >
@@ -101,8 +101,8 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <label className="block font-mono text-[10px] uppercase tracking-wider text-muted mb-2">First Name</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     required
                     value={firstName}
                     onChange={(e) => setFirstName(e.target.value)}
@@ -112,8 +112,8 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
                 </div>
                 <div>
                   <label className="block font-mono text-[10px] uppercase tracking-wider text-muted mb-2">Last Name</label>
-                  <input 
-                    type="text" 
+                  <input
+                    type="text"
                     required
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
@@ -125,8 +125,8 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
 
               <div>
                 <label className="block font-mono text-[10px] uppercase tracking-wider text-muted mb-2">Email Address</label>
-                <input 
-                  type="email" 
+                <input
+                  type="email"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -137,8 +137,8 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
 
               <div>
                 <label className="block font-mono text-[10px] uppercase tracking-wider text-muted mb-2">Create Password</label>
-                <input 
-                  type="password" 
+                <input
+                  type="password"
                   required
                   minLength={8}
                   value={password}
@@ -149,7 +149,7 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
               </div>
 
               <div className="pt-2">
-                <button 
+                <button
                   type="submit"
                   disabled={isLoading}
                   className="w-full bg-lime text-lime-dark font-sans text-[14px] font-bold py-4 rounded-[4px] tracking-wide hover:bg-lime-light transition-all duration-200 shadow-lg flex items-center justify-center gap-2"
@@ -157,7 +157,7 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
                   {isLoading ? <Loader2 size={18} className="animate-spin" /> : "Create your account →"}
                 </button>
               </div>
-              
+
               <p className="text-[10px] text-muted leading-relaxed mt-2">
                 By joining, you agree to our <span className="underline cursor-pointer">Terms of Service</span> and <span className="underline cursor-pointer">Privacy Policy</span>.
               </p>
@@ -167,7 +167,7 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
           <div className="mt-8 pt-8 border-t border-rule text-center">
             <p className="text-[13px] text-muted">
               Already have an account?{" "}
-              <button 
+              <button
                 onClick={handleSwitch}
                 className="text-ink font-bold hover:text-brand-red transition-colors bg-transparent border-none cursor-pointer"
               >
