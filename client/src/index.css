@@ -78,3 +78,27 @@
     transform: translateY(0);
   }
 }
+
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #D2CEC4;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1A1A1A;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #D2CEC4 transparent;
+}

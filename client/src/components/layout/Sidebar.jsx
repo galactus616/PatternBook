@@ -46,8 +46,8 @@ const Sidebar = () => {
             }}
             className={({ isActive }) => `
               group flex items-center gap-3 px-4 py-3 rounded-[4px] transition-all duration-200
-              ${item.disabled 
-                ? "opacity-40 cursor-not-allowed text-muted grayscale" 
+              ${item.disabled
+                ? "opacity-40 cursor-not-allowed text-muted grayscale"
                 : isActive
                   ? "bg-ink text-cream shadow-lg shadow-ink/10"
                   : "text-muted hover:text-ink hover:bg-cream-dark cursor-pointer"}
@@ -57,7 +57,7 @@ const Sidebar = () => {
               <>
                 <item.icon size={18} className={isActive && !item.disabled ? "text-lime" : ""} />
                 <span className="font-sans text-[13px] font-semibold tracking-wide flex-1">{item.name}</span>
-                
+
                 {item.disabled ? (
                   <span className="font-mono text-[8px] uppercase tracking-widest px-1.5 py-0.5 border border-rule/50 rounded-[2px]">
                     Soon

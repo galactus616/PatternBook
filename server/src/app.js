@@ -18,6 +18,11 @@ app.use(cors({
 }));
 app.use(express.json());
 
+app.use((req, res, next) => {
+  res.setHeader("Cross-Origin-Opener-Policy", "same-origin-allow-popups");
+  next();
+});
+
 // routes
 app.use("/v1/auth", authRoutes);
 app.use("/v1/problems", problemRoutes);

@@ -49,7 +49,11 @@ const Header = () => {
             <p className="font-mono text-[9px] uppercase tracking-wider text-muted">Pro Member</p>
           </div>
           <div className="w-9 h-9 rounded-full bg-ink flex items-center justify-center border border-rule overflow-hidden cursor-pointer hover:border-brand-red transition-colors">
-            <User size={20} className="text-cream" />
+            {user?.picture ? (
+              <img src={user.picture} alt={user.name} className="w-full h-full object-cover" />
+            ) : (
+              <User size={20} className="text-cream" />
+            )}
           </div>
         </div>
       </div>

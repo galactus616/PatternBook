@@ -11,3 +11,9 @@ export const loginUser = async ({ email, password }) => {
     const res = await axios.post("/auth/login", { email, password });
     return res.data;
 };
+
+// Google Login
+export const googleLogin = async (credential) => {
+    const res = await axios.post("/auth/google", { credential });
+    return res.data;
+};
