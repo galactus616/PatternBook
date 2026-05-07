@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { X, Loader2, Eye, EyeOff } from "lucide-react";
+import { X, Loader2, Eye, EyeOff, CheckCircle2 } from "lucide-react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useAuth } from "./useAuth";
 
@@ -68,7 +68,7 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
         setSuccess(true);
         setTimeout(() => {
           onSwitchToLogin();
-        }, 2000);
+        }, 3000);
       } else {
         setError(res.message || "Registration failed. Please try again.");
       }
@@ -105,10 +105,28 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
           </div>
 
           {success ? (
-            <div className="bg-lime/20 border border-lime/30 p-6 rounded-[4px] text-center space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-              <div className="text-[40px]">🎉</div>
-              <h3 className="font-serif text-[24px] font-black text-ink">Account Created!</h3>
-              <p className="text-[14px] text-muted leading-relaxed">Your account is ready. We're redirecting you to sign in...</p>
+            <div className="py-12 px-6 text-center animate-in fade-in zoom-in duration-500">
+              <div className="mb-8 relative inline-block">
+                <div className="absolute inset-0 bg-lime blur-2xl opacity-20 rounded-full animate-pulse" />
+                <CheckCircle2 size={80} className="text-lime relative z-10" strokeWidth={1.5} />
+              </div>
+              
+              <h3 className="font-serif text-[32px] font-black text-ink mb-3 leading-tight tracking-tight">
+                Welcome aboard, <br /> <span className="text-brand-red italic">{firstName}!</span>
+              </h3>
+              
+              <p className="text-[14px] text-muted leading-relaxed max-w-[280px] mx-auto mb-10">
+                Your roadmap is ready. We're preparing your personal dashboard...
+              </p>
+
+              <div className="max-w-[200px] mx-auto">
+                <div className="h-1 w-full bg-rule/20 rounded-full overflow-hidden">
+                  <div className="h-full bg-lime animate-[progress_3s_ease-in-out_forwards]" />
+                </div>
+                <div className="mt-3 font-mono text-[9px] uppercase tracking-widest text-faint">
+                  Redirecting in a moment
+                </div>
+              </div>
             </div>
           ) : (
             <form className="space-y-4" onSubmit={handleSubmit}>

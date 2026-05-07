@@ -102,3 +102,12 @@
   scrollbar-width: thin;
   scrollbar-color: #D2CEC4 transparent;
 }
+
+@keyframes progress {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+.animate-progress {
+  animation: progress 3s ease-in-out forwards;
+}

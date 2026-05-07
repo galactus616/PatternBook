@@ -36,21 +36,21 @@ const STEPS = [
 ];
 
 const FEATURES = [
-  { id: "F–01", title: "Pattern Roadmap", desc: "A phase-gated curriculum that sequences patterns in the exact order that builds on itself. No more random problem selection." },
-  { id: "F–02", title: "Spaced Repetition", desc: "Our algorithm surfaces problems you're likely to forget right before you forget them. Retention that actually sticks." },
-  { id: "F–03", title: "Smart Notes", desc: "Annotate any problem with tags, insights, and approach notes. Build a personal DSA knowledge base that's yours forever." },
-  { id: "F–04", title: "Mock Interview Mode", desc: "Timed sessions with randomly selected problems from your weak patterns. Simulates interview pressure with detailed post-session breakdowns." },
+  { id: "F–01", title: "Visual Roadmaps", desc: "A phase-gated curriculum that sequences patterns in the exact order they build on each other. Master the foundation first." },
+  { id: "F–02", title: "Pattern Engine", desc: "Our proprietary algorithm surfaces problems right before you forget them. Build long-term retention through SRS reps." },
+  { id: "F–03", title: "Handwritten Notes", desc: "Annotate any pattern with tags, insights, and approach diagrams. Build a personal DSA knowledge base that lasts." },
+  { id: "F–04", title: "Focus Sessions", desc: "Timed deep-dives into specific pattern variants. Simulates real interview pressure with detailed post-session analytics." },
 ];
 
 const METRICS = [
-  { val: "3.2×", label: "faster pattern recognition after 30 days vs. unstructured LeetCode practice" },
-  { val: "94%", label: "of Codeform users who complete Phase 1 receive at least one FAANG interview" },
-  { val: "18k", label: "developers currently building structured mastery on Codeform" },
+  { val: "3.2×", label: "faster pattern recognition after 21 days vs. unstructured LeetCode grinding" },
+  { val: "92%", label: "of PatternBook beta users report feeling significantly more prepared for technical rounds" },
+  { val: "500+", label: "early-access developers currently building their roadmap on PatternBook" },
 ];
 
-const FREE_FEATURES = ["3 pattern tracks", "150 problems", "Progress tracking", "Community forum"];
-const PRO_FEATURES = ["All 18 pattern tracks", "1,200+ problems", "Spaced repetition engine", "Mock interview mode", "Smart notes + bookmarks", "Mastery analytics"];
-const TEAM_FEATURES = ["Everything in Pro", "Team leaderboard", "Admin dashboard", "Custom problem sets", "Priority support"];
+const FREE_FEATURES = ["3 Fundamental Pattern Tracks", "50+ Curated Problems", "Basic Progress Visualizer", "Public Pattern Index"];
+const PRO_FEATURES = ["All 18+ Advanced Patterns", "500+ Progressive Problems", "Personalized SRS Engine", "Handwritten Pattern Notes", "Mock Interview Focus Mode", "Detailed Mastery Analytics"];
+const TEAM_FEATURES = ["Everything in Pro", "Team Progress Dashboard", "Collaborative Study Groups", "Custom Pattern Curations", "Priority Support"];
 
 /* ═══════════════════════════════════════════════════════════════════════════
    LANDING PAGE
@@ -108,12 +108,23 @@ export default function LandingPage() {
       {/* ── NAV ── */}
       <nav className="fixed top-0 left-0 right-0 z-100 grid grid-cols-[1fr_auto_1fr] items-center px-6 md:px-10 h-[58px] bg-cream/88 backdrop-blur-lg border-b border-rule">
         <div className="hidden md:flex items-center gap-8">
-          {["Product", "Roadmap", "Pricing", "Blog"].map(l => (
-            <a key={l} href="#" className="text-[12px] text-muted no-underline tracking-wide font-medium hover:text-ink transition-color duration-200">{l}</a>
+          {[
+            { label: "Method", href: "#how-it-works" },
+            { label: "Features", href: "#features" },
+            { label: "Pricing", href: "#pricing" },
+            { label: "Blog", href: "#" }
+          ].map(l => (
+            <a key={l.label} href={l.href} className="text-[12px] text-muted no-underline tracking-wide font-medium hover:text-ink transition-color duration-200" onClick={(e) => {
+              if (l.href.startsWith("#") && l.href !== "#") {
+                e.preventDefault();
+                document.querySelector(l.href)?.scrollIntoView({ behavior: "smooth" });
+              }
+            }}>{l.label}</a>
           ))}
         </div>
-        <div className="font-serif text-[20px] font-black tracking-tight cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
-          Pattern<em className="text-brand-red italic">Book</em>
+        <div className="font-serif text-[20px] font-black tracking-tight cursor-pointer flex items-center gap-1.5" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
+          <span>Pattern<em className="text-brand-red italic">Book</em></span>
+          <span className="font-mono text-[7px] border border-brand-red/30 text-brand-red px-1 py-0.5 rounded-[2px] tracking-widest uppercase leading-none -translate-y-1.5 opacity-80">Beta</span>
         </div>
         <div className="flex items-center gap-3 justify-end">
           {isAuthenticated ? (
@@ -133,9 +144,21 @@ export default function LandingPage() {
         </div>
       </nav>
 
-      {/* Mobile menu */}
       <div className={`md:hidden fixed top-[58px] left-0 right-0 z99 bg-cream border-b border-rule px-8 py-6 flex-col gap-[18px] transition-all duration-300 ${menuOpen ? "flex" : "hidden"}`}>
-        {["Product", "Roadmap", "Pricing", "Blog"].map(l => <a key={l} href="#" className="text-[14px] text-muted no-underline">{l}</a>)}
+        {[
+          { label: "Method", href: "#how-it-works" },
+          { label: "Features", href: "#features" },
+          { label: "Pricing", href: "#pricing" },
+          { label: "Blog", href: "#" }
+        ].map(l => (
+          <a key={l.label} href={l.href} className="text-[14px] text-muted no-underline" onClick={(e) => {
+            setMenuOpen(false);
+            if (l.href.startsWith("#") && l.href !== "#") {
+              e.preventDefault();
+              document.querySelector(l.href)?.scrollIntoView({ behavior: "smooth" });
+            }
+          }}>{l.label}</a>
+        ))}
         {isAuthenticated ? (
           <button className="w-full bg-lime text-lime-dark border-none font-sans text-[13px] font-semibold py-3.5 px-8 rounded-[4px] tracking-wide mt-2 hover:bg-lime-light transition-all duration-200" onClick={() => navigate("/dashboard")}>Go to Dashboard →</button>
         ) : (
@@ -277,15 +300,15 @@ export default function LandingPage() {
       {/* ── TESTIMONIAL ── */}
       <section id="testimonials" className="grid grid-cols-1 md:grid-cols-2 border-b border-rule reveal" ref={testiRef}>
         <div className="p-10 md:p-14 md:border-r border-rule bg-ink flex flex-col justify-between">
-          <div className="font-mono text-[10px] uppercase tracking-widest text-cream/35 mb-8">04 / What people say</div>
+          <div className="font-mono text-[10px] uppercase tracking-widest text-cream/35 mb-8">04 / Early User Feedback</div>
           <div className="font-serif text-[clamp(24px,2.8vw,34px)] font-black italic leading-tight text-cream flex-1 flex items-center">
-            "I studied for 8 months on LeetCode and couldn't crack Google. Two months on Codeform — offer letter in hand."
+            "I studied for 6 months on LeetCode and still felt lost. Three weeks on PatternBook and the structure finally clicked."
           </div>
           <div className="flex items-center gap-4 mt-10">
-            <div className="w-11 h-11 rounded-full bg-lime flex items-center justify-center font-serif text-[16px] font-black text-lime-dark">AR</div>
+            <div className="w-11 h-11 rounded-full bg-lime flex items-center justify-center font-serif text-[16px] font-black text-lime-dark">JS</div>
             <div>
-              <div className="text-[13px] font-semibold text-cream">Arjun Rao</div>
-              <div className="font-mono text-[10px] text-cream/40 mt-0.5 tracking-tight">Software Engineer · Google L4</div>
+              <div className="text-[13px] font-semibold text-cream">Julian Smith</div>
+              <div className="font-mono text-[10px] text-cream/40 mt-0.5 tracking-tight">Full Stack Developer · Early Adopter</div>
             </div>
           </div>
         </div>
@@ -377,33 +400,53 @@ export default function LandingPage() {
       </div>
 
       {/* ── FOOTER ── */}
-      <footer className="grid grid-cols-1 md:grid-cols-[240px_1fr]">
-        <div className="p-10 md:border-r border-rule">
-          <div className="font-serif text-[24px] font-black text-ink mb-3 select-none">Code<em className="text-brand-red not-italic">form</em></div>
-          <div className="text-[12px] text-muted leading-relaxed max-w-[160px]">Pattern-first DSA mastery for developers who want to think, not grind.</div>
-        </div>
-        <div className="p-10 grid grid-cols-2 md:grid-cols-4 gap-6 content-start">
-          {[
-            { title: "Product", links: [{ label: "Roadmap", href: "#how-it-works" }, { label: "Features", href: "#features" }, "Mock Interviews", "Changelog"] },
-            { title: "Learn", links: ["Pattern Library", { label: "Testimonials", href: "#testimonials" }, "Community"] },
-            { title: "Company", links: ["About", "Careers", "Contact"] },
-            { title: "Legal", links: ["Privacy", "Terms"] },
-          ].map(col => (
-            <div key={col.title}>
-              <div className="font-mono text-[10px] uppercase tracking-widest text-muted mb-3.5">{col.title}</div>
-              {col.links.map(l => {
-                const isObj = typeof l === 'object';
-                const label = isObj ? l.label : l;
-                const href = isObj ? l.href : "#";
-                return <a key={label} href={href} className="block text-[13px] text-muted no-underline mb-2.5 hover:text-ink transition-colors duration-200">{label}</a>
-              })}
+      <footer className="bg-ink border-t border-rule/20 pt-20 pb-10">
+        <div className="max-w-[1400px] mx-auto px-10">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+            <div className="md:col-span-1">
+              <div className="font-serif text-[28px] font-black text-cream mb-6 select-none flex items-center gap-2">
+                <span>Pattern<em className="text-brand-red italic">Book</em></span>
+                <span className="font-mono text-[8px] border border-lime/30 text-lime px-1.5 py-0.5 rounded-[2px] tracking-widest uppercase leading-none -translate-y-2.5 opacity-80">Beta</span>
+              </div>
+              <p className="text-[14px] text-cream/50 leading-relaxed mb-8 max-w-[240px]">
+                The pattern-first roadmap for developers who want to master the art of problem-solving, not just memorize solutions.
+              </p>
+              <div className="flex gap-4">
+                {["X", "GH", "DS"].map(s => (
+                  <div key={s} className="w-8 h-8 rounded-full border border-cream/10 flex items-center justify-center text-[10px] font-mono text-cream/40 hover:text-lime hover:border-lime transition-all cursor-pointer">
+                    {s}
+                  </div>
+                ))}
+              </div>
             </div>
-          ))}
-        </div>
-        <div className="border-t border-rule px-10 py-5 flex flex-col md:flex-row justify-between items-center gap-3 col-span-1 md:col-span-2">
-          <div className="font-mono text-[10px] text-muted tracking-wide">© 2026 Codeform Technologies · All rights reserved</div>
-          <div className="flex gap-6">
-            {["GitHub", "Twitter", "Discord"].map(l => <a key={l} href="#" className="font-mono text-[10px] text-muted no-underline tracking-wide hover:text-ink transition-colors duration-200">{l}</a>)}
+
+            {[
+              { title: "Curriculum", links: ["Arrays & Hashing", "Two Pointers", "Sliding Window", "Trees & Graphs", "Dynamic Programming"] },
+              { title: "Platform", links: ["Pattern Roadmap", "Success Stories", "Mock Interviews", "Beta Access", "Changelog"] },
+              { title: "Community", links: ["Discord Server", "Pattern Index", "Manifesto", "Open Source", "Contact"] },
+            ].map(col => (
+              <div key={col.title}>
+                <h4 className="font-mono text-[10px] uppercase tracking-widest text-cream/30 mb-8">{col.title}</h4>
+                <ul className="space-y-4">
+                  {col.links.map(l => (
+                    <li key={l}>
+                      <a href="#" className="text-[13px] text-cream/60 hover:text-cream transition-colors duration-200 no-underline">{l}</a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="pt-10 border-t border-cream/5 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div className="font-mono text-[10px] text-cream/20 tracking-wider">
+              © 2026 PATTERNBOOK LABS · CRAFTED FOR THE TOP 1%
+            </div>
+            <div className="flex gap-8">
+              {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(l => (
+                <a key={l} href="#" className="font-mono text-[10px] text-cream/20 hover:text-cream/50 no-underline transition-colors uppercase tracking-widest">{l}</a>
+              ))}
+            </div>
           </div>
         </div>
       </footer>

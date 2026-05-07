@@ -12,7 +12,7 @@ import {
 import { useAuth } from "../../features/auth/useAuth";
 
 const Sidebar = () => {
-  const { logout } = useAuth();
+  const { user, logout } = useAuth();
 
   const navItems = [
     { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard, disabled: false },
@@ -27,8 +27,9 @@ const Sidebar = () => {
     <aside className="w-[280px] h-screen bg-cream border-r border-rule flex flex-col sticky top-0 overflow-hidden">
       {/* Logo */}
       <div className="h-[58px] border-b border-rule flex items-center px-8 shrink-0">
-        <div className="font-serif text-[20px] font-black tracking-tight select-none">
-          Pattern<em className="text-brand-red italic">Book</em>
+        <div className="font-serif text-[20px] font-black tracking-tight select-none flex items-center gap-1.5">
+          <span>Pattern<em className="text-brand-red italic">Book</em></span>
+          <span className="font-mono text-[7px] border border-brand-red/30 text-brand-red px-1 py-0.5 rounded-[2px] tracking-widest uppercase leading-none -translate-y-1.5 opacity-80">Beta</span>
         </div>
       </div>
 
@@ -77,10 +78,10 @@ const Sidebar = () => {
       <div className="mt-auto border-t border-rule p-4">
         <button
           onClick={logout}
-          className="w-full flex items-center gap-3 px-4 py-3 text-muted hover:text-brand-red hover:bg-brand-red/5 rounded-[4px] transition-all duration-200 group cursor-pointer"
+          className="w-full flex items-center justify-center gap-2.5 px-4 py-3 text-muted hover:text-brand-red hover:bg-brand-red/5 rounded-[6px] border border-rule/30 transition-all duration-200 group cursor-pointer font-sans text-[13px] font-semibold tracking-wide"
         >
-          <LogOut size={18} />
-          <span className="font-sans text-[13px] font-semibold tracking-wide">Sign Out</span>
+          <LogOut size={16} className="group-hover:-translate-x-0.5 transition-transform" />
+          <span>Sign Out</span>
         </button>
       </div>
     </aside>
