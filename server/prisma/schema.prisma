@@ -36,6 +36,23 @@ enum AuthProvider {
   GOOGLE
 }
 
+enum Plan {
+  FREE
+  PRO
+  TEAM
+}
+
+enum OrderStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FLAT
+}
+
 //
 // 🟢 CORE TABLES
 //
@@ -47,7 +64,10 @@ model User {
   password  String
   picture   String?
   provider  AuthProvider   @default(EMAIL)
+  plan      Plan           @default(FREE)
   createdAt DateTime       @default(now())
+
+  orders    Order[]
   
   currentStreak  Int       @default(0)
   longestStreak  Int       @default(0)
@@ -137,4 +157,33 @@ model UserProgress {
   updatedAt     DateTime  @updatedAt
 
   @@unique([userId, problemId])
+}
+
+model Order {
+  id                String      @id @default(uuid())
+  userId            String
+  user              User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount            Int         // Amount in paise
+  currency          String      @default("INR")
+  razorpayOrderId   String      @unique
+  razorpayPaymentId String?     @unique
+  razorpaySignature String?
+  status            OrderStatus @default(PENDING)
+  plan              Plan
+  couponCode        String?
+  createdAt         DateTime    @default(now())
+  updatedAt         DateTime    @updatedAt
+}
+
+model Coupon {
+  id            String       @id @default(uuid())
+  code          String       @unique
+  discountType  DiscountType @default(PERCENTAGE)
+  discountValue Int          // e.g., 50 for 50%, or 50000 for ₹500
+  maxUses       Int?         // Null means unlimited
+  usedCount     Int          @default(0)
+  expiresAt     DateTime?
+  isActive      Boolean      @default(true)
+  createdAt     DateTime     @default(now())
+  updatedAt     DateTime     @updatedAt
 }
