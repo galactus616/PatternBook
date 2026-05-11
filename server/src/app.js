@@ -8,6 +8,8 @@ import problemRoutes from "./routes/problem.routes.js";
 import progressRoutes from "./routes/progress.routes.js";
 import authRoutes from "./routes/auth.routes.js";
 import dashboardRoutes from "./routes/dashboard.routes.js";
+import paymentRoutes from "./routes/payment.routes.js";
+import waitlistRoutes from "./routes/waitlist.routes.js";
 
 
 const app = express();
@@ -28,6 +30,8 @@ app.use("/v1/auth", authRoutes);
 app.use("/v1/problems", problemRoutes);
 app.use("/v1/progress", progressRoutes);
 app.use("/v1/dashboard", dashboardRoutes);
+app.use("/v1/payments", paymentRoutes);
+app.use("/v1/waitlist", waitlistRoutes);
 
 app.get("/", (req, res) => {
     res.send("API is running");

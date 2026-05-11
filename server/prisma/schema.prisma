@@ -36,6 +36,24 @@ enum AuthProvider {
   GOOGLE
 }
 
+enum Plan {
+  FREE
+  PRO
+  TEAM
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  INACTIVE
+  PAST_DUE
+  CANCELLED
+}
+
+enum DiscountType {
+  PERCENTAGE
+  FLAT
+}
+
 //
 // 🟢 CORE TABLES
 //
@@ -52,6 +70,20 @@ model User {
   currentStreak  Int       @default(0)
   longestStreak  Int       @default(0)
   lastActiveDate DateTime?
+
+  // Subscription & Payments
+  plan               Plan               @default(FREE)
+  subscriptionStatus SubscriptionStatus @default(INACTIVE)
+  subscriptionId     String?            // Razorpay Subscription/Order ID
+  subscriptionEndsAt DateTime?
+  
+  transactions       Transaction[]
+  couponUsages       CouponUsage[]
+  
+  // Team Management
+  teamId             String?
+  team               Team?              @relation("TeamMembers", fields: [teamId], references: [id])
+  ownedTeam          Team?              @relation("TeamOwner")
 
   progress  UserProgress[]
 }
@@ -111,6 +143,7 @@ model Problem {
   hint          String?
   timeEstimate  Int?
 
+  isPro         Boolean     @default(false)
   createdAt     DateTime    @default(now())
 
   progress      UserProgress[]
@@ -137,4 +170,76 @@ model UserProgress {
   updatedAt     DateTime  @updatedAt
 
   @@unique([userId, problemId])
+}
+
+//
+// 🟠 PAYMENT & TEAMS
+//
+
+model Transaction {
+  id                String   @id @default(uuid())
+  userId            String
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  razorpayOrderId   String   @unique
+  razorpayPaymentId String?  @unique
+  razorpaySignature String?
+  
+  amount            Int      // In paise
+  currency          String   @default("INR")
+  status            String   // 'created', 'captured', 'failed'
+  
+  couponId          String?
+  coupon            Coupon?  @relation(fields: [couponId], references: [id])
+  
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+}
+
+model Coupon {
+  id            String       @id @default(uuid())
+  code          String       @unique
+  discountType  DiscountType
+  discountValue Int          // Value in percentage or paise
+  
+  expiryDate    DateTime?
+  maxUses       Int?         // Total global uses allowed
+  usedCount     Int          @default(0)
+  isActive      Boolean      @default(true)
+  
+  usages        CouponUsage[]
+  transactions  Transaction[]
+  
+  createdAt     DateTime     @default(now())
+}
+
+model CouponUsage {
+  id        String   @id @default(uuid())
+  userId    String
+  couponId  String
+  user      User     @relation(fields: [userId], references: [id])
+  coupon    Coupon   @relation(fields: [couponId], references: [id])
+  usedAt    DateTime @default(now())
+
+  @@unique([userId, couponId])
+}
+
+model Team {
+  id        String   @id @default(uuid())
+  name      String
+  
+  ownerId   String   @unique
+  owner     User     @relation("TeamOwner", fields: [ownerId], references: [id])
+  
+  members   User[]   @relation("TeamMembers")
+  
+  createdAt DateTime @default(now())
+}
+
+model Waitlist {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  type      String   // e.g., "TEAM_PLAN"
+  message   String?
+  createdAt DateTime @default(now())
 }

@@ -1,9 +1,9 @@
 import { prisma } from "../db/client.js";
 
-export const getAllProblems = async (filters, userId) => {
+export const getAllProblems = async (filters, userId, userPlan = "FREE") => {
     const { topic } = filters;
 
-    return prisma.problem.findMany({
+    const problems = await prisma.problem.findMany({
         where: {
             ...(topic && {
                 topic: {
@@ -31,5 +31,18 @@ export const getAllProblems = async (filters, userId) => {
         orderBy: {
             order: "asc",
         },
+    });
+
+    const isPremiumUser = userPlan === "PRO" || userPlan === "TEAM";
+
+    return problems.map(prob => {
+        if (prob.isPro && !isPremiumUser) {
+            return {
+                ...prob,
+                leetcodeUrl: null,
+                hint: null
+            };
+        }
+        return prob;
     });
 };

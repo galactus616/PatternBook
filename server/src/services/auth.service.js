@@ -39,7 +39,7 @@ export const googleLogin = async (accessToken) => {
 
     // 3. Generate local PatternBook JWT
     const token = jwt.sign(
-        { userId: user.id, email: user.email },
+        { userId: user.id, email: user.email, plan: user.plan },
         JWT_SECRET,
         { expiresIn: "7d" }
     );
@@ -82,7 +82,8 @@ export const loginUser = async ({ email, password }) => {
     const token = jwt.sign(
         {
             userId: user.id,
-            email: user.email
+            email: user.email,
+            plan: user.plan
         },
         JWT_SECRET,
         { expiresIn: "7d" }
