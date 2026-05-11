@@ -38,7 +38,11 @@ export const useUpdateProgress = () => {
             prob.id === newProgress.problemId
               ? {
                   ...prob,
-                  progress: [{ status: newProgress.status }],
+                  progress: [{ 
+                    ...(prob.progress?.[0] || {}), 
+                    status: newProgress.status || prob.progress?.[0]?.status || 'NOT_STARTED',
+                    notes: newProgress.notes !== undefined ? newProgress.notes : prob.progress?.[0]?.notes
+                  }],
                 }
               : prob
           ),

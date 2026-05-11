@@ -10,6 +10,7 @@ import {
   Target
 } from "lucide-react";
 import { useAuth } from "../../features/auth/useAuth";
+import { usePaymentStore } from "../../store/usePaymentStore";
 
 const Sidebar = () => {
   const { user, logout } = useAuth();
@@ -74,8 +75,20 @@ const Sidebar = () => {
         ))}
       </nav>
 
+      {/* Upgrade CTA (for FREE plan users) */}
+      {user?.plan !== "PRO" && user?.plan !== "TEAM" && (
+        <div className="px-4 pb-3">
+          <button
+            onClick={() => usePaymentStore.getState().openCheckout("PRO")}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-lime text-lime-dark rounded-[4px] font-sans text-[12px] font-bold tracking-wide hover:bg-lime-light transition-all duration-200 cursor-pointer"
+          >
+            ⚡ Upgrade to Pro
+          </button>
+        </div>
+      )}
+
       {/* Logout Section */}
-      <div className="mt-auto border-t border-rule p-4">
+      <div className="border-t border-rule p-4">
         <button
           onClick={logout}
           className="w-full flex items-center justify-center gap-2.5 px-4 py-3 text-muted hover:text-brand-red hover:bg-brand-red/5 rounded-[6px] border border-rule/30 transition-all duration-200 group cursor-pointer font-sans text-[13px] font-semibold tracking-wide"

@@ -46,9 +46,15 @@ const Header = () => {
         <div className="flex items-center gap-3 pl-2">
           <div className="text-right hidden sm:block">
             <p className="text-[12px] font-bold text-ink leading-none mb-1">{user?.name || "Developer"}</p>
-            <p className="font-mono text-[9px] uppercase tracking-wider text-muted">Pro Member</p>
+            <p className={`font-mono text-[9px] uppercase tracking-wider ${
+                user?.plan === "PRO" || user?.plan === "TEAM"
+                  ? "text-lime-dark"
+                  : "text-muted"
+              }`}>
+                {user?.plan === "PRO" ? "Pro Member" : user?.plan === "TEAM" ? "Team Member" : "Free Plan"}
+              </p>
           </div>
-          <div className="w-9 h-9 rounded-full bg-ink flex items-center justify-center border border-rule overflow-hidden cursor-pointer hover:border-brand-red transition-colors">
+          <div className={`w-9 h-9 rounded-full bg-ink flex items-center justify-center border overflow-hidden cursor-pointer transition-colors ${(user?.plan === "PRO" || user?.plan === "TEAM") ? "border-2 border-cream" : "border-rule hover:border-brand-red"}`}>
             {user?.picture ? (
               <img src={user.picture} alt={user.name} className="w-full h-full object-cover" />
             ) : (

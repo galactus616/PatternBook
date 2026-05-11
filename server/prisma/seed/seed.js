@@ -58,6 +58,7 @@ async function main() {
         topicId: topic.id,
         hint: item.hint || null,
         timeEstimate: item.timeEstimate || null,
+        isPro: item.isPro || false,
       },
       create: {
         order: item.order,
@@ -72,6 +73,7 @@ async function main() {
         topicId: topic.id,
         hint: item.hint || null,
         timeEstimate: item.timeEstimate || null,
+        isPro: item.isPro || false,
       },
     });
   }

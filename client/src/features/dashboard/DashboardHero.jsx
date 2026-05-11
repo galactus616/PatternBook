@@ -21,9 +21,16 @@ const DashboardHero = ({ stats }) => {
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <span className="px-2 py-1 bg-ink text-lime font-mono text-[10px] uppercase tracking-widest rounded-[2px]">
-              Active Session
-            </span>
+            {(user?.plan === "PRO" || user?.plan === "TEAM") ? (
+              <span className="px-2 py-1 bg-ink text-cream font-mono text-[10px] uppercase tracking-widest rounded-[2px] flex items-center gap-1.5 border border-cream/10">
+                <Zap size={10} className="text-cream" />
+                Pro Member
+              </span>
+            ) : (
+              <span className="px-2 py-1 bg-ink text-lime font-mono text-[10px] uppercase tracking-widest rounded-[2px]">
+                Active Session
+              </span>
+            )}
             <div className="flex items-center gap-1.5 text-ink font-mono text-[10px] uppercase tracking-widest group relative">
               <Zap size={12} className="text-brand-red fill-brand-red animate-pulse" />
               Day {stats?.overall?.currentStreak || 0} Streak

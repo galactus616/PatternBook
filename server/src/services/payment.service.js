@@ -78,10 +78,9 @@ export const verifyPayment = async (userId, { razorpay_order_id, razorpay_paymen
     await couponService.recordUsage(transaction.couponId, userId);
   }
 
-  // 3. Update User Plan
-  // For 'PRO', set 1 month expiry
+  // 3. Update User Plan — set 1 YEAR expiry
   const expiryDate = new Date();
-  expiryDate.setMonth(expiryDate.getMonth() + 1);
+  expiryDate.setFullYear(expiryDate.getFullYear() + 1);
 
   await prisma.user.update({
     where: { id: userId },

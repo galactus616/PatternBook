@@ -4,6 +4,8 @@ import { Menu, X } from "lucide-react";
 import { useAuth } from "../features/auth/useAuth";
 import LoginModal from "../features/auth/LoginModal";
 import RegisterModal from "../features/auth/RegisterModal";
+import WaitlistModal from "../features/payments/WaitlistModal";
+import { usePaymentStore } from "../store/usePaymentStore";
 
 /* ─── Hook ─── */
 function useReveal() {
@@ -57,10 +59,25 @@ const TEAM_FEATURES = ["Everything in Pro", "Team Progress Dashboard", "Collabor
    ═══════════════════════════════════════════════════════════════════════════ */
 export default function LandingPage() {
   const navigate = useNavigate();
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
+  const { openWaitlist } = usePaymentStore();
+
+  // If not logged in and user clicks "Get Pro":
+  // Save intent → open RegisterModal → after login → dashboard auto-opens CheckoutModal
+  const handleGetPro = () => {
+    if (isAuthenticated) {
+      if (user?.plan === "FREE") {
+        sessionStorage.setItem("pendingUpgrade", "PRO");
+      }
+      navigate("/dashboard");
+    } else {
+      sessionStorage.setItem("pendingUpgrade", "PRO");
+      setShowRegister(true);
+    }
+  };
 
   React.useEffect(() => {
     if (isAuthenticated) {
@@ -91,19 +108,14 @@ export default function LandingPage() {
       <LoginModal
         isOpen={showLogin}
         onClose={() => setShowLogin(false)}
-        onSwitchToRegister={() => {
-          setShowLogin(false);
-          setShowRegister(true);
-        }}
+        onSwitchToRegister={() => { setShowLogin(false); setShowRegister(true); }}
       />
       <RegisterModal
         isOpen={showRegister}
         onClose={() => setShowRegister(false)}
-        onSwitchToLogin={() => {
-          setShowRegister(false);
-          setShowLogin(true);
-        }}
+        onSwitchToLogin={() => { setShowRegister(false); setShowLogin(true); }}
       />
+      <WaitlistModal />
 
       {/* ── NAV ── */}
       <nav className="fixed top-0 left-0 right-0 z-100 grid grid-cols-[1fr_auto_1fr] items-center px-6 md:px-10 h-[58px] bg-cream/88 backdrop-blur-lg border-b border-rule">
@@ -356,7 +368,7 @@ export default function LandingPage() {
             <div className="font-mono text-[10px] uppercase tracking-widest text-muted mb-5">Best value</div>
             <div className="font-serif text-[28px] font-black text-cream mb-1.5">Pro</div>
             <div className="font-serif text-[52px] font-black text-cream leading-none mt-6 mb-1 tracking-tight">₹499</div>
-            <div className="text-[12px] text-cream/70 font-mono tracking-wide">per month · cancel anytime</div>
+            <div className="text-[12px] text-cream/70 font-mono tracking-wide">per year · cancel anytime</div>
             <div className="h-px bg-cream/10 my-7" />
             <div className="flex flex-col gap-3 mb-8">
               {PRO_FEATURES.map(f => (
@@ -365,7 +377,7 @@ export default function LandingPage() {
                 </div>
               ))}
             </div>
-            <button className="w-full cursor-pointer font-sans text-[13px] font-semibold p-3.25 rounded-[4px] border-none bg-lime text-lime-dark tracking-wide hover:bg-lime-light transition-all duration-200" onClick={() => setShowRegister(true)}>Get Pro →</button>
+            <button className="w-full cursor-pointer font-sans text-[13px] font-semibold p-3.25 rounded-[4px] border-none bg-lime text-lime-dark tracking-wide hover:bg-lime-light transition-all duration-200" onClick={handleGetPro}>Get Pro →</button>
           </div>
           {/* Team */}
           <div className="p-10 md:px-9 md:py-12 border-rule relative">
@@ -381,7 +393,7 @@ export default function LandingPage() {
                 </div>
               ))}
             </div>
-            <button className="w-full cursor-pointer font-sans text-[13px] font-semibold p-3.25 rounded-[4px] border border-rule bg-transparent text-ink tracking-wide hover:border-ink hover:bg-cream-dark transition-all duration-200">Contact sales →</button>
+            <button onClick={openWaitlist} className="w-full cursor-pointer font-sans text-[13px] font-semibold p-3.25 rounded-[4px] border border-rule bg-transparent text-ink tracking-wide hover:border-ink hover:bg-cream-dark transition-all duration-200">Contact sales →</button>
           </div>
         </div>
       </section>

@@ -11,6 +11,13 @@ export const useAuthStore = create((set) => ({
     set({ user, token, isAuthenticated: true });
   },
 
+  setPlan: (plan) => {
+    const stored = JSON.parse(localStorage.getItem("user")) || {};
+    const updated = { ...stored, plan };
+    localStorage.setItem("user", JSON.stringify(updated));
+    set((state) => ({ user: { ...state.user, plan } }));
+  },
+
   clearAuth: () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");

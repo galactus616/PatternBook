@@ -27,3 +27,12 @@ export const googleLogin = async (req, res) => {
     res.status(400).json({ success: false, message: err.message });
   }
 };
+
+export const getMe = async (req, res) => {
+  try {
+    const user = await authService.getUserById(req.user.userId);
+    res.json({ success: true, data: user });
+  } catch (err) {
+    res.status(400).json({ success: false, message: err.message });
+  }
+};

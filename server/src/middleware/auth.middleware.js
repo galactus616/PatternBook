@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
+import { prisma } from "../db/client.js";
 
-export const authMiddleware = (req, res, next) => {
+export const authMiddleware = async (req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
 
@@ -14,6 +15,18 @@ export const authMiddleware = (req, res, next) => {
         const token = authHeader.split(" ")[1];
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        // Verify user still exists in DB
+        const user = await prisma.user.findUnique({
+            where: { id: decoded.userId }
+        });
+
+        if (!user) {
+            return res.status(401).json({
+                success: false,
+                message: "User no longer exists",
+            });
+        }
 
         req.user = decoded;
 

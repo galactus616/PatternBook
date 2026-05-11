@@ -64,8 +64,7 @@
         "priority": "Must Do",
         "title": "Maximum Average Subarray I",
         "leetcodeId": 643
-    },
-    {
+    },    {
         "order": 7,
         "phase": "P2",
         "pattern": "Sliding Window",
@@ -73,7 +72,8 @@
         "difficulty": "Medium",
         "priority": "Must Do",
         "title": "Longest Substring Without Repeating Characters",
-        "leetcodeId": 3
+        "leetcodeId": 3,
+        "isPro": true
     },
     {
         "order": 8,
@@ -83,47 +83,8 @@
         "difficulty": "Medium",
         "priority": "Must Do",
         "title": "Longest Repeating Character Replacement",
-        "leetcodeId": 424
-    },
-    {
-        "order": 9,
-        "phase": "P2",
-        "pattern": "Sliding Window",
-        "subPattern": "Variable Window",
-        "difficulty": "Medium",
-        "priority": "Must Do",
-        "title": "Permutation in String",
-        "leetcodeId": 567
-    },
-    {
-        "order": 10,
-        "phase": "P2",
-        "pattern": "Sliding Window",
-        "subPattern": "Variable Window",
-        "difficulty": "Medium",
-        "priority": "Good",
-        "title": "Minimum Size Subarray Sum",
-        "leetcodeId": 209
-    },
-    {
-        "order": 11,
-        "phase": "P3",
-        "pattern": "Prefix Sum",
-        "subPattern": "Basic",
-        "difficulty": "Easy",
-        "priority": "Must Do",
-        "title": "Running Sum of 1d Array",
-        "leetcodeId": 1480
-    },
-    {
-        "order": 12,
-        "phase": "P3",
-        "pattern": "Prefix Sum",
-        "subPattern": "Basic",
-        "difficulty": "Easy",
-        "priority": "Must Do",
-        "title": "Range Sum Query - Immutable",
-        "leetcodeId": 303
+        "leetcodeId": 424,
+        "isPro": true
     },
     {
         "order": 13,
@@ -133,7 +94,8 @@
         "difficulty": "Medium",
         "priority": "Must Do",
         "title": "Subarray Sum Equals K",
-        "leetcodeId": 560
+        "leetcodeId": 560,
+        "isPro": true
     },
     {
         "order": 14,
@@ -143,7 +105,8 @@
         "difficulty": "Medium",
         "priority": "Good",
         "title": "Continuous Subarray Sum",
-        "leetcodeId": 523
+        "leetcodeId": 523,
+        "isPro": true
     },
     {
         "order": 15,
@@ -153,27 +116,8 @@
         "difficulty": "Medium",
         "priority": "Optional",
         "title": "Range Sum Query 2D - Immutable",
-        "leetcodeId": 304
-    },
-    {
-        "order": 16,
-        "phase": "P4",
-        "pattern": "Partition",
-        "subPattern": "Basic",
-        "difficulty": "Easy",
-        "priority": "Must Do",
-        "title": "Sort Array By Parity",
-        "leetcodeId": 905
-    },
-    {
-        "order": 17,
-        "phase": "P4",
-        "pattern": "Partition",
-        "subPattern": "Basic",
-        "difficulty": "Medium",
-        "priority": "Must Do",
-        "title": "Sort Colors",
-        "leetcodeId": 75
+        "leetcodeId": 304,
+        "isPro": true
     },
     {
         "order": 18,
@@ -183,47 +127,8 @@
         "difficulty": "Medium",
         "priority": "Good",
         "title": "Kth Largest Element in an Array",
-        "leetcodeId": 215
-    },
-    {
-        "order": 19,
-        "phase": "P4",
-        "pattern": "Partition",
-        "subPattern": "Quickselect",
-        "difficulty": "Medium",
-        "priority": "Optional",
-        "title": "Top K Frequent Elements",
-        "leetcodeId": 347
-    },
-    {
-        "order": 20,
-        "phase": "P5",
-        "pattern": "Binary Search",
-        "subPattern": "Basic",
-        "difficulty": "Easy",
-        "priority": "Must Do",
-        "title": "Binary Search",
-        "leetcodeId": 704
-    },
-    {
-        "order": 21,
-        "phase": "P5",
-        "pattern": "Binary Search",
-        "subPattern": "Bounds",
-        "difficulty": "Easy",
-        "priority": "Must Do",
-        "title": "First Bad Version",
-        "leetcodeId": 278
-    },
-    {
-        "order": 22,
-        "phase": "P5",
-        "pattern": "Binary Search",
-        "subPattern": "Bounds",
-        "difficulty": "Medium",
-        "priority": "Must Do",
-        "title": "Find First and Last Position",
-        "leetcodeId": 34
+        "leetcodeId": 215,
+        "isPro": true
     },
     {
         "order": 23,
@@ -233,7 +138,8 @@
         "difficulty": "Medium",
         "priority": "Good",
         "title": "Capacity To Ship Packages",
-        "leetcodeId": 1011
+        "leetcodeId": 1011,
+        "isPro": true
     },
     {
         "order": 24,
@@ -243,27 +149,8 @@
         "difficulty": "Medium",
         "priority": "Optional",
         "title": "Split Array Largest Sum",
-        "leetcodeId": 410
-    },
-    {
-        "order": 25,
-        "phase": "P6",
-        "pattern": "Greedy",
-        "subPattern": "Basic",
-        "difficulty": "Easy",
-        "priority": "Must Do",
-        "title": "Best Time to Buy and Sell Stock",
-        "leetcodeId": 121
-    },
-    {
-        "order": 26,
-        "phase": "P6",
-        "pattern": "Greedy",
-        "subPattern": "Basic",
-        "difficulty": "Medium",
-        "priority": "Must Do",
-        "title": "Jump Game",
-        "leetcodeId": 55
+        "leetcodeId": 410,
+        "isPro": true
     },
     {
         "order": 27,
@@ -273,7 +160,8 @@
         "difficulty": "Medium",
         "priority": "Good",
         "title": "Gas Station",
-        "leetcodeId": 134
+        "leetcodeId": 134,
+        "isPro": true
     },
     {
         "order": 28,
@@ -283,27 +171,8 @@
         "difficulty": "Hard",
         "priority": "Optional",
         "title": "Candy",
-        "leetcodeId": 135
-    },
-    {
-        "order": 29,
-        "phase": "P7",
-        "pattern": "Intervals",
-        "subPattern": "Basic",
-        "difficulty": "Easy",
-        "priority": "Must Do",
-        "title": "Merge Intervals",
-        "leetcodeId": 56
-    },
-    {
-        "order": 30,
-        "phase": "P7",
-        "pattern": "Intervals",
-        "subPattern": "Basic",
-        "difficulty": "Medium",
-        "priority": "Must Do",
-        "title": "Insert Interval",
-        "leetcodeId": 57
+        "leetcodeId": 135,
+        "isPro": true
     },
     {
         "order": 31,
@@ -313,7 +182,8 @@
         "difficulty": "Medium",
         "priority": "Good",
         "title": "Non-overlapping Intervals",
-        "leetcodeId": 435
+        "leetcodeId": 435,
+        "isPro": true
     },
     {
         "order": 32,
@@ -323,37 +193,8 @@
         "difficulty": "Hard",
         "priority": "Optional",
         "title": "Minimum Number of Arrows",
-        "leetcodeId": 452
-    },
-    {
-        "order": 33,
-        "phase": "P8",
-        "pattern": "Matrix",
-        "subPattern": "Traversal",
-        "difficulty": "Easy",
-        "priority": "Must Do",
-        "title": "Spiral Matrix",
-        "leetcodeId": 54
-    },
-    {
-        "order": 34,
-        "phase": "P8",
-        "pattern": "Matrix",
-        "subPattern": "Traversal",
-        "difficulty": "Medium",
-        "priority": "Must Do",
-        "title": "Set Matrix Zeroes",
-        "leetcodeId": 73
-    },
-    {
-        "order": 35,
-        "phase": "P8",
-        "pattern": "Matrix",
-        "subPattern": "DFS",
-        "difficulty": "Medium",
-        "priority": "Good",
-        "title": "Number of Islands",
-        "leetcodeId": 200
+        "leetcodeId": 452,
+        "isPro": true
     },
     {
         "order": 36,
@@ -363,37 +204,8 @@
         "difficulty": "Hard",
         "priority": "Optional",
         "title": "Word Search II",
-        "leetcodeId": 212
-    },
-    {
-        "order": 37,
-        "phase": "P9",
-        "pattern": "Misc",
-        "subPattern": "Basic",
-        "difficulty": "Easy",
-        "priority": "Must Do",
-        "title": "Contains Duplicate",
-        "leetcodeId": 217
-    },
-    {
-        "order": 38,
-        "phase": "P9",
-        "pattern": "Misc",
-        "subPattern": "Hashing",
-        "difficulty": "Easy",
-        "priority": "Must Do",
-        "title": "Two Sum",
-        "leetcodeId": 1
-    },
-    {
-        "order": 39,
-        "phase": "P9",
-        "pattern": "Misc",
-        "subPattern": "Hashing",
-        "difficulty": "Medium",
-        "priority": "Good",
-        "title": "Group Anagrams",
-        "leetcodeId": 49
+        "leetcodeId": 212,
+        "isPro": true
     },
     {
         "order": 40,
@@ -403,6 +215,7 @@
         "difficulty": "Medium",
         "priority": "Optional",
         "title": "Find Median from Data Stream",
-        "leetcodeId": 295
+        "leetcodeId": 295,
+        "isPro": true
     }
 ]

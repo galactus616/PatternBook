@@ -1,15 +1,28 @@
 import React, { useState } from "react";
-import { ExternalLink, CheckCircle2, Circle, Clock, Eye, ChevronDown, Target } from "lucide-react";
+import { ExternalLink, CheckCircle2, Circle, Clock, Eye, ChevronDown, Target, FileText, Lock } from "lucide-react";
+import { useAuth } from "../auth/useAuth";
+import { usePaymentStore } from "../../store/usePaymentStore";
 import Skeleton from "../../components/ui/Skeleton";
 import { useUpdateProgress } from "./useProblems";
 
 const ProblemsTable = ({ problems, isLoading }) => {
+  const { user } = useAuth();
+  const { openCheckout } = usePaymentStore();
+  const isPro = user?.plan === "PRO" || user?.plan === "TEAM";
+
   const { mutate: updateStatus } = useUpdateProgress();
   const [revealedHints, setRevealedHints] = useState({});
-  const [activeMenu, setActiveMenu] = useState(null); // Track which problem's menu is open
+  const [expandedNotes, setExpandedNotes] = useState({});
+  const [activeMenu, setActiveMenu] = useState(null);
 
   const toggleHint = (id) => {
     setRevealedHints(prev => ({ ...prev, [id]: !prev[id] }));
+    if (expandedNotes[id]) setExpandedNotes(prev => ({ ...prev, [id]: false }));
+  };
+
+  const toggleNotes = (id) => {
+    setExpandedNotes(prev => ({ ...prev, [id]: !prev[id] }));
+    if (revealedHints[id]) setRevealedHints(prev => ({ ...prev, [id]: false }));
   };
 
   const statuses = [
@@ -122,8 +135,11 @@ const ProblemsTable = ({ problems, isLoading }) => {
                     {/* Info */}
                     <div>
                       <div className="flex items-center gap-3">
-                        <h3 className="font-sans text-[15px] font-bold text-ink group-hover:text-brand-red transition-colors">
+                        <h3 className="font-sans text-[15px] font-bold text-ink group-hover:text-brand-red transition-colors flex items-center gap-2">
                           {prob.title}
+                          {prob.isPro && (
+                            <span className="bg-ink text-lime text-[8px] font-mono px-1.5 py-0.5 rounded-sm tracking-widest uppercase">Pro</span>
+                          )}
                         </h3>
                       </div>
                       <div className="flex items-center gap-4 mt-2">
@@ -175,14 +191,38 @@ const ProblemsTable = ({ problems, isLoading }) => {
                         </button>
                       )}
 
-                      <a
-                        href={prob.leetcodeUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2 text-muted hover:text-ink hover:bg-rule/30 rounded-[4px] transition-all"
+                      {/* Note Toggle */}
+                      <button
+                        onClick={() => toggleNotes(prob.id)}
+                        className={`
+                          flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] font-mono text-[10px] uppercase tracking-wider transition-all cursor-pointer border
+                          ${expandedNotes[prob.id]
+                            ? 'bg-ink text-cream border-ink'
+                            : 'bg-white text-muted border-rule hover:border-ink hover:text-ink'}
+                        `}
                       >
-                        <ExternalLink size={16} />
-                      </a>
+                        <FileText size={12} />
+                        {expandedNotes[prob.id] ? "Hide Notes" : "Notes"}
+                      </button>
+
+                      {prob.isPro && !isPro ? (
+                        <button
+                          onClick={() => openCheckout("PRO")}
+                          className="p-2 text-muted/40 hover:text-lime hover:bg-ink rounded-[4px] transition-all cursor-pointer group/lock"
+                        >
+                          <Lock size={16} className="group-hover/lock:hidden" />
+                          <ExternalLink size={16} className="hidden group-hover/lock:block" />
+                        </button>
+                      ) : (
+                        <a
+                          href={prob.leetcodeUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="p-2 text-muted hover:text-ink hover:bg-rule/30 rounded-[4px] transition-all"
+                        >
+                          <ExternalLink size={16} />
+                        </a>
+                      )}
                     </div>
                   </div>
 
@@ -200,9 +240,27 @@ const ProblemsTable = ({ problems, isLoading }) => {
                               {prob.subPattern.name}
                             </span>
                           </div>
-                          <div>
+                           <div>
                             <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Conceptual Hint</p>
-                            {prob.hint ? (
+                            {prob.isPro && !isPro ? (
+                              <div className="bg-white border border-rule/50 p-6 rounded-[4px] flex items-center justify-between gap-4">
+                                <div className="flex items-center gap-3">
+                                  <div className="w-8 h-8 rounded-full bg-faint flex items-center justify-center text-muted">
+                                    <Lock size={14} />
+                                  </div>
+                                  <div>
+                                    <p className="text-[13px] font-bold text-ink leading-none">Strategy Locked</p>
+                                    <p className="text-[11px] text-muted mt-1">Upgrade to Pro to view the detailed strategy for this problem.</p>
+                                  </div>
+                                </div>
+                                <button 
+                                  onClick={() => openCheckout("PRO")}
+                                  className="px-3 py-1.5 bg-ink text-lime font-mono text-[10px] font-bold uppercase tracking-wider rounded-[2px] cursor-pointer hover:bg-ink-light transition-colors"
+                                >
+                                  Unlock Now
+                                </button>
+                              </div>
+                            ) : prob.hint ? (
                               <p className="font-sans text-[14px] leading-relaxed text-ink/80 italic border-l-2 border-brand-red pl-4">
                                 {prob.hint}
                               </p>
@@ -210,6 +268,51 @@ const ProblemsTable = ({ problems, isLoading }) => {
                               <p className="font-sans text-[13px] text-muted italic pl-4">
                                 No detailed hint available for this problem yet. Follow the pattern strategy above!
                               </p>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                  {/* Expandable Notes Drawer */}
+                  {expandedNotes[prob.id] && (
+                    <div className="bg-cream border-x border-b border-rule/50 p-6 animate-in slide-in-from-top-2 duration-200">
+                      <div className="flex gap-6 max-w-4xl">
+                        <div className="shrink-0 pt-1">
+                          <div className="w-8 h-8 rounded-full bg-ink/5 flex items-center justify-center text-ink/30 font-serif italic text-xl">
+                            <FileText size={16} />
+                          </div>
+                        </div>
+                        <div className="flex-1 space-y-4">
+                          <div>
+                            <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted mb-2">My Personal Notes</p>
+                            {!isPro ? (
+                              <div className="bg-white border border-dashed border-rule p-8 rounded-[4px] flex flex-col items-center text-center">
+                                <div className="w-10 h-10 rounded-full bg-faint flex items-center justify-center mb-4 text-muted">
+                                  <Lock size={18} />
+                                </div>
+                                <h4 className="font-serif text-[18px] font-black text-ink mb-1">Notes are a Pro feature</h4>
+                                <p className="text-[12px] text-muted mb-4 max-w-[240px]">
+                                  Upgrade to Pro to save personal notes, hints, and strategies for every problem.
+                                </p>
+                                <button 
+                                  onClick={() => openCheckout("PRO")}
+                                  className="px-4 py-2 bg-lime text-lime-dark font-sans text-[11px] font-bold rounded-[4px] cursor-pointer hover:bg-lime-light transition-colors"
+                                >
+                                  Unlock Now →
+                                </button>
+                              </div>
+                            ) : (
+                              <textarea
+                                className="w-full bg-white border border-rule p-4 rounded-[4px] font-sans text-[14px] leading-relaxed text-ink focus:border-ink outline-none transition-all min-h-[120px] resize-none placeholder:text-faint italic"
+                                placeholder="Write down your thoughts, edge cases, or optimizations for this problem..."
+                                defaultValue={prob.progress?.[0]?.notes || ""}
+                                onBlur={(e) => {
+                                  if (e.target.value !== (prob.progress?.[0]?.notes || "")) {
+                                    updateStatus({ problemId: prob.id, notes: e.target.value });
+                                  }
+                                }}
+                              />
                             )}
                           </div>
                         </div>
