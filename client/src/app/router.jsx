@@ -9,6 +9,7 @@ import PageLoader from "../components/ui/PageLoader";
 const LandingPage = lazy(() => import("../pages/LandingPage"));
 const DashboardPage = lazy(() => import("../pages/DashboardPage"));
 const ProblemsPage = lazy(() => import("../pages/ProblemsPage"));
+const SettingsPage = lazy(() => import("../pages/SettingsPage"));
 
 const AppRouter = () => {
   return (
@@ -37,6 +38,17 @@ const AppRouter = () => {
               <ProtectedRoute>
                 <DashboardLayout>
                   <ProblemsPage />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <SettingsPage />
                 </DashboardLayout>
               </ProtectedRoute>
             }

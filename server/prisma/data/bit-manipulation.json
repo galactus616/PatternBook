@@ -1,0 +1,710 @@
+[
+    {
+        "order": 1,
+        "title": "Single Number",
+        "slug": "single-number",
+        "leetcodeId": 136,
+        "leetcodeUrl": "https://leetcode.com/problems/single-number/",
+        "difficulty": "EASY",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Bit Basics",
+        "subPattern": "XOR Cancellation",
+        "relatedPatterns": [
+            "Hashing"
+        ],
+        "tags": [
+            "bit-manipulation"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Equal numbers cancel each other using XOR.",
+        "intuition": "a ^ a = 0 and a ^ 0 = a.",
+        "commonMistakes": [
+            "Using extra hashmap unnecessarily"
+        ],
+        "timeEstimate": 10,
+        "revisionPriority": 10,
+        "isPro": false
+    },
+    {
+        "order": 2,
+        "title": "Number of 1 Bits",
+        "slug": "number-of-1-bits",
+        "leetcodeId": 191,
+        "leetcodeUrl": "https://leetcode.com/problems/number-of-1-bits/",
+        "difficulty": "EASY",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Bit Basics",
+        "subPattern": "Bit Counting",
+        "relatedPatterns": [
+            "Brian Kernighan"
+        ],
+        "tags": [
+            "bit-manipulation"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "n & (n - 1) removes lowest set bit.",
+        "intuition": "Each operation removes exactly one set bit.",
+        "commonMistakes": [
+            "Infinite loop with signed integers"
+        ],
+        "timeEstimate": 10,
+        "revisionPriority": 9,
+        "isPro": false
+    },
+    {
+        "order": 3,
+        "title": "Counting Bits",
+        "slug": "counting-bits",
+        "leetcodeId": 338,
+        "leetcodeUrl": "https://leetcode.com/problems/counting-bits/",
+        "difficulty": "EASY",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Bit DP",
+        "subPattern": "Bit Count DP",
+        "relatedPatterns": [
+            "Dynamic Programming"
+        ],
+        "tags": [
+            "bit-manipulation",
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Current bit count relates to previous smaller number.",
+        "intuition": "Removing lowest set bit reduces problem size.",
+        "commonMistakes": [
+            "Recounting bits from scratch"
+        ],
+        "timeEstimate": 15,
+        "revisionPriority": 9,
+        "isPro": false
+    },
+    {
+        "order": 4,
+        "title": "Reverse Bits",
+        "slug": "reverse-bits",
+        "leetcodeId": 190,
+        "leetcodeUrl": "https://leetcode.com/problems/reverse-bits/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bit Basics",
+        "subPattern": "Bit Reversal",
+        "relatedPatterns": [
+            "Bit Shifting"
+        ],
+        "tags": [
+            "bit-manipulation"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Shift result left while reading bits from right.",
+        "intuition": "Bit positions mirror during reversal.",
+        "commonMistakes": [
+            "Incorrect shifting order"
+        ],
+        "timeEstimate": 15,
+        "revisionPriority": 6,
+        "isPro": false
+    },
+    {
+        "order": 5,
+        "title": "Power of Two",
+        "slug": "power-of-two",
+        "leetcodeId": 231,
+        "leetcodeUrl": "https://leetcode.com/problems/power-of-two/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Bit Basics",
+        "subPattern": "Single Set Bit",
+        "relatedPatterns": [
+            "Math"
+        ],
+        "tags": [
+            "bit-manipulation"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Powers of two contain exactly one set bit.",
+        "intuition": "n & (n - 1) becomes zero only for powers of two.",
+        "commonMistakes": [
+            "Forgetting positive number condition"
+        ],
+        "timeEstimate": 10,
+        "revisionPriority": 7,
+        "isPro": false
+    },
+    {
+        "order": 6,
+        "title": "Missing Number",
+        "slug": "missing-number",
+        "leetcodeId": 268,
+        "leetcodeUrl": "https://leetcode.com/problems/missing-number/",
+        "difficulty": "EASY",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "XOR Patterns",
+        "subPattern": "Range XOR",
+        "relatedPatterns": [
+            "Math"
+        ],
+        "tags": [
+            "bit-manipulation"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "XOR all indices and values together.",
+        "intuition": "All matching values cancel except missing one.",
+        "commonMistakes": [
+            "Incorrect XOR initialization"
+        ],
+        "timeEstimate": 15,
+        "revisionPriority": 10,
+        "isPro": false
+    },
+    {
+        "order": 7,
+        "title": "Single Number II",
+        "slug": "single-number-ii",
+        "leetcodeId": 137,
+        "leetcodeUrl": "https://leetcode.com/problems/single-number-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Bit Counting",
+        "subPattern": "Modulo Bits",
+        "relatedPatterns": [
+            "State Machine"
+        ],
+        "tags": [
+            "bit-manipulation"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Count set bits modulo 3.",
+        "intuition": "Repeated numbers contribute balanced bit counts.",
+        "commonMistakes": [
+            "Ignoring negative numbers"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 8,
+        "title": "Single Number III",
+        "slug": "single-number-iii",
+        "leetcodeId": 260,
+        "leetcodeUrl": "https://leetcode.com/problems/single-number-iii/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "XOR Patterns",
+        "subPattern": "Bit Partition",
+        "relatedPatterns": [
+            "Single Number"
+        ],
+        "tags": [
+            "bit-manipulation"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Use differing bit to separate two unique numbers.",
+        "intuition": "Unique numbers differ in at least one bit position.",
+        "commonMistakes": [
+            "Partitioning using wrong bit"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 9,
+        "title": "Sum of Two Integers",
+        "slug": "sum-of-two-integers",
+        "leetcodeId": 371,
+        "leetcodeUrl": "https://leetcode.com/problems/sum-of-two-integers/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Bit Simulation",
+        "subPattern": "Carry Handling",
+        "relatedPatterns": [
+            "Binary Addition"
+        ],
+        "tags": [
+            "bit-manipulation"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "XOR gives sum without carry, AND gives carry.",
+        "intuition": "Binary addition separates carry and non-carry contributions.",
+        "commonMistakes": [
+            "Infinite loop for negatives"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 10,
+        "title": "Bitwise AND of Numbers Range",
+        "slug": "bitwise-and-of-numbers-range",
+        "leetcodeId": 201,
+        "leetcodeUrl": "https://leetcode.com/problems/bitwise-and-of-numbers-range/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bit Prefix",
+        "subPattern": "Common Prefix",
+        "relatedPatterns": [
+            "Bit Shifting"
+        ],
+        "tags": [
+            "bit-manipulation"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Keep removing differing lower bits.",
+        "intuition": "Only common left prefix survives range AND.",
+        "commonMistakes": [
+            "Trying brute force AND"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 11,
+        "title": "Subsets",
+        "slug": "subsets",
+        "leetcodeId": 78,
+        "leetcodeUrl": "https://leetcode.com/problems/subsets/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Bitmasking",
+        "subPattern": "Subset Generation",
+        "relatedPatterns": [
+            "Backtracking"
+        ],
+        "tags": [
+            "bit-manipulation"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Every bitmask represents one subset.",
+        "intuition": "Set bits indicate chosen elements.",
+        "commonMistakes": [
+            "Incorrect mask iteration"
+        ],
+        "timeEstimate": 20,
+        "revisionPriority": 10,
+        "isPro": false
+    },
+    {
+        "order": 12,
+        "title": "Subsets II",
+        "slug": "subsets-ii",
+        "leetcodeId": 90,
+        "leetcodeUrl": "https://leetcode.com/problems/subsets-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bitmasking",
+        "subPattern": "Duplicate Handling",
+        "relatedPatterns": [
+            "Backtracking"
+        ],
+        "tags": [
+            "bit-manipulation"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Sort first to avoid duplicate subsets.",
+        "intuition": "Duplicate numbers create duplicate bitmask outputs.",
+        "commonMistakes": [
+            "Not skipping duplicates"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 13,
+        "title": "Maximum Product of Word Lengths",
+        "slug": "maximum-product-of-word-lengths",
+        "leetcodeId": 318,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-product-of-word-lengths/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bitmasking",
+        "subPattern": "Character Mask",
+        "relatedPatterns": [
+            "Hashing"
+        ],
+        "tags": [
+            "bit-manipulation",
+            "string"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Represent characters using 26-bit masks.",
+        "intuition": "Disjoint character sets produce zero AND.",
+        "commonMistakes": [
+            "Checking character overlap manually"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 14,
+        "title": "Gray Code",
+        "slug": "gray-code",
+        "leetcodeId": 89,
+        "leetcodeUrl": "https://leetcode.com/problems/gray-code/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Bitmasking",
+        "subPattern": "Sequence Generation",
+        "relatedPatterns": [
+            "Recursion"
+        ],
+        "tags": [
+            "bit-manipulation"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Mirror previous sequence and add leading bit.",
+        "intuition": "Adjacent values differ by exactly one bit.",
+        "commonMistakes": [
+            "Breaking one-bit difference rule"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 15,
+        "title": "Maximum XOR of Two Numbers in an Array",
+        "slug": "maximum-xor-of-two-numbers-in-an-array",
+        "leetcodeId": 421,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "XOR Trie",
+        "subPattern": "Maximum XOR",
+        "relatedPatterns": [
+            "Trie"
+        ],
+        "tags": [
+            "bit-manipulation",
+            "trie"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Prefer opposite bits during trie traversal.",
+        "intuition": "Opposite bits maximize XOR contribution.",
+        "commonMistakes": [
+            "Using brute force pair checking"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 16,
+        "title": "Counting Wonderful Substrings",
+        "slug": "counting-wonderful-substrings",
+        "leetcodeId": 1915,
+        "leetcodeUrl": "https://leetcode.com/problems/counting-wonderful-substrings/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bitmask Prefix",
+        "subPattern": "Parity Mask",
+        "relatedPatterns": [
+            "Prefix XOR"
+        ],
+        "tags": [
+            "bit-manipulation",
+            "string"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track parity mask of character counts.",
+        "intuition": "Palindrome-like conditions depend on odd-even frequencies.",
+        "commonMistakes": [
+            "Checking all substrings"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 17,
+        "title": "Longest Awesome Substring",
+        "slug": "longest-awesome-substring",
+        "leetcodeId": 1542,
+        "leetcodeUrl": "https://leetcode.com/problems/longest-awesome-substring/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bitmask Prefix",
+        "subPattern": "Palindrome Permutation",
+        "relatedPatterns": [
+            "Prefix XOR"
+        ],
+        "tags": [
+            "bit-manipulation",
+            "string"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "At most one digit can have odd frequency.",
+        "intuition": "Parity masks capture palindrome rearrangement validity.",
+        "commonMistakes": [
+            "Not checking one-bit differences"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 18,
+        "title": "Minimum Flips to Make a OR b Equal to c",
+        "slug": "minimum-flips-to-make-a-or-b-equal-to-c",
+        "leetcodeId": 1318,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-flips-to-make-a-or-b-equal-to-c/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Bit Simulation",
+        "subPattern": "Bit Conditions",
+        "relatedPatterns": [
+            "Binary Operations"
+        ],
+        "tags": [
+            "bit-manipulation"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Compare corresponding bits independently.",
+        "intuition": "Bitwise operations are separable per bit position.",
+        "commonMistakes": [
+            "Treating numbers as whole instead of bits"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 19,
+        "title": "Smallest Subarrays With Maximum Bitwise OR",
+        "slug": "smallest-subarrays-with-maximum-bitwise-or",
+        "leetcodeId": 2411,
+        "leetcodeUrl": "https://leetcode.com/problems/smallest-subarrays-with-maximum-bitwise-or/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bit Tracking",
+        "subPattern": "Nearest Set Bit",
+        "relatedPatterns": [
+            "Sliding Window"
+        ],
+        "tags": [
+            "bit-manipulation"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track latest occurrence of every set bit.",
+        "intuition": "Required bits determine minimum valid subarray length.",
+        "commonMistakes": [
+            "Recomputing OR repeatedly"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 20,
+        "title": "Maximum AND Sum of Array",
+        "slug": "maximum-and-sum-of-array",
+        "leetcodeId": 2172,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-and-sum-of-array/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bitmask DP",
+        "subPattern": "Assignment State",
+        "relatedPatterns": [
+            "State Compression"
+        ],
+        "tags": [
+            "bit-manipulation",
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Use bitmask to track occupied slots.",
+        "intuition": "Assignments create overlapping placement states.",
+        "commonMistakes": [
+            "Trying brute force permutations"
+        ],
+        "timeEstimate": 70,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 21,
+        "title": "Find XOR Sum of All Pairs Bitwise AND",
+        "slug": "find-xor-sum-of-all-pairs-bitwise-and",
+        "leetcodeId": 1835,
+        "leetcodeUrl": "https://leetcode.com/problems/find-xor-sum-of-all-pairs-bitwise-and/",
+        "difficulty": "HARD",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Bit Math",
+        "subPattern": "XOR Distribution",
+        "relatedPatterns": [
+            "Math"
+        ],
+        "tags": [
+            "bit-manipulation"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Use distributive property of XOR and AND.",
+        "intuition": "Bitwise operations can be algebraically rearranged.",
+        "commonMistakes": [
+            "Generating all pairs"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 22,
+        "title": "Maximum Score Words Formed by Letters",
+        "slug": "maximum-score-words-formed-by-letters",
+        "leetcodeId": 1255,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-score-words-formed-by-letters/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bitmask Enumeration",
+        "subPattern": "Subset Validation",
+        "relatedPatterns": [
+            "Backtracking"
+        ],
+        "tags": [
+            "bit-manipulation",
+            "backtracking"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Enumerate subsets and validate character availability.",
+        "intuition": "Subset selection defines achievable scores.",
+        "commonMistakes": [
+            "Mutating frequency counts incorrectly"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 23,
+        "title": "Triples with Bitwise AND Equal To Zero",
+        "slug": "triples-with-bitwise-and-equal-to-zero",
+        "leetcodeId": 982,
+        "leetcodeUrl": "https://leetcode.com/problems/triples-with-bitwise-and-equal-to-zero/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bitmask Optimization",
+        "subPattern": "AND Matching",
+        "relatedPatterns": [
+            "Frequency Counting"
+        ],
+        "tags": [
+            "bit-manipulation"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Precompute pairwise AND frequencies.",
+        "intuition": "Intermediate AND values can be reused efficiently.",
+        "commonMistakes": [
+            "Using cubic brute force"
+        ],
+        "timeEstimate": 70,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 24,
+        "title": "Minimum One Bit Operations to Make Integers Zero",
+        "slug": "minimum-one-bit-operations-to-make-integers-zero",
+        "leetcodeId": 1611,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-one-bit-operations-to-make-integers-zero/",
+        "difficulty": "HARD",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Gray Code Logic",
+        "subPattern": "Recursive Bit Transition",
+        "relatedPatterns": [
+            "Gray Code"
+        ],
+        "tags": [
+            "bit-manipulation",
+            "recursion"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Observe recursive relationship between highest set bits.",
+        "intuition": "Operations follow Gray code transition behavior.",
+        "commonMistakes": [
+            "Trying BFS simulation"
+        ],
+        "timeEstimate": 75,
+        "revisionPriority": 5,
+        "isPro": false
+    }
+]

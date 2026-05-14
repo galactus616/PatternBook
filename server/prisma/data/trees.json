@@ -1,0 +1,3077 @@
+[
+    {
+        "order": 1,
+        "title": "Binary Tree Preorder Traversal",
+        "slug": "binary-tree-preorder-traversal",
+        "leetcodeId": 144,
+        "leetcodeUrl": "https://leetcode.com/problems/binary-tree-preorder-traversal/",
+        "difficulty": "EASY",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "DFS Traversal",
+        "subPattern": "Preorder",
+        "relatedPatterns": [
+            "Recursion",
+            "Stack"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Visit root first, then left subtree, then right subtree.",
+        "intuition": "DFS recursively explores depth before breadth.",
+        "commonMistakes": [
+            "Wrong traversal order"
+        ],
+        "timeEstimate": 15,
+        "revisionPriority": 9,
+        "isPro": false
+    },
+    {
+        "order": 2,
+        "title": "Binary Tree Inorder Traversal",
+        "slug": "binary-tree-inorder-traversal",
+        "leetcodeId": 94,
+        "leetcodeUrl": "https://leetcode.com/problems/binary-tree-inorder-traversal/",
+        "difficulty": "EASY",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "DFS Traversal",
+        "subPattern": "Inorder",
+        "relatedPatterns": [
+            "BST"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Visit left subtree, root, then right subtree.",
+        "intuition": "Inorder traversal of BST gives sorted order.",
+        "commonMistakes": [
+            "Incorrect traversal sequence"
+        ],
+        "timeEstimate": 15,
+        "revisionPriority": 10,
+        "isPro": false
+    },
+    {
+        "order": 3,
+        "title": "Binary Tree Postorder Traversal",
+        "slug": "binary-tree-postorder-traversal",
+        "leetcodeId": 145,
+        "leetcodeUrl": "https://leetcode.com/problems/binary-tree-postorder-traversal/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "DFS Traversal",
+        "subPattern": "Postorder",
+        "relatedPatterns": [
+            "Recursion"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Visit children before the root.",
+        "intuition": "Postorder processes dependencies before parent.",
+        "commonMistakes": [
+            "Returning root too early"
+        ],
+        "timeEstimate": 15,
+        "revisionPriority": 7,
+        "isPro": false
+    },
+    {
+        "order": 4,
+        "title": "Maximum Depth of Binary Tree",
+        "slug": "maximum-depth-of-binary-tree",
+        "leetcodeId": 104,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-depth-of-binary-tree/",
+        "difficulty": "EASY",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Tree DFS",
+        "subPattern": "Depth Calculation",
+        "relatedPatterns": [
+            "Recursion"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Depth is 1 + max(leftDepth, rightDepth).",
+        "intuition": "Tree height depends on deepest subtree.",
+        "commonMistakes": [
+            "Wrong base case"
+        ],
+        "timeEstimate": 15,
+        "revisionPriority": 10,
+        "isPro": false
+    },
+    {
+        "order": 5,
+        "title": "Balanced Binary Tree",
+        "slug": "balanced-binary-tree",
+        "leetcodeId": 110,
+        "leetcodeUrl": "https://leetcode.com/problems/balanced-binary-tree/",
+        "difficulty": "EASY",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Bottom Up DFS",
+        "subPattern": "Height Validation",
+        "relatedPatterns": [
+            "Tree Height"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Return height while checking balance simultaneously.",
+        "intuition": "Bottom-up DFS avoids repeated height calculations.",
+        "commonMistakes": [
+            "Repeated O(n²) height calculation"
+        ],
+        "timeEstimate": 20,
+        "revisionPriority": 9,
+        "isPro": false
+    },
+    {
+        "order": 6,
+        "title": "Same Tree",
+        "slug": "same-tree",
+        "leetcodeId": 100,
+        "leetcodeUrl": "https://leetcode.com/problems/same-tree/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree DFS",
+        "subPattern": "Tree Comparison",
+        "relatedPatterns": [
+            "Recursion"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Compare node values and both subtrees recursively.",
+        "intuition": "Trees are equal only if structure and values match.",
+        "commonMistakes": [
+            "Ignoring null comparisons"
+        ],
+        "timeEstimate": 12,
+        "revisionPriority": 6,
+        "isPro": false
+    },
+    {
+        "order": 7,
+        "title": "Symmetric Tree",
+        "slug": "symmetric-tree",
+        "leetcodeId": 101,
+        "leetcodeUrl": "https://leetcode.com/problems/symmetric-tree/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Mirror DFS",
+        "subPattern": "Symmetry Check",
+        "relatedPatterns": [
+            "Tree Comparison"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Compare left subtree with mirrored right subtree.",
+        "intuition": "Mirror trees swap left and right relationships.",
+        "commonMistakes": [
+            "Comparing same-side nodes"
+        ],
+        "timeEstimate": 18,
+        "revisionPriority": 7,
+        "isPro": false
+    },
+    {
+        "order": 8,
+        "title": "Invert Binary Tree",
+        "slug": "invert-binary-tree",
+        "leetcodeId": 226,
+        "leetcodeUrl": "https://leetcode.com/problems/invert-binary-tree/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Tree DFS",
+        "subPattern": "Child Swapping",
+        "relatedPatterns": [
+            "Recursion"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Swap left and right children recursively.",
+        "intuition": "Every node independently flips its children.",
+        "commonMistakes": [
+            "Overwriting child before swap"
+        ],
+        "timeEstimate": 12,
+        "revisionPriority": 6,
+        "isPro": false
+    },
+    {
+        "order": 9,
+        "title": "Path Sum",
+        "slug": "path-sum",
+        "leetcodeId": 112,
+        "leetcodeUrl": "https://leetcode.com/problems/path-sum/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree DFS",
+        "subPattern": "Root To Leaf",
+        "relatedPatterns": [
+            "Backtracking"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Subtract node values from target sum while traversing.",
+        "intuition": "Each recursive call reduces the remaining target.",
+        "commonMistakes": [
+            "Checking non-leaf nodes"
+        ],
+        "timeEstimate": 18,
+        "revisionPriority": 7,
+        "isPro": false
+    },
+    {
+        "order": 10,
+        "title": "Minimum Depth of Binary Tree",
+        "slug": "minimum-depth-of-binary-tree",
+        "leetcodeId": 111,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-depth-of-binary-tree/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "MEDIUM",
+        "pattern": "Tree DFS",
+        "subPattern": "Depth Calculation",
+        "relatedPatterns": [
+            "BFS"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Handle single-child nodes carefully.",
+        "intuition": "Minimum depth must end at a leaf.",
+        "commonMistakes": [
+            "Using simple min(left,right) blindly"
+        ],
+        "timeEstimate": 18,
+        "revisionPriority": 6,
+        "isPro": false
+    },
+    {
+        "order": 11,
+        "title": "Binary Tree Paths",
+        "slug": "binary-tree-paths",
+        "leetcodeId": 257,
+        "leetcodeUrl": "https://leetcode.com/problems/binary-tree-paths/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "MEDIUM",
+        "pattern": "DFS Path Building",
+        "subPattern": "Root To Leaf",
+        "relatedPatterns": [
+            "Backtracking"
+        ],
+        "tags": [
+            "tree",
+            "dfs",
+            "string"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Build path strings during DFS traversal.",
+        "intuition": "Each recursive call extends the current path.",
+        "commonMistakes": [
+            "Incorrect path formatting"
+        ],
+        "timeEstimate": 20,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 12,
+        "title": "Diameter of Binary Tree",
+        "slug": "diameter-of-binary-tree",
+        "leetcodeId": 543,
+        "leetcodeUrl": "https://leetcode.com/problems/diameter-of-binary-tree/",
+        "difficulty": "EASY",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Bottom Up DFS",
+        "subPattern": "Longest Path",
+        "relatedPatterns": [
+            "Tree Height"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Diameter at a node is leftHeight + rightHeight.",
+        "intuition": "Longest path may pass through any node.",
+        "commonMistakes": [
+            "Confusing edges vs nodes"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 13,
+        "title": "Subtree of Another Tree",
+        "slug": "subtree-of-another-tree",
+        "leetcodeId": 572,
+        "leetcodeUrl": "https://leetcode.com/problems/subtree-of-another-tree/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree Comparison",
+        "subPattern": "Subtree Matching",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Compare every possible subtree root.",
+        "intuition": "Subtree matching combines traversal + equality checking.",
+        "commonMistakes": [
+            "Stopping search too early"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 14,
+        "title": "Count Complete Tree Nodes",
+        "slug": "count-complete-tree-nodes",
+        "leetcodeId": 222,
+        "leetcodeUrl": "https://leetcode.com/problems/count-complete-tree-nodes/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Complete Tree",
+        "subPattern": "Height Optimization",
+        "relatedPatterns": [
+            "Binary Search"
+        ],
+        "tags": [
+            "tree",
+            "binary-search"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Perfect subtrees can be counted directly.",
+        "intuition": "Complete trees have structural properties to optimize counting.",
+        "commonMistakes": [
+            "Wrong height calculation"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 15,
+        "title": "Binary Tree Tilt",
+        "slug": "binary-tree-tilt",
+        "leetcodeId": 563,
+        "leetcodeUrl": "https://leetcode.com/problems/binary-tree-tilt/",
+        "difficulty": "EASY",
+        "priority": "OPTIONAL",
+        "frequency": "LOW",
+        "pattern": "Tree DFS",
+        "subPattern": "Subtree Sum",
+        "relatedPatterns": [
+            "Postorder"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Return subtree sums while computing tilt.",
+        "intuition": "Postorder traversal naturally calculates child contributions first.",
+        "commonMistakes": [
+            "Calculating tilt before child sums"
+        ],
+        "timeEstimate": 20,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 16,
+        "title": "Sum of Left Leaves",
+        "slug": "sum-of-left-leaves",
+        "leetcodeId": 404,
+        "leetcodeUrl": "https://leetcode.com/problems/sum-of-left-leaves/",
+        "difficulty": "EASY",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Tree DFS",
+        "subPattern": "Conditional Traversal",
+        "relatedPatterns": [
+            "Recursion"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Track whether current node is a left child.",
+        "intuition": "Extra traversal state helps classify nodes.",
+        "commonMistakes": [
+            "Counting non-leaf left nodes"
+        ],
+        "timeEstimate": 18,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 17,
+        "title": "Find Bottom Left Tree Value",
+        "slug": "find-bottom-left-tree-value",
+        "leetcodeId": 513,
+        "leetcodeUrl": "https://leetcode.com/problems/find-bottom-left-tree-value/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "MEDIUM",
+        "pattern": "Tree BFS",
+        "subPattern": "Level Traversal",
+        "relatedPatterns": [
+            "Queue"
+        ],
+        "tags": [
+            "tree",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Track the first node of every level.",
+        "intuition": "Level order traversal exposes depth layer by layer.",
+        "commonMistakes": [
+            "Updating answer incorrectly"
+        ],
+        "timeEstimate": 22,
+        "revisionPriority": 5,
+        "isPro": true
+    },
+    {
+        "order": 18,
+        "title": "Binary Tree Maximum Path Sum",
+        "slug": "binary-tree-maximum-path-sum",
+        "leetcodeId": 124,
+        "leetcodeUrl": "https://leetcode.com/problems/binary-tree-maximum-path-sum/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Bottom Up DFS",
+        "subPattern": "Path Contribution",
+        "relatedPatterns": [
+            "Kadane"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Ignore negative path contributions.",
+        "intuition": "Every node can become the center of the best path.",
+        "commonMistakes": [
+            "Returning split path upward"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 19,
+        "title": "Binary Tree Level Order Traversal",
+        "slug": "binary-tree-level-order-traversal",
+        "leetcodeId": 102,
+        "leetcodeUrl": "https://leetcode.com/problems/binary-tree-level-order-traversal/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Tree BFS",
+        "subPattern": "Level Traversal",
+        "relatedPatterns": [
+            "Queue"
+        ],
+        "tags": [
+            "tree",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Process nodes level by level using a queue.",
+        "intuition": "BFS naturally groups nodes by depth.",
+        "commonMistakes": [
+            "Mixing nodes between levels"
+        ],
+        "timeEstimate": 20,
+        "revisionPriority": 10,
+        "isPro": false
+    },
+    {
+        "order": 20,
+        "title": "Binary Tree Zigzag Level Order Traversal",
+        "slug": "binary-tree-zigzag-level-order-traversal",
+        "leetcodeId": 103,
+        "leetcodeUrl": "https://leetcode.com/problems/binary-tree-zigzag-level-order-traversal/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree BFS",
+        "subPattern": "Zigzag Traversal",
+        "relatedPatterns": [
+            "Deque"
+        ],
+        "tags": [
+            "tree",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Alternate traversal direction after each level.",
+        "intuition": "Traversal direction can be controlled independently from BFS.",
+        "commonMistakes": [
+            "Reversing the entire result repeatedly"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 21,
+        "title": "Binary Tree Right Side View",
+        "slug": "binary-tree-right-side-view",
+        "leetcodeId": 199,
+        "leetcodeUrl": "https://leetcode.com/problems/binary-tree-right-side-view/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Tree BFS",
+        "subPattern": "Visible Nodes",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "tree",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Meta"
+        ],
+        "hint": "Capture the last node of every level.",
+        "intuition": "Rightmost nodes appear last during level traversal.",
+        "commonMistakes": [
+            "Adding multiple nodes per level"
+        ],
+        "timeEstimate": 20,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 22,
+        "title": "Average of Levels in Binary Tree",
+        "slug": "average-of-levels-in-binary-tree",
+        "leetcodeId": 637,
+        "leetcodeUrl": "https://leetcode.com/problems/average-of-levels-in-binary-tree/",
+        "difficulty": "EASY",
+        "priority": "OPTIONAL",
+        "frequency": "LOW",
+        "pattern": "Tree BFS",
+        "subPattern": "Level Aggregation",
+        "relatedPatterns": [
+            "Queue"
+        ],
+        "tags": [
+            "tree",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Track level sum and node count.",
+        "intuition": "BFS cleanly isolates each level.",
+        "commonMistakes": [
+            "Integer division issues"
+        ],
+        "timeEstimate": 15,
+        "revisionPriority": 3,
+        "isPro": false
+    },
+    {
+        "order": 23,
+        "title": "Maximum Level Sum of a Binary Tree",
+        "slug": "maximum-level-sum-of-a-binary-tree",
+        "leetcodeId": 1161,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-level-sum-of-a-binary-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "MEDIUM",
+        "pattern": "Tree BFS",
+        "subPattern": "Level Aggregation",
+        "relatedPatterns": [
+            "Queue"
+        ],
+        "tags": [
+            "tree",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Compute sum at every level and track maximum.",
+        "intuition": "Each BFS layer represents one tree depth.",
+        "commonMistakes": [
+            "Wrong level indexing"
+        ],
+        "timeEstimate": 20,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 24,
+        "title": "Binary Tree Level Order Traversal II",
+        "slug": "binary-tree-level-order-traversal-ii",
+        "leetcodeId": 107,
+        "leetcodeUrl": "https://leetcode.com/problems/binary-tree-level-order-traversal-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "LOW",
+        "pattern": "Tree BFS",
+        "subPattern": "Reverse Level Order",
+        "relatedPatterns": [
+            "Stack"
+        ],
+        "tags": [
+            "tree",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Store levels normally and reverse at the end.",
+        "intuition": "Bottom-up ordering is just reversed BFS output.",
+        "commonMistakes": [
+            "Reversing individual levels"
+        ],
+        "timeEstimate": 18,
+        "revisionPriority": 3,
+        "isPro": false
+    },
+    {
+        "order": 25,
+        "title": "Populating Next Right Pointers in Each Node",
+        "slug": "populating-next-right-pointers-in-each-node",
+        "leetcodeId": 116,
+        "leetcodeUrl": "https://leetcode.com/problems/populating-next-right-pointers-in-each-node/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree BFS",
+        "subPattern": "Level Linking",
+        "relatedPatterns": [
+            "Queue"
+        ],
+        "tags": [
+            "tree",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Connect adjacent nodes within the same level.",
+        "intuition": "BFS exposes natural sibling relationships.",
+        "commonMistakes": [
+            "Incorrect last-node connection"
+        ],
+        "timeEstimate": 28,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 26,
+        "title": "Populating Next Right Pointers in Each Node II",
+        "slug": "populating-next-right-pointers-in-each-node-ii",
+        "leetcodeId": 117,
+        "leetcodeUrl": "https://leetcode.com/problems/populating-next-right-pointers-in-each-node-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree BFS",
+        "subPattern": "General Level Linking",
+        "relatedPatterns": [
+            "Linked List"
+        ],
+        "tags": [
+            "tree",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Handle missing children carefully while linking levels.",
+        "intuition": "Non-perfect trees require dynamic next connections.",
+        "commonMistakes": [
+            "Skipping null children incorrectly"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 27,
+        "title": "Minimum Depth of Binary Tree",
+        "slug": "minimum-depth-of-binary-tree",
+        "leetcodeId": 111,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-depth-of-binary-tree/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "MEDIUM",
+        "pattern": "Tree BFS",
+        "subPattern": "Shortest Path",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "tree",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "First leaf encountered in BFS gives minimum depth.",
+        "intuition": "BFS discovers shallowest nodes first.",
+        "commonMistakes": [
+            "Stopping at non-leaf nodes"
+        ],
+        "timeEstimate": 18,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 28,
+        "title": "Find Largest Value in Each Tree Row",
+        "slug": "find-largest-value-in-each-tree-row",
+        "leetcodeId": 515,
+        "leetcodeUrl": "https://leetcode.com/problems/find-largest-value-in-each-tree-row/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "LOW",
+        "pattern": "Tree BFS",
+        "subPattern": "Level Maximum",
+        "relatedPatterns": [
+            "Queue"
+        ],
+        "tags": [
+            "tree",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Track maximum value while processing a level.",
+        "intuition": "Each BFS level forms an independent group.",
+        "commonMistakes": [
+            "Resetting max incorrectly"
+        ],
+        "timeEstimate": 18,
+        "revisionPriority": 3,
+        "isPro": false
+    },
+    {
+        "order": 29,
+        "title": "Even Odd Tree",
+        "slug": "even-odd-tree",
+        "leetcodeId": 1609,
+        "leetcodeUrl": "https://leetcode.com/problems/even-odd-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Tree BFS",
+        "subPattern": "Level Validation",
+        "relatedPatterns": [
+            "Queue"
+        ],
+        "tags": [
+            "tree",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Validate parity and ordering rules at each level.",
+        "intuition": "BFS cleanly separates odd and even levels.",
+        "commonMistakes": [
+            "Wrong comparison direction"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 4,
+        "isPro": true
+    },
+    {
+        "order": 30,
+        "title": "Vertical Order Traversal of a Binary Tree",
+        "slug": "vertical-order-traversal-of-a-binary-tree",
+        "leetcodeId": 987,
+        "leetcodeUrl": "https://leetcode.com/problems/vertical-order-traversal-of-a-binary-tree/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree BFS",
+        "subPattern": "Coordinate Traversal",
+        "relatedPatterns": [
+            "Sorting",
+            "Hash Map"
+        ],
+        "tags": [
+            "tree",
+            "bfs"
+        ],
+        "companies": [
+            "Google",
+            "Meta"
+        ],
+        "hint": "Track row and column positions for every node.",
+        "intuition": "Tree nodes can be mapped into a coordinate system.",
+        "commonMistakes": [
+            "Incorrect sorting order"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 31,
+        "title": "Path Sum II",
+        "slug": "path-sum-ii",
+        "leetcodeId": 113,
+        "leetcodeUrl": "https://leetcode.com/problems/path-sum-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "HIGH",
+        "pattern": "DFS Backtracking",
+        "subPattern": "Root To Leaf Paths",
+        "relatedPatterns": [
+            "Backtracking"
+        ],
+        "tags": [
+            "tree",
+            "dfs",
+            "backtracking"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Track current path while reducing remaining target.",
+        "intuition": "Every recursive call extends the current root-to-leaf path.",
+        "commonMistakes": [
+            "Not removing nodes during backtracking"
+        ],
+        "timeEstimate": 28,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 32,
+        "title": "Path Sum III",
+        "slug": "path-sum-iii",
+        "leetcodeId": 437,
+        "leetcodeUrl": "https://leetcode.com/problems/path-sum-iii/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Prefix Sum DFS",
+        "subPattern": "Path Counting",
+        "relatedPatterns": [
+            "Hash Map"
+        ],
+        "tags": [
+            "tree",
+            "dfs",
+            "prefix-sum"
+        ],
+        "companies": [
+            "Amazon",
+            "Meta"
+        ],
+        "hint": "Use prefix sums to count valid paths efficiently.",
+        "intuition": "Current prefix sum determines previous compatible paths.",
+        "commonMistakes": [
+            "Forgetting hashmap backtracking"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 33,
+        "title": "Sum Root to Leaf Numbers",
+        "slug": "sum-root-to-leaf-numbers",
+        "leetcodeId": 129,
+        "leetcodeUrl": "https://leetcode.com/problems/sum-root-to-leaf-numbers/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "DFS Path Building",
+        "subPattern": "Number Construction",
+        "relatedPatterns": [
+            "Backtracking"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Carry current number while traversing deeper.",
+        "intuition": "Every level shifts previous digits left.",
+        "commonMistakes": [
+            "Not multiplying previous value by 10"
+        ],
+        "timeEstimate": 22,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 34,
+        "title": "Pseudo-Palindromic Paths in a Binary Tree",
+        "slug": "pseudo-palindromic-paths-in-a-binary-tree",
+        "leetcodeId": 1457,
+        "leetcodeUrl": "https://leetcode.com/problems/pseudo-palindromic-paths-in-a-binary-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "DFS Frequency Tracking",
+        "subPattern": "Path Validation",
+        "relatedPatterns": [
+            "Bit Manipulation"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Track digit frequencies along each root-to-leaf path.",
+        "intuition": "Palindrome paths allow at most one odd frequency.",
+        "commonMistakes": [
+            "Incorrect odd-count validation"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 35,
+        "title": "Longest Univalue Path",
+        "slug": "longest-univalue-path",
+        "leetcodeId": 687,
+        "leetcodeUrl": "https://leetcode.com/problems/longest-univalue-path/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "MEDIUM",
+        "pattern": "Bottom Up DFS",
+        "subPattern": "Path Contribution",
+        "relatedPatterns": [
+            "Diameter"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Extend paths only through equal-valued children.",
+        "intuition": "Every node can combine matching child paths.",
+        "commonMistakes": [
+            "Combining unequal child values"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 36,
+        "title": "House Robber III",
+        "slug": "house-robber-iii",
+        "leetcodeId": 337,
+        "leetcodeUrl": "https://leetcode.com/problems/house-robber-iii/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Tree DP DFS",
+        "subPattern": "Take Or Skip",
+        "relatedPatterns": [
+            "DP"
+        ],
+        "tags": [
+            "tree",
+            "dfs",
+            "dp"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "For every node, calculate rob and skip states.",
+        "intuition": "Parent choice affects child availability.",
+        "commonMistakes": [
+            "Recomputing subtree states"
+        ],
+        "timeEstimate": 38,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 37,
+        "title": "Smallest String Starting From Leaf",
+        "slug": "smallest-string-starting-from-leaf",
+        "leetcodeId": 988,
+        "leetcodeUrl": "https://leetcode.com/problems/smallest-string-starting-from-leaf/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "DFS Path Building",
+        "subPattern": "Lexicographical Comparison",
+        "relatedPatterns": [
+            "String"
+        ],
+        "tags": [
+            "tree",
+            "dfs",
+            "string"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Build strings from leaf toward root.",
+        "intuition": "Leaf paths can be compared lexicographically.",
+        "commonMistakes": [
+            "Wrong string direction"
+        ],
+        "timeEstimate": 28,
+        "revisionPriority": 4,
+        "isPro": true
+    },
+    {
+        "order": 38,
+        "title": "Delete Leaves With a Given Value",
+        "slug": "delete-leaves-with-a-given-value",
+        "leetcodeId": 1325,
+        "leetcodeUrl": "https://leetcode.com/problems/delete-leaves-with-a-given-value/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "LOW",
+        "pattern": "Postorder DFS",
+        "subPattern": "Tree Modification",
+        "relatedPatterns": [
+            "Recursion"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Process children before deciding current node deletion.",
+        "intuition": "Child deletions can turn parents into leaves.",
+        "commonMistakes": [
+            "Checking parent before children"
+        ],
+        "timeEstimate": 22,
+        "revisionPriority": 3,
+        "isPro": false
+    },
+    {
+        "order": 39,
+        "title": "Count Good Nodes in Binary Tree",
+        "slug": "count-good-nodes-in-binary-tree",
+        "leetcodeId": 1448,
+        "leetcodeUrl": "https://leetcode.com/problems/count-good-nodes-in-binary-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "DFS State Tracking",
+        "subPattern": "Path Maximum",
+        "relatedPatterns": [
+            "Recursion"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Meta"
+        ],
+        "hint": "Track maximum value seen along the path.",
+        "intuition": "A node is good if it exceeds all previous path values.",
+        "commonMistakes": [
+            "Updating max incorrectly"
+        ],
+        "timeEstimate": 22,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 40,
+        "title": "Distribute Coins in Binary Tree",
+        "slug": "distribute-coins-in-binary-tree",
+        "leetcodeId": 979,
+        "leetcodeUrl": "https://leetcode.com/problems/distribute-coins-in-binary-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Postorder DFS",
+        "subPattern": "Flow Balancing",
+        "relatedPatterns": [
+            "Greedy"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Return coin surplus or deficit upward.",
+        "intuition": "Each subtree balances itself before informing parent.",
+        "commonMistakes": [
+            "Ignoring absolute transfer count"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 41,
+        "title": "Search in a Binary Search Tree",
+        "slug": "search-in-a-binary-search-tree",
+        "leetcodeId": 700,
+        "leetcodeUrl": "https://leetcode.com/problems/search-in-a-binary-search-tree/",
+        "difficulty": "EASY",
+        "priority": "MUST_DO",
+        "frequency": "HIGH",
+        "pattern": "BST Traversal",
+        "subPattern": "Search",
+        "relatedPatterns": [
+            "Binary Search"
+        ],
+        "tags": [
+            "tree",
+            "bst"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Use BST ordering to eliminate half the tree.",
+        "intuition": "Left subtree contains smaller values, right contains larger.",
+        "commonMistakes": [
+            "Traversing both sides unnecessarily"
+        ],
+        "timeEstimate": 12,
+        "revisionPriority": 7,
+        "isPro": false
+    },
+    {
+        "order": 42,
+        "title": "Insert into a Binary Search Tree",
+        "slug": "insert-into-a-binary-search-tree",
+        "leetcodeId": 701,
+        "leetcodeUrl": "https://leetcode.com/problems/insert-into-a-binary-search-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "BST Traversal",
+        "subPattern": "Insertion",
+        "relatedPatterns": [
+            "Recursion"
+        ],
+        "tags": [
+            "tree",
+            "bst"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Traverse until finding a null child position.",
+        "intuition": "BST insertion preserves sorted ordering.",
+        "commonMistakes": [
+            "Breaking BST structure"
+        ],
+        "timeEstimate": 18,
+        "revisionPriority": 6,
+        "isPro": false
+    },
+    {
+        "order": 43,
+        "title": "Validate Binary Search Tree",
+        "slug": "validate-binary-search-tree",
+        "leetcodeId": 98,
+        "leetcodeUrl": "https://leetcode.com/problems/validate-binary-search-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "BST Validation",
+        "subPattern": "Range Validation",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "tree",
+            "bst"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Every node must stay within valid lower and upper bounds.",
+        "intuition": "BST validity depends on ancestor constraints, not just parent.",
+        "commonMistakes": [
+            "Checking only direct children"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 44,
+        "title": "Minimum Absolute Difference in BST",
+        "slug": "minimum-absolute-difference-in-bst",
+        "leetcodeId": 530,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-absolute-difference-in-bst/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "MEDIUM",
+        "pattern": "BST Inorder",
+        "subPattern": "Sorted Traversal",
+        "relatedPatterns": [
+            "Inorder Traversal"
+        ],
+        "tags": [
+            "tree",
+            "bst"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Inorder traversal gives sorted values.",
+        "intuition": "Closest BST values become adjacent in sorted order.",
+        "commonMistakes": [
+            "Comparing non-adjacent nodes"
+        ],
+        "timeEstimate": 18,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 45,
+        "title": "Kth Smallest Element in a BST",
+        "slug": "kth-smallest-element-in-a-bst",
+        "leetcodeId": 230,
+        "leetcodeUrl": "https://leetcode.com/problems/kth-smallest-element-in-a-bst/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "BST Inorder",
+        "subPattern": "Sorted Traversal",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "tree",
+            "bst"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Inorder traversal visits BST nodes in sorted order.",
+        "intuition": "The kth inorder node is the kth smallest.",
+        "commonMistakes": [
+            "Not stopping traversal early"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 46,
+        "title": "Convert Sorted Array to Binary Search Tree",
+        "slug": "convert-sorted-array-to-binary-search-tree",
+        "leetcodeId": 108,
+        "leetcodeUrl": "https://leetcode.com/problems/convert-sorted-array-to-binary-search-tree/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Divide & Conquer",
+        "subPattern": "Balanced BST",
+        "relatedPatterns": [
+            "Recursion"
+        ],
+        "tags": [
+            "tree",
+            "bst"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Choose middle element as root recursively.",
+        "intuition": "Middle selection balances subtree heights.",
+        "commonMistakes": [
+            "Incorrect midpoint calculation"
+        ],
+        "timeEstimate": 20,
+        "revisionPriority": 6,
+        "isPro": false
+    },
+    {
+        "order": 47,
+        "title": "Lowest Common Ancestor of a Binary Search Tree",
+        "slug": "lowest-common-ancestor-of-a-binary-search-tree",
+        "leetcodeId": 235,
+        "leetcodeUrl": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "BST Traversal",
+        "subPattern": "Ancestor Search",
+        "relatedPatterns": [
+            "LCA"
+        ],
+        "tags": [
+            "tree",
+            "bst"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Move left or right depending on both target values.",
+        "intuition": "BST ordering identifies subtree direction instantly.",
+        "commonMistakes": [
+            "Ignoring split condition"
+        ],
+        "timeEstimate": 22,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 48,
+        "title": "Delete Node in a BST",
+        "slug": "delete-node-in-a-bst",
+        "leetcodeId": 450,
+        "leetcodeUrl": "https://leetcode.com/problems/delete-node-in-a-bst/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "BST Modification",
+        "subPattern": "Deletion",
+        "relatedPatterns": [
+            "Tree Traversal"
+        ],
+        "tags": [
+            "tree",
+            "bst"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Handle leaf, one-child, and two-child cases separately.",
+        "intuition": "BST deletion preserves sorted structure through replacement.",
+        "commonMistakes": [
+            "Incorrect inorder successor handling"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 49,
+        "title": "Trim a Binary Search Tree",
+        "slug": "trim-a-binary-search-tree",
+        "leetcodeId": 669,
+        "leetcodeUrl": "https://leetcode.com/problems/trim-a-binary-search-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "MEDIUM",
+        "pattern": "BST Pruning",
+        "subPattern": "Range Filtering",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "tree",
+            "bst"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "BST ordering lets you skip invalid subtrees entirely.",
+        "intuition": "Subtrees outside the valid range can be discarded directly.",
+        "commonMistakes": [
+            "Recursing unnecessary branches"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 50,
+        "title": "Convert BST to Greater Tree",
+        "slug": "convert-bst-to-greater-tree",
+        "leetcodeId": 538,
+        "leetcodeUrl": "https://leetcode.com/problems/convert-bst-to-greater-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Reverse Inorder",
+        "subPattern": "Running Sum",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "tree",
+            "bst"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Traverse nodes from largest to smallest.",
+        "intuition": "Reverse inorder processes bigger values first.",
+        "commonMistakes": [
+            "Using normal inorder traversal"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 51,
+        "title": "Two Sum IV - Input is a BST",
+        "slug": "two-sum-iv-input-is-a-bst",
+        "leetcodeId": 653,
+        "leetcodeUrl": "https://leetcode.com/problems/two-sum-iv-input-is-a-bst/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "BST DFS",
+        "subPattern": "Complement Search",
+        "relatedPatterns": [
+            "Hashing"
+        ],
+        "tags": [
+            "tree",
+            "bst",
+            "hashing"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Track previously seen values using a set.",
+        "intuition": "Tree traversal converts the problem into two-sum.",
+        "commonMistakes": [
+            "Using same node twice"
+        ],
+        "timeEstimate": 18,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 52,
+        "title": "Recover Binary Search Tree",
+        "slug": "recover-binary-search-tree",
+        "leetcodeId": 99,
+        "leetcodeUrl": "https://leetcode.com/problems/recover-binary-search-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "BST Inorder",
+        "subPattern": "Violation Detection",
+        "relatedPatterns": [
+            "Inorder Traversal"
+        ],
+        "tags": [
+            "tree",
+            "bst"
+        ],
+        "companies": [
+            "Google",
+            "Meta"
+        ],
+        "hint": "Identify two swapped nodes during inorder traversal.",
+        "intuition": "Swapped BST nodes break sorted inorder ordering.",
+        "commonMistakes": [
+            "Capturing only one misplaced node"
+        ],
+        "timeEstimate": 38,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 53,
+        "title": "Construct Binary Search Tree from Preorder Traversal",
+        "slug": "construct-binary-search-tree-from-preorder-traversal",
+        "leetcodeId": 1008,
+        "leetcodeUrl": "https://leetcode.com/problems/construct-binary-search-tree-from-preorder-traversal/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "BST Construction",
+        "subPattern": "Bounded Recursion",
+        "relatedPatterns": [
+            "Divide & Conquer"
+        ],
+        "tags": [
+            "tree",
+            "bst"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Use upper bounds to decide subtree membership.",
+        "intuition": "Preorder order naturally reveals subtree boundaries.",
+        "commonMistakes": [
+            "Incorrect bound updates"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 54,
+        "title": "Balance a Binary Search Tree",
+        "slug": "balance-a-binary-search-tree",
+        "leetcodeId": 1382,
+        "leetcodeUrl": "https://leetcode.com/problems/balance-a-binary-search-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "BST Reconstruction",
+        "subPattern": "Balanced Tree",
+        "relatedPatterns": [
+            "Inorder Traversal"
+        ],
+        "tags": [
+            "tree",
+            "bst"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Store inorder traversal then rebuild balanced BST.",
+        "intuition": "Sorted values can reconstruct a balanced BST.",
+        "commonMistakes": [
+            "Incorrect midpoint handling"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 5,
+        "isPro": true
+    },
+    {
+        "order": 55,
+        "title": "Binary Search Tree Iterator",
+        "slug": "binary-search-tree-iterator",
+        "leetcodeId": 173,
+        "leetcodeUrl": "https://leetcode.com/problems/binary-search-tree-iterator/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Controlled Inorder",
+        "subPattern": "Iterator Design",
+        "relatedPatterns": [
+            "Stack"
+        ],
+        "tags": [
+            "tree",
+            "bst",
+            "design"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Simulate inorder traversal using a stack.",
+        "intuition": "Iterator lazily processes nodes in sorted order.",
+        "commonMistakes": [
+            "Pushing right subtree incorrectly"
+        ],
+        "timeEstimate": 32,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 56,
+        "title": "Construct Binary Tree from Preorder and Inorder Traversal",
+        "slug": "construct-binary-tree-from-preorder-and-inorder-traversal",
+        "leetcodeId": 105,
+        "leetcodeUrl": "https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Tree Construction",
+        "subPattern": "Preorder + Inorder",
+        "relatedPatterns": [
+            "Divide & Conquer"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Preorder gives root. Inorder splits left and right subtrees.",
+        "intuition": "Traversal orders uniquely define the tree structure.",
+        "commonMistakes": [
+            "Incorrect inorder partitioning"
+        ],
+        "timeEstimate": 38,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 57,
+        "title": "Construct Binary Tree from Inorder and Postorder Traversal",
+        "slug": "construct-binary-tree-from-inorder-and-postorder-traversal",
+        "leetcodeId": 106,
+        "leetcodeUrl": "https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree Construction",
+        "subPattern": "Inorder + Postorder",
+        "relatedPatterns": [
+            "Divide & Conquer"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Postorder gives the root at the end.",
+        "intuition": "Inorder determines subtree boundaries while postorder identifies roots.",
+        "commonMistakes": [
+            "Building left subtree before right incorrectly"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 58,
+        "title": "Construct String from Binary Tree",
+        "slug": "construct-string-from-binary-tree",
+        "leetcodeId": 606,
+        "leetcodeUrl": "https://leetcode.com/problems/construct-string-from-binary-tree/",
+        "difficulty": "EASY",
+        "priority": "OPTIONAL",
+        "frequency": "LOW",
+        "pattern": "DFS Construction",
+        "subPattern": "Tree Serialization",
+        "relatedPatterns": [
+            "String"
+        ],
+        "tags": [
+            "tree",
+            "dfs",
+            "string"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Build preorder-style representation recursively.",
+        "intuition": "Tree structure can be encoded using parentheses.",
+        "commonMistakes": [
+            "Skipping required empty parentheses"
+        ],
+        "timeEstimate": 18,
+        "revisionPriority": 3,
+        "isPro": false
+    },
+    {
+        "order": 59,
+        "title": "Serialize and Deserialize Binary Tree",
+        "slug": "serialize-and-deserialize-binary-tree",
+        "leetcodeId": 297,
+        "leetcodeUrl": "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Tree Serialization",
+        "subPattern": "DFS Encoding",
+        "relatedPatterns": [
+            "Queue"
+        ],
+        "tags": [
+            "tree",
+            "design"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Store null markers while traversing the tree.",
+        "intuition": "Tree structure requires preserving missing-child positions.",
+        "commonMistakes": [
+            "Losing null node information"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 60,
+        "title": "Verify Preorder Serialization of a Binary Tree",
+        "slug": "verify-preorder-serialization-of-a-binary-tree",
+        "leetcodeId": 331,
+        "leetcodeUrl": "https://leetcode.com/problems/verify-preorder-serialization-of-a-binary-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Serialization Validation",
+        "subPattern": "Slot Counting",
+        "relatedPatterns": [
+            "Stack"
+        ],
+        "tags": [
+            "tree",
+            "string"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track available child slots while processing nodes.",
+        "intuition": "Every node consumes one slot and may create new slots.",
+        "commonMistakes": [
+            "Incorrect slot updates"
+        ],
+        "timeEstimate": 32,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 61,
+        "title": "Encode N-ary Tree to Binary Tree",
+        "slug": "encode-n-ary-tree-to-binary-tree",
+        "leetcodeId": 431,
+        "leetcodeUrl": "https://leetcode.com/problems/encode-n-ary-tree-to-binary-tree/",
+        "difficulty": "HARD",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Tree Conversion",
+        "subPattern": "Left Child Right Sibling",
+        "relatedPatterns": [
+            "N-ary Tree"
+        ],
+        "tags": [
+            "tree",
+            "design"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Store first child as left node and siblings through right links.",
+        "intuition": "Binary trees can simulate N-ary relationships systematically.",
+        "commonMistakes": [
+            "Breaking sibling chain"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 5,
+        "isPro": true
+    },
+    {
+        "order": 62,
+        "title": "Recover a Tree From Preorder Traversal",
+        "slug": "recover-a-tree-from-preorder-traversal",
+        "leetcodeId": 1028,
+        "leetcodeUrl": "https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree Construction",
+        "subPattern": "Depth Parsing",
+        "relatedPatterns": [
+            "Stack"
+        ],
+        "tags": [
+            "tree",
+            "dfs",
+            "stack"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Depth markers determine parent-child relationships.",
+        "intuition": "Traversal depth reconstructs hierarchy structure.",
+        "commonMistakes": [
+            "Incorrect parent attachment"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 63,
+        "title": "Construct Quad Tree",
+        "slug": "construct-quad-tree",
+        "leetcodeId": 427,
+        "leetcodeUrl": "https://leetcode.com/problems/construct-quad-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "LOW",
+        "pattern": "Divide & Conquer",
+        "subPattern": "Grid Partitioning",
+        "relatedPatterns": [
+            "Recursion"
+        ],
+        "tags": [
+            "tree",
+            "matrix"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Split grid recursively until regions become uniform.",
+        "intuition": "Quad trees recursively compress spatial regions.",
+        "commonMistakes": [
+            "Incorrect quadrant boundaries"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 4,
+        "isPro": true
+    },
+    {
+        "order": 64,
+        "title": "Lowest Common Ancestor of a Binary Tree",
+        "slug": "lowest-common-ancestor-of-a-binary-tree",
+        "leetcodeId": 236,
+        "leetcodeUrl": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Tree DFS",
+        "subPattern": "LCA",
+        "relatedPatterns": [
+            "Recursion"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "If nodes are found in different subtrees, current node becomes LCA.",
+        "intuition": "The first split point during DFS is the common ancestor.",
+        "commonMistakes": [
+            "Returning too early from recursion"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 65,
+        "title": "Step-By-Step Directions From a Binary Tree Node to Another",
+        "slug": "step-by-step-directions-from-a-binary-tree-node-to-another",
+        "leetcodeId": 2096,
+        "leetcodeUrl": "https://leetcode.com/problems/step-by-step-directions-from-a-binary-tree-node-to-another/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree Paths",
+        "subPattern": "Path Construction",
+        "relatedPatterns": [
+            "LCA"
+        ],
+        "tags": [
+            "tree",
+            "dfs",
+            "string"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Find paths from root to both nodes and compare prefixes.",
+        "intuition": "Shared prefix reveals the common ancestor.",
+        "commonMistakes": [
+            "Incorrect upward move count"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 66,
+        "title": "Binary Tree Paths",
+        "slug": "binary-tree-paths",
+        "leetcodeId": 257,
+        "leetcodeUrl": "https://leetcode.com/problems/binary-tree-paths/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "MEDIUM",
+        "pattern": "DFS Path Building",
+        "subPattern": "Root To Leaf",
+        "relatedPatterns": [
+            "Backtracking"
+        ],
+        "tags": [
+            "tree",
+            "dfs",
+            "string"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Build path strings while traversing deeper.",
+        "intuition": "Every recursive call extends the current path.",
+        "commonMistakes": [
+            "Wrong path formatting"
+        ],
+        "timeEstimate": 18,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 67,
+        "title": "Longest ZigZag Path in a Binary Tree",
+        "slug": "longest-zigzag-path-in-a-binary-tree",
+        "leetcodeId": 1372,
+        "leetcodeUrl": "https://leetcode.com/problems/longest-zigzag-path-in-a-binary-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "DFS State Tracking",
+        "subPattern": "Alternating Path",
+        "relatedPatterns": [
+            "Tree DP"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Track previous direction while traversing.",
+        "intuition": "Every move alternates between left and right.",
+        "commonMistakes": [
+            "Resetting path length incorrectly"
+        ],
+        "timeEstimate": 32,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 68,
+        "title": "Longest Consecutive Sequence in Binary Tree",
+        "slug": "binary-tree-longest-consecutive-sequence",
+        "leetcodeId": 298,
+        "leetcodeUrl": "https://leetcode.com/problems/binary-tree-longest-consecutive-sequence/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "DFS State Tracking",
+        "subPattern": "Consecutive Path",
+        "relatedPatterns": [
+            "Tree DP"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Extend path only when child value equals parent + 1.",
+        "intuition": "Current node determines whether sequence continues.",
+        "commonMistakes": [
+            "Not resetting broken sequences"
+        ],
+        "timeEstimate": 28,
+        "revisionPriority": 4,
+        "isPro": true
+    },
+    {
+        "order": 69,
+        "title": "Leaf-Similar Trees",
+        "slug": "leaf-similar-trees",
+        "leetcodeId": 872,
+        "leetcodeUrl": "https://leetcode.com/problems/leaf-similar-trees/",
+        "difficulty": "EASY",
+        "priority": "OPTIONAL",
+        "frequency": "LOW",
+        "pattern": "DFS Traversal",
+        "subPattern": "Leaf Paths",
+        "relatedPatterns": [
+            "Tree Comparison"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Collect leaf values in traversal order.",
+        "intuition": "Leaf sequence uniquely describes leaf traversal.",
+        "commonMistakes": [
+            "Adding non-leaf nodes"
+        ],
+        "timeEstimate": 15,
+        "revisionPriority": 3,
+        "isPro": false
+    },
+    {
+        "order": 70,
+        "title": "All Nodes Distance K in Binary Tree",
+        "slug": "all-nodes-distance-k-in-binary-tree",
+        "leetcodeId": 863,
+        "leetcodeUrl": "https://leetcode.com/problems/all-nodes-distance-k-in-binary-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Tree Graph Conversion",
+        "subPattern": "Distance Traversal",
+        "relatedPatterns": [
+            "Graph BFS"
+        ],
+        "tags": [
+            "tree",
+            "bfs",
+            "graph"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Store parent references to allow upward traversal.",
+        "intuition": "Trees behave like undirected graphs for distance problems.",
+        "commonMistakes": [
+            "Forgetting visited tracking"
+        ],
+        "timeEstimate": 38,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 71,
+        "title": "Smallest Subtree with all the Deepest Nodes",
+        "slug": "smallest-subtree-with-all-the-deepest-nodes",
+        "leetcodeId": 865,
+        "leetcodeUrl": "https://leetcode.com/problems/smallest-subtree-with-all-the-deepest-nodes/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bottom Up DFS",
+        "subPattern": "Depth Comparison",
+        "relatedPatterns": [
+            "LCA"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Return both subtree depth and candidate node.",
+        "intuition": "Equal subtree depths indicate ancestor convergence.",
+        "commonMistakes": [
+            "Comparing wrong subtree heights"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 72,
+        "title": "Path Sum IV",
+        "slug": "path-sum-iv",
+        "leetcodeId": 666,
+        "leetcodeUrl": "https://leetcode.com/problems/path-sum-iv/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "LOW",
+        "pattern": "Encoded Tree DFS",
+        "subPattern": "Root To Leaf Sum",
+        "relatedPatterns": [
+            "Hash Map"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Decode node positions before traversal.",
+        "intuition": "Encoded values still preserve tree hierarchy.",
+        "commonMistakes": [
+            "Incorrect child position mapping"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 3,
+        "isPro": true
+    },
+    {
+        "order": 73,
+        "title": "Count Nodes Equal to Average of Subtree",
+        "slug": "count-nodes-equal-to-average-of-subtree",
+        "leetcodeId": 2265,
+        "leetcodeUrl": "https://leetcode.com/problems/count-nodes-equal-to-average-of-subtree/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Postorder DFS",
+        "subPattern": "Subtree Aggregation",
+        "relatedPatterns": [
+            "Tree DP"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Return subtree sum and node count together.",
+        "intuition": "Postorder traversal computes subtree statistics naturally.",
+        "commonMistakes": [
+            "Wrong integer division handling"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 74,
+        "title": "Flatten Binary Tree to Linked List",
+        "slug": "flatten-binary-tree-to-linked-list",
+        "leetcodeId": 114,
+        "leetcodeUrl": "https://leetcode.com/problems/flatten-binary-tree-to-linked-list/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Tree Transformation",
+        "subPattern": "Preorder Flattening",
+        "relatedPatterns": [
+            "Linked List"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Flatten left and right subtrees before rewiring pointers.",
+        "intuition": "Preorder traversal defines the linked-list order.",
+        "commonMistakes": [
+            "Losing right subtree reference"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 75,
+        "title": "Boundary of Binary Tree",
+        "slug": "boundary-of-binary-tree",
+        "leetcodeId": 545,
+        "leetcodeUrl": "https://leetcode.com/problems/boundary-of-binary-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree Traversal",
+        "subPattern": "Boundary Traversal",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Process left boundary, leaves, then reversed right boundary.",
+        "intuition": "Boundary nodes belong to distinct traversal categories.",
+        "commonMistakes": [
+            "Duplicating leaf nodes"
+        ],
+        "timeEstimate": 38,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 76,
+        "title": "Binary Tree Vertical Order Traversal",
+        "slug": "binary-tree-vertical-order-traversal",
+        "leetcodeId": 314,
+        "leetcodeUrl": "https://leetcode.com/problems/binary-tree-vertical-order-traversal/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Coordinate Traversal",
+        "subPattern": "Vertical Grouping",
+        "relatedPatterns": [
+            "BFS"
+        ],
+        "tags": [
+            "tree",
+            "bfs",
+            "hash-map"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Track column indices during traversal.",
+        "intuition": "Nodes sharing the same column belong together vertically.",
+        "commonMistakes": [
+            "Wrong traversal ordering"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 77,
+        "title": "Binary Tree Cameras",
+        "slug": "binary-tree-cameras",
+        "leetcodeId": 968,
+        "leetcodeUrl": "https://leetcode.com/problems/binary-tree-cameras/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Greedy DFS",
+        "subPattern": "State Management",
+        "relatedPatterns": [
+            "Greedy"
+        ],
+        "tags": [
+            "tree",
+            "dfs",
+            "greedy"
+        ],
+        "companies": [
+            "Google",
+            "Meta"
+        ],
+        "hint": "Use states to represent covered and uncovered nodes.",
+        "intuition": "Optimal camera placement depends on child states.",
+        "commonMistakes": [
+            "Placing unnecessary cameras"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 78,
+        "title": "Count Univalue Subtrees",
+        "slug": "count-univalue-subtrees",
+        "leetcodeId": 250,
+        "leetcodeUrl": "https://leetcode.com/problems/count-univalue-subtrees/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Bottom Up DFS",
+        "subPattern": "Subtree Validation",
+        "relatedPatterns": [
+            "Postorder"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "A subtree is valid only if both children match current value.",
+        "intuition": "Postorder traversal validates children before parents.",
+        "commonMistakes": [
+            "Ignoring null child cases"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 5,
+        "isPro": true
+    },
+    {
+        "order": 79,
+        "title": "Maximum Width of Binary Tree",
+        "slug": "maximum-width-of-binary-tree",
+        "leetcodeId": 662,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-width-of-binary-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Indexed BFS",
+        "subPattern": "Width Calculation",
+        "relatedPatterns": [
+            "Queue"
+        ],
+        "tags": [
+            "tree",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Assign positional indices to nodes.",
+        "intuition": "Virtual indexing preserves full binary tree positions.",
+        "commonMistakes": [
+            "Integer overflow in indices"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 80,
+        "title": "Check Completeness of a Binary Tree",
+        "slug": "check-completeness-of-a-binary-tree",
+        "leetcodeId": 958,
+        "leetcodeUrl": "https://leetcode.com/problems/check-completeness-of-a-binary-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree BFS",
+        "subPattern": "Completeness Validation",
+        "relatedPatterns": [
+            "Queue"
+        ],
+        "tags": [
+            "tree",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "After the first null node, no valid nodes should appear.",
+        "intuition": "Complete trees fill levels from left to right.",
+        "commonMistakes": [
+            "Continuing after invalid gap"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 81,
+        "title": "Find Duplicate Subtrees",
+        "slug": "find-duplicate-subtrees",
+        "leetcodeId": 652,
+        "leetcodeUrl": "https://leetcode.com/problems/find-duplicate-subtrees/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Tree Serialization",
+        "subPattern": "Duplicate Detection",
+        "relatedPatterns": [
+            "Hash Map"
+        ],
+        "tags": [
+            "tree",
+            "dfs",
+            "hashing"
+        ],
+        "companies": [
+            "Google",
+            "Meta"
+        ],
+        "hint": "Serialize subtrees and count occurrences.",
+        "intuition": "Identical structures produce identical serializations.",
+        "commonMistakes": [
+            "Not including null markers"
+        ],
+        "timeEstimate": 38,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 82,
+        "title": "Maximum Difference Between Node and Ancestor",
+        "slug": "maximum-difference-between-node-and-ancestor",
+        "leetcodeId": 1026,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-difference-between-node-and-ancestor/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "DFS State Tracking",
+        "subPattern": "Ancestor Tracking",
+        "relatedPatterns": [
+            "Path Problems"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Track minimum and maximum ancestor values along the path.",
+        "intuition": "Best difference depends on extreme ancestor values.",
+        "commonMistakes": [
+            "Updating min/max incorrectly"
+        ],
+        "timeEstimate": 28,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 83,
+        "title": "Maximum Product of Splitted Binary Tree",
+        "slug": "maximum-product-of-splitted-binary-tree",
+        "leetcodeId": 1339,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-product-of-splitted-binary-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "MEDIUM",
+        "pattern": "Subtree Sum DFS",
+        "subPattern": "Optimal Split",
+        "relatedPatterns": [
+            "Tree DP"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Compute all subtree sums and maximize split product.",
+        "intuition": "Every subtree edge forms a possible partition.",
+        "commonMistakes": [
+            "Incorrect total sum usage"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 84,
+        "title": "Number of Good Leaf Nodes Pairs",
+        "slug": "number-of-good-leaf-nodes-pairs",
+        "leetcodeId": 1530,
+        "leetcodeUrl": "https://leetcode.com/problems/number-of-good-leaf-nodes-pairs/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bottom Up DFS",
+        "subPattern": "Distance Aggregation",
+        "relatedPatterns": [
+            "Tree DP"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Return leaf distances upward from each subtree.",
+        "intuition": "Parent nodes combine leaf distances from both sides.",
+        "commonMistakes": [
+            "Incorrect distance merging"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 85,
+        "title": "Count Nodes With the Highest Score",
+        "slug": "count-nodes-with-the-highest-score",
+        "leetcodeId": 2049,
+        "leetcodeUrl": "https://leetcode.com/problems/count-nodes-with-the-highest-score/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Tree DP",
+        "subPattern": "Subtree Product",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Calculate subtree sizes for every node.",
+        "intuition": "Removing a node splits the tree into components.",
+        "commonMistakes": [
+            "Ignoring remaining parent component"
+        ],
+        "timeEstimate": 38,
+        "revisionPriority": 5,
+        "isPro": true
+    },
+    {
+        "order": 86,
+        "title": "Lowest Common Ancestor of Deepest Leaves",
+        "slug": "lowest-common-ancestor-of-deepest-leaves",
+        "leetcodeId": 1123,
+        "leetcodeUrl": "https://leetcode.com/problems/lowest-common-ancestor-of-deepest-leaves/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bottom Up DFS",
+        "subPattern": "Deepest LCA",
+        "relatedPatterns": [
+            "LCA",
+            "Depth"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Return both subtree depth and candidate ancestor.",
+        "intuition": "Equal subtree depths indicate the merge point of deepest leaves.",
+        "commonMistakes": [
+            "Incorrect depth comparison"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 87,
+        "title": "Smallest Common Region",
+        "slug": "smallest-common-region",
+        "leetcodeId": 1257,
+        "leetcodeUrl": "https://leetcode.com/problems/smallest-common-region/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Ancestor Tracking",
+        "subPattern": "Parent Mapping",
+        "relatedPatterns": [
+            "Hash Map"
+        ],
+        "tags": [
+            "tree",
+            "hashing"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Store parent relationships and trace ancestors upward.",
+        "intuition": "LCA logic also works on generic parent hierarchies.",
+        "commonMistakes": [
+            "Incorrect ancestor set building"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 88,
+        "title": "Lowest Common Ancestor of a Binary Tree II",
+        "slug": "lowest-common-ancestor-of-a-binary-tree-ii",
+        "leetcodeId": 1644,
+        "leetcodeUrl": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree DFS",
+        "subPattern": "Validated LCA",
+        "relatedPatterns": [
+            "LCA"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Facebook"
+        ],
+        "hint": "Ensure both target nodes actually exist in the tree.",
+        "intuition": "Normal LCA logic fails if one node is missing.",
+        "commonMistakes": [
+            "Returning LCA without validation"
+        ],
+        "timeEstimate": 38,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 89,
+        "title": "Lowest Common Ancestor of a Binary Tree III",
+        "slug": "lowest-common-ancestor-of-a-binary-tree-iii",
+        "leetcodeId": 1650,
+        "leetcodeUrl": "https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree-iii/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Parent Pointer Traversal",
+        "subPattern": "Two Pointer LCA",
+        "relatedPatterns": [
+            "Linked List"
+        ],
+        "tags": [
+            "tree",
+            "two-pointers"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Use linked-list intersection style traversal.",
+        "intuition": "Switching roots synchronizes path lengths.",
+        "commonMistakes": [
+            "Stopping traversal too early"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 90,
+        "title": "Kth Ancestor of a Tree Node",
+        "slug": "kth-ancestor-of-a-tree-node",
+        "leetcodeId": 1483,
+        "leetcodeUrl": "https://leetcode.com/problems/kth-ancestor-of-a-tree-node/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Binary Lifting",
+        "subPattern": "Ancestor Queries",
+        "relatedPatterns": [
+            "DP"
+        ],
+        "tags": [
+            "tree",
+            "binary-lifting"
+        ],
+        "companies": [
+            "Google",
+            "Amazon"
+        ],
+        "hint": "Precompute ancestors at powers of two distances.",
+        "intuition": "Binary decomposition jumps upward efficiently.",
+        "commonMistakes": [
+            "Incorrect ancestor table setup"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 91,
+        "title": "Tree of Coprimes",
+        "slug": "tree-of-coprimes",
+        "leetcodeId": 1766,
+        "leetcodeUrl": "https://leetcode.com/problems/tree-of-coprimes/",
+        "difficulty": "HARD",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "DFS Ancestor Tracking",
+        "subPattern": "Closest Valid Ancestor",
+        "relatedPatterns": [
+            "Graph DFS"
+        ],
+        "tags": [
+            "tree",
+            "dfs",
+            "math"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track latest ancestors for every value during DFS.",
+        "intuition": "Path ancestor state changes dynamically while traversing.",
+        "commonMistakes": [
+            "Not restoring ancestor state"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 5,
+        "isPro": true
+    },
+    {
+        "order": 92,
+        "title": "Serialize and Deserialize BST",
+        "slug": "serialize-and-deserialize-bst",
+        "leetcodeId": 449,
+        "leetcodeUrl": "https://leetcode.com/problems/serialize-and-deserialize-bst/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "BST Serialization",
+        "subPattern": "Bounded Reconstruction",
+        "relatedPatterns": [
+            "BST",
+            "Serialization"
+        ],
+        "tags": [
+            "tree",
+            "bst",
+            "design"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "BST ordering allows reconstruction without null markers.",
+        "intuition": "Value bounds uniquely determine subtree placement.",
+        "commonMistakes": [
+            "Incorrect bound validation"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 93,
+        "title": "Recover Tree From Preorder Traversal",
+        "slug": "recover-a-tree-from-preorder-traversal",
+        "leetcodeId": 1028,
+        "leetcodeUrl": "https://leetcode.com/problems/recover-a-tree-from-preorder-traversal/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree Construction",
+        "subPattern": "Depth Parsing",
+        "relatedPatterns": [
+            "Stack"
+        ],
+        "tags": [
+            "tree",
+            "stack"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Node depth determines parent-child relationships.",
+        "intuition": "Traversal depth encodes tree hierarchy.",
+        "commonMistakes": [
+            "Incorrect stack popping"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 94,
+        "title": "Delete Nodes And Return Forest",
+        "slug": "delete-nodes-and-return-forest",
+        "leetcodeId": 1110,
+        "leetcodeUrl": "https://leetcode.com/problems/delete-nodes-and-return-forest/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree Modification",
+        "subPattern": "Forest Generation",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "tree",
+            "dfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "When deleting a node, its children may become new roots.",
+        "intuition": "Tree deletion can split the structure into multiple trees.",
+        "commonMistakes": [
+            "Losing valid subtree roots"
+        ],
+        "timeEstimate": 38,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 95,
+        "title": "Maximum Sum BST in Binary Tree",
+        "slug": "maximum-sum-bst-in-binary-tree",
+        "leetcodeId": 1373,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-sum-bst-in-binary-tree/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Bottom Up DFS",
+        "subPattern": "BST Validation",
+        "relatedPatterns": [
+            "BST",
+            "Tree DP"
+        ],
+        "tags": [
+            "tree",
+            "dfs",
+            "bst"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Return subtree min, max, sum, and BST validity together.",
+        "intuition": "Parent validity depends completely on child subtree properties.",
+        "commonMistakes": [
+            "Incorrect min/max propagation"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 96,
+        "title": "Longest Path With Different Adjacent Characters",
+        "slug": "longest-path-with-different-adjacent-characters",
+        "leetcodeId": 2246,
+        "leetcodeUrl": "https://leetcode.com/problems/longest-path-with-different-adjacent-characters/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Tree DP",
+        "subPattern": "Longest Valid Path",
+        "relatedPatterns": [
+            "Graph DFS"
+        ],
+        "tags": [
+            "tree",
+            "dfs",
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Combine the two longest valid child paths.",
+        "intuition": "Best answer may pass through the current node.",
+        "commonMistakes": [
+            "Including invalid adjacent characters"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 97,
+        "title": "Amount of Time for Binary Tree to Be Infected",
+        "slug": "amount-of-time-for-binary-tree-to-be-infected",
+        "leetcodeId": 2385,
+        "leetcodeUrl": "https://leetcode.com/problems/amount-of-time-for-binary-tree-to-be-infected/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree To Graph",
+        "subPattern": "Multi Direction Traversal",
+        "relatedPatterns": [
+            "Graph BFS"
+        ],
+        "tags": [
+            "tree",
+            "bfs",
+            "graph"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Convert the tree into an undirected graph.",
+        "intuition": "Infection spreads in all directions like BFS on graphs.",
+        "commonMistakes": [
+            "Forgetting parent connections"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 98,
+        "title": "Height of Binary Tree After Subtree Removal Queries",
+        "slug": "height-of-binary-tree-after-subtree-removal-queries",
+        "leetcodeId": 2458,
+        "leetcodeUrl": "https://leetcode.com/problems/height-of-binary-tree-after-subtree-removal-queries/",
+        "difficulty": "HARD",
+        "priority": "OPTIONAL",
+        "frequency": "HIGH",
+        "pattern": "Rerooting DP",
+        "subPattern": "Outside Contribution",
+        "relatedPatterns": [
+            "Tree DP"
+        ],
+        "tags": [
+            "tree",
+            "dfs",
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Precompute subtree heights and outside heights separately.",
+        "intuition": "Every node's answer depends on information outside its subtree.",
+        "commonMistakes": [
+            "Incorrect reroot propagation"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 99,
+        "title": "Sum of Distances in Tree",
+        "slug": "sum-of-distances-in-tree",
+        "leetcodeId": 834,
+        "leetcodeUrl": "https://leetcode.com/problems/sum-of-distances-in-tree/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Rerooting DP",
+        "subPattern": "Distance Contribution",
+        "relatedPatterns": [
+            "Tree DP"
+        ],
+        "tags": [
+            "tree",
+            "dfs",
+            "dp"
+        ],
+        "companies": [
+            "Google",
+            "Amazon"
+        ],
+        "hint": "First compute subtree answers, then reroot for all nodes.",
+        "intuition": "Changing the root shifts distance contributions predictably.",
+        "commonMistakes": [
+            "Wrong reroot transition formula"
+        ],
+        "timeEstimate": 65,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 100,
+        "title": "Merge BSTs to Create Single BST",
+        "slug": "merge-bsts-to-create-single-bst",
+        "leetcodeId": 1932,
+        "leetcodeUrl": "https://leetcode.com/problems/merge-bsts-to-create-single-bst/",
+        "difficulty": "HARD",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "BST Construction",
+        "subPattern": "Tree Merging",
+        "relatedPatterns": [
+            "Hash Map"
+        ],
+        "tags": [
+            "tree",
+            "bst"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Leaf nodes may become attachment points for other BST roots.",
+        "intuition": "Merged trees must still satisfy global BST constraints.",
+        "commonMistakes": [
+            "Not validating final BST"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 6,
+        "isPro": true
+    }
+]

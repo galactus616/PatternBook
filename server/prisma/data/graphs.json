@@ -1,0 +1,2282 @@
+[
+    {
+        "order": 1,
+        "title": "Find if Path Exists in Graph",
+        "slug": "find-if-path-exists-in-graph",
+        "leetcodeId": 1971,
+        "leetcodeUrl": "https://leetcode.com/problems/find-if-path-exists-in-graph/",
+        "difficulty": "EASY",
+        "priority": "MUST_DO",
+        "frequency": "HIGH",
+        "pattern": "Graph DFS",
+        "subPattern": "Reachability",
+        "relatedPatterns": [
+            "BFS"
+        ],
+        "tags": [
+            "graph",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Traverse from source and check whether destination becomes reachable.",
+        "intuition": "Connected nodes become reachable through graph traversal.",
+        "commonMistakes": [
+            "Forgetting visited array"
+        ],
+        "timeEstimate": 15,
+        "revisionPriority": 7,
+        "isPro": false
+    },
+    {
+        "order": 2,
+        "title": "Number of Connected Components in an Undirected Graph",
+        "slug": "number-of-connected-components-in-an-undirected-graph",
+        "leetcodeId": 323,
+        "leetcodeUrl": "https://leetcode.com/problems/number-of-connected-components-in-an-undirected-graph/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Graph DFS",
+        "subPattern": "Connected Components",
+        "relatedPatterns": [
+            "Union Find"
+        ],
+        "tags": [
+            "graph",
+            "dfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Run DFS/BFS from every unvisited node.",
+        "intuition": "Each traversal fully covers one component.",
+        "commonMistakes": [
+            "Not iterating through all nodes"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 3,
+        "title": "Clone Graph",
+        "slug": "clone-graph",
+        "leetcodeId": 133,
+        "leetcodeUrl": "https://leetcode.com/problems/clone-graph/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Graph DFS",
+        "subPattern": "Graph Copy",
+        "relatedPatterns": [
+            "Hash Map"
+        ],
+        "tags": [
+            "graph",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Use hashmap to map original nodes to cloned nodes.",
+        "intuition": "Graphs require preserving already-created node references.",
+        "commonMistakes": [
+            "Creating duplicate cloned nodes"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 4,
+        "title": "Keys and Rooms",
+        "slug": "keys-and-rooms",
+        "leetcodeId": 841,
+        "leetcodeUrl": "https://leetcode.com/problems/keys-and-rooms/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Graph Traversal",
+        "subPattern": "Reachability",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "graph"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Traverse rooms using collected keys.",
+        "intuition": "Keys form directed graph edges between rooms.",
+        "commonMistakes": [
+            "Visiting rooms repeatedly"
+        ],
+        "timeEstimate": 20,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 5,
+        "title": "All Paths From Source to Target",
+        "slug": "all-paths-from-source-to-target",
+        "leetcodeId": 797,
+        "leetcodeUrl": "https://leetcode.com/problems/all-paths-from-source-to-target/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Graph DFS",
+        "subPattern": "Path Enumeration",
+        "relatedPatterns": [
+            "Backtracking"
+        ],
+        "tags": [
+            "graph",
+            "dfs",
+            "backtracking"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Backtrack all possible paths recursively.",
+        "intuition": "DFS naturally explores complete path possibilities.",
+        "commonMistakes": [
+            "Not backtracking path correctly"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 6,
+        "title": "Find Center of Star Graph",
+        "slug": "find-center-of-star-graph",
+        "leetcodeId": 1791,
+        "leetcodeUrl": "https://leetcode.com/problems/find-center-of-star-graph/",
+        "difficulty": "EASY",
+        "priority": "OPTIONAL",
+        "frequency": "LOW",
+        "pattern": "Graph Observation",
+        "subPattern": "Degree Analysis",
+        "relatedPatterns": [
+            "Math"
+        ],
+        "tags": [
+            "graph"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "The center appears in every edge.",
+        "intuition": "Star graphs have one node connected to all others.",
+        "commonMistakes": [
+            "Overcomplicating traversal"
+        ],
+        "timeEstimate": 10,
+        "revisionPriority": 2,
+        "isPro": false
+    },
+    {
+        "order": 7,
+        "title": "Find the Town Judge",
+        "slug": "find-the-town-judge",
+        "leetcodeId": 997,
+        "leetcodeUrl": "https://leetcode.com/problems/find-the-town-judge/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Indegree Outdegree",
+        "subPattern": "Graph Validation",
+        "relatedPatterns": [
+            "Hashing"
+        ],
+        "tags": [
+            "graph"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Judge trusts nobody but everyone trusts the judge.",
+        "intuition": "Indegree and outdegree fully define judge conditions.",
+        "commonMistakes": [
+            "Incorrect trust count logic"
+        ],
+        "timeEstimate": 18,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 8,
+        "title": "Network Delay Time",
+        "slug": "network-delay-time",
+        "leetcodeId": 743,
+        "leetcodeUrl": "https://leetcode.com/problems/network-delay-time/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Dijkstra",
+        "subPattern": "Shortest Path",
+        "relatedPatterns": [
+            "Heap"
+        ],
+        "tags": [
+            "graph",
+            "shortest-path"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Use min heap to always process closest node first.",
+        "intuition": "Shortest known path should expand first.",
+        "commonMistakes": [
+            "Reprocessing finalized nodes"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 9,
+        "title": "Possible Bipartition",
+        "slug": "possible-bipartition",
+        "leetcodeId": 886,
+        "leetcodeUrl": "https://leetcode.com/problems/possible-bipartition/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Graph Coloring",
+        "subPattern": "Bipartite Check",
+        "relatedPatterns": [
+            "BFS"
+        ],
+        "tags": [
+            "graph",
+            "bfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Adjacent nodes must receive opposite colors.",
+        "intuition": "Bipartite graphs can be separated into two groups.",
+        "commonMistakes": [
+            "Not checking disconnected components"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 10,
+        "title": "Is Graph Bipartite?",
+        "slug": "is-graph-bipartite",
+        "leetcodeId": 785,
+        "leetcodeUrl": "https://leetcode.com/problems/is-graph-bipartite/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Graph Coloring",
+        "subPattern": "Two Coloring",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "graph",
+            "dfs",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Color neighboring nodes with opposite colors.",
+        "intuition": "Odd-length cycles break bipartite structure.",
+        "commonMistakes": [
+            "Ignoring disconnected graphs"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 11,
+        "title": "Reorder Routes to Make All Paths Lead to the City Zero",
+        "slug": "reorder-routes-to-make-all-paths-lead-to-the-city-zero",
+        "leetcodeId": 1466,
+        "leetcodeUrl": "https://leetcode.com/problems/reorder-routes-to-make-all-paths-lead-to-the-city-zero/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Graph DFS",
+        "subPattern": "Edge Direction",
+        "relatedPatterns": [
+            "Tree"
+        ],
+        "tags": [
+            "graph",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Count edges pointing away from city zero during traversal.",
+        "intuition": "Traversal reveals incorrectly directed roads.",
+        "commonMistakes": [
+            "Losing original edge direction"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 12,
+        "title": "Min Cost to Connect All Points",
+        "slug": "min-cost-to-connect-all-points",
+        "leetcodeId": 1584,
+        "leetcodeUrl": "https://leetcode.com/problems/min-cost-to-connect-all-points/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Minimum Spanning Tree",
+        "subPattern": "Prim Algorithm",
+        "relatedPatterns": [
+            "Heap"
+        ],
+        "tags": [
+            "graph",
+            "mst"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Always connect the cheapest unvisited point.",
+        "intuition": "MST grows optimally one edge at a time.",
+        "commonMistakes": [
+            "Adding already-visited nodes"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 13,
+        "title": "Number of Islands",
+        "slug": "number-of-islands",
+        "leetcodeId": 200,
+        "leetcodeUrl": "https://leetcode.com/problems/number-of-islands/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Grid DFS",
+        "subPattern": "Connected Components",
+        "relatedPatterns": [
+            "BFS"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Start DFS/BFS whenever you find an unvisited land cell.",
+        "intuition": "Each traversal fully covers one island component.",
+        "commonMistakes": [
+            "Not marking visited cells"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 14,
+        "title": "Max Area of Island",
+        "slug": "max-area-of-island",
+        "leetcodeId": 695,
+        "leetcodeUrl": "https://leetcode.com/problems/max-area-of-island/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Grid DFS",
+        "subPattern": "Component Size",
+        "relatedPatterns": [
+            "Flood Fill"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Count cells while exploring each island.",
+        "intuition": "DFS naturally measures connected region size.",
+        "commonMistakes": [
+            "Not resetting area count"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 15,
+        "title": "Flood Fill",
+        "slug": "flood-fill",
+        "leetcodeId": 733,
+        "leetcodeUrl": "https://leetcode.com/problems/flood-fill/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Grid DFS",
+        "subPattern": "Color Replacement",
+        "relatedPatterns": [
+            "BFS"
+        ],
+        "tags": [
+            "graph",
+            "matrix"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Expand only into cells matching the original color.",
+        "intuition": "Flood fill spreads through connected equal-valued cells.",
+        "commonMistakes": [
+            "Infinite recursion from revisiting"
+        ],
+        "timeEstimate": 18,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 16,
+        "title": "01 Matrix",
+        "slug": "01-matrix",
+        "leetcodeId": 542,
+        "leetcodeUrl": "https://leetcode.com/problems/01-matrix/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Multi Source BFS",
+        "subPattern": "Shortest Distance",
+        "relatedPatterns": [
+            "BFS"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Start BFS from all zero cells simultaneously.",
+        "intuition": "Multiple BFS sources compute nearest distances efficiently.",
+        "commonMistakes": [
+            "Running BFS from every cell separately"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 17,
+        "title": "Rotting Oranges",
+        "slug": "rotting-oranges",
+        "leetcodeId": 994,
+        "leetcodeUrl": "https://leetcode.com/problems/rotting-oranges/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Multi Source BFS",
+        "subPattern": "Level Spread",
+        "relatedPatterns": [
+            "Queue"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "All rotten oranges become BFS starting points.",
+        "intuition": "Each BFS level represents one minute of spread.",
+        "commonMistakes": [
+            "Incorrect time increment"
+        ],
+        "timeEstimate": 28,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 18,
+        "title": "Surrounded Regions",
+        "slug": "surrounded-regions",
+        "leetcodeId": 130,
+        "leetcodeUrl": "https://leetcode.com/problems/surrounded-regions/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Boundary DFS",
+        "subPattern": "Protected Regions",
+        "relatedPatterns": [
+            "Flood Fill"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Mark regions connected to boundaries first.",
+        "intuition": "Boundary-connected regions cannot be captured.",
+        "commonMistakes": [
+            "Capturing safe regions"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 19,
+        "title": "Walls and Gates",
+        "slug": "walls-and-gates",
+        "leetcodeId": 286,
+        "leetcodeUrl": "https://leetcode.com/problems/walls-and-gates/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Multi Source BFS",
+        "subPattern": "Minimum Distance",
+        "relatedPatterns": [
+            "01 Matrix"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "bfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Push all gates into queue initially.",
+        "intuition": "Nearest gate distance spreads outward layer by layer.",
+        "commonMistakes": [
+            "Running BFS separately for every room"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 20,
+        "title": "Pacific Atlantic Water Flow",
+        "slug": "pacific-atlantic-water-flow",
+        "leetcodeId": 417,
+        "leetcodeUrl": "https://leetcode.com/problems/pacific-atlantic-water-flow/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Reverse DFS",
+        "subPattern": "Reachability",
+        "relatedPatterns": [
+            "Matrix DFS"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "dfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Traverse inward from oceans instead of outward from cells.",
+        "intuition": "Reverse traversal dramatically reduces repeated searches.",
+        "commonMistakes": [
+            "Running DFS from every cell"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 21,
+        "title": "Shortest Path in Binary Matrix",
+        "slug": "shortest-path-in-binary-matrix",
+        "leetcodeId": 1091,
+        "leetcodeUrl": "https://leetcode.com/problems/shortest-path-in-binary-matrix/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Grid BFS",
+        "subPattern": "Shortest Path",
+        "relatedPatterns": [
+            "BFS"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Use BFS because every move has equal cost.",
+        "intuition": "BFS guarantees shortest path in unweighted grids.",
+        "commonMistakes": [
+            "Using DFS for shortest path"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 22,
+        "title": "As Far from Land as Possible",
+        "slug": "as-far-from-land-as-possible",
+        "leetcodeId": 1162,
+        "leetcodeUrl": "https://leetcode.com/problems/as-far-from-land-as-possible/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Multi Source BFS",
+        "subPattern": "Maximum Distance",
+        "relatedPatterns": [
+            "Rotting Oranges"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Expand outward from all land cells simultaneously.",
+        "intuition": "The last reached water cell becomes the farthest.",
+        "commonMistakes": [
+            "Starting BFS from water cells"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 23,
+        "title": "Nearest Exit from Entrance in Maze",
+        "slug": "nearest-exit-from-entrance-in-maze",
+        "leetcodeId": 1926,
+        "leetcodeUrl": "https://leetcode.com/problems/nearest-exit-from-entrance-in-maze/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Grid BFS",
+        "subPattern": "Shortest Exit",
+        "relatedPatterns": [
+            "Shortest Path"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "First exit reached in BFS is the shortest path.",
+        "intuition": "BFS explores all shortest-distance cells first.",
+        "commonMistakes": [
+            "Treating entrance as valid exit"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 24,
+        "title": "Word Search",
+        "slug": "word-search",
+        "leetcodeId": 79,
+        "leetcodeUrl": "https://leetcode.com/problems/word-search/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Grid Backtracking",
+        "subPattern": "Path Search",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "backtracking"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Backtrack while marking cells as visited temporarily.",
+        "intuition": "Each path choice affects future traversal possibilities.",
+        "commonMistakes": [
+            "Not restoring visited cells"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 25,
+        "title": "Course Schedule",
+        "slug": "course-schedule",
+        "leetcodeId": 207,
+        "leetcodeUrl": "https://leetcode.com/problems/course-schedule/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Cycle Detection",
+        "subPattern": "Directed Graph DFS",
+        "relatedPatterns": [
+            "Topological Sort"
+        ],
+        "tags": [
+            "graph",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Use recursion stack tracking to detect cycles.",
+        "intuition": "A cycle makes course completion impossible.",
+        "commonMistakes": [
+            "Using only visited array without path tracking"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 26,
+        "title": "Course Schedule II",
+        "slug": "course-schedule-ii",
+        "leetcodeId": 210,
+        "leetcodeUrl": "https://leetcode.com/problems/course-schedule-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Topological Sort",
+        "subPattern": "Cycle Detection",
+        "relatedPatterns": [
+            "Kahn Algorithm"
+        ],
+        "tags": [
+            "graph",
+            "topological-sort"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Generate valid order using indegree-based BFS.",
+        "intuition": "Nodes with zero indegree are immediately solvable.",
+        "commonMistakes": [
+            "Returning partial order when cycle exists"
+        ],
+        "timeEstimate": 38,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 27,
+        "title": "Redundant Connection",
+        "slug": "redundant-connection",
+        "leetcodeId": 684,
+        "leetcodeUrl": "https://leetcode.com/problems/redundant-connection/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Union Find",
+        "subPattern": "Undirected Cycle",
+        "relatedPatterns": [
+            "DSU"
+        ],
+        "tags": [
+            "graph",
+            "union-find"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "If two nodes already share the same parent, cycle exists.",
+        "intuition": "Extra edge connecting same component forms a cycle.",
+        "commonMistakes": [
+            "Incorrect parent compression"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 28,
+        "title": "Redundant Connection II",
+        "slug": "redundant-connection-ii",
+        "leetcodeId": 685,
+        "leetcodeUrl": "https://leetcode.com/problems/redundant-connection-ii/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Directed Graph Cycle",
+        "subPattern": "Parent Conflict",
+        "relatedPatterns": [
+            "Union Find"
+        ],
+        "tags": [
+            "graph",
+            "union-find"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Handle both cycle case and double-parent case.",
+        "intuition": "Directed graphs introduce parent conflicts beyond normal cycles.",
+        "commonMistakes": [
+            "Ignoring two-parent condition"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 29,
+        "title": "Detect Cycles in 2D Grid",
+        "slug": "detect-cycles-in-2d-grid",
+        "leetcodeId": 1559,
+        "leetcodeUrl": "https://leetcode.com/problems/detect-cycles-in-2d-grid/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "MEDIUM",
+        "pattern": "Grid DFS",
+        "subPattern": "Cycle Detection",
+        "relatedPatterns": [
+            "Matrix DFS"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "dfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track previous cell to avoid false cycle detection.",
+        "intuition": "Returning to an already visited valid cell forms a cycle.",
+        "commonMistakes": [
+            "Counting parent revisit as cycle"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 30,
+        "title": "Longest Cycle in a Graph",
+        "slug": "longest-cycle-in-a-graph",
+        "leetcodeId": 2360,
+        "leetcodeUrl": "https://leetcode.com/problems/longest-cycle-in-a-graph/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Directed Graph DFS",
+        "subPattern": "Cycle Length",
+        "relatedPatterns": [
+            "Visited States"
+        ],
+        "tags": [
+            "graph",
+            "dfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track discovery step index during traversal.",
+        "intuition": "Cycle length equals repeated node distance difference.",
+        "commonMistakes": [
+            "Using global visited incorrectly"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 31,
+        "title": "Find Eventual Safe States",
+        "slug": "find-eventual-safe-states",
+        "leetcodeId": 802,
+        "leetcodeUrl": "https://leetcode.com/problems/find-eventual-safe-states/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Directed Graph DFS",
+        "subPattern": "Safe Nodes",
+        "relatedPatterns": [
+            "Topological Sort"
+        ],
+        "tags": [
+            "graph",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Safe nodes never reach a cycle.",
+        "intuition": "Cycle participation determines unsafe states.",
+        "commonMistakes": [
+            "Recomputing DFS repeatedly"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 32,
+        "title": "Alien Dictionary",
+        "slug": "alien-dictionary",
+        "leetcodeId": 269,
+        "leetcodeUrl": "https://leetcode.com/problems/alien-dictionary/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Topological Sort",
+        "subPattern": "Cycle Validation",
+        "relatedPatterns": [
+            "Kahn Algorithm"
+        ],
+        "tags": [
+            "graph",
+            "topological-sort"
+        ],
+        "companies": [
+            "Google",
+            "Meta"
+        ],
+        "hint": "Build character ordering graph from adjacent words.",
+        "intuition": "Character precedence constraints form a DAG.",
+        "commonMistakes": [
+            "Ignoring invalid prefix condition"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 33,
+        "title": "Parallel Courses",
+        "slug": "parallel-courses",
+        "leetcodeId": 1136,
+        "leetcodeUrl": "https://leetcode.com/problems/parallel-courses/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Kahn Algorithm",
+        "subPattern": "Level Topological Sort",
+        "relatedPatterns": [
+            "BFS"
+        ],
+        "tags": [
+            "graph",
+            "topological-sort"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Each BFS level represents one semester.",
+        "intuition": "Courses with zero indegree can be taken together.",
+        "commonMistakes": [
+            "Not detecting cycles"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 34,
+        "title": "Parallel Courses III",
+        "slug": "parallel-courses-iii",
+        "leetcodeId": 2050,
+        "leetcodeUrl": "https://leetcode.com/problems/parallel-courses-iii/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Topological DP",
+        "subPattern": "Longest Dependency Path",
+        "relatedPatterns": [
+            "DP"
+        ],
+        "tags": [
+            "graph",
+            "topological-sort",
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track maximum completion time for each course.",
+        "intuition": "Each course depends on the slowest prerequisite chain.",
+        "commonMistakes": [
+            "Overwriting instead of maximizing times"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 35,
+        "title": "Sequence Reconstruction",
+        "slug": "sequence-reconstruction",
+        "leetcodeId": 444,
+        "leetcodeUrl": "https://leetcode.com/problems/sequence-reconstruction/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Topological Sort",
+        "subPattern": "Unique Ordering",
+        "relatedPatterns": [
+            "Graph Validation"
+        ],
+        "tags": [
+            "graph",
+            "topological-sort"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Topological order must always have exactly one valid next node.",
+        "intuition": "Multiple zero-indegree choices imply multiple valid orders.",
+        "commonMistakes": [
+            "Checking only one valid ordering"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 36,
+        "title": "Minimum Height Trees",
+        "slug": "minimum-height-trees",
+        "leetcodeId": 310,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-height-trees/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Topological Trimming",
+        "subPattern": "Leaf Removal",
+        "relatedPatterns": [
+            "BFS"
+        ],
+        "tags": [
+            "graph",
+            "topological-sort"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Repeatedly remove leaf nodes level by level.",
+        "intuition": "Tree centers remain after trimming outer layers.",
+        "commonMistakes": [
+            "Removing nodes one-by-one incorrectly"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 37,
+        "title": "Sort Items by Groups Respecting Dependencies",
+        "slug": "sort-items-by-groups-respecting-dependencies",
+        "leetcodeId": 1203,
+        "leetcodeUrl": "https://leetcode.com/problems/sort-items-by-groups-respecting-dependencies/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Nested Topological Sort",
+        "subPattern": "Group Dependency",
+        "relatedPatterns": [
+            "Kahn Algorithm"
+        ],
+        "tags": [
+            "graph",
+            "topological-sort"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Perform topological sort on both groups and items.",
+        "intuition": "Groups create another dependency layer above items.",
+        "commonMistakes": [
+            "Mixing item graph with group graph"
+        ],
+        "timeEstimate": 65,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 38,
+        "title": "Build a Matrix With Conditions",
+        "slug": "build-a-matrix-with-conditions",
+        "leetcodeId": 2392,
+        "leetcodeUrl": "https://leetcode.com/problems/build-a-matrix-with-conditions/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Topological Sort",
+        "subPattern": "Independent Ordering",
+        "relatedPatterns": [
+            "Matrix"
+        ],
+        "tags": [
+            "graph",
+            "topological-sort"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Compute row order and column order separately.",
+        "intuition": "Independent constraints can be solved independently.",
+        "commonMistakes": [
+            "Using one ordering for both dimensions"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 39,
+        "title": "Loud and Rich",
+        "slug": "loud-and-rich",
+        "leetcodeId": 851,
+        "leetcodeUrl": "https://leetcode.com/problems/loud-and-rich/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Topological Propagation",
+        "subPattern": "State Transfer",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "graph",
+            "topological-sort"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Propagate quietest richer person through graph edges.",
+        "intuition": "Topological order guarantees prerequisites are processed first.",
+        "commonMistakes": [
+            "Updating values in wrong direction"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 40,
+        "title": "Largest Color Value in a Directed Graph",
+        "slug": "largest-color-value-in-a-directed-graph",
+        "leetcodeId": 1857,
+        "leetcodeUrl": "https://leetcode.com/problems/largest-color-value-in-a-directed-graph/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Topological DP",
+        "subPattern": "Path Aggregation",
+        "relatedPatterns": [
+            "DP"
+        ],
+        "tags": [
+            "graph",
+            "topological-sort",
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Maintain color frequencies while processing topological order.",
+        "intuition": "DAG processing allows incremental path aggregation.",
+        "commonMistakes": [
+            "Not handling cycles properly"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 41,
+        "title": "Number of Provinces",
+        "slug": "number-of-provinces",
+        "leetcodeId": 547,
+        "leetcodeUrl": "https://leetcode.com/problems/number-of-provinces/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Union Find",
+        "subPattern": "Connected Components",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "graph",
+            "union-find"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Union directly connected cities together.",
+        "intuition": "Connected nodes belong to the same component group.",
+        "commonMistakes": [
+            "Incorrect parent updates"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 42,
+        "title": "Accounts Merge",
+        "slug": "accounts-merge",
+        "leetcodeId": 721,
+        "leetcodeUrl": "https://leetcode.com/problems/accounts-merge/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Union Find",
+        "subPattern": "Entity Grouping",
+        "relatedPatterns": [
+            "Hash Map"
+        ],
+        "tags": [
+            "graph",
+            "union-find"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Union accounts sharing the same email.",
+        "intuition": "Shared identifiers connect related accounts.",
+        "commonMistakes": [
+            "Not grouping emails correctly"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 43,
+        "title": "Graph Valid Tree",
+        "slug": "graph-valid-tree",
+        "leetcodeId": 261,
+        "leetcodeUrl": "https://leetcode.com/problems/graph-valid-tree/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Union Find",
+        "subPattern": "Cycle Validation",
+        "relatedPatterns": [
+            "Tree"
+        ],
+        "tags": [
+            "graph",
+            "union-find"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "A valid tree must have n-1 edges and no cycles.",
+        "intuition": "Trees are connected acyclic graphs.",
+        "commonMistakes": [
+            "Checking only cycle condition"
+        ],
+        "timeEstimate": 28,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 44,
+        "title": "Smallest String With Swaps",
+        "slug": "smallest-string-with-swaps",
+        "leetcodeId": 1202,
+        "leetcodeUrl": "https://leetcode.com/problems/smallest-string-with-swaps/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Union Find",
+        "subPattern": "Connected Rearrangement",
+        "relatedPatterns": [
+            "Sorting"
+        ],
+        "tags": [
+            "graph",
+            "union-find",
+            "string"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Indices in same component can be rearranged freely.",
+        "intuition": "Connected positions share swap accessibility.",
+        "commonMistakes": [
+            "Not sorting component characters"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 45,
+        "title": "Satisfiability of Equality Equations",
+        "slug": "satisfiability-of-equality-equations",
+        "leetcodeId": 990,
+        "leetcodeUrl": "https://leetcode.com/problems/satisfiability-of-equality-equations/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Union Find",
+        "subPattern": "Constraint Validation",
+        "relatedPatterns": [
+            "Graph Coloring"
+        ],
+        "tags": [
+            "graph",
+            "union-find"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Union equal variables first, then validate inequalities.",
+        "intuition": "Equality constraints form connected groups.",
+        "commonMistakes": [
+            "Checking inequalities too early"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 46,
+        "title": "Most Stones Removed with Same Row or Column",
+        "slug": "most-stones-removed-with-same-row-or-column",
+        "leetcodeId": 947,
+        "leetcodeUrl": "https://leetcode.com/problems/most-stones-removed-with-same-row-or-column/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Union Find",
+        "subPattern": "Component Counting",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "graph",
+            "union-find"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Stones sharing row or column belong to same component.",
+        "intuition": "One stone per connected component must remain.",
+        "commonMistakes": [
+            "Not counting components correctly"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 47,
+        "title": "Lexicographically Smallest Equivalent String",
+        "slug": "lexicographically-smallest-equivalent-string",
+        "leetcodeId": 1061,
+        "leetcodeUrl": "https://leetcode.com/problems/lexicographically-smallest-equivalent-string/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Union Find",
+        "subPattern": "Character Grouping",
+        "relatedPatterns": [
+            "String"
+        ],
+        "tags": [
+            "graph",
+            "union-find",
+            "string"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Always map component to smallest lexicographical character.",
+        "intuition": "Equivalent characters belong to interchangeable groups.",
+        "commonMistakes": [
+            "Not normalizing root characters"
+        ],
+        "timeEstimate": 28,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 48,
+        "title": "Number of Operations to Make Network Connected",
+        "slug": "number-of-operations-to-make-network-connected",
+        "leetcodeId": 1319,
+        "leetcodeUrl": "https://leetcode.com/problems/number-of-operations-to-make-network-connected/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Union Find",
+        "subPattern": "Network Connectivity",
+        "relatedPatterns": [
+            "Connected Components"
+        ],
+        "tags": [
+            "graph",
+            "union-find"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Extra edges can reconnect disconnected components.",
+        "intuition": "Connecting k components requires at least k-1 edges.",
+        "commonMistakes": [
+            "Ignoring insufficient edge condition"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 49,
+        "title": "Cheapest Flights Within K Stops",
+        "slug": "cheapest-flights-within-k-stops",
+        "leetcodeId": 787,
+        "leetcodeUrl": "https://leetcode.com/problems/cheapest-flights-within-k-stops/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Modified Dijkstra",
+        "subPattern": "Limited Stops",
+        "relatedPatterns": [
+            "BFS"
+        ],
+        "tags": [
+            "graph",
+            "shortest-path"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Track both cost and remaining stops during traversal.",
+        "intuition": "Shortest cost depends on stop constraints too.",
+        "commonMistakes": [
+            "Using standard Dijkstra directly"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 50,
+        "title": "Path With Minimum Effort",
+        "slug": "path-with-minimum-effort",
+        "leetcodeId": 1631,
+        "leetcodeUrl": "https://leetcode.com/problems/path-with-minimum-effort/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Dijkstra",
+        "subPattern": "Minimax Path",
+        "relatedPatterns": [
+            "Binary Search"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "shortest-path"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Distance becomes maximum edge difference so far.",
+        "intuition": "Optimal path minimizes worst jump instead of total sum.",
+        "commonMistakes": [
+            "Using normal path sum logic"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 51,
+        "title": "Swim in Rising Water",
+        "slug": "swim-in-rising-water",
+        "leetcodeId": 778,
+        "leetcodeUrl": "https://leetcode.com/problems/swim-in-rising-water/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Dijkstra",
+        "subPattern": "Minimum Maximum Cost",
+        "relatedPatterns": [
+            "Heap"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "shortest-path"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Always expand the currently reachable minimum height cell.",
+        "intuition": "Water level equals highest elevation encountered so far.",
+        "commonMistakes": [
+            "Treating it as normal BFS"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 52,
+        "title": "Minimum Cost to Make at Least One Valid Path in a Grid",
+        "slug": "minimum-cost-to-make-at-least-one-valid-path-in-a-grid",
+        "leetcodeId": 1368,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-cost-to-make-at-least-one-valid-path-in-a-grid/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "0-1 BFS",
+        "subPattern": "Weighted Grid",
+        "relatedPatterns": [
+            "Deque"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "shortest-path"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Use deque: zero-cost moves go front, cost-one moves go back.",
+        "intuition": "0-1 BFS optimizes graphs with only two edge weights.",
+        "commonMistakes": [
+            "Using standard BFS"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 53,
+        "title": "The Maze II",
+        "slug": "the-maze-ii",
+        "leetcodeId": 505,
+        "leetcodeUrl": "https://leetcode.com/problems/the-maze-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Dijkstra",
+        "subPattern": "Rolling Ball",
+        "relatedPatterns": [
+            "Matrix BFS"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "shortest-path"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Ball keeps rolling until hitting a wall.",
+        "intuition": "Stopping positions become graph nodes.",
+        "commonMistakes": [
+            "Counting intermediate rolling cells incorrectly"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 54,
+        "title": "Reachable Nodes In Subdivided Graph",
+        "slug": "reachable-nodes-in-subdivided-graph",
+        "leetcodeId": 882,
+        "leetcodeUrl": "https://leetcode.com/problems/reachable-nodes-in-subdivided-graph/",
+        "difficulty": "HARD",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Dijkstra",
+        "subPattern": "Reachability Counting",
+        "relatedPatterns": [
+            "Heap"
+        ],
+        "tags": [
+            "graph",
+            "shortest-path"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Compute shortest distance to every original node first.",
+        "intuition": "Remaining moves determine subdivided node reachability.",
+        "commonMistakes": [
+            "Double counting subdivided nodes"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 5,
+        "isPro": true
+    },
+    {
+        "order": 55,
+        "title": "Shortest Path Visiting All Nodes",
+        "slug": "shortest-path-visiting-all-nodes",
+        "leetcodeId": 847,
+        "leetcodeUrl": "https://leetcode.com/problems/shortest-path-visiting-all-nodes/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "State BFS",
+        "subPattern": "Bitmask BFS",
+        "relatedPatterns": [
+            "Bitmask DP"
+        ],
+        "tags": [
+            "graph",
+            "bfs",
+            "bitmask"
+        ],
+        "companies": [
+            "Google",
+            "Amazon"
+        ],
+        "hint": "State = current node + visited mask.",
+        "intuition": "Different visited states create different traversal possibilities.",
+        "commonMistakes": [
+            "Tracking only node without mask"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 56,
+        "title": "Minimum Genetic Mutation",
+        "slug": "minimum-genetic-mutation",
+        "leetcodeId": 433,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-genetic-mutation/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Shortest Path BFS",
+        "subPattern": "Word Transformation",
+        "relatedPatterns": [
+            "Word Ladder"
+        ],
+        "tags": [
+            "graph",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Every valid mutation becomes a graph edge.",
+        "intuition": "BFS guarantees minimum transformation count.",
+        "commonMistakes": [
+            "Generating invalid mutations"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 57,
+        "title": "Word Ladder",
+        "slug": "word-ladder",
+        "leetcodeId": 127,
+        "leetcodeUrl": "https://leetcode.com/problems/word-ladder/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Shortest Path BFS",
+        "subPattern": "Transformation Graph",
+        "relatedPatterns": [
+            "Bidirectional BFS"
+        ],
+        "tags": [
+            "graph",
+            "bfs",
+            "string"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Each one-letter transformation creates graph connectivity.",
+        "intuition": "BFS finds minimum transformation steps naturally.",
+        "commonMistakes": [
+            "Generating neighbors inefficiently"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 58,
+        "title": "Path with Maximum Probability",
+        "slug": "path-with-maximum-probability",
+        "leetcodeId": 1514,
+        "leetcodeUrl": "https://leetcode.com/problems/path-with-maximum-probability/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Modified Dijkstra",
+        "subPattern": "Maximum Product Path",
+        "relatedPatterns": [
+            "Heap"
+        ],
+        "tags": [
+            "graph",
+            "shortest-path"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Use max heap based on probability instead of distance.",
+        "intuition": "Highest probability path behaves like reversed shortest path.",
+        "commonMistakes": [
+            "Using additive distances"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 59,
+        "title": "Connecting Cities With Minimum Cost",
+        "slug": "connecting-cities-with-minimum-cost",
+        "leetcodeId": 1135,
+        "leetcodeUrl": "https://leetcode.com/problems/connecting-cities-with-minimum-cost/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "HIGH",
+        "pattern": "Kruskal Algorithm",
+        "subPattern": "Minimum Spanning Tree",
+        "relatedPatterns": [
+            "Union Find"
+        ],
+        "tags": [
+            "graph",
+            "mst",
+            "union-find"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Sort edges by weight and greedily connect components.",
+        "intuition": "Cheapest non-cycling edges build the MST optimally.",
+        "commonMistakes": [
+            "Adding edges that form cycles"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 60,
+        "title": "Optimize Water Distribution in a Village",
+        "slug": "optimize-water-distribution-in-a-village",
+        "leetcodeId": 1168,
+        "leetcodeUrl": "https://leetcode.com/problems/optimize-water-distribution-in-a-village/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Minimum Spanning Tree",
+        "subPattern": "Virtual Node MST",
+        "relatedPatterns": [
+            "Kruskal"
+        ],
+        "tags": [
+            "graph",
+            "mst"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Create a virtual node representing building wells.",
+        "intuition": "Well construction behaves like connecting to a source node.",
+        "commonMistakes": [
+            "Ignoring virtual node edges"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 61,
+        "title": "Min Cost to Connect All Points",
+        "slug": "min-cost-to-connect-all-points",
+        "leetcodeId": 1584,
+        "leetcodeUrl": "https://leetcode.com/problems/min-cost-to-connect-all-points/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Prim Algorithm",
+        "subPattern": "Dense Graph MST",
+        "relatedPatterns": [
+            "Heap"
+        ],
+        "tags": [
+            "graph",
+            "mst"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Always connect the nearest unvisited point.",
+        "intuition": "MST grows optimally from already connected nodes.",
+        "commonMistakes": [
+            "Adding already-visited nodes"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 62,
+        "title": "Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree",
+        "slug": "find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree",
+        "leetcodeId": 1489,
+        "leetcodeUrl": "https://leetcode.com/problems/find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Advanced MST",
+        "subPattern": "Critical Edge Analysis",
+        "relatedPatterns": [
+            "Union Find"
+        ],
+        "tags": [
+            "graph",
+            "mst",
+            "union-find"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Compare MST cost while forcing or skipping edges.",
+        "intuition": "Critical edges are necessary for optimal MST cost.",
+        "commonMistakes": [
+            "Incorrect MST recomputation"
+        ],
+        "timeEstimate": 65,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 63,
+        "title": "Critical Connections in a Network",
+        "slug": "critical-connections-in-a-network",
+        "leetcodeId": 1192,
+        "leetcodeUrl": "https://leetcode.com/problems/critical-connections-in-a-network/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Tarjan Algorithm",
+        "subPattern": "Bridges",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "graph",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Track discovery time and lowest reachable ancestor.",
+        "intuition": "A bridge disconnects the graph if removed.",
+        "commonMistakes": [
+            "Incorrect low-link updates"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 64,
+        "title": "Reconstruct Itinerary",
+        "slug": "reconstruct-itinerary",
+        "leetcodeId": 332,
+        "leetcodeUrl": "https://leetcode.com/problems/reconstruct-itinerary/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Eulerian Path",
+        "subPattern": "Lexicographical Traversal",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "graph",
+            "dfs"
+        ],
+        "companies": [
+            "Google",
+            "Amazon"
+        ],
+        "hint": "Use Hierholzer’s algorithm with lexical ordering.",
+        "intuition": "Every ticket edge must be used exactly once.",
+        "commonMistakes": [
+            "Building path in wrong order"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 65,
+        "title": "Evaluate Division",
+        "slug": "evaluate-division",
+        "leetcodeId": 399,
+        "leetcodeUrl": "https://leetcode.com/problems/evaluate-division/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Weighted Graph DFS",
+        "subPattern": "Ratio Traversal",
+        "relatedPatterns": [
+            "Union Find"
+        ],
+        "tags": [
+            "graph",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Treat variables as graph nodes with weighted edges.",
+        "intuition": "Path multiplication produces final ratio.",
+        "commonMistakes": [
+            "Not tracking visited nodes"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 66,
+        "title": "Open the Lock",
+        "slug": "open-the-lock",
+        "leetcodeId": 752,
+        "leetcodeUrl": "https://leetcode.com/problems/open-the-lock/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "State BFS",
+        "subPattern": "Shortest Transformation",
+        "relatedPatterns": [
+            "Word Ladder"
+        ],
+        "tags": [
+            "graph",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Every wheel rotation forms a neighboring state.",
+        "intuition": "BFS guarantees minimum moves between states.",
+        "commonMistakes": [
+            "Not handling deadends early"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 67,
+        "title": "Snakes and Ladders",
+        "slug": "snakes-and-ladders",
+        "leetcodeId": 909,
+        "leetcodeUrl": "https://leetcode.com/problems/snakes-and-ladders/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Board BFS",
+        "subPattern": "Shortest Dice Path",
+        "relatedPatterns": [
+            "Simulation"
+        ],
+        "tags": [
+            "graph",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Each dice throw generates up to six next states.",
+        "intuition": "Board traversal behaves like shortest path search.",
+        "commonMistakes": [
+            "Incorrect board coordinate conversion"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 68,
+        "title": "Bus Routes",
+        "slug": "bus-routes",
+        "leetcodeId": 815,
+        "leetcodeUrl": "https://leetcode.com/problems/bus-routes/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Graph BFS",
+        "subPattern": "Route Traversal",
+        "relatedPatterns": [
+            "Hash Map"
+        ],
+        "tags": [
+            "graph",
+            "bfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Treat bus routes as graph transitions.",
+        "intuition": "Changing buses forms traversal edges.",
+        "commonMistakes": [
+            "Revisiting same routes repeatedly"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 69,
+        "title": "Shortest Bridge",
+        "slug": "shortest-bridge",
+        "leetcodeId": 934,
+        "leetcodeUrl": "https://leetcode.com/problems/shortest-bridge/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "DFS + BFS",
+        "subPattern": "Island Expansion",
+        "relatedPatterns": [
+            "Multi Source BFS"
+        ],
+        "tags": [
+            "graph",
+            "matrix",
+            "bfs"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Mark one island first, then BFS outward.",
+        "intuition": "First island expansion reaches shortest bridge earliest.",
+        "commonMistakes": [
+            "Not marking first island completely"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 70,
+        "title": "Minimum Knight Moves",
+        "slug": "minimum-knight-moves",
+        "leetcodeId": 1197,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-knight-moves/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Grid BFS",
+        "subPattern": "Chess Traversal",
+        "relatedPatterns": [
+            "Shortest Path"
+        ],
+        "tags": [
+            "graph",
+            "bfs"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Knight positions form graph states.",
+        "intuition": "BFS guarantees minimum number of moves.",
+        "commonMistakes": [
+            "Infinite exploration without bounds"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 71,
+        "title": "Remove Max Number of Edges to Keep Graph Fully Traversable",
+        "slug": "remove-max-number-of-edges-to-keep-graph-fully-traversable",
+        "leetcodeId": 1579,
+        "leetcodeUrl": "https://leetcode.com/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Union Find",
+        "subPattern": "Shared Connectivity",
+        "relatedPatterns": [
+            "DSU"
+        ],
+        "tags": [
+            "graph",
+            "union-find"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Use shared edges before exclusive edges.",
+        "intuition": "Shared edges maximize connectivity efficiency.",
+        "commonMistakes": [
+            "Processing exclusive edges first"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 72,
+        "title": "Detonate the Maximum Bombs",
+        "slug": "detonate-the-maximum-bombs",
+        "leetcodeId": 2101,
+        "leetcodeUrl": "https://leetcode.com/problems/detonate-the-maximum-bombs/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Graph DFS",
+        "subPattern": "Chain Reaction",
+        "relatedPatterns": [
+            "Reachability"
+        ],
+        "tags": [
+            "graph",
+            "dfs"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Create directed edges based on bomb ranges.",
+        "intuition": "Bomb explosions propagate through reachable nodes.",
+        "commonMistakes": [
+            "Incorrect distance calculations"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 73,
+        "title": "Freedom Trail",
+        "slug": "freedom-trail",
+        "leetcodeId": 514,
+        "leetcodeUrl": "https://leetcode.com/problems/freedom-trail/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Graph + DP",
+        "subPattern": "Rotational State Search",
+        "relatedPatterns": [
+            "Memoization"
+        ],
+        "tags": [
+            "graph",
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "State depends on current ring position and key index.",
+        "intuition": "Each rotation creates transition costs between states.",
+        "commonMistakes": [
+            "Recomputing states repeatedly"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 74,
+        "title": "Shortest Path to Get All Keys",
+        "slug": "shortest-path-to-get-all-keys",
+        "leetcodeId": 864,
+        "leetcodeUrl": "https://leetcode.com/problems/shortest-path-to-get-all-keys/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "State BFS",
+        "subPattern": "Bitmask Traversal",
+        "relatedPatterns": [
+            "Bitmask"
+        ],
+        "tags": [
+            "graph",
+            "bfs",
+            "bitmask"
+        ],
+        "companies": [
+            "Google",
+            "Amazon"
+        ],
+        "hint": "State = position + collected keys bitmask.",
+        "intuition": "Different key combinations create different reachable worlds.",
+        "commonMistakes": [
+            "Tracking only visited positions"
+        ],
+        "timeEstimate": 65,
+        "revisionPriority": 10,
+        "isPro": true
+    }
+]

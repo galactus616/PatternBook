@@ -7,10 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-//
-// 🟣 ENUMS
-//
-
 enum Difficulty {
   EASY
   MEDIUM
@@ -21,6 +17,13 @@ enum Priority {
   MUST_DO
   GOOD
   OPTIONAL
+}
+
+enum Frequency {
+  LOW
+  MEDIUM
+  HIGH
+  VERY_HIGH
 }
 
 enum Status {
@@ -54,192 +57,233 @@ enum DiscountType {
   FLAT
 }
 
-//
-// 🟢 CORE TABLES
-//
-
 model User {
-  id        String         @id @default(uuid())
+  id        String   @id @default(uuid())
+
   name      String?
-  email     String         @unique
-  password  String
+  email     String   @unique
+  password  String?
   picture   String?
-  provider  AuthProvider   @default(EMAIL)
-  createdAt DateTime       @default(now())
-  
+
+  provider  AuthProvider @default(EMAIL)
+
   currentStreak  Int       @default(0)
   longestStreak  Int       @default(0)
   lastActiveDate DateTime?
 
-  // Subscription & Payments
   plan               Plan               @default(FREE)
   subscriptionStatus SubscriptionStatus @default(INACTIVE)
-  subscriptionId     String?            // Razorpay Subscription/Order ID
+  subscriptionId     String?
   subscriptionEndsAt DateTime?
-  
-  transactions       Transaction[]
-  couponUsages       CouponUsage[]
-  
-  // Team Management
-  teamId             String?
-  team               Team?              @relation("TeamMembers", fields: [teamId], references: [id])
-  ownedTeam          Team?              @relation("TeamOwner")
 
-  progress  UserProgress[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  teamId    String?
+  team      Team?  @relation("TeamMembers", fields: [teamId], references: [id])
+
+  ownedTeam Team?  @relation("TeamOwner")
+
+  progress      UserProgress[]
+  transactions  Transaction[]
+  couponUsages  CouponUsage[]
 }
 
 model Topic {
-  id        String     @id @default(uuid())
-  name      String     @unique
+  id    String @id @default(uuid())
 
-  patterns  Pattern[]
-  problems  Problem[]
+  name  String @unique
+  slug  String @unique
+  order Int    @default(0)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  patterns Pattern[]
+  problems Problem[]
 }
 
 model Pattern {
-  id        String       @id @default(uuid())
-  name      String
-  topicId   String
-  topic     Topic        @relation(fields: [topicId], references: [id])
+  id      String @id @default(uuid())
+
+  name    String
+  slug    String
+
+  topicId String
+  topic   Topic @relation(fields: [topicId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   subPatterns SubPattern[]
   problems    Problem[]
 
-  @@unique([name, topicId])
+  @@unique([topicId, slug])
 }
 
 model SubPattern {
-  id         String    @id @default(uuid())
-  name       String
-  patternId  String
-  pattern    Pattern   @relation(fields: [patternId], references: [id])
+  id        String @id @default(uuid())
 
-  problems   Problem[]
+  name      String
+  slug      String
 
-  @@unique([name, patternId])
+  patternId String
+  pattern   Pattern @relation(fields: [patternId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  problems Problem[]
+
+  @@unique([patternId, slug])
 }
 
 model Problem {
-  id            String      @id @default(uuid())
-  title         String
-  leetcodeId    Int?
-  leetcodeUrl   String?
+  id    String @id @default(uuid())
 
-  difficulty    Difficulty
-  priority      Priority
+  title String
+  slug  String @unique
 
-  order         Int         @unique
-  phase         Int
+  leetcodeId  Int?
+  leetcodeUrl String?
 
-  topicId       String
-  topic         Topic       @relation(fields: [topicId], references: [id])
+  difficulty Difficulty
+  priority   Priority
+  frequency  Frequency @default(MEDIUM)
 
-  patternId     String
-  pattern       Pattern     @relation(fields: [patternId], references: [id])
+  order Int
 
-  subPatternId  String
-  subPattern    SubPattern  @relation(fields: [subPatternId], references: [id])
-  
-  hint          String?
-  timeEstimate  Int?
+  topicId String
+  topic   Topic @relation(fields: [topicId], references: [id])
 
-  isPro         Boolean     @default(false)
-  createdAt     DateTime    @default(now())
+  patternId String
+  pattern   Pattern @relation(fields: [patternId], references: [id])
 
-  progress      UserProgress[]
+  subPatternId String
+  subPattern   SubPattern @relation(fields: [subPatternId], references: [id])
+
+  hint             String?
+  intuition        String?
+  timeEstimate     Int?
+  revisionPriority Int @default(5)
+
+  relatedPatterns String[]
+  tags             String[]
+  companies        String[]
+  commonMistakes   String[]
+
+  isPro Boolean @default(false)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  progress UserProgress[]
+
+  @@unique([topicId, order])
 }
 
-//
-// 🔵 USER PROGRESS
-//
-
 model UserProgress {
-  id            String    @id @default(uuid())
+  id String @id @default(uuid())
 
-  userId        String
-  problemId     String
+  userId    String
+  problemId String
 
-  user          User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  problem       Problem   @relation(fields: [problemId], references: [id], onDelete: Cascade)
+  user    User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  problem Problem @relation(fields: [problemId], references: [id], onDelete: Cascade)
 
-  status        Status    @default(NOT_STARTED)
-  attempts      Int       @default(0)
-  lastReviewed  DateTime?
-  notes         String?
+  status Status @default(NOT_STARTED)
 
-  updatedAt     DateTime  @updatedAt
+  attempts Int @default(0)
+
+  notes String?
+
+  lastReviewed DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   @@unique([userId, problemId])
 }
 
-//
-// 🟠 PAYMENT & TEAMS
-//
-
 model Transaction {
-  id                String   @id @default(uuid())
-  userId            String
-  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  
-  razorpayOrderId   String   @unique
-  razorpayPaymentId String?  @unique
+  id String @id @default(uuid())
+
+  userId String
+  user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  razorpayOrderId   String  @unique
+  razorpayPaymentId String? @unique
   razorpaySignature String?
-  
-  amount            Int      // In paise
-  currency          String   @default("INR")
-  status            String   // 'created', 'captured', 'failed'
-  
-  couponId          String?
-  coupon            Coupon?  @relation(fields: [couponId], references: [id])
-  
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+
+  amount   Int
+  currency String @default("INR")
+
+  status String
+
+  couponId String?
+  coupon   Coupon? @relation(fields: [couponId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Coupon {
-  id            String       @id @default(uuid())
-  code          String       @unique
+  id String @id @default(uuid())
+
+  code String @unique
+
   discountType  DiscountType
-  discountValue Int          // Value in percentage or paise
-  
-  expiryDate    DateTime?
-  maxUses       Int?         // Total global uses allowed
-  usedCount     Int          @default(0)
-  isActive      Boolean      @default(true)
-  
-  usages        CouponUsage[]
-  transactions  Transaction[]
-  
-  createdAt     DateTime     @default(now())
+  discountValue Int
+
+  expiryDate DateTime?
+
+  maxUses  Int?
+  usedCount Int @default(0)
+
+  isActive Boolean @default(true)
+
+  usages       CouponUsage[]
+  transactions Transaction[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model CouponUsage {
-  id        String   @id @default(uuid())
-  userId    String
-  couponId  String
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  coupon    Coupon   @relation(fields: [couponId], references: [id])
-  usedAt    DateTime @default(now())
+  id String @id @default(uuid())
+
+  userId   String
+  couponId String
+
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  coupon Coupon @relation(fields: [couponId], references: [id])
+
+  usedAt DateTime @default(now())
 
   @@unique([userId, couponId])
 }
 
 model Team {
-  id        String   @id @default(uuid())
-  name      String
-  
-  ownerId   String   @unique
-  owner     User     @relation("TeamOwner", fields: [ownerId], references: [id], onDelete: Cascade)
-  
-  members   User[]   @relation("TeamMembers")
-  
+  id String @id @default(uuid())
+
+  name String
+
+  ownerId String @unique
+  owner   User   @relation("TeamOwner", fields: [ownerId], references: [id], onDelete: Cascade)
+
+  members User[] @relation("TeamMembers")
+
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Waitlist {
-  id        String   @id @default(uuid())
-  email     String   @unique
-  type      String   // e.g., "TEAM_PLAN"
-  message   String?
+  id String @id @default(uuid())
+
+  email String @unique
+
+  type    String
+  message String?
+
   createdAt DateTime @default(now())
 }

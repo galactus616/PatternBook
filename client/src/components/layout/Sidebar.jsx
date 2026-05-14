@@ -21,7 +21,7 @@ const Sidebar = () => {
     { name: "Roadmap", path: "/roadmap", icon: Target, disabled: true },
     { name: "Leaderboard", path: "/leaderboard", icon: Trophy, disabled: true },
     { name: "Resources", path: "/resources", icon: BookOpen, disabled: true },
-    { name: "Settings", path: "/settings", icon: Settings, disabled: true },
+    { name: "Settings", path: "/settings", icon: Settings, disabled: false },
   ];
 
   return (

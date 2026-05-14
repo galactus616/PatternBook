@@ -51,6 +51,7 @@ export const getDashboardStats = async (userId) => {
 
   // 3. Topic-wise Progress
   const topics = await prisma.topic.findMany({
+    orderBy: { order: "asc" },
     include: {
       _count: {
         select: { problems: true }
@@ -66,6 +67,8 @@ export const getDashboardStats = async (userId) => {
     return {
       id: topic.id,
       name: topic.name,
+      slug: topic.slug,
+      order: topic.order,
       totalProblems: topic._count.problems,
       solvedProblems: solvedInTopic,
       percentage: topic._count.problems > 0 

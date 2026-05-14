@@ -40,7 +40,7 @@ const DashboardLayout = ({ children }) => {
   };
 
   return (
-    <div className="min-h-screen bg-cream flex grain">
+    <div className="h-screen bg-cream flex grain overflow-hidden">
       {/* Sidebar */}
       <Sidebar />
 
@@ -51,10 +51,8 @@ const DashboardLayout = ({ children }) => {
 
         <Header />
 
-        <main ref={mainRef} className="flex-1 p-8 overflow-y-auto scroll-smooth">
-          <div className="max-w-[1200px] mx-auto">
-            {children}
-          </div>
+        <main ref={mainRef} className="flex-1 overflow-y-scroll scroll-smooth">
+          {children}
         </main>
 
         <footer className="px-8 py-4 border-t border-rule flex items-center justify-between">

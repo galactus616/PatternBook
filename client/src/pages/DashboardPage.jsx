@@ -11,7 +11,7 @@ const DashboardPage = () => {
 
   if (isLoading) {
     return (
-      <div className="space-y-10 animate-in fade-in duration-500">
+      <div className="max-w-[1200px] mx-auto px-8 space-y-10 animate-in fade-in duration-500 pt-8">
         <Skeleton className="h-[200px] w-full" />
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <Skeleton className="h-[150px] w-full" />
@@ -27,7 +27,7 @@ const DashboardPage = () => {
   }
 
   return (
-    <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700 pb-10">
+    <div className="max-w-[1200px] mx-auto px-8 space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-700 pt-8 pb-10">
       {/* Personalized Welcome & Overall Progress */}
       <DashboardHero stats={stats} />
 

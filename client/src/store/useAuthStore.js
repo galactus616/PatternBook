@@ -18,6 +18,13 @@ export const useAuthStore = create((set) => ({
     set((state) => ({ user: { ...state.user, plan } }));
   },
 
+  updateUser: (fields) => {
+    const stored = JSON.parse(localStorage.getItem("user")) || {};
+    const updated = { ...stored, ...fields };
+    localStorage.setItem("user", JSON.stringify(updated));
+    set((state) => ({ user: { ...state.user, ...fields } }));
+  },
+
   clearAuth: () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");

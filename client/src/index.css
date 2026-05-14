@@ -51,7 +51,7 @@
     scrollbar-gutter: stable;
   }
   body {
-    @apply font-sans bg-cream text-ink overflow-x-hidden;
+    @apply font-sans bg-cream text-ink overflow-x-hidden overflow-y-scroll;
   }
 }
 
@@ -67,6 +67,10 @@
     mix-blend-mode: multiply;
   }
 
+  .no-grain::after {
+    display: none !important;
+  }
+
   .reveal {
     opacity: 0;
     transform: translateY(30px);
@@ -76,6 +80,14 @@
   .reveal.in {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  .reduce-motion *,
+  .reduce-motion *::before,
+  .reduce-motion *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
 

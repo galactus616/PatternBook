@@ -1,0 +1,2725 @@
+[
+  {
+    "order": 1,
+    "title": "Concatenation of Array",
+    "leetcodeId": 1929,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "MEDIUM",
+    "pattern": "Array Basics",
+    "subPattern": "Traversal",
+    "relatedPatterns": [
+      "Simulation",
+      "Index Mapping"
+    ],
+    "tags": [
+      "array",
+      "traversal",
+      "simulation"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Create a new array of size 2n and place the original array twice.",
+    "intuition": "Basic array traversal and construction.",
+    "commonMistakes": [
+      "Wrong indexing",
+      "Incorrect array size"
+    ],
+    "timeEstimate": 8,
+    "revisionPriority": 2,
+    "isPro": false,
+    "slug": "concatenation-of-array",
+    "leetcodeUrl": "https://leetcode.com/problems/concatenation-of-array/"
+  },
+  {
+    "order": 2,
+    "title": "Running Sum of 1d Array",
+    "leetcodeId": 1480,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "HIGH",
+    "pattern": "Prefix Sum",
+    "subPattern": "Running Total",
+    "relatedPatterns": [
+      "Traversal",
+      "Accumulation"
+    ],
+    "tags": [
+      "array",
+      "prefix-sum"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Keep adding the previous sum while traversing.",
+    "intuition": "Every position stores cumulative information.",
+    "commonMistakes": [
+      "Resetting sum",
+      "Using extra loops"
+    ],
+    "timeEstimate": 10,
+    "revisionPriority": 4,
+    "isPro": false,
+    "slug": "running-sum-of-1d-array",
+    "leetcodeUrl": "https://leetcode.com/problems/running-sum-of-1d-array/"
+  },
+  {
+    "order": 3,
+    "title": "Find Numbers with Even Number of Digits",
+    "leetcodeId": 1295,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "MEDIUM",
+    "pattern": "Counting",
+    "subPattern": "Digit Counting",
+    "relatedPatterns": [
+      "Math",
+      "Traversal"
+    ],
+    "tags": [
+      "array",
+      "counting",
+      "math"
+    ],
+    "companies": [
+      "Amazon"
+    ],
+    "hint": "Count digits for each number.",
+    "intuition": "Convert numbers into digit counts.",
+    "commonMistakes": [
+      "Incorrect digit counting"
+    ],
+    "timeEstimate": 10,
+    "revisionPriority": 3,
+    "isPro": false,
+    "slug": "find-numbers-with-even-number-of-digits",
+    "leetcodeUrl": "https://leetcode.com/problems/find-numbers-with-even-number-of-digits/"
+  },
+  {
+    "order": 4,
+    "title": "Richest Customer Wealth",
+    "leetcodeId": 1672,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "MEDIUM",
+    "pattern": "Array Basics",
+    "subPattern": "Traversal",
+    "relatedPatterns": [
+      "Matrix Traversal",
+      "Aggregation"
+    ],
+    "tags": [
+      "array",
+      "traversal"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Sum each row and track the maximum.",
+    "intuition": "Simple nested traversal with max tracking.",
+    "commonMistakes": [
+      "Forgetting to reset row sum"
+    ],
+    "timeEstimate": 8,
+    "revisionPriority": 3,
+    "isPro": false,
+    "slug": "richest-customer-wealth",
+    "leetcodeUrl": "https://leetcode.com/problems/richest-customer-wealth/"
+  },
+  {
+    "order": 5,
+    "title": "Kids With the Greatest Number of Candies",
+    "leetcodeId": 1431,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "MEDIUM",
+    "pattern": "Array Basics",
+    "subPattern": "Simulation",
+    "relatedPatterns": [
+      "Traversal",
+      "Comparison"
+    ],
+    "tags": [
+      "array",
+      "simulation"
+    ],
+    "companies": [
+      "Amazon",
+      "Adobe"
+    ],
+    "hint": "Compare each value after adding extra candies to the current maximum.",
+    "intuition": "Check a condition for every element independently.",
+    "commonMistakes": [
+      "Comparing with the wrong baseline"
+    ],
+    "timeEstimate": 8,
+    "revisionPriority": 2,
+    "isPro": false,
+    "slug": "kids-with-the-greatest-number-of-candies",
+    "leetcodeUrl": "https://leetcode.com/problems/kids-with-the-greatest-number-of-candies/"
+  },
+  {
+    "order": 6,
+    "title": "Shuffle the Array",
+    "leetcodeId": 1470,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "MEDIUM",
+    "pattern": "Array Basics",
+    "subPattern": "Construction",
+    "relatedPatterns": [
+      "Index Mapping",
+      "Simulation"
+    ],
+    "tags": [
+      "array",
+      "construction"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Split the array into two halves and interleave them.",
+    "intuition": "This teaches how to build a result using positional mapping.",
+    "commonMistakes": [
+      "Mixing up the two halves"
+    ],
+    "timeEstimate": 10,
+    "revisionPriority": 3,
+    "isPro": false,
+    "slug": "shuffle-the-array",
+    "leetcodeUrl": "https://leetcode.com/problems/shuffle-the-array/"
+  },
+  {
+    "order": 7,
+    "title": "Build Array from Permutation",
+    "leetcodeId": 1920,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "MEDIUM",
+    "pattern": "Array Basics",
+    "subPattern": "Construction",
+    "relatedPatterns": [
+      "Simulation",
+      "Index Mapping"
+    ],
+    "tags": [
+      "array",
+      "simulation",
+      "indexing"
+    ],
+    "companies": [
+      "Amazon",
+      "Adobe"
+    ],
+    "hint": "Use nums[i] as the next index while building the result.",
+    "intuition": "Values themselves can act as indexes.",
+    "commonMistakes": [
+      "Confusing value and index"
+    ],
+    "timeEstimate": 10,
+    "revisionPriority": 3,
+    "isPro": false,
+    "slug": "build-array-from-permutation",
+    "leetcodeUrl": "https://leetcode.com/problems/build-array-from-permutation/"
+  },
+  {
+    "order": 8,
+    "title": "Create Target Array in the Given Order",
+    "leetcodeId": 1389,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "MEDIUM",
+    "pattern": "Array Basics",
+    "subPattern": "Simulation",
+    "relatedPatterns": [
+      "Insertion",
+      "Indexing"
+    ],
+    "tags": [
+      "array",
+      "simulation"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Insert each value at the given index in the target array.",
+    "intuition": "Practice building arrays through ordered insertions.",
+    "commonMistakes": [
+      "Using overwrite instead of insert"
+    ],
+    "timeEstimate": 12,
+    "revisionPriority": 3,
+    "isPro": false,
+    "slug": "create-target-array-in-the-given-order",
+    "leetcodeUrl": "https://leetcode.com/problems/create-target-array-in-the-given-order/"
+  },
+  {
+    "order": 9,
+    "title": "Plus One",
+    "leetcodeId": 66,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "HIGH",
+    "pattern": "Array Basics",
+    "subPattern": "Carry Handling",
+    "relatedPatterns": [
+      "Math",
+      "Simulation"
+    ],
+    "tags": [
+      "array",
+      "carry"
+    ],
+    "companies": [
+      "Google",
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Traverse backward and handle carry like manual addition.",
+    "intuition": "Digits in arrays follow normal place-value arithmetic.",
+    "commonMistakes": [
+      "Forgetting the all-9s case"
+    ],
+    "timeEstimate": 12,
+    "revisionPriority": 5,
+    "isPro": false,
+    "slug": "plus-one",
+    "leetcodeUrl": "https://leetcode.com/problems/plus-one/"
+  },
+  {
+    "order": 10,
+    "title": "Add to Array-Form of Integer",
+    "leetcodeId": 989,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "HIGH",
+    "pattern": "Array Basics",
+    "subPattern": "Carry Handling",
+    "relatedPatterns": [
+      "Math",
+      "Simulation"
+    ],
+    "tags": [
+      "array",
+      "carry"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Add the integer from the back of the array and propagate carry.",
+    "intuition": "This is plus-one generalized to any integer.",
+    "commonMistakes": [
+      "Mishandling carry after the array ends"
+    ],
+    "timeEstimate": 15,
+    "revisionPriority": 5,
+    "isPro": false,
+    "slug": "add-to-array-form-of-integer",
+    "leetcodeUrl": "https://leetcode.com/problems/add-to-array-form-of-integer/"
+  },
+  {
+    "order": 11,
+    "title": "Largest Number At Least Twice of Others",
+    "leetcodeId": 747,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "LOW",
+    "pattern": "Array Basics",
+    "subPattern": "Max Tracking",
+    "relatedPatterns": [
+      "Comparison"
+    ],
+    "tags": [
+      "array",
+      "max-tracking"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Track the largest and second largest values in one scan.",
+    "intuition": "A single pass is enough when you only need the top two values.",
+    "commonMistakes": [
+      "Not updating the second maximum correctly"
+    ],
+    "timeEstimate": 10,
+    "revisionPriority": 2,
+    "isPro": false,
+    "slug": "largest-number-at-least-twice-of-others",
+    "leetcodeUrl": "https://leetcode.com/problems/largest-number-at-least-twice-of-others/"
+  },
+  {
+    "order": 12,
+    "title": "Check If N and Its Double Exist",
+    "leetcodeId": 1346,
+    "difficulty": "EASY",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Hashing",
+    "subPattern": "Set",
+    "relatedPatterns": [
+      "Lookup",
+      "Traversal"
+    ],
+    "tags": [
+      "array",
+      "hashset"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Use a set to check whether x*2 or x/2 has already appeared.",
+    "intuition": "Hashing turns search into constant time lookups.",
+    "commonMistakes": [
+      "Forgetting zero special case"
+    ],
+    "timeEstimate": 12,
+    "revisionPriority": 4,
+    "isPro": false,
+    "slug": "check-if-n-and-its-double-exist",
+    "leetcodeUrl": "https://leetcode.com/problems/check-if-n-and-its-double-exist/"
+  },
+  {
+    "order": 13,
+    "title": "Find Pivot Index",
+    "leetcodeId": 724,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "HIGH",
+    "pattern": "Prefix Sum",
+    "subPattern": "Running Total",
+    "relatedPatterns": [
+      "Balance Point"
+    ],
+    "tags": [
+      "array",
+      "prefix-sum"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Compare left sum and right sum while scanning once.",
+    "intuition": "A pivot exists when the sums on both sides are equal.",
+    "commonMistakes": [
+      "Using nested loops"
+    ],
+    "timeEstimate": 12,
+    "revisionPriority": 5,
+    "isPro": false,
+    "slug": "find-pivot-index",
+    "leetcodeUrl": "https://leetcode.com/problems/find-pivot-index/"
+  },
+  {
+    "order": 14,
+    "title": "Pascal's Triangle",
+    "leetcodeId": 118,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "MEDIUM",
+    "pattern": "Array Basics",
+    "subPattern": "Construction",
+    "relatedPatterns": [
+      "Simulation",
+      "Dynamic Building"
+    ],
+    "tags": [
+      "array",
+      "construction"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Each row is built from the previous row by adding adjacent values.",
+    "intuition": "Practice generating structured arrays row by row.",
+    "commonMistakes": [
+      "Forgetting edge values are always 1"
+    ],
+    "timeEstimate": 15,
+    "revisionPriority": 4,
+    "isPro": false,
+    "slug": "pascal-s-triangle",
+    "leetcodeUrl": "https://leetcode.com/problems/pascal-s-triangle/"
+  },
+  {
+    "order": 15,
+    "title": "Pascal's Triangle II",
+    "leetcodeId": 119,
+    "difficulty": "EASY",
+    "priority": "GOOD",
+    "frequency": "MEDIUM",
+    "pattern": "Array Basics",
+    "subPattern": "Construction",
+    "relatedPatterns": [
+      "Simulation",
+      "Dynamic Building"
+    ],
+    "tags": [
+      "array",
+      "construction"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Build rows iteratively until you reach the required index.",
+    "intuition": "This is the single-row version of Pascal generation.",
+    "commonMistakes": [
+      "Modifying the row in the wrong direction"
+    ],
+    "timeEstimate": 15,
+    "revisionPriority": 3,
+    "isPro": false,
+    "slug": "pascal-s-triangle-ii",
+    "leetcodeUrl": "https://leetcode.com/problems/pascal-s-triangle-ii/"
+  },
+  {
+    "order": 16,
+    "title": "Maximum Subarray",
+    "leetcodeId": 53,
+    "difficulty": "MEDIUM",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Greedy",
+    "subPattern": "Kadane",
+    "relatedPatterns": [
+      "Dynamic Programming"
+    ],
+    "tags": [
+      "array",
+      "kadane",
+      "greedy"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Restart the current sum when it becomes harmful.",
+    "intuition": "Negative running sums reduce future answers.",
+    "commonMistakes": [
+      "Failing on all-negative arrays"
+    ],
+    "timeEstimate": 18,
+    "revisionPriority": 9,
+    "isPro": true,
+    "slug": "maximum-subarray",
+    "leetcodeUrl": "https://leetcode.com/problems/maximum-subarray/"
+  },
+  {
+    "order": 17,
+    "title": "Maximum Product Subarray",
+    "leetcodeId": 152,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Dynamic Programming",
+    "subPattern": "State Tracking",
+    "relatedPatterns": [
+      "Greedy",
+      "Kadane Variation"
+    ],
+    "tags": [
+      "array",
+      "dp"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Track both maximum and minimum products at each step.",
+    "intuition": "Negative numbers can flip the sign and create a new maximum.",
+    "commonMistakes": [
+      "Ignoring the minimum product state"
+    ],
+    "timeEstimate": 30,
+    "revisionPriority": 9,
+    "isPro": true,
+    "slug": "maximum-product-subarray",
+    "leetcodeUrl": "https://leetcode.com/problems/maximum-product-subarray/"
+  },
+  {
+    "order": 18,
+    "title": "Best Time to Buy and Sell Stock",
+    "leetcodeId": 121,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Greedy",
+    "subPattern": "Single Pass",
+    "relatedPatterns": [
+      "Tracking"
+    ],
+    "tags": [
+      "array",
+      "greedy"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Meta"
+    ],
+    "hint": "Track the minimum price seen so far.",
+    "intuition": "Best profit depends on the cheapest earlier buy price.",
+    "commonMistakes": [
+      "Selling before buying"
+    ],
+    "timeEstimate": 15,
+    "revisionPriority": 8,
+    "isPro": false,
+    "slug": "best-time-to-buy-and-sell-stock",
+    "leetcodeUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/"
+  },
+  {
+    "order": 19,
+    "title": "Best Time to Buy and Sell Stock II",
+    "leetcodeId": 122,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Greedy",
+    "subPattern": "Single Pass",
+    "relatedPatterns": [
+      "Local Profit"
+    ],
+    "tags": [
+      "array",
+      "greedy"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Take every positive price difference.",
+    "intuition": "Many small profits can outperform one long wait.",
+    "commonMistakes": [
+      "Holding too long unnecessarily"
+    ],
+    "timeEstimate": 18,
+    "revisionPriority": 7,
+    "isPro": false,
+    "slug": "best-time-to-buy-and-sell-stock-ii",
+    "leetcodeUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/"
+  },
+  {
+    "order": 20,
+    "title": "Degree of an Array",
+    "leetcodeId": 697,
+    "difficulty": "EASY",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Counting",
+    "subPattern": "Frequency Counting",
+    "relatedPatterns": [
+      "HashMap"
+    ],
+    "tags": [
+      "array",
+      "counting"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Track frequency and first/last positions of each number.",
+    "intuition": "Degree is determined by the most frequent element.",
+    "commonMistakes": [
+      "Only counting frequency and ignoring range"
+    ],
+    "timeEstimate": 18,
+    "revisionPriority": 6,
+    "isPro": false,
+    "slug": "degree-of-an-array",
+    "leetcodeUrl": "https://leetcode.com/problems/degree-of-an-array/"
+  },
+  {
+    "order": 21,
+    "title": "Remove Duplicates from Sorted Array",
+    "leetcodeId": 26,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Two Pointers",
+    "subPattern": "Same Direction",
+    "relatedPatterns": [
+      "In-place Operations",
+      "Filtering"
+    ],
+    "tags": [
+      "array",
+      "two-pointers",
+      "in-place"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Maintain a slow pointer for unique elements and a fast pointer for scanning.",
+    "intuition": "Sorted duplicates stay adjacent, so one pass is enough.",
+    "commonMistakes": [
+      "Returning the wrong length"
+    ],
+    "timeEstimate": 15,
+    "revisionPriority": 8,
+    "isPro": false,
+    "slug": "remove-duplicates-from-sorted-array",
+    "leetcodeUrl": "https://leetcode.com/problems/remove-duplicates-from-sorted-array/"
+  },
+  {
+    "order": 22,
+    "title": "Remove Element",
+    "leetcodeId": 27,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "HIGH",
+    "pattern": "Two Pointers",
+    "subPattern": "Same Direction",
+    "relatedPatterns": [
+      "Filtering",
+      "Compaction"
+    ],
+    "tags": [
+      "array",
+      "filtering"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Overwrite unwanted values with a write pointer.",
+    "intuition": "Only the kept elements matter in the final array.",
+    "commonMistakes": [
+      "Moving the wrong pointer"
+    ],
+    "timeEstimate": 15,
+    "revisionPriority": 7,
+    "isPro": false,
+    "slug": "remove-element",
+    "leetcodeUrl": "https://leetcode.com/problems/remove-element/"
+  },
+  {
+    "order": 23,
+    "title": "Move Zeroes",
+    "leetcodeId": 283,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Two Pointers",
+    "subPattern": "Stable Movement",
+    "relatedPatterns": [
+      "Compaction",
+      "In-place Operations"
+    ],
+    "tags": [
+      "array",
+      "two-pointers"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Move non-zero elements forward while preserving their relative order.",
+    "intuition": "Treat zeros as removable values but keep stability.",
+    "commonMistakes": [
+      "Breaking relative order"
+    ],
+    "timeEstimate": 15,
+    "revisionPriority": 8,
+    "isPro": false,
+    "slug": "move-zeroes",
+    "leetcodeUrl": "https://leetcode.com/problems/move-zeroes/"
+  },
+  {
+    "order": 24,
+    "title": "Merge Sorted Array",
+    "leetcodeId": 88,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "HIGH",
+    "pattern": "Two Pointers",
+    "subPattern": "Opposite Direction",
+    "relatedPatterns": [
+      "Merging",
+      "In-place Operations"
+    ],
+    "tags": [
+      "array",
+      "two-pointers"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Fill the answer from the back using two pointers.",
+    "intuition": "Working from the end prevents overwriting useful values.",
+    "commonMistakes": [
+      "Overwriting nums1 early"
+    ],
+    "timeEstimate": 18,
+    "revisionPriority": 7,
+    "isPro": false,
+    "slug": "merge-sorted-array",
+    "leetcodeUrl": "https://leetcode.com/problems/merge-sorted-array/"
+  },
+  {
+    "order": 25,
+    "title": "Squares of a Sorted Array",
+    "leetcodeId": 977,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "HIGH",
+    "pattern": "Two Pointers",
+    "subPattern": "Opposite Direction",
+    "relatedPatterns": [
+      "Sorting",
+      "Merging"
+    ],
+    "tags": [
+      "array",
+      "two-pointers"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Compare absolute values from both ends and place the larger square at the back.",
+    "intuition": "Negatives can become large after squaring, so both ends matter.",
+    "commonMistakes": [
+      "Forgetting to compare absolute values"
+    ],
+    "timeEstimate": 15,
+    "revisionPriority": 7,
+    "isPro": false,
+    "slug": "squares-of-a-sorted-array",
+    "leetcodeUrl": "https://leetcode.com/problems/squares-of-a-sorted-array/"
+  },
+  {
+    "order": 26,
+    "title": "Sort Colors",
+    "leetcodeId": 75,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "VERY_HIGH",
+    "pattern": "Two Pointers",
+    "subPattern": "Partition",
+    "relatedPatterns": [
+      "Dutch National Flag"
+    ],
+    "tags": [
+      "array",
+      "partition"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Use three regions for 0, 1, and 2.",
+    "intuition": "Partitioning can solve sorting-like tasks in one pass.",
+    "commonMistakes": [
+      "Incorrect pointer swapping"
+    ],
+    "timeEstimate": 20,
+    "revisionPriority": 9,
+    "isPro": true,
+    "slug": "sort-colors",
+    "leetcodeUrl": "https://leetcode.com/problems/sort-colors/"
+  },
+  {
+    "order": 27,
+    "title": "Two Sum II - Input Array Is Sorted",
+    "leetcodeId": 167,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Two Pointers",
+    "subPattern": "Opposite Direction",
+    "relatedPatterns": [
+      "Sorted Array",
+      "Lookup"
+    ],
+    "tags": [
+      "array",
+      "two-pointers"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Start from both ends and move inward based on the sum.",
+    "intuition": "Sorted order gives you a directional way to shrink the search space.",
+    "commonMistakes": [
+      "Returning zero-based indices when one-based are required"
+    ],
+    "timeEstimate": 15,
+    "revisionPriority": 9,
+    "isPro": false,
+    "slug": "two-sum-ii-input-array-is-sorted",
+    "leetcodeUrl": "https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/"
+  },
+  {
+    "order": 28,
+    "title": "Container With Most Water",
+    "leetcodeId": 11,
+    "difficulty": "MEDIUM",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Two Pointers",
+    "subPattern": "Opposite Direction",
+    "relatedPatterns": [
+      "Greedy"
+    ],
+    "tags": [
+      "array",
+      "two-pointers"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Meta"
+    ],
+    "hint": "Move the pointer with the smaller height inward.",
+    "intuition": "Width shrinks every move, so height improvement is the key.",
+    "commonMistakes": [
+      "Moving the wrong pointer"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 10,
+    "isPro": true,
+    "slug": "container-with-most-water",
+    "leetcodeUrl": "https://leetcode.com/problems/container-with-most-water/"
+  },
+  {
+    "order": 29,
+    "title": "Trapping Rain Water",
+    "leetcodeId": 42,
+    "difficulty": "HARD",
+    "priority": "GOOD",
+    "frequency": "VERY_HIGH",
+    "pattern": "Two Pointers",
+    "subPattern": "Boundary Tracking",
+    "relatedPatterns": [
+      "Prefix Sum",
+      "Greedy"
+    ],
+    "tags": [
+      "array",
+      "two-pointers"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Keep left max and right max boundaries while scanning inward.",
+    "intuition": "Water at a point is limited by the shorter surrounding boundary.",
+    "commonMistakes": [
+      "Updating boundary variables incorrectly"
+    ],
+    "timeEstimate": 40,
+    "revisionPriority": 10,
+    "isPro": true,
+    "slug": "trapping-rain-water",
+    "leetcodeUrl": "https://leetcode.com/problems/trapping-rain-water/"
+  },
+  {
+    "order": 30,
+    "title": "3Sum",
+    "leetcodeId": 15,
+    "difficulty": "MEDIUM",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Two Pointers",
+    "subPattern": "Opposite Direction",
+    "relatedPatterns": [
+      "Sorting",
+      "Duplicate Skipping"
+    ],
+    "tags": [
+      "array",
+      "two-pointers",
+      "sorting"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Meta"
+    ],
+    "hint": "Sort first, then fix one number and search the remaining pair with two pointers.",
+    "intuition": "Sorting turns a triple search into a structured scan.",
+    "commonMistakes": [
+      "Missing duplicate handling"
+    ],
+    "timeEstimate": 35,
+    "revisionPriority": 10,
+    "isPro": true,
+    "slug": "3sum",
+    "leetcodeUrl": "https://leetcode.com/problems/3sum/"
+  },
+  {
+    "order": 31,
+    "title": "3Sum Closest",
+    "leetcodeId": 16,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Two Pointers",
+    "subPattern": "Opposite Direction",
+    "relatedPatterns": [
+      "Sorting"
+    ],
+    "tags": [
+      "array",
+      "two-pointers",
+      "sorting"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Fix one number and move the pair pointers based on the current sum.",
+    "intuition": "This is 3Sum with a closest-target objective instead of exact matches.",
+    "commonMistakes": [
+      "Not updating the best answer at every step"
+    ],
+    "timeEstimate": 30,
+    "revisionPriority": 8,
+    "isPro": true,
+    "slug": "3sum-closest",
+    "leetcodeUrl": "https://leetcode.com/problems/3sum-closest/"
+  },
+  {
+    "order": 32,
+    "title": "Next Permutation",
+    "leetcodeId": 31,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Array Basics",
+    "subPattern": "Permutation",
+    "relatedPatterns": [
+      "Sorting",
+      "Rearrangement"
+    ],
+    "tags": [
+      "array",
+      "permutation"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Find the first descending point from the right, swap, then reverse the suffix.",
+    "intuition": "The next lexicographic arrangement is found by changing the smallest possible suffix.",
+    "commonMistakes": [
+      "Reversing the wrong segment"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 8,
+    "isPro": true,
+    "slug": "next-permutation",
+    "leetcodeUrl": "https://leetcode.com/problems/next-permutation/"
+  },
+  {
+    "order": 33,
+    "title": "Rotate Array",
+    "leetcodeId": 189,
+    "difficulty": "MEDIUM",
+    "priority": "MUST_DO",
+    "frequency": "HIGH",
+    "pattern": "Array Basics",
+    "subPattern": "Rotation",
+    "relatedPatterns": [
+      "Reversal Trick",
+      "In-place Operations"
+    ],
+    "tags": [
+      "array",
+      "rotation"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Use the reversal trick to rotate in place.",
+    "intuition": "Rotation can be done by reversing whole and partial segments.",
+    "commonMistakes": [
+      "Not handling k greater than n"
+    ],
+    "timeEstimate": 20,
+    "revisionPriority": 7,
+    "isPro": false,
+    "slug": "rotate-array",
+    "leetcodeUrl": "https://leetcode.com/problems/rotate-array/"
+  },
+  {
+    "order": 34,
+    "title": "Remove Duplicates from Sorted Array II",
+    "leetcodeId": 80,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Two Pointers",
+    "subPattern": "Same Direction",
+    "relatedPatterns": [
+      "Filtering",
+      "In-place Operations"
+    ],
+    "tags": [
+      "array",
+      "two-pointers"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Allow each number at most twice using a slow pointer.",
+    "intuition": "A small change to duplicate handling creates a deeper in-place variant.",
+    "commonMistakes": [
+      "Allowing more than two copies"
+    ],
+    "timeEstimate": 22,
+    "revisionPriority": 7,
+    "isPro": false,
+    "slug": "remove-duplicates-from-sorted-array-ii",
+    "leetcodeUrl": "https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/"
+  },
+  {
+    "order": 35,
+    "title": "Sort Array By Parity",
+    "leetcodeId": 905,
+    "difficulty": "EASY",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Two Pointers",
+    "subPattern": "Partition",
+    "relatedPatterns": [
+      "Index Swapping"
+    ],
+    "tags": [
+      "array",
+      "partition"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Move even numbers to the front and odd numbers to the back.",
+    "intuition": "Partitioning by a simple predicate is a useful array skill.",
+    "commonMistakes": [
+      "Swapping unnecessarily"
+    ],
+    "timeEstimate": 15,
+    "revisionPriority": 4,
+    "isPro": false,
+    "slug": "sort-array-by-parity",
+    "leetcodeUrl": "https://leetcode.com/problems/sort-array-by-parity/"
+  },
+  {
+    "order": 36,
+    "title": "Sort Array By Parity II",
+    "leetcodeId": 922,
+    "difficulty": "EASY",
+    "priority": "GOOD",
+    "frequency": "MEDIUM",
+    "pattern": "Two Pointers",
+    "subPattern": "Partition",
+    "relatedPatterns": [
+      "Index Swapping"
+    ],
+    "tags": [
+      "array",
+      "partition"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Place evens at even indexes and odds at odd indexes.",
+    "intuition": "This is index-aware partitioning.",
+    "commonMistakes": [
+      "Forgetting to move both pointers after swap"
+    ],
+    "timeEstimate": 15,
+    "revisionPriority": 4,
+    "isPro": false,
+    "slug": "sort-array-by-parity-ii",
+    "leetcodeUrl": "https://leetcode.com/problems/sort-array-by-parity-ii/"
+  },
+  {
+    "order": 37,
+    "title": "Contains Duplicate",
+    "leetcodeId": 217,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Hashing",
+    "subPattern": "Set",
+    "relatedPatterns": [
+      "Lookup",
+      "Traversal"
+    ],
+    "tags": [
+      "array",
+      "hashset"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Track seen values in a set.",
+    "intuition": "Repeated values can be detected with constant-time lookup.",
+    "commonMistakes": [
+      "Using nested loops"
+    ],
+    "timeEstimate": 10,
+    "revisionPriority": 7,
+    "isPro": false,
+    "slug": "contains-duplicate",
+    "leetcodeUrl": "https://leetcode.com/problems/contains-duplicate/"
+  },
+  {
+    "order": 38,
+    "title": "Contains Duplicate II",
+    "leetcodeId": 219,
+    "difficulty": "EASY",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Hashing",
+    "subPattern": "Sliding Window",
+    "relatedPatterns": [
+      "Set",
+      "Window"
+    ],
+    "tags": [
+      "array",
+      "hashset"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Keep a window of the last k values using a set.",
+    "intuition": "Duplicate detection with distance constraints is a windowing problem.",
+    "commonMistakes": [
+      "Forgetting to remove elements outside the window"
+    ],
+    "timeEstimate": 15,
+    "revisionPriority": 5,
+    "isPro": false,
+    "slug": "contains-duplicate-ii",
+    "leetcodeUrl": "https://leetcode.com/problems/contains-duplicate-ii/"
+  },
+  {
+    "order": 39,
+    "title": "Majority Element",
+    "leetcodeId": 169,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Counting",
+    "subPattern": "Majority Vote",
+    "relatedPatterns": [
+      "Boyer-Moore"
+    ],
+    "tags": [
+      "array",
+      "boyer-moore"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Use Boyer-Moore voting.",
+    "intuition": "Majority element survives pair cancellation.",
+    "commonMistakes": [
+      "Resetting candidate incorrectly"
+    ],
+    "timeEstimate": 20,
+    "revisionPriority": 8,
+    "isPro": true,
+    "slug": "majority-element",
+    "leetcodeUrl": "https://leetcode.com/problems/majority-element/"
+  },
+  {
+    "order": 40,
+    "title": "Majority Element II",
+    "leetcodeId": 229,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Counting",
+    "subPattern": "Majority Vote",
+    "relatedPatterns": [
+      "Boyer-Moore"
+    ],
+    "tags": [
+      "array",
+      "boyer-moore"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "There can be at most two majority candidates.",
+    "intuition": "The vote algorithm generalizes to two possible winners.",
+    "commonMistakes": [
+      "Skipping the verification pass"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 7,
+    "isPro": true,
+    "slug": "majority-element-ii",
+    "leetcodeUrl": "https://leetcode.com/problems/majority-element-ii/"
+  },
+  {
+    "order": 41,
+    "title": "Missing Number",
+    "leetcodeId": 268,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "HIGH",
+    "pattern": "Counting",
+    "subPattern": "Index Marking",
+    "relatedPatterns": [
+      "Math",
+      "Index Mapping"
+    ],
+    "tags": [
+      "array",
+      "math"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Use the expected sum formula or mark visited indexes.",
+    "intuition": "The missing value is what the full sequence lacks.",
+    "commonMistakes": [
+      "Overflowing sum in larger variants"
+    ],
+    "timeEstimate": 12,
+    "revisionPriority": 6,
+    "isPro": false,
+    "slug": "missing-number",
+    "leetcodeUrl": "https://leetcode.com/problems/missing-number/"
+  },
+  {
+    "order": 42,
+    "title": "Find All Numbers Disappeared in an Array",
+    "leetcodeId": 448,
+    "difficulty": "EASY",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Counting",
+    "subPattern": "Index Marking",
+    "relatedPatterns": [
+      "Index Mapping",
+      "In-place Marking"
+    ],
+    "tags": [
+      "array",
+      "index-marking"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Mark visited indexes by changing signs or swapping.",
+    "intuition": "Missing values become visible after in-place marking.",
+    "commonMistakes": [
+      "Forgetting absolute values while indexing"
+    ],
+    "timeEstimate": 18,
+    "revisionPriority": 6,
+    "isPro": false,
+    "slug": "find-all-numbers-disappeared-in-an-array",
+    "leetcodeUrl": "https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/"
+  },
+  {
+    "order": 43,
+    "title": "Set Mismatch",
+    "leetcodeId": 645,
+    "difficulty": "EASY",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Counting",
+    "subPattern": "Index Marking",
+    "relatedPatterns": [
+      "Index Mapping",
+      "Math"
+    ],
+    "tags": [
+      "array",
+      "index-marking"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Use index marking to identify duplicate and missing values.",
+    "intuition": "One extra value and one missing value create a mismatch in the index mapping.",
+    "commonMistakes": [
+      "Missing the duplicate when it appears twice"
+    ],
+    "timeEstimate": 20,
+    "revisionPriority": 6,
+    "isPro": false,
+    "slug": "set-mismatch",
+    "leetcodeUrl": "https://leetcode.com/problems/set-mismatch/"
+  },
+  {
+    "order": 44,
+    "title": "Find the Duplicate Number",
+    "leetcodeId": 287,
+    "difficulty": "MEDIUM",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Counting",
+    "subPattern": "Cycle Detection",
+    "relatedPatterns": [
+      "Floyd Cycle",
+      "Index Mapping"
+    ],
+    "tags": [
+      "array",
+      "cycle-detection"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Treat array values as next pointers and detect the cycle.",
+    "intuition": "A duplicate creates a loop when you follow indexes as links.",
+    "commonMistakes": [
+      "Using extra space when O(1) is possible"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 9,
+    "isPro": true,
+    "slug": "find-the-duplicate-number",
+    "leetcodeUrl": "https://leetcode.com/problems/find-the-duplicate-number/"
+  },
+  {
+    "order": 45,
+    "title": "First Missing Positive",
+    "leetcodeId": 41,
+    "difficulty": "HARD",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Counting",
+    "subPattern": "Index Placement",
+    "relatedPatterns": [
+      "In-place Swapping",
+      "Index Mapping"
+    ],
+    "tags": [
+      "array",
+      "index-placement"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Place each positive number at its correct index whenever possible.",
+    "intuition": "After rearrangement, the first wrong index gives the answer.",
+    "commonMistakes": [
+      "Ignoring numbers outside 1..n"
+    ],
+    "timeEstimate": 35,
+    "revisionPriority": 8,
+    "isPro": true,
+    "slug": "first-missing-positive",
+    "leetcodeUrl": "https://leetcode.com/problems/first-missing-positive/"
+  },
+  {
+    "order": 46,
+    "title": "Single Number",
+    "leetcodeId": 136,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "HIGH",
+    "pattern": "Bit Manipulation",
+    "subPattern": "XOR",
+    "relatedPatterns": [
+      "Counting"
+    ],
+    "tags": [
+      "array",
+      "xor"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "XOR all elements together.",
+    "intuition": "Equal pairs cancel out under XOR.",
+    "commonMistakes": [
+      "Using addition instead of XOR"
+    ],
+    "timeEstimate": 10,
+    "revisionPriority": 6,
+    "isPro": false,
+    "slug": "single-number",
+    "leetcodeUrl": "https://leetcode.com/problems/single-number/"
+  },
+  {
+    "order": 47,
+    "title": "Single Number II",
+    "leetcodeId": 137,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Bit Manipulation",
+    "subPattern": "Bit Counting",
+    "relatedPatterns": [
+      "Counting",
+      "Modulo"
+    ],
+    "tags": [
+      "array",
+      "bit-manipulation"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Count bits at every position modulo 3.",
+    "intuition": "Triplets vanish when counted per bit position.",
+    "commonMistakes": [
+      "Forgetting to reconstruct the result bitwise"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 6,
+    "isPro": true,
+    "slug": "single-number-ii",
+    "leetcodeUrl": "https://leetcode.com/problems/single-number-ii/"
+  },
+  {
+    "order": 48,
+    "title": "Single Number III",
+    "leetcodeId": 260,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "MEDIUM",
+    "pattern": "Bit Manipulation",
+    "subPattern": "XOR Partition",
+    "relatedPatterns": [
+      "XOR",
+      "Partition"
+    ],
+    "tags": [
+      "array",
+      "xor"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Use XOR to separate the two unique numbers into different groups.",
+    "intuition": "A distinguishing bit can split the array into two independent XOR problems.",
+    "commonMistakes": [
+      "Not isolating the lowest set bit correctly"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 6,
+    "isPro": true,
+    "slug": "single-number-iii",
+    "leetcodeUrl": "https://leetcode.com/problems/single-number-iii/"
+  },
+  {
+    "order": 49,
+    "title": "Longest Consecutive Sequence",
+    "leetcodeId": 128,
+    "difficulty": "MEDIUM",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Hashing",
+    "subPattern": "Sequence Building",
+    "relatedPatterns": [
+      "HashSet",
+      "Expansion"
+    ],
+    "tags": [
+      "array",
+      "hashset"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Meta"
+    ],
+    "hint": "Only start counting from numbers that do not have a predecessor.",
+    "intuition": "Each consecutive run should be counted only once.",
+    "commonMistakes": [
+      "Starting from every number and causing O(n^2) behavior"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 8,
+    "isPro": true,
+    "slug": "longest-consecutive-sequence",
+    "leetcodeUrl": "https://leetcode.com/problems/longest-consecutive-sequence/"
+  },
+  {
+    "order": 50,
+    "title": "Subarray Sum Equals K",
+    "leetcodeId": 560,
+    "difficulty": "MEDIUM",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Prefix Sum",
+    "subPattern": "HashMap",
+    "relatedPatterns": [
+      "Counting",
+      "Frequency Map"
+    ],
+    "tags": [
+      "array",
+      "prefix-sum",
+      "hashmap"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Meta"
+    ],
+    "hint": "Store counts of prefix sums and look for currentPrefix - k.",
+    "intuition": "Past prefix sums tell you how many subarrays end here.",
+    "commonMistakes": [
+      "Forgetting prefix sum zero initialization"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 10,
+    "isPro": true,
+    "slug": "subarray-sum-equals-k",
+    "leetcodeUrl": "https://leetcode.com/problems/subarray-sum-equals-k/"
+  },
+  {
+    "order": 51,
+    "title": "Continuous Subarray Sum",
+    "leetcodeId": 523,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Prefix Sum",
+    "subPattern": "HashMap",
+    "relatedPatterns": [
+      "Modulo",
+      "Frequency Map"
+    ],
+    "tags": [
+      "array",
+      "prefix-sum"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Use prefix sum remainders and look for repeated remainders.",
+    "intuition": "Two equal remainders form a subarray divisible by k.",
+    "commonMistakes": [
+      "Not handling k equals zero separately"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 8,
+    "isPro": true,
+    "slug": "continuous-subarray-sum",
+    "leetcodeUrl": "https://leetcode.com/problems/continuous-subarray-sum/"
+  },
+  {
+    "order": 52,
+    "title": "Subarray Sums Divisible by K",
+    "leetcodeId": 974,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Prefix Sum",
+    "subPattern": "HashMap",
+    "relatedPatterns": [
+      "Modulo",
+      "Counting"
+    ],
+    "tags": [
+      "array",
+      "prefix-sum"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Meta"
+    ],
+    "hint": "Count prefix sum remainders modulo k.",
+    "intuition": "Equal remainders imply a divisible subarray between them.",
+    "commonMistakes": [
+      "Forgetting to normalize negative remainders"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 8,
+    "isPro": true,
+    "slug": "subarray-sums-divisible-by-k",
+    "leetcodeUrl": "https://leetcode.com/problems/subarray-sums-divisible-by-k/"
+  },
+  {
+    "order": 53,
+    "title": "Maximum Size Subarray Sum Equals k",
+    "leetcodeId": 325,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Prefix Sum",
+    "subPattern": "HashMap",
+    "relatedPatterns": [
+      "Longest Length",
+      "Frequency Map"
+    ],
+    "tags": [
+      "array",
+      "prefix-sum"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Store the earliest index for each prefix sum.",
+    "intuition": "The earliest occurrence gives the longest possible subarray.",
+    "commonMistakes": [
+      "Overwriting earlier prefix positions"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 7,
+    "isPro": true,
+    "slug": "maximum-size-subarray-sum-equals-k",
+    "leetcodeUrl": "https://leetcode.com/problems/maximum-size-subarray-sum-equals-k/"
+  },
+  {
+    "order": 54,
+    "title": "Count Number of Nice Subarrays",
+    "leetcodeId": 1248,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Prefix Sum",
+    "subPattern": "HashMap",
+    "relatedPatterns": [
+      "Counting",
+      "Parity"
+    ],
+    "tags": [
+      "array",
+      "prefix-sum"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Count odd numbers using prefix sums or a sliding count map.",
+    "intuition": "Convert the problem into counting prefixes with a target odd count.",
+    "commonMistakes": [
+      "Ignoring zero-prefix counts"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 7,
+    "isPro": true,
+    "slug": "count-number-of-nice-subarrays",
+    "leetcodeUrl": "https://leetcode.com/problems/count-number-of-nice-subarrays/"
+  },
+  {
+    "order": 55,
+    "title": "Binary Subarrays With Sum",
+    "leetcodeId": 930,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Prefix Sum",
+    "subPattern": "HashMap",
+    "relatedPatterns": [
+      "Counting",
+      "Binary Array"
+    ],
+    "tags": [
+      "array",
+      "prefix-sum"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Use prefix sums and count how many previous prefixes can form the target sum.",
+    "intuition": "Binary values still work with prefix-sum counting.",
+    "commonMistakes": [
+      "Forgetting the empty prefix"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 7,
+    "isPro": true,
+    "slug": "binary-subarrays-with-sum",
+    "leetcodeUrl": "https://leetcode.com/problems/binary-subarrays-with-sum/"
+  },
+  {
+    "order": 56,
+    "title": "Range Sum Query - Immutable",
+    "leetcodeId": 303,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "HIGH",
+    "pattern": "Prefix Sum",
+    "subPattern": "Prefix Query",
+    "relatedPatterns": [
+      "Range Query"
+    ],
+    "tags": [
+      "array",
+      "prefix-sum"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Precompute prefix sums once and answer each query by subtraction.",
+    "intuition": "Preprocessing can make repeated queries constant time.",
+    "commonMistakes": [
+      "Using the wrong index offsets"
+    ],
+    "timeEstimate": 15,
+    "revisionPriority": 6,
+    "isPro": false,
+    "slug": "range-sum-query-immutable",
+    "leetcodeUrl": "https://leetcode.com/problems/range-sum-query-immutable/"
+  },
+  {
+    "order": 57,
+    "title": "Find the Middle Index in Array",
+    "leetcodeId": 1991,
+    "difficulty": "EASY",
+    "priority": "GOOD",
+    "frequency": "MEDIUM",
+    "pattern": "Prefix Sum",
+    "subPattern": "Running Total",
+    "relatedPatterns": [
+      "Balance Point"
+    ],
+    "tags": [
+      "array",
+      "prefix-sum"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Compare left sum and right sum as you scan.",
+    "intuition": "This is a pivot-style balance point problem.",
+    "commonMistakes": [
+      "Not updating the right sum correctly"
+    ],
+    "timeEstimate": 12,
+    "revisionPriority": 5,
+    "isPro": false,
+    "slug": "find-the-middle-index-in-array",
+    "leetcodeUrl": "https://leetcode.com/problems/find-the-middle-index-in-array/"
+  },
+  {
+    "order": 58,
+    "title": "Kth Missing Positive Number",
+    "leetcodeId": 1539,
+    "difficulty": "EASY",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Binary Search",
+    "subPattern": "Classic",
+    "relatedPatterns": [
+      "Missing Sequence",
+      "Sorted Array"
+    ],
+    "tags": [
+      "array",
+      "binary-search"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Use how many numbers are missing before each index.",
+    "intuition": "The gap count increases monotonically, so binary search fits naturally.",
+    "commonMistakes": [
+      "Forgetting to convert between index and value"
+    ],
+    "timeEstimate": 18,
+    "revisionPriority": 6,
+    "isPro": false,
+    "slug": "kth-missing-positive-number",
+    "leetcodeUrl": "https://leetcode.com/problems/kth-missing-positive-number/"
+  },
+  {
+    "order": 59,
+    "title": "Search Insert Position",
+    "leetcodeId": 35,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "HIGH",
+    "pattern": "Binary Search",
+    "subPattern": "Classic",
+    "relatedPatterns": [
+      "Lower Bound",
+      "Sorted Array"
+    ],
+    "tags": [
+      "array",
+      "binary-search"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Find the first position where the target can be inserted.",
+    "intuition": "This is a lower-bound search problem.",
+    "commonMistakes": [
+      "Off-by-one errors"
+    ],
+    "timeEstimate": 12,
+    "revisionPriority": 6,
+    "isPro": false,
+    "slug": "search-insert-position",
+    "leetcodeUrl": "https://leetcode.com/problems/search-insert-position/"
+  },
+  {
+    "order": 60,
+    "title": "Binary Search",
+    "leetcodeId": 704,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Binary Search",
+    "subPattern": "Classic",
+    "relatedPatterns": [
+      "Sorted Array"
+    ],
+    "tags": [
+      "array",
+      "binary-search"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Compare the middle element and shrink the search range.",
+    "intuition": "Binary search is the foundation of sorted-array reasoning.",
+    "commonMistakes": [
+      "Infinite loop due to wrong boundaries"
+    ],
+    "timeEstimate": 12,
+    "revisionPriority": 8,
+    "isPro": false,
+    "slug": "binary-search",
+    "leetcodeUrl": "https://leetcode.com/problems/binary-search/"
+  },
+  {
+    "order": 61,
+    "title": "Search in Rotated Sorted Array",
+    "leetcodeId": 33,
+    "difficulty": "MEDIUM",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Binary Search",
+    "subPattern": "Rotated Array",
+    "relatedPatterns": [
+      "Boundary Reasoning"
+    ],
+    "tags": [
+      "array",
+      "binary-search"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "At each step, determine which half is sorted.",
+    "intuition": "Rotation breaks normal order, but one half stays sorted.",
+    "commonMistakes": [
+      "Testing the wrong half for the target"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 10,
+    "isPro": true,
+    "slug": "search-in-rotated-sorted-array",
+    "leetcodeUrl": "https://leetcode.com/problems/search-in-rotated-sorted-array/"
+  },
+  {
+    "order": 62,
+    "title": "Find Minimum in Rotated Sorted Array",
+    "leetcodeId": 153,
+    "difficulty": "MEDIUM",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Binary Search",
+    "subPattern": "Rotated Array",
+    "relatedPatterns": [
+      "Boundary Reasoning"
+    ],
+    "tags": [
+      "array",
+      "binary-search"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "The minimum lies in the unsorted half.",
+    "intuition": "You can discard the sorted half and keep the side with the pivot.",
+    "commonMistakes": [
+      "Using linear search"
+    ],
+    "timeEstimate": 18,
+    "revisionPriority": 9,
+    "isPro": true,
+    "slug": "find-minimum-in-rotated-sorted-array",
+    "leetcodeUrl": "https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/"
+  },
+  {
+    "order": 63,
+    "title": "Find Peak Element",
+    "leetcodeId": 162,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Binary Search",
+    "subPattern": "Peak Search",
+    "relatedPatterns": [
+      "Monotonic Property"
+    ],
+    "tags": [
+      "array",
+      "binary-search"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Compare the middle element with its neighbor.",
+    "intuition": "A slope direction tells you which side contains a peak.",
+    "commonMistakes": [
+      "Checking both neighbors unnecessarily"
+    ],
+    "timeEstimate": 18,
+    "revisionPriority": 7,
+    "isPro": true,
+    "slug": "find-peak-element",
+    "leetcodeUrl": "https://leetcode.com/problems/find-peak-element/"
+  },
+  {
+    "order": 64,
+    "title": "Kth Largest Element in an Array",
+    "leetcodeId": 215,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Quickselect",
+    "subPattern": "Partition",
+    "relatedPatterns": [
+      "Sorting",
+      "Selection"
+    ],
+    "tags": [
+      "array",
+      "quickselect"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Partition around a pivot until the target index is found.",
+    "intuition": "Selection can be done without fully sorting the array.",
+    "commonMistakes": [
+      "Treating it like full sorting"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 7,
+    "isPro": true,
+    "slug": "kth-largest-element-in-an-array",
+    "leetcodeUrl": "https://leetcode.com/problems/kth-largest-element-in-an-array/"
+  },
+  {
+    "order": 65,
+    "title": "Capacity To Ship Packages Within D Days",
+    "leetcodeId": 1011,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "VERY_HIGH",
+    "pattern": "Binary Search",
+    "subPattern": "Answer Search",
+    "relatedPatterns": [
+      "Feasibility Check",
+      "Greedy Simulation"
+    ],
+    "tags": [
+      "array",
+      "binary-search"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Binary search the capacity and verify feasibility by simulating days.",
+    "intuition": "When the answer space is monotonic, search the answer itself.",
+    "commonMistakes": [
+      "Choosing the wrong low/high bounds"
+    ],
+    "timeEstimate": 30,
+    "revisionPriority": 9,
+    "isPro": true,
+    "slug": "capacity-to-ship-packages-within-d-days",
+    "leetcodeUrl": "https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/"
+  },
+  {
+    "order": 66,
+    "title": "Split Array Largest Sum",
+    "leetcodeId": 410,
+    "difficulty": "HARD",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Binary Search",
+    "subPattern": "Answer Search",
+    "relatedPatterns": [
+      "Partitioning",
+      "Feasibility Check"
+    ],
+    "tags": [
+      "array",
+      "binary-search"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Binary search the minimum possible largest subarray sum.",
+    "intuition": "Try a candidate answer, then check how many partitions are needed.",
+    "commonMistakes": [
+      "Confusing partition count with subarray sum"
+    ],
+    "timeEstimate": 40,
+    "revisionPriority": 8,
+    "isPro": true,
+    "slug": "split-array-largest-sum",
+    "leetcodeUrl": "https://leetcode.com/problems/split-array-largest-sum/"
+  },
+  {
+    "order": 67,
+    "title": "Search a 2D Matrix",
+    "leetcodeId": 74,
+    "difficulty": "MEDIUM",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Matrix",
+    "subPattern": "Binary Search",
+    "relatedPatterns": [
+      "Flattened Array"
+    ],
+    "tags": [
+      "array",
+      "matrix",
+      "binary-search"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Treat the matrix as one sorted 1D array.",
+    "intuition": "A 2D grid can be searched as a flattened sorted list.",
+    "commonMistakes": [
+      "Incorrect row and column mapping"
+    ],
+    "timeEstimate": 20,
+    "revisionPriority": 9,
+    "isPro": true,
+    "slug": "search-a-2d-matrix",
+    "leetcodeUrl": "https://leetcode.com/problems/search-a-2d-matrix/"
+  },
+  {
+    "order": 68,
+    "title": "Search a 2D Matrix II",
+    "leetcodeId": 240,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Matrix",
+    "subPattern": "Binary Search",
+    "relatedPatterns": [
+      "Monotonic Matrix"
+    ],
+    "tags": [
+      "array",
+      "matrix"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Start from the top-right or bottom-left corner and eliminate one row or column at a time.",
+    "intuition": "Monotonic structure lets you shrink the search space quickly.",
+    "commonMistakes": [
+      "Starting from a random cell"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 8,
+    "isPro": true,
+    "slug": "search-a-2d-matrix-ii",
+    "leetcodeUrl": "https://leetcode.com/problems/search-a-2d-matrix-ii/"
+  },
+  {
+    "order": 69,
+    "title": "Transpose Matrix",
+    "leetcodeId": 867,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "MEDIUM",
+    "pattern": "Matrix",
+    "subPattern": "Traversal",
+    "relatedPatterns": [
+      "Index Mapping"
+    ],
+    "tags": [
+      "array",
+      "matrix"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Swap rows and columns by writing matrix[r][c] into matrix[c][r].",
+    "intuition": "Transpose is direct coordinate remapping.",
+    "commonMistakes": [
+      "Mixing row and column indexes"
+    ],
+    "timeEstimate": 12,
+    "revisionPriority": 4,
+    "isPro": false,
+    "slug": "transpose-matrix",
+    "leetcodeUrl": "https://leetcode.com/problems/transpose-matrix/"
+  },
+  {
+    "order": 70,
+    "title": "Reshape the Matrix",
+    "leetcodeId": 566,
+    "difficulty": "EASY",
+    "priority": "GOOD",
+    "frequency": "MEDIUM",
+    "pattern": "Matrix",
+    "subPattern": "Construction",
+    "relatedPatterns": [
+      "Index Mapping"
+    ],
+    "tags": [
+      "array",
+      "matrix"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Treat the matrix as a flat sequence and rebuild it in the new shape.",
+    "intuition": "This is index mapping in two dimensions.",
+    "commonMistakes": [
+      "Not checking if reshape is possible"
+    ],
+    "timeEstimate": 15,
+    "revisionPriority": 4,
+    "isPro": false,
+    "slug": "reshape-the-matrix",
+    "leetcodeUrl": "https://leetcode.com/problems/reshape-the-matrix/"
+  },
+  {
+    "order": 71,
+    "title": "Set Matrix Zeroes",
+    "leetcodeId": 73,
+    "difficulty": "MEDIUM",
+    "priority": "MUST_DO",
+    "frequency": "HIGH",
+    "pattern": "Matrix",
+    "subPattern": "Marking",
+    "relatedPatterns": [
+      "In-place Marking"
+    ],
+    "tags": [
+      "array",
+      "matrix"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Use the first row and first column as markers.",
+    "intuition": "In-place marking avoids extra space for row and column flags.",
+    "commonMistakes": [
+      "Losing the original first row/column state"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 9,
+    "isPro": true,
+    "slug": "set-matrix-zeroes",
+    "leetcodeUrl": "https://leetcode.com/problems/set-matrix-zeroes/"
+  },
+  {
+    "order": 72,
+    "title": "Spiral Matrix",
+    "leetcodeId": 54,
+    "difficulty": "MEDIUM",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Matrix",
+    "subPattern": "Spiral",
+    "relatedPatterns": [
+      "Boundary Simulation"
+    ],
+    "tags": [
+      "array",
+      "matrix"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Keep four boundaries and shrink them after each direction.",
+    "intuition": "Spiral traversal is boundary simulation in layers.",
+    "commonMistakes": [
+      "Skipping boundary checks"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 9,
+    "isPro": true,
+    "slug": "spiral-matrix",
+    "leetcodeUrl": "https://leetcode.com/problems/spiral-matrix/"
+  },
+  {
+    "order": 73,
+    "title": "Spiral Matrix II",
+    "leetcodeId": 59,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Matrix",
+    "subPattern": "Spiral",
+    "relatedPatterns": [
+      "Boundary Simulation"
+    ],
+    "tags": [
+      "array",
+      "matrix"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Build the matrix layer by layer in spiral order.",
+    "intuition": "This is Spiral Matrix turned into a construction problem.",
+    "commonMistakes": [
+      "Overwriting filled cells"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 7,
+    "isPro": true,
+    "slug": "spiral-matrix-ii",
+    "leetcodeUrl": "https://leetcode.com/problems/spiral-matrix-ii/"
+  },
+  {
+    "order": 74,
+    "title": "Rotate Image",
+    "leetcodeId": 48,
+    "difficulty": "MEDIUM",
+    "priority": "MUST_DO",
+    "frequency": "HIGH",
+    "pattern": "Matrix",
+    "subPattern": "Rotation",
+    "relatedPatterns": [
+      "Transpose",
+      "Reversal"
+    ],
+    "tags": [
+      "array",
+      "matrix"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Transpose the matrix and then reverse each row.",
+    "intuition": "A rotation can be decomposed into simpler coordinate changes.",
+    "commonMistakes": [
+      "Doing the transformation in the wrong order"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 8,
+    "isPro": true,
+    "slug": "rotate-image",
+    "leetcodeUrl": "https://leetcode.com/problems/rotate-image/"
+  },
+  {
+    "order": 75,
+    "title": "Game of Life",
+    "leetcodeId": 289,
+    "difficulty": "MEDIUM",
+    "priority": "OPTIONAL",
+    "frequency": "MEDIUM",
+    "pattern": "Matrix",
+    "subPattern": "Simulation",
+    "relatedPatterns": [
+      "State Encoding"
+    ],
+    "tags": [
+      "array",
+      "matrix"
+    ],
+    "companies": [
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Encode the next state without destroying the current state too early.",
+    "intuition": "Simulation problems often need temporary state encoding.",
+    "commonMistakes": [
+      "Updating cells directly before all neighbors are processed"
+    ],
+    "timeEstimate": 30,
+    "revisionPriority": 5,
+    "isPro": true,
+    "slug": "game-of-life",
+    "leetcodeUrl": "https://leetcode.com/problems/game-of-life/"
+  },
+  {
+    "order": 76,
+    "title": "Maximum Average Subarray I",
+    "leetcodeId": 643,
+    "difficulty": "EASY",
+    "priority": "MUST_DO",
+    "frequency": "HIGH",
+    "pattern": "Sliding Window",
+    "subPattern": "Fixed Window",
+    "relatedPatterns": [
+      "Window Sum"
+    ],
+    "tags": [
+      "array",
+      "sliding-window"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Compute the first window sum and slide it by one step.",
+    "intuition": "Fixed-size windows are a strong entry point for sliding window problems.",
+    "commonMistakes": [
+      "Recomputing the whole window every time"
+    ],
+    "timeEstimate": 15,
+    "revisionPriority": 5,
+    "isPro": false,
+    "slug": "maximum-average-subarray-i",
+    "leetcodeUrl": "https://leetcode.com/problems/maximum-average-subarray-i/"
+  },
+  {
+    "order": 77,
+    "title": "Minimum Size Subarray Sum",
+    "leetcodeId": 209,
+    "difficulty": "MEDIUM",
+    "priority": "MUST_DO",
+    "frequency": "VERY_HIGH",
+    "pattern": "Sliding Window",
+    "subPattern": "Variable Window",
+    "relatedPatterns": [
+      "Two Pointers",
+      "Window Sum"
+    ],
+    "tags": [
+      "array",
+      "sliding-window"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Microsoft"
+    ],
+    "hint": "Expand until the condition is met, then shrink from the left as much as possible.",
+    "intuition": "Variable windows grow and shrink based on validity.",
+    "commonMistakes": [
+      "Shrinking too early"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 9,
+    "isPro": true,
+    "slug": "minimum-size-subarray-sum",
+    "leetcodeUrl": "https://leetcode.com/problems/minimum-size-subarray-sum/"
+  },
+  {
+    "order": 78,
+    "title": "Fruit Into Baskets",
+    "leetcodeId": 904,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Sliding Window",
+    "subPattern": "Variable Window",
+    "relatedPatterns": [
+      "HashMap",
+      "Window Frequency"
+    ],
+    "tags": [
+      "array",
+      "sliding-window"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Maintain a window with at most two fruit types.",
+    "intuition": "This is a frequency-limited sliding window.",
+    "commonMistakes": [
+      "Losing track of fruit counts while shrinking"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 8,
+    "isPro": true,
+    "slug": "fruit-into-baskets",
+    "leetcodeUrl": "https://leetcode.com/problems/fruit-into-baskets/"
+  },
+  {
+    "order": 79,
+    "title": "Subarray Product Less Than K",
+    "leetcodeId": 713,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Sliding Window",
+    "subPattern": "Variable Window",
+    "relatedPatterns": [
+      "Multiplicative Window"
+    ],
+    "tags": [
+      "array",
+      "sliding-window"
+    ],
+    "companies": [
+      "Amazon",
+      "Google",
+      "Meta"
+    ],
+    "hint": "Expand the window and shrink it while the product is too large.",
+    "intuition": "Window size is controlled by a multiplicative constraint.",
+    "commonMistakes": [
+      "Forgetting that k <= 1 is a special case"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 8,
+    "isPro": true,
+    "slug": "subarray-product-less-than-k",
+    "leetcodeUrl": "https://leetcode.com/problems/subarray-product-less-than-k/"
+  },
+  {
+    "order": 80,
+    "title": "Longest Continuous Subarray With Absolute Diff Less Than or Equal to Limit",
+    "leetcodeId": 1438,
+    "difficulty": "MEDIUM",
+    "priority": "OPTIONAL",
+    "frequency": "MEDIUM",
+    "pattern": "Sliding Window",
+    "subPattern": "Deque",
+    "relatedPatterns": [
+      "Monotonic Queue"
+    ],
+    "tags": [
+      "array",
+      "sliding-window"
+    ],
+    "companies": [
+      "Google",
+      "Amazon"
+    ],
+    "hint": "Track the current window max and min with two deques.",
+    "intuition": "Deque structures make sliding max/min efficient.",
+    "commonMistakes": [
+      "Using normal lists with O(n) pops"
+    ],
+    "timeEstimate": 35,
+    "revisionPriority": 6,
+    "isPro": true,
+    "slug": "longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit",
+    "leetcodeUrl": "https://leetcode.com/problems/longest-continuous-subarray-with-absolute-diff-less-than-or-equal-to-limit/"
+  },
+  {
+    "order": 81,
+    "title": "Corporate Flight Bookings",
+    "leetcodeId": 1109,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Difference Array",
+    "subPattern": "Range Updates",
+    "relatedPatterns": [
+      "Prefix Reconstruction"
+    ],
+    "tags": [
+      "array",
+      "difference-array"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Apply each booking range in O(1) using a difference array.",
+    "intuition": "Range updates become easy when you store deltas instead of full values.",
+    "commonMistakes": [
+      "Forgetting to subtract after the range ends"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 8,
+    "isPro": true,
+    "slug": "corporate-flight-bookings",
+    "leetcodeUrl": "https://leetcode.com/problems/corporate-flight-bookings/"
+  },
+  {
+    "order": 82,
+    "title": "Car Pooling",
+    "leetcodeId": 1094,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "HIGH",
+    "pattern": "Difference Array",
+    "subPattern": "Range Updates",
+    "relatedPatterns": [
+      "Prefix Reconstruction",
+      "Capacity Check"
+    ],
+    "tags": [
+      "array",
+      "difference-array"
+    ],
+    "companies": [
+      "Amazon",
+      "Google"
+    ],
+    "hint": "Mark trip start and end points, then scan the load.",
+    "intuition": "Difference arrays are ideal for capacity over time or position.",
+    "commonMistakes": [
+      "Mixing up start and end adjustments"
+    ],
+    "timeEstimate": 25,
+    "revisionPriority": 8,
+    "isPro": true,
+    "slug": "car-pooling",
+    "leetcodeUrl": "https://leetcode.com/problems/car-pooling/"
+  },
+  {
+    "order": 83,
+    "title": "Range Addition",
+    "leetcodeId": 370,
+    "difficulty": "MEDIUM",
+    "priority": "GOOD",
+    "frequency": "MEDIUM",
+    "pattern": "Difference Array",
+    "subPattern": "Range Updates",
+    "relatedPatterns": [
+      "Prefix Reconstruction"
+    ],
+    "tags": [
+      "array",
+      "difference-array"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Use the difference array to apply updates in constant time.",
+    "intuition": "A final prefix pass rebuilds the updated array.",
+    "commonMistakes": [
+      "Not rebuilding the result with a prefix scan"
+    ],
+    "timeEstimate": 20,
+    "revisionPriority": 7,
+    "isPro": false,
+    "slug": "range-addition",
+    "leetcodeUrl": "https://leetcode.com/problems/range-addition/"
+  },
+  {
+    "order": 84,
+    "title": "Matrix Diagonal Sum",
+    "leetcodeId": 1572,
+    "difficulty": "EASY",
+    "priority": "GOOD",
+    "frequency": "MEDIUM",
+    "pattern": "Matrix",
+    "subPattern": "Traversal",
+    "relatedPatterns": [
+      "Index Mapping"
+    ],
+    "tags": [
+      "array",
+      "matrix"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Sum both diagonals and avoid counting the center twice.",
+    "intuition": "Diagonal traversal is simple coordinate-based iteration.",
+    "commonMistakes": [
+      "Double counting the center in odd-sized matrices"
+    ],
+    "timeEstimate": 10,
+    "revisionPriority": 4,
+    "isPro": false,
+    "slug": "matrix-diagonal-sum",
+    "leetcodeUrl": "https://leetcode.com/problems/matrix-diagonal-sum/"
+  },
+  {
+    "order": 85,
+    "title": "Toeplitz Matrix",
+    "leetcodeId": 766,
+    "difficulty": "EASY",
+    "priority": "GOOD",
+    "frequency": "MEDIUM",
+    "pattern": "Matrix",
+    "subPattern": "Traversal",
+    "relatedPatterns": [
+      "Pattern Check"
+    ],
+    "tags": [
+      "array",
+      "matrix"
+    ],
+    "companies": [
+      "Amazon",
+      "Microsoft"
+    ],
+    "hint": "Check whether each diagonal has equal values.",
+    "intuition": "Matrix pattern validation trains careful 2D traversal.",
+    "commonMistakes": [
+      "Comparing out-of-bounds neighbors"
+    ],
+    "timeEstimate": 12,
+    "revisionPriority": 4,
+    "isPro": false,
+    "slug": "toeplitz-matrix",
+    "leetcodeUrl": "https://leetcode.com/problems/toeplitz-matrix/"
+  }
+]

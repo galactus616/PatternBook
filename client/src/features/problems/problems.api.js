@@ -3,6 +3,9 @@ import axios from "../../lib/axios";
 export const fetchProblems = async (filters) => {
   const params = new URLSearchParams();
   if (filters.topic) params.append("topic", filters.topic);
+  if (filters.difficulty) params.append("difficulty", filters.difficulty);
+  if (filters.priority) params.append("priority", filters.priority);
+  if (filters.pattern) params.append("pattern", filters.pattern);
 
   const res = await axios.get(`/problems`, { 
     params
@@ -11,11 +14,8 @@ export const fetchProblems = async (filters) => {
 };
 
 export const fetchTopics = async () => {
-  // Hardcoded for now as discussed
-  return {
-    success: true,
-    data: ["Arrays", "Strings", "Linked Lists", "Stack", "Queue", "Trees", "Graphs", "DP"]
-  };
+  const res = await axios.get(`/topics`);
+  return res.data;
 };
 
 export const updateProblemProgress = async ({ problemId, status, notes }) => {

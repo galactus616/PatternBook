@@ -1,0 +1,972 @@
+[
+    {
+        "order": 1,
+        "title": "Range Sum Query - Mutable",
+        "slug": "range-sum-query-mutable",
+        "leetcodeId": 307,
+        "leetcodeUrl": "https://leetcode.com/problems/range-sum-query-mutable/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Fenwick Tree",
+        "subPattern": "Point Update Range Query",
+        "relatedPatterns": [
+            "Segment Tree"
+        ],
+        "tags": [
+            "advanced",
+            "fenwick-tree"
+        ],
+        "companies": [
+            "Google",
+            "Amazon"
+        ],
+        "hint": "Fenwick Tree supports prefix sums efficiently.",
+        "intuition": "Partial sums reduce update/query complexity drastically.",
+        "commonMistakes": [
+            "1-indexing mistakes"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 2,
+        "title": "Count of Smaller Numbers After Self",
+        "slug": "count-of-smaller-numbers-after-self",
+        "leetcodeId": 315,
+        "leetcodeUrl": "https://leetcode.com/problems/count-of-smaller-numbers-after-self/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Fenwick Tree",
+        "subPattern": "Coordinate Compression",
+        "relatedPatterns": [
+            "Merge Sort"
+        ],
+        "tags": [
+            "advanced",
+            "fenwick-tree"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Compress values before Fenwick operations.",
+        "intuition": "Prefix frequencies answer smaller-count queries efficiently.",
+        "commonMistakes": [
+            "Handling duplicates incorrectly"
+        ],
+        "timeEstimate": 65,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 3,
+        "title": "The Skyline Problem",
+        "slug": "the-skyline-problem",
+        "leetcodeId": 218,
+        "leetcodeUrl": "https://leetcode.com/problems/the-skyline-problem/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Sweep Line",
+        "subPattern": "Event Processing",
+        "relatedPatterns": [
+            "Heap"
+        ],
+        "tags": [
+            "advanced",
+            "geometry"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Process building start/end events in sorted order.",
+        "intuition": "Height changes only occur at critical x positions.",
+        "commonMistakes": [
+            "Incorrect event sorting"
+        ],
+        "timeEstimate": 75,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 4,
+        "title": "Largest Rectangle in Histogram",
+        "slug": "largest-rectangle-in-histogram",
+        "leetcodeId": 84,
+        "leetcodeUrl": "https://leetcode.com/problems/largest-rectangle-in-histogram/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Monotonic Stack",
+        "subPattern": "Previous Smaller Element",
+        "relatedPatterns": [
+            "Stack"
+        ],
+        "tags": [
+            "advanced",
+            "stack"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Maintain increasing stack of indices.",
+        "intuition": "Smaller heights determine rectangle boundaries.",
+        "commonMistakes": [
+            "Forgetting final stack cleanup"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 5,
+        "title": "Sliding Window Maximum",
+        "slug": "sliding-window-maximum",
+        "leetcodeId": 239,
+        "leetcodeUrl": "https://leetcode.com/problems/sliding-window-maximum/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Monotonic Queue",
+        "subPattern": "Window Maximum",
+        "relatedPatterns": [
+            "Deque"
+        ],
+        "tags": [
+            "advanced",
+            "queue"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Keep deque decreasing by values.",
+        "intuition": "Only strongest candidates matter for future windows.",
+        "commonMistakes": [
+            "Not removing out-of-window indices"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 6,
+        "title": "Trapping Rain Water",
+        "slug": "trapping-rain-water",
+        "leetcodeId": 42,
+        "leetcodeUrl": "https://leetcode.com/problems/trapping-rain-water/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Monotonic Stack",
+        "subPattern": "Water Boundaries",
+        "relatedPatterns": [
+            "Two Pointers"
+        ],
+        "tags": [
+            "advanced",
+            "stack"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Water depends on nearest taller boundaries.",
+        "intuition": "Trapped area forms between taller bars.",
+        "commonMistakes": [
+            "Negative width calculations"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 7,
+        "title": "LFU Cache",
+        "slug": "lfu-cache",
+        "leetcodeId": 460,
+        "leetcodeUrl": "https://leetcode.com/problems/lfu-cache/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Design",
+        "subPattern": "Frequency Cache",
+        "relatedPatterns": [
+            "LRU Cache"
+        ],
+        "tags": [
+            "advanced",
+            "design"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track frequency buckets and recency together.",
+        "intuition": "Least frequently used eviction needs grouped ordering.",
+        "commonMistakes": [
+            "Incorrect min frequency updates"
+        ],
+        "timeEstimate": 80,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 8,
+        "title": "LRU Cache",
+        "slug": "lru-cache",
+        "leetcodeId": 146,
+        "leetcodeUrl": "https://leetcode.com/problems/lru-cache/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Design",
+        "subPattern": "HashMap + DLL",
+        "relatedPatterns": [
+            "LFU Cache"
+        ],
+        "tags": [
+            "advanced",
+            "design"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Use doubly linked list for O(1) recency updates.",
+        "intuition": "Recent access ordering determines eviction priority.",
+        "commonMistakes": [
+            "Not removing stale references"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 9,
+        "title": "Insert Delete GetRandom O(1)",
+        "slug": "insert-delete-getrandom-o1",
+        "leetcodeId": 380,
+        "leetcodeUrl": "https://leetcode.com/problems/insert-delete-getrandom-o1/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Design",
+        "subPattern": "HashMap + Array",
+        "relatedPatterns": [
+            "RandomizedSet"
+        ],
+        "tags": [
+            "advanced",
+            "design"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Swap removed element with last array element.",
+        "intuition": "Array gives random access while hashmap tracks indices.",
+        "commonMistakes": [
+            "Forgetting index updates after swap"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 10,
+        "title": "Median Finder",
+        "slug": "find-median-from-data-stream",
+        "leetcodeId": 295,
+        "leetcodeUrl": "https://leetcode.com/problems/find-median-from-data-stream/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Heap Design",
+        "subPattern": "Running Median",
+        "relatedPatterns": [
+            "Priority Queue"
+        ],
+        "tags": [
+            "advanced",
+            "heap"
+        ],
+        "companies": [
+            "Google",
+            "Amazon"
+        ],
+        "hint": "Maintain balanced max heap and min heap.",
+        "intuition": "Median lies between lower and upper halves.",
+        "commonMistakes": [
+            "Incorrect heap balancing"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 11,
+        "title": "Data Stream as Disjoint Intervals",
+        "slug": "data-stream-as-disjoint-intervals",
+        "leetcodeId": 352,
+        "leetcodeUrl": "https://leetcode.com/problems/data-stream-as-disjoint-intervals/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Interval Design",
+        "subPattern": "Merge Intervals",
+        "relatedPatterns": [
+            "TreeMap"
+        ],
+        "tags": [
+            "advanced",
+            "design"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Merge neighboring intervals during insertion.",
+        "intuition": "Sorted interval boundaries simplify merging logic.",
+        "commonMistakes": [
+            "Breaking interval continuity"
+        ],
+        "timeEstimate": 65,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 12,
+        "title": "My Calendar I",
+        "slug": "my-calendar-i",
+        "leetcodeId": 729,
+        "leetcodeUrl": "https://leetcode.com/problems/my-calendar-i/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Sweep Line",
+        "subPattern": "Interval Conflict",
+        "relatedPatterns": [
+            "TreeMap"
+        ],
+        "tags": [
+            "advanced",
+            "intervals"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Keep intervals sorted by start time.",
+        "intuition": "Only neighboring intervals can overlap.",
+        "commonMistakes": [
+            "Checking all previous bookings"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 13,
+        "title": "My Calendar II",
+        "slug": "my-calendar-ii",
+        "leetcodeId": 731,
+        "leetcodeUrl": "https://leetcode.com/problems/my-calendar-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Sweep Line",
+        "subPattern": "Double Booking",
+        "relatedPatterns": [
+            "Prefix Sum"
+        ],
+        "tags": [
+            "advanced",
+            "intervals"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track overlap intervals separately.",
+        "intuition": "Third overlap invalidates booking.",
+        "commonMistakes": [
+            "Merging overlaps incorrectly"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 14,
+        "title": "My Calendar III",
+        "slug": "my-calendar-iii",
+        "leetcodeId": 732,
+        "leetcodeUrl": "https://leetcode.com/problems/my-calendar-iii/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Sweep Line",
+        "subPattern": "Maximum Overlap",
+        "relatedPatterns": [
+            "Segment Tree"
+        ],
+        "tags": [
+            "advanced",
+            "intervals"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Use sweep line prefix accumulation.",
+        "intuition": "Concurrent intervals determine active booking count.",
+        "commonMistakes": [
+            "Not sorting event points properly"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 15,
+        "title": "Robot Room Cleaner",
+        "slug": "robot-room-cleaner",
+        "leetcodeId": 489,
+        "leetcodeUrl": "https://leetcode.com/problems/robot-room-cleaner/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Simulation",
+        "subPattern": "Backtracking Navigation",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "advanced",
+            "backtracking"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Backtrack physically after exploring directions.",
+        "intuition": "Robot orientation becomes part of traversal state.",
+        "commonMistakes": [
+            "Losing robot direction tracking"
+        ],
+        "timeEstimate": 70,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 16,
+        "title": "Serialize and Deserialize Binary Tree",
+        "slug": "serialize-and-deserialize-binary-tree",
+        "leetcodeId": 297,
+        "leetcodeUrl": "https://leetcode.com/problems/serialize-and-deserialize-binary-tree/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Design",
+        "subPattern": "Tree Encoding",
+        "relatedPatterns": [
+            "BFS",
+            "DFS"
+        ],
+        "tags": [
+            "advanced",
+            "tree"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Null markers preserve tree structure.",
+        "intuition": "Traversal order uniquely reconstructs tree shape.",
+        "commonMistakes": [
+            "Skipping null nodes"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 17,
+        "title": "Find Median from Data Stream",
+        "slug": "find-median-from-data-stream",
+        "leetcodeId": 295,
+        "leetcodeUrl": "https://leetcode.com/problems/find-median-from-data-stream/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Advanced Heap",
+        "subPattern": "Balanced Heaps",
+        "relatedPatterns": [
+            "Heap"
+        ],
+        "tags": [
+            "advanced"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Keep left half max heap and right half min heap.",
+        "intuition": "Balanced partitions maintain median access instantly.",
+        "commonMistakes": [
+            "Uneven heap sizes"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 18,
+        "title": "Basic Calculator",
+        "slug": "basic-calculator",
+        "leetcodeId": 224,
+        "leetcodeUrl": "https://leetcode.com/problems/basic-calculator/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Expression Parsing",
+        "subPattern": "Stack Evaluation",
+        "relatedPatterns": [
+            "Parser"
+        ],
+        "tags": [
+            "advanced",
+            "stack"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Use stack to preserve sign context.",
+        "intuition": "Nested parentheses create deferred evaluations.",
+        "commonMistakes": [
+            "Handling negative signs incorrectly"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 19,
+        "title": "Basic Calculator II",
+        "slug": "basic-calculator-ii",
+        "leetcodeId": 227,
+        "leetcodeUrl": "https://leetcode.com/problems/basic-calculator-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Expression Parsing",
+        "subPattern": "Operator Priority",
+        "relatedPatterns": [
+            "Stack"
+        ],
+        "tags": [
+            "advanced"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Resolve multiplication/division immediately.",
+        "intuition": "Operator precedence changes evaluation timing.",
+        "commonMistakes": [
+            "Incorrect integer division"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 20,
+        "title": "Expression Add Operators",
+        "slug": "expression-add-operators",
+        "leetcodeId": 282,
+        "leetcodeUrl": "https://leetcode.com/problems/expression-add-operators/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Backtracking",
+        "subPattern": "Expression Generation",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "advanced",
+            "backtracking"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track previous multiplication contribution separately.",
+        "intuition": "Multiplication modifies previous expression value.",
+        "commonMistakes": [
+            "Leading zero handling"
+        ],
+        "timeEstimate": 70,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 21,
+        "title": "Candy",
+        "slug": "candy",
+        "leetcodeId": 135,
+        "leetcodeUrl": "https://leetcode.com/problems/candy/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Greedy Advanced",
+        "subPattern": "Bidirectional Greedy",
+        "relatedPatterns": [
+            "Greedy"
+        ],
+        "tags": [
+            "advanced",
+            "greedy"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Perform left-to-right and right-to-left passes.",
+        "intuition": "Local rating conditions propagate in both directions.",
+        "commonMistakes": [
+            "Using single directional pass"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 22,
+        "title": "Game of Life",
+        "slug": "game-of-life",
+        "leetcodeId": 289,
+        "leetcodeUrl": "https://leetcode.com/problems/game-of-life/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "HIGH",
+        "pattern": "Simulation",
+        "subPattern": "State Transition",
+        "relatedPatterns": [
+            "Matrix"
+        ],
+        "tags": [
+            "advanced",
+            "simulation"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Encode old and new states together temporarily.",
+        "intuition": "Simultaneous updates require preserving previous states.",
+        "commonMistakes": [
+            "Updating cells immediately"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 23,
+        "title": "Random Pick with Weight",
+        "slug": "random-pick-with-weight",
+        "leetcodeId": 528,
+        "leetcodeUrl": "https://leetcode.com/problems/random-pick-with-weight/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Prefix Sum",
+        "subPattern": "Weighted Random",
+        "relatedPatterns": [
+            "Binary Search"
+        ],
+        "tags": [
+            "advanced"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Use prefix sums and binary search.",
+        "intuition": "Probability intervals map onto prefix ranges.",
+        "commonMistakes": [
+            "Incorrect random bounds"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 24,
+        "title": "Random Pick Index",
+        "slug": "random-pick-index",
+        "leetcodeId": 398,
+        "leetcodeUrl": "https://leetcode.com/problems/random-pick-index/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Reservoir Sampling",
+        "subPattern": "Streaming Random",
+        "relatedPatterns": [
+            "Probability"
+        ],
+        "tags": [
+            "advanced"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Each occurrence should have equal probability.",
+        "intuition": "Reservoir sampling preserves fairness incrementally.",
+        "commonMistakes": [
+            "Biasing toward earlier indices"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 25,
+        "title": "Design Twitter",
+        "slug": "design-twitter",
+        "leetcodeId": 355,
+        "leetcodeUrl": "https://leetcode.com/problems/design-twitter/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "System Design",
+        "subPattern": "Feed Merging",
+        "relatedPatterns": [
+            "Heap"
+        ],
+        "tags": [
+            "advanced",
+            "design"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Use heap to merge latest tweets.",
+        "intuition": "Feeds are sorted streams merged dynamically.",
+        "commonMistakes": [
+            "Inefficient full-feed rebuilding"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 26,
+        "title": "Time Based Key-Value Store",
+        "slug": "time-based-key-value-store",
+        "leetcodeId": 981,
+        "leetcodeUrl": "https://leetcode.com/problems/time-based-key-value-store/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Binary Search Design",
+        "subPattern": "Historical Lookup",
+        "relatedPatterns": [
+            "Binary Search"
+        ],
+        "tags": [
+            "advanced"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Store timestamp-value pairs sorted by time.",
+        "intuition": "Binary search retrieves nearest valid timestamp.",
+        "commonMistakes": [
+            "Linear searching timestamps"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 27,
+        "title": "All O`one Data Structure",
+        "slug": "all-oone-data-structure",
+        "leetcodeId": 432,
+        "leetcodeUrl": "https://leetcode.com/problems/all-oone-data-structure/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Advanced Design",
+        "subPattern": "Frequency Tracking",
+        "relatedPatterns": [
+            "HashMap"
+        ],
+        "tags": [
+            "advanced",
+            "design"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Use doubly linked list of frequency buckets.",
+        "intuition": "Adjacent frequencies enable O(1) updates.",
+        "commonMistakes": [
+            "Breaking bucket references"
+        ],
+        "timeEstimate": 80,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 28,
+        "title": "Minimum Window Substring",
+        "slug": "minimum-window-substring",
+        "leetcodeId": 76,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-window-substring/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Advanced Sliding Window",
+        "subPattern": "Valid Window",
+        "relatedPatterns": [
+            "HashMap"
+        ],
+        "tags": [
+            "advanced",
+            "sliding-window"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Expand and shrink window while maintaining validity.",
+        "intuition": "Smallest valid window emerges through controlled contraction.",
+        "commonMistakes": [
+            "Incorrect valid character counting"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 29,
+        "title": "IPO",
+        "slug": "ipo",
+        "leetcodeId": 502,
+        "leetcodeUrl": "https://leetcode.com/problems/ipo/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Greedy Heap",
+        "subPattern": "Capital Maximization",
+        "relatedPatterns": [
+            "Priority Queue"
+        ],
+        "tags": [
+            "advanced",
+            "heap"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Push affordable projects into max heap.",
+        "intuition": "Best available project should always be chosen greedily.",
+        "commonMistakes": [
+            "Sorting only by profit"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 30,
+        "title": "Meeting Rooms III",
+        "slug": "meeting-rooms-iii",
+        "leetcodeId": 2402,
+        "leetcodeUrl": "https://leetcode.com/problems/meeting-rooms-iii/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Heap Scheduling",
+        "subPattern": "Resource Allocation",
+        "relatedPatterns": [
+            "Priority Queue"
+        ],
+        "tags": [
+            "advanced",
+            "heap"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track free rooms and occupied rooms separately.",
+        "intuition": "Earliest available room determines future scheduling.",
+        "commonMistakes": [
+            "Incorrect room release timing"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 31,
+        "title": "Parallel Courses III",
+        "slug": "parallel-courses-iii",
+        "leetcodeId": 2050,
+        "leetcodeUrl": "https://leetcode.com/problems/parallel-courses-iii/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Topological DP",
+        "subPattern": "Dependency Scheduling",
+        "relatedPatterns": [
+            "Graph"
+        ],
+        "tags": [
+            "advanced",
+            "graph"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track maximum completion time for prerequisites.",
+        "intuition": "Longest dependency chain determines finish time.",
+        "commonMistakes": [
+            "Summing all prerequisites instead of max"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 32,
+        "title": "Shortest Subarray with Sum at Least K",
+        "slug": "shortest-subarray-with-sum-at-least-k",
+        "leetcodeId": 862,
+        "leetcodeUrl": "https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Monotonic Queue",
+        "subPattern": "Prefix Sum Optimization",
+        "relatedPatterns": [
+            "Deque"
+        ],
+        "tags": [
+            "advanced",
+            "queue"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Maintain increasing prefix sums inside deque.",
+        "intuition": "Worse prefix sums can never help future answers.",
+        "commonMistakes": [
+            "Using sliding window with negatives"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 10,
+        "isPro": true
+    }
+]

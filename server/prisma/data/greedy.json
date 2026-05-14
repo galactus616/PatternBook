@@ -1,0 +1,837 @@
+[
+    {
+        "order": 1,
+        "title": "Assign Cookies",
+        "slug": "assign-cookies",
+        "leetcodeId": 455,
+        "leetcodeUrl": "https://leetcode.com/problems/assign-cookies/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "MEDIUM",
+        "pattern": "Sorting Greedy",
+        "subPattern": "Smallest Fit",
+        "relatedPatterns": [
+            "Two Pointers"
+        ],
+        "tags": [
+            "greedy",
+            "sorting"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Try satisfying the least greedy child first.",
+        "intuition": "Smaller resources should satisfy smaller requirements first.",
+        "commonMistakes": [
+            "Using large cookies too early"
+        ],
+        "timeEstimate": 15,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 2,
+        "title": "Best Time to Buy and Sell Stock II",
+        "slug": "best-time-to-buy-and-sell-stock-ii",
+        "leetcodeId": 122,
+        "leetcodeUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Local Greedy",
+        "subPattern": "Profit Accumulation",
+        "relatedPatterns": [
+            "Array"
+        ],
+        "tags": [
+            "greedy",
+            "array"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Take every increasing price difference.",
+        "intuition": "Every profitable upward move contributes independently.",
+        "commonMistakes": [
+            "Trying to predict global maximum"
+        ],
+        "timeEstimate": 20,
+        "revisionPriority": 8,
+        "isPro": false
+    },
+    {
+        "order": 3,
+        "title": "Jump Game",
+        "slug": "jump-game",
+        "leetcodeId": 55,
+        "leetcodeUrl": "https://leetcode.com/problems/jump-game/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Reachability Greedy",
+        "subPattern": "Farthest Reach",
+        "relatedPatterns": [
+            "DP"
+        ],
+        "tags": [
+            "greedy",
+            "array"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Track the farthest reachable index.",
+        "intuition": "If current index becomes unreachable, progress stops permanently.",
+        "commonMistakes": [
+            "Using unnecessary recursion/DP"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 4,
+        "title": "Jump Game II",
+        "slug": "jump-game-ii",
+        "leetcodeId": 45,
+        "leetcodeUrl": "https://leetcode.com/problems/jump-game-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Level Greedy",
+        "subPattern": "Minimum Jumps",
+        "relatedPatterns": [
+            "BFS"
+        ],
+        "tags": [
+            "greedy",
+            "array"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Expand reachable range level by level.",
+        "intuition": "Each jump behaves like one BFS layer expansion.",
+        "commonMistakes": [
+            "Updating jumps too early"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 5,
+        "title": "Gas Station",
+        "slug": "gas-station",
+        "leetcodeId": 134,
+        "leetcodeUrl": "https://leetcode.com/problems/gas-station/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Greedy Reset",
+        "subPattern": "Circular Traversal",
+        "relatedPatterns": [
+            "Prefix Sum"
+        ],
+        "tags": [
+            "greedy"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Reset starting point whenever fuel becomes negative.",
+        "intuition": "Failed segments can never become valid starts later.",
+        "commonMistakes": [
+            "Trying every starting point"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 6,
+        "title": "Candy",
+        "slug": "candy",
+        "leetcodeId": 135,
+        "leetcodeUrl": "https://leetcode.com/problems/candy/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Two Pass Greedy",
+        "subPattern": "Neighbor Constraints",
+        "relatedPatterns": [
+            "Array"
+        ],
+        "tags": [
+            "greedy"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Handle left and right neighbor conditions separately.",
+        "intuition": "Local ordering constraints require bidirectional processing.",
+        "commonMistakes": [
+            "Single-direction traversal only"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 7,
+        "title": "Partition Labels",
+        "slug": "partition-labels",
+        "leetcodeId": 763,
+        "leetcodeUrl": "https://leetcode.com/problems/partition-labels/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Interval Greedy",
+        "subPattern": "Partition Expansion",
+        "relatedPatterns": [
+            "Hash Map"
+        ],
+        "tags": [
+            "greedy",
+            "string"
+        ],
+        "companies": [
+            "Amazon",
+            "Meta"
+        ],
+        "hint": "Expand partition until all characters finish appearing.",
+        "intuition": "Every partition must contain all occurrences of included characters.",
+        "commonMistakes": [
+            "Closing partition too early"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 8,
+        "title": "Queue Reconstruction by Height",
+        "slug": "queue-reconstruction-by-height",
+        "leetcodeId": 406,
+        "leetcodeUrl": "https://leetcode.com/problems/queue-reconstruction-by-height/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Sorting Greedy",
+        "subPattern": "Ordered Insertion",
+        "relatedPatterns": [
+            "Sorting"
+        ],
+        "tags": [
+            "greedy"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Place taller people first.",
+        "intuition": "Taller people are unaffected by shorter insertions later.",
+        "commonMistakes": [
+            "Sorting in wrong order"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 9,
+        "title": "Non-overlapping Intervals",
+        "slug": "non-overlapping-intervals",
+        "leetcodeId": 435,
+        "leetcodeUrl": "https://leetcode.com/problems/non-overlapping-intervals/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Interval Greedy",
+        "subPattern": "Earliest Finish",
+        "relatedPatterns": [
+            "Intervals"
+        ],
+        "tags": [
+            "greedy",
+            "intervals"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Keep intervals with the earliest ending time.",
+        "intuition": "Earlier endings preserve more future space.",
+        "commonMistakes": [
+            "Keeping longer overlapping intervals"
+        ],
+        "timeEstimate": 28,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 10,
+        "title": "Minimum Number of Arrows to Burst Balloons",
+        "slug": "minimum-number-of-arrows-to-burst-balloons",
+        "leetcodeId": 452,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Interval Greedy",
+        "subPattern": "Overlap Compression",
+        "relatedPatterns": [
+            "Intervals"
+        ],
+        "tags": [
+            "greedy",
+            "intervals"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Shoot arrows at the earliest possible end point.",
+        "intuition": "One arrow can cover maximum overlapping balloons.",
+        "commonMistakes": [
+            "Updating overlap incorrectly"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 11,
+        "title": "Can Place Flowers",
+        "slug": "can-place-flowers",
+        "leetcodeId": 605,
+        "leetcodeUrl": "https://leetcode.com/problems/can-place-flowers/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "MEDIUM",
+        "pattern": "Local Greedy",
+        "subPattern": "Placement Validation",
+        "relatedPatterns": [
+            "Array"
+        ],
+        "tags": [
+            "greedy"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Place flowers whenever both neighbors are empty.",
+        "intuition": "Greedy local placement never harms future placements.",
+        "commonMistakes": [
+            "Boundary condition mistakes"
+        ],
+        "timeEstimate": 15,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 12,
+        "title": "Lemonade Change",
+        "slug": "lemonade-change",
+        "leetcodeId": 860,
+        "leetcodeUrl": "https://leetcode.com/problems/lemonade-change/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Simulation Greedy",
+        "subPattern": "Optimal Change",
+        "relatedPatterns": [
+            "Hash Map"
+        ],
+        "tags": [
+            "greedy"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Prefer giving larger bills first when possible.",
+        "intuition": "Saving smaller bills increases future flexibility.",
+        "commonMistakes": [
+            "Using three $5 instead of $10+$5"
+        ],
+        "timeEstimate": 18,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 13,
+        "title": "Bag of Tokens",
+        "slug": "bag-of-tokens",
+        "leetcodeId": 948,
+        "leetcodeUrl": "https://leetcode.com/problems/bag-of-tokens/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Two Pointer Greedy",
+        "subPattern": "Resource Conversion",
+        "relatedPatterns": [
+            "Sorting"
+        ],
+        "tags": [
+            "greedy",
+            "two-pointers"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Spend smallest token, regain power using largest token.",
+        "intuition": "Cheap score gain and expensive recovery maximize outcome.",
+        "commonMistakes": [
+            "Using large tokens too early"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 14,
+        "title": "Boats to Save People",
+        "slug": "boats-to-save-people",
+        "leetcodeId": 881,
+        "leetcodeUrl": "https://leetcode.com/problems/boats-to-save-people/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Two Pointer Greedy",
+        "subPattern": "Pair Optimization",
+        "relatedPatterns": [
+            "Sorting"
+        ],
+        "tags": [
+            "greedy",
+            "two-pointers"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Pair the lightest person with the heaviest if possible.",
+        "intuition": "Greedy pairing minimizes wasted capacity.",
+        "commonMistakes": [
+            "Not sorting first"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 15,
+        "title": "Wiggle Subsequence",
+        "slug": "wiggle-subsequence",
+        "leetcodeId": 376,
+        "leetcodeUrl": "https://leetcode.com/problems/wiggle-subsequence/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "State Greedy",
+        "subPattern": "Alternating Pattern",
+        "relatedPatterns": [
+            "DP"
+        ],
+        "tags": [
+            "greedy"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track direction changes between consecutive elements.",
+        "intuition": "Only turning points matter for optimal subsequence.",
+        "commonMistakes": [
+            "Keeping unnecessary middle elements"
+        ],
+        "timeEstimate": 28,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 16,
+        "title": "Maximum Units on a Truck",
+        "slug": "maximum-units-on-a-truck",
+        "leetcodeId": 1710,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-units-on-a-truck/",
+        "difficulty": "EASY",
+        "priority": "GOOD",
+        "frequency": "MEDIUM",
+        "pattern": "Sorting Greedy",
+        "subPattern": "Profit Maximization",
+        "relatedPatterns": [
+            "Heap"
+        ],
+        "tags": [
+            "greedy"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Take boxes with highest units first.",
+        "intuition": "Local maximum profit choices remain globally optimal.",
+        "commonMistakes": [
+            "Sorting wrong direction"
+        ],
+        "timeEstimate": 15,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 17,
+        "title": "Hand of Straights",
+        "slug": "hand-of-straights",
+        "leetcodeId": 846,
+        "leetcodeUrl": "https://leetcode.com/problems/hand-of-straights/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Sorting Greedy",
+        "subPattern": "Sequence Formation",
+        "relatedPatterns": [
+            "Hash Map"
+        ],
+        "tags": [
+            "greedy",
+            "hashing"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Always start sequences from the smallest available card.",
+        "intuition": "Smallest elements have the fewest placement options.",
+        "commonMistakes": [
+            "Starting sequences arbitrarily"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 18,
+        "title": "Remove K Digits",
+        "slug": "remove-k-digits",
+        "leetcodeId": 402,
+        "leetcodeUrl": "https://leetcode.com/problems/remove-k-digits/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Monotonic Greedy",
+        "subPattern": "Smallest Number",
+        "relatedPatterns": [
+            "Stack"
+        ],
+        "tags": [
+            "greedy",
+            "stack"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Remove larger previous digits whenever possible.",
+        "intuition": "Earlier larger digits hurt lexicographical minimality most.",
+        "commonMistakes": [
+            "Forgetting trailing removals"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 19,
+        "title": "Monotone Increasing Digits",
+        "slug": "monotone-increasing-digits",
+        "leetcodeId": 738,
+        "leetcodeUrl": "https://leetcode.com/problems/monotone-increasing-digits/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Digit Greedy",
+        "subPattern": "Backtracking Digits",
+        "relatedPatterns": [
+            "Math"
+        ],
+        "tags": [
+            "greedy"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "When order breaks, decrement previous digit and fill rest with 9s.",
+        "intuition": "Earlier digit corrections maximize remaining flexibility.",
+        "commonMistakes": [
+            "Fixing only one digit"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 20,
+        "title": "Minimum Add to Make Parentheses Valid",
+        "slug": "minimum-add-to-make-parentheses-valid",
+        "leetcodeId": 921,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-add-to-make-parentheses-valid/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Balance Greedy",
+        "subPattern": "Bracket Matching",
+        "relatedPatterns": [
+            "Stack"
+        ],
+        "tags": [
+            "greedy",
+            "string"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Track unmatched opening brackets.",
+        "intuition": "Every invalid closing bracket requires insertion immediately.",
+        "commonMistakes": [
+            "Negative balance mishandling"
+        ],
+        "timeEstimate": 20,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 21,
+        "title": "Valid Parenthesis String",
+        "slug": "valid-parenthesis-string",
+        "leetcodeId": 678,
+        "leetcodeUrl": "https://leetcode.com/problems/valid-parenthesis-string/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Range Greedy",
+        "subPattern": "Flexible Balance",
+        "relatedPatterns": [
+            "Stack"
+        ],
+        "tags": [
+            "greedy",
+            "string"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track minimum and maximum possible balance.",
+        "intuition": "Wildcard characters create balance ranges instead of exact states.",
+        "commonMistakes": [
+            "Tracking only one balance"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 22,
+        "title": "Split a String in Balanced Strings",
+        "slug": "split-a-string-in-balanced-strings",
+        "leetcodeId": 1221,
+        "leetcodeUrl": "https://leetcode.com/problems/split-a-string-in-balanced-strings/",
+        "difficulty": "EASY",
+        "priority": "OPTIONAL",
+        "frequency": "LOW",
+        "pattern": "Balance Greedy",
+        "subPattern": "Counter Matching",
+        "relatedPatterns": [
+            "String"
+        ],
+        "tags": [
+            "greedy"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Create a split whenever balance becomes zero.",
+        "intuition": "Balanced segments become independent immediately.",
+        "commonMistakes": [
+            "Missing valid split points"
+        ],
+        "timeEstimate": 10,
+        "revisionPriority": 2,
+        "isPro": false
+    },
+    {
+        "order": 23,
+        "title": "Dota2 Senate",
+        "slug": "dota2-senate",
+        "leetcodeId": 649,
+        "leetcodeUrl": "https://leetcode.com/problems/dota2-senate/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Queue Greedy",
+        "subPattern": "Turn Elimination",
+        "relatedPatterns": [
+            "Queue"
+        ],
+        "tags": [
+            "greedy"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Track surviving senators in turn order.",
+        "intuition": "Earlier active senators gain repeated future advantage.",
+        "commonMistakes": [
+            "Simulating inefficiently"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 24,
+        "title": "Maximum Swap",
+        "slug": "maximum-swap",
+        "leetcodeId": 670,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-swap/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Digit Greedy",
+        "subPattern": "Best Swap",
+        "relatedPatterns": [
+            "Array"
+        ],
+        "tags": [
+            "greedy"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Swap earliest smaller digit with largest later digit.",
+        "intuition": "Earlier digits contribute more to final value.",
+        "commonMistakes": [
+            "Choosing first instead of last maximum digit"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 25,
+        "title": "Broken Calculator",
+        "slug": "broken-calculator",
+        "leetcodeId": 991,
+        "leetcodeUrl": "https://leetcode.com/problems/broken-calculator/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Reverse Greedy",
+        "subPattern": "Backward Operations",
+        "relatedPatterns": [
+            "Math"
+        ],
+        "tags": [
+            "greedy"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Work backward from target to start.",
+        "intuition": "Reverse operations reduce branching complexity drastically.",
+        "commonMistakes": [
+            "Trying forward BFS"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 26,
+        "title": "Patching Array",
+        "slug": "patching-array",
+        "leetcodeId": 330,
+        "leetcodeUrl": "https://leetcode.com/problems/patching-array/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Coverage Greedy",
+        "subPattern": "Range Expansion",
+        "relatedPatterns": [
+            "Math"
+        ],
+        "tags": [
+            "greedy"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track the smallest uncovered number.",
+        "intuition": "Adding current coverage limit maximizes future coverage.",
+        "commonMistakes": [
+            "Adding arbitrary patch values"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 27,
+        "title": "Course Schedule III",
+        "slug": "course-schedule-iii",
+        "leetcodeId": 630,
+        "leetcodeUrl": "https://leetcode.com/problems/course-schedule-iii/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Heap Greedy",
+        "subPattern": "Duration Optimization",
+        "relatedPatterns": [
+            "Heap"
+        ],
+        "tags": [
+            "greedy",
+            "heap"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Remove the longest course when schedule exceeds deadline.",
+        "intuition": "Dropping the most expensive duration preserves maximum flexibility.",
+        "commonMistakes": [
+            "Removing wrong course"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 28,
+        "title": "Maximum Length of Pair Chain",
+        "slug": "maximum-length-of-pair-chain",
+        "leetcodeId": 646,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-length-of-pair-chain/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Interval Greedy",
+        "subPattern": "Earliest Finish",
+        "relatedPatterns": [
+            "Intervals"
+        ],
+        "tags": [
+            "greedy"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Always pick the pair ending earliest.",
+        "intuition": "Earlier finishing preserves future pairing opportunities.",
+        "commonMistakes": [
+            "Sorting by start time"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 5,
+        "isPro": false
+    }
+]

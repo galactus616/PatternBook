@@ -10,6 +10,7 @@ import authRoutes from "./routes/auth.routes.js";
 import dashboardRoutes from "./routes/dashboard.routes.js";
 import paymentRoutes from "./routes/payment.routes.js";
 import waitlistRoutes from "./routes/waitlist.routes.js";
+import topicRoutes from "./routes/topic.routes.js";
 
 
 const app = express();
@@ -27,6 +28,7 @@ app.use((req, res, next) => {
 
 // routes
 app.use("/v1/auth", authRoutes);
+app.use("/v1/topics", topicRoutes);
 app.use("/v1/problems", problemRoutes);
 app.use("/v1/progress", progressRoutes);
 app.use("/v1/dashboard", dashboardRoutes);

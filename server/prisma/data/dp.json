@@ -1,0 +1,3127 @@
+[
+    {
+        "order": 1,
+        "title": "Climbing Stairs",
+        "slug": "climbing-stairs",
+        "leetcodeId": 70,
+        "leetcodeUrl": "https://leetcode.com/problems/climbing-stairs/",
+        "difficulty": "EASY",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "1D DP",
+        "subPattern": "Fibonacci DP",
+        "relatedPatterns": [
+            "Memoization"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Ways to reach current stair depend on previous two stairs.",
+        "intuition": "Every step comes from either one-step or two-step jump.",
+        "commonMistakes": [
+            "Incorrect base cases"
+        ],
+        "timeEstimate": 15,
+        "revisionPriority": 10,
+        "isPro": false
+    },
+    {
+        "order": 2,
+        "title": "Min Cost Climbing Stairs",
+        "slug": "min-cost-climbing-stairs",
+        "leetcodeId": 746,
+        "leetcodeUrl": "https://leetcode.com/problems/min-cost-climbing-stairs/",
+        "difficulty": "EASY",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "1D DP",
+        "subPattern": "Minimum Cost",
+        "relatedPatterns": [
+            "Fibonacci DP"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Current minimum cost depends on previous two states.",
+        "intuition": "Optimal path is built from optimal smaller paths.",
+        "commonMistakes": [
+            "Paying cost for top floor incorrectly"
+        ],
+        "timeEstimate": 18,
+        "revisionPriority": 9,
+        "isPro": false
+    },
+    {
+        "order": 3,
+        "title": "House Robber",
+        "slug": "house-robber",
+        "leetcodeId": 198,
+        "leetcodeUrl": "https://leetcode.com/problems/house-robber/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "1D DP",
+        "subPattern": "Pick or Skip",
+        "relatedPatterns": [
+            "Kadane"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "At each house choose between robbing or skipping.",
+        "intuition": "Current choice affects adjacent availability.",
+        "commonMistakes": [
+            "Not handling first house properly"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 4,
+        "title": "House Robber II",
+        "slug": "house-robber-ii",
+        "leetcodeId": 213,
+        "leetcodeUrl": "https://leetcode.com/problems/house-robber-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Circular DP",
+        "subPattern": "Pick or Skip",
+        "relatedPatterns": [
+            "House Robber"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Solve twice: excluding first house and excluding last house.",
+        "intuition": "Circular adjacency breaks normal linear DP.",
+        "commonMistakes": [
+            "Including both first and last houses"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 5,
+        "title": "Delete and Earn",
+        "slug": "delete-and-earn",
+        "leetcodeId": 740,
+        "leetcodeUrl": "https://leetcode.com/problems/delete-and-earn/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Frequency DP",
+        "subPattern": "House Robber Transformation",
+        "relatedPatterns": [
+            "House Robber"
+        ],
+        "tags": [
+            "dp",
+            "hashing"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Transform numbers into indexed values like houses.",
+        "intuition": "Adjacent values behave like adjacent houses.",
+        "commonMistakes": [
+            "Processing raw array directly"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 6,
+        "title": "Maximum Subarray",
+        "slug": "maximum-subarray",
+        "leetcodeId": 53,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-subarray/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Kadane Algorithm",
+        "subPattern": "Running Maximum",
+        "relatedPatterns": [
+            "Greedy"
+        ],
+        "tags": [
+            "dp",
+            "array"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Extend current subarray only if it improves the sum.",
+        "intuition": "Negative prefixes hurt future subarrays.",
+        "commonMistakes": [
+            "Resetting sum incorrectly"
+        ],
+        "timeEstimate": 20,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 7,
+        "title": "Maximum Product Subarray",
+        "slug": "maximum-product-subarray",
+        "leetcodeId": 152,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-product-subarray/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "State DP",
+        "subPattern": "Min Max Tracking",
+        "relatedPatterns": [
+            "Kadane"
+        ],
+        "tags": [
+            "dp",
+            "array"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Track both maximum and minimum products.",
+        "intuition": "Negative numbers can flip smallest into largest.",
+        "commonMistakes": [
+            "Tracking only maximum product"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 8,
+        "title": "Decode Ways",
+        "slug": "decode-ways",
+        "leetcodeId": 91,
+        "leetcodeUrl": "https://leetcode.com/problems/decode-ways/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "String DP",
+        "subPattern": "Prefix Decisions",
+        "relatedPatterns": [
+            "Memoization"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Current position depends on valid one-digit and two-digit decodings.",
+        "intuition": "Every valid prefix contributes to future combinations.",
+        "commonMistakes": [
+            "Incorrect handling of zero"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 9,
+        "title": "Coin Change",
+        "slug": "coin-change",
+        "leetcodeId": 322,
+        "leetcodeUrl": "https://leetcode.com/problems/coin-change/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Unbounded Knapsack",
+        "subPattern": "Minimum Coins",
+        "relatedPatterns": [
+            "Knapsack"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Try taking each coin and minimize remaining amount.",
+        "intuition": "Optimal amount depends on smaller optimal subamounts.",
+        "commonMistakes": [
+            "Using greedy coin selection"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 10,
+        "title": "Perfect Squares",
+        "slug": "perfect-squares",
+        "leetcodeId": 279,
+        "leetcodeUrl": "https://leetcode.com/problems/perfect-squares/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Unbounded Knapsack",
+        "subPattern": "Minimum Count",
+        "relatedPatterns": [
+            "Coin Change"
+        ],
+        "tags": [
+            "dp",
+            "math"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Treat perfect squares like unlimited coins.",
+        "intuition": "Current answer depends on previously solved smaller targets.",
+        "commonMistakes": [
+            "Generating squares inefficiently"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 11,
+        "title": "Partition Equal Subset Sum",
+        "slug": "partition-equal-subset-sum",
+        "leetcodeId": 416,
+        "leetcodeUrl": "https://leetcode.com/problems/partition-equal-subset-sum/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "0/1 Knapsack",
+        "subPattern": "Subset Sum",
+        "relatedPatterns": [
+            "Knapsack"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Check whether half of total sum can be formed.",
+        "intuition": "Equal partition reduces to subset sum existence.",
+        "commonMistakes": [
+            "Wrong DP traversal direction"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 12,
+        "title": "Target Sum",
+        "slug": "target-sum",
+        "leetcodeId": 494,
+        "leetcodeUrl": "https://leetcode.com/problems/target-sum/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Subset Transformation",
+        "subPattern": "Count Ways",
+        "relatedPatterns": [
+            "Knapsack"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Convert sign assignment problem into subset sum counting.",
+        "intuition": "Positive-negative partition determines final target.",
+        "commonMistakes": [
+            "Not handling zeros correctly"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 13,
+        "title": "Longest Increasing Subsequence",
+        "slug": "longest-increasing-subsequence",
+        "leetcodeId": 300,
+        "leetcodeUrl": "https://leetcode.com/problems/longest-increasing-subsequence/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "1D DP",
+        "subPattern": "LIS",
+        "relatedPatterns": [
+            "Binary Search"
+        ],
+        "tags": [
+            "dp",
+            "array"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "For every index, extend previous increasing subsequences.",
+        "intuition": "Optimal subsequences grow from smaller valid subsequences.",
+        "commonMistakes": [
+            "Comparing wrong previous states"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 14,
+        "title": "Longest Continuous Increasing Subsequence",
+        "slug": "longest-continuous-increasing-subsequence",
+        "leetcodeId": 674,
+        "leetcodeUrl": "https://leetcode.com/problems/longest-continuous-increasing-subsequence/",
+        "difficulty": "EASY",
+        "priority": "OPTIONAL",
+        "frequency": "LOW",
+        "pattern": "1D DP",
+        "subPattern": "Continuous Sequence",
+        "relatedPatterns": [
+            "Sliding Window"
+        ],
+        "tags": [
+            "dp",
+            "array"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Extend sequence only if current number is larger.",
+        "intuition": "Continuous sequences reset immediately after a break.",
+        "commonMistakes": [
+            "Confusing with normal LIS"
+        ],
+        "timeEstimate": 12,
+        "revisionPriority": 2,
+        "isPro": false
+    },
+    {
+        "order": 15,
+        "title": "Longest Arithmetic Subsequence",
+        "slug": "longest-arithmetic-subsequence",
+        "leetcodeId": 1027,
+        "leetcodeUrl": "https://leetcode.com/problems/longest-arithmetic-subsequence/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "HashMap DP",
+        "subPattern": "Difference Tracking",
+        "relatedPatterns": [
+            "LIS"
+        ],
+        "tags": [
+            "dp",
+            "hashing"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track best subsequence length for each difference.",
+        "intuition": "Common differences define arithmetic subsequences.",
+        "commonMistakes": [
+            "Using only one global difference"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 16,
+        "title": "Word Break",
+        "slug": "word-break",
+        "leetcodeId": 139,
+        "leetcodeUrl": "https://leetcode.com/problems/word-break/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Prefix DP",
+        "subPattern": "String Partition",
+        "relatedPatterns": [
+            "Trie"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Check whether any previous valid prefix can extend.",
+        "intuition": "A valid split depends on previously valid partitions.",
+        "commonMistakes": [
+            "Checking all substrings inefficiently"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 17,
+        "title": "Combination Sum IV",
+        "slug": "combination-sum-iv",
+        "leetcodeId": 377,
+        "leetcodeUrl": "https://leetcode.com/problems/combination-sum-iv/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Count DP",
+        "subPattern": "Ordered Combinations",
+        "relatedPatterns": [
+            "Coin Change"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Build ways for every target amount from smaller amounts.",
+        "intuition": "Every number contributes to future combinations.",
+        "commonMistakes": [
+            "Confusing combinations with permutations"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 18,
+        "title": "Integer Break",
+        "slug": "integer-break",
+        "leetcodeId": 343,
+        "leetcodeUrl": "https://leetcode.com/problems/integer-break/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Partition DP",
+        "subPattern": "Maximum Product",
+        "relatedPatterns": [
+            "Math"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Try breaking number into every possible pair.",
+        "intuition": "Optimal partitions grow from smaller optimal partitions.",
+        "commonMistakes": [
+            "Forgetting non-broken case comparison"
+        ],
+        "timeEstimate": 28,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 19,
+        "title": "Palindrome Partitioning II",
+        "slug": "palindrome-partitioning-ii",
+        "leetcodeId": 132,
+        "leetcodeUrl": "https://leetcode.com/problems/palindrome-partitioning-ii/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Partition DP",
+        "subPattern": "Minimum Cuts",
+        "relatedPatterns": [
+            "Palindrome DP"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Precompute palindrome ranges first.",
+        "intuition": "Optimal cuts depend on smaller palindrome partitions.",
+        "commonMistakes": [
+            "Checking palindrome repeatedly"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 20,
+        "title": "Jump Game VI",
+        "slug": "jump-game-vi",
+        "leetcodeId": 1696,
+        "leetcodeUrl": "https://leetcode.com/problems/jump-game-vi/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Deque DP",
+        "subPattern": "Sliding Maximum",
+        "relatedPatterns": [
+            "Monotonic Queue"
+        ],
+        "tags": [
+            "dp",
+            "deque"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Maintain best DP values inside current jump range.",
+        "intuition": "Only maximum previous state matters for transition.",
+        "commonMistakes": [
+            "Recomputing max repeatedly"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 21,
+        "title": "Solving Questions With Brainpower",
+        "slug": "solving-questions-with-brainpower",
+        "leetcodeId": 2140,
+        "leetcodeUrl": "https://leetcode.com/problems/solving-questions-with-brainpower/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Pick or Skip DP",
+        "subPattern": "Forward Decisions",
+        "relatedPatterns": [
+            "House Robber"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Choose between solving current question or skipping it.",
+        "intuition": "Current action determines future reachable states.",
+        "commonMistakes": [
+            "Incorrect next index calculation"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 22,
+        "title": "Number of Longest Increasing Subsequence",
+        "slug": "number-of-longest-increasing-subsequence",
+        "leetcodeId": 673,
+        "leetcodeUrl": "https://leetcode.com/problems/number-of-longest-increasing-subsequence/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "LIS DP",
+        "subPattern": "Count Subsequences",
+        "relatedPatterns": [
+            "Longest Increasing Subsequence"
+        ],
+        "tags": [
+            "dp",
+            "array"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track both LIS length and number of ways.",
+        "intuition": "Different subsequences can produce same optimal length.",
+        "commonMistakes": [
+            "Incorrect count accumulation"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 23,
+        "title": "Best Sightseeing Pair",
+        "slug": "best-sightseeing-pair",
+        "leetcodeId": 1014,
+        "leetcodeUrl": "https://leetcode.com/problems/best-sightseeing-pair/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Running DP",
+        "subPattern": "Best Previous State",
+        "relatedPatterns": [
+            "Kadane"
+        ],
+        "tags": [
+            "dp",
+            "array"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Maintain best previous value[i] + i.",
+        "intuition": "Future scores depend only on strongest previous candidate.",
+        "commonMistakes": [
+            "Rechecking all previous pairs"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 24,
+        "title": "Count Ways To Build Good Strings",
+        "slug": "count-ways-to-build-good-strings",
+        "leetcodeId": 2466,
+        "leetcodeUrl": "https://leetcode.com/problems/count-ways-to-build-good-strings/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Counting DP",
+        "subPattern": "Forward Construction",
+        "relatedPatterns": [
+            "Memoization"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Build larger lengths from smaller reachable lengths.",
+        "intuition": "Each valid construction expands future possibilities.",
+        "commonMistakes": [
+            "Missing modulo operations"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 4,
+        "isPro": false
+    },
+    {
+        "order": 25,
+        "title": "Unique Paths",
+        "slug": "unique-paths",
+        "leetcodeId": 62,
+        "leetcodeUrl": "https://leetcode.com/problems/unique-paths/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Grid DP",
+        "subPattern": "Path Counting",
+        "relatedPatterns": [
+            "Combinatorics"
+        ],
+        "tags": [
+            "dp",
+            "grid"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Ways to reach a cell come from top and left.",
+        "intuition": "Every path builds from smaller reachable positions.",
+        "commonMistakes": [
+            "Incorrect first row initialization"
+        ],
+        "timeEstimate": 20,
+        "revisionPriority": 10,
+        "isPro": false
+    },
+    {
+        "order": 26,
+        "title": "Unique Paths II",
+        "slug": "unique-paths-ii",
+        "leetcodeId": 63,
+        "leetcodeUrl": "https://leetcode.com/problems/unique-paths-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Grid DP",
+        "subPattern": "Obstacle Paths",
+        "relatedPatterns": [
+            "Unique Paths"
+        ],
+        "tags": [
+            "dp",
+            "grid"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Blocked cells contribute zero paths.",
+        "intuition": "Obstacles break normal path propagation.",
+        "commonMistakes": [
+            "Handling blocked starting cell incorrectly"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 27,
+        "title": "Minimum Path Sum",
+        "slug": "minimum-path-sum",
+        "leetcodeId": 64,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-path-sum/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Grid DP",
+        "subPattern": "Minimum Cost Path",
+        "relatedPatterns": [
+            "Dijkstra"
+        ],
+        "tags": [
+            "dp",
+            "grid"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Current minimum comes from top or left minimum.",
+        "intuition": "Optimal path cost builds from smaller optimal costs.",
+        "commonMistakes": [
+            "Wrong boundary initialization"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 28,
+        "title": "Triangle",
+        "slug": "triangle",
+        "leetcodeId": 120,
+        "leetcodeUrl": "https://leetcode.com/problems/triangle/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bottom Up DP",
+        "subPattern": "Triangle Paths",
+        "relatedPatterns": [
+            "Grid DP"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Start from bottom row and move upward.",
+        "intuition": "Each cell chooses best child path beneath it.",
+        "commonMistakes": [
+            "Incorrect index transitions"
+        ],
+        "timeEstimate": 28,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 29,
+        "title": "Dungeon Game",
+        "slug": "dungeon-game",
+        "leetcodeId": 174,
+        "leetcodeUrl": "https://leetcode.com/problems/dungeon-game/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Reverse Grid DP",
+        "subPattern": "Minimum Health",
+        "relatedPatterns": [
+            "Grid DP"
+        ],
+        "tags": [
+            "dp",
+            "grid"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Work backward from destination cell.",
+        "intuition": "Future survival requirements determine current minimum health.",
+        "commonMistakes": [
+            "Trying greedy forward traversal"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 30,
+        "title": "Maximal Square",
+        "slug": "maximal-square",
+        "leetcodeId": 221,
+        "leetcodeUrl": "https://leetcode.com/problems/maximal-square/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Matrix DP",
+        "subPattern": "Square Expansion",
+        "relatedPatterns": [
+            "Histogram"
+        ],
+        "tags": [
+            "dp",
+            "matrix"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Square size depends on top, left, and diagonal cells.",
+        "intuition": "A square expands only if all neighboring squares exist.",
+        "commonMistakes": [
+            "Ignoring diagonal dependency"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 31,
+        "title": "Maximal Rectangle",
+        "slug": "maximal-rectangle",
+        "leetcodeId": 85,
+        "leetcodeUrl": "https://leetcode.com/problems/maximal-rectangle/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Histogram DP",
+        "subPattern": "Rectangle Expansion",
+        "relatedPatterns": [
+            "Largest Rectangle in Histogram"
+        ],
+        "tags": [
+            "dp",
+            "stack",
+            "matrix"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Treat each row as histogram heights.",
+        "intuition": "Rectangle areas can be computed row-by-row incrementally.",
+        "commonMistakes": [
+            "Resetting heights incorrectly"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 32,
+        "title": "Cherry Pickup II",
+        "slug": "cherry-pickup-ii",
+        "leetcodeId": 1463,
+        "leetcodeUrl": "https://leetcode.com/problems/cherry-pickup-ii/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "3D DP",
+        "subPattern": "Multi Agent Grid",
+        "relatedPatterns": [
+            "Memoization"
+        ],
+        "tags": [
+            "dp",
+            "grid"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "State = row + both robot column positions.",
+        "intuition": "Two moving agents create combined state transitions.",
+        "commonMistakes": [
+            "Double counting cherries"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 33,
+        "title": "Out of Boundary Paths",
+        "slug": "out-of-boundary-paths",
+        "leetcodeId": 576,
+        "leetcodeUrl": "https://leetcode.com/problems/out-of-boundary-paths/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Memoization DP",
+        "subPattern": "Move Counting",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "dp",
+            "grid"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Memoize row, column, and remaining moves.",
+        "intuition": "Repeated movement states overlap heavily.",
+        "commonMistakes": [
+            "Not applying modulo"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 34,
+        "title": "Minimum Falling Path Sum",
+        "slug": "minimum-falling-path-sum",
+        "leetcodeId": 931,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-falling-path-sum/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Grid DP",
+        "subPattern": "Diagonal Transitions",
+        "relatedPatterns": [
+            "Triangle"
+        ],
+        "tags": [
+            "dp",
+            "grid"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Each cell can come from three upper directions.",
+        "intuition": "Optimal downward path depends on best upper predecessor.",
+        "commonMistakes": [
+            "Boundary index mistakes"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 35,
+        "title": "Longest Increasing Path in a Matrix",
+        "slug": "longest-increasing-path-in-a-matrix",
+        "leetcodeId": 329,
+        "leetcodeUrl": "https://leetcode.com/problems/longest-increasing-path-in-a-matrix/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "DFS DP",
+        "subPattern": "Memoized Traversal",
+        "relatedPatterns": [
+            "Graph DFS"
+        ],
+        "tags": [
+            "dp",
+            "matrix",
+            "dfs"
+        ],
+        "companies": [
+            "Google",
+            "Amazon"
+        ],
+        "hint": "Memoize longest path starting from each cell.",
+        "intuition": "Increasing constraints create DAG-like dependencies.",
+        "commonMistakes": [
+            "Recomputing paths repeatedly"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 36,
+        "title": "Count Square Submatrices with All Ones",
+        "slug": "count-square-submatrices-with-all-ones",
+        "leetcodeId": 1277,
+        "leetcodeUrl": "https://leetcode.com/problems/count-square-submatrices-with-all-ones/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Matrix DP",
+        "subPattern": "Square Counting",
+        "relatedPatterns": [
+            "Maximal Square"
+        ],
+        "tags": [
+            "dp",
+            "matrix"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "DP value equals largest square ending at current cell.",
+        "intuition": "Every larger square contains smaller valid squares.",
+        "commonMistakes": [
+            "Using max instead of min neighbor"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 37,
+        "title": "0/1 Knapsack",
+        "slug": "01-knapsack",
+        "leetcodeId": null,
+        "leetcodeUrl": "",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "0/1 Knapsack",
+        "subPattern": "Classic Knapsack",
+        "relatedPatterns": [
+            "Subset Sum"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "General DP"
+        ],
+        "hint": "For every item choose take or skip.",
+        "intuition": "Optimal capacity value depends on smaller capacities.",
+        "commonMistakes": [
+            "Wrong reverse traversal in 1D DP"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 38,
+        "title": "Coin Change II",
+        "slug": "coin-change-ii",
+        "leetcodeId": 518,
+        "leetcodeUrl": "https://leetcode.com/problems/coin-change-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Unbounded Knapsack",
+        "subPattern": "Count Combinations",
+        "relatedPatterns": [
+            "Coin Change"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Process coins one by one to avoid duplicate orders.",
+        "intuition": "Each coin expands future reachable combinations.",
+        "commonMistakes": [
+            "Counting permutations instead of combinations"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 39,
+        "title": "Last Stone Weight II",
+        "slug": "last-stone-weight-ii",
+        "leetcodeId": 1049,
+        "leetcodeUrl": "https://leetcode.com/problems/last-stone-weight-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Subset Sum",
+        "subPattern": "Minimum Difference",
+        "relatedPatterns": [
+            "Partition Equal Subset Sum"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Split stones into two groups with minimum difference.",
+        "intuition": "Stone smashing reduces to balanced partitioning.",
+        "commonMistakes": [
+            "Trying direct simulation"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 40,
+        "title": "Ones and Zeroes",
+        "slug": "ones-and-zeroes",
+        "leetcodeId": 474,
+        "leetcodeUrl": "https://leetcode.com/problems/ones-and-zeroes/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "2D Knapsack",
+        "subPattern": "Multi Constraint",
+        "relatedPatterns": [
+            "0/1 Knapsack"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "State depends on remaining zeros and ones capacity.",
+        "intuition": "Each string consumes two independent resources.",
+        "commonMistakes": [
+            "Forward iteration causing reuse"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 41,
+        "title": "Profitable Schemes",
+        "slug": "profitable-schemes",
+        "leetcodeId": 879,
+        "leetcodeUrl": "https://leetcode.com/problems/profitable-schemes/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "3D Knapsack",
+        "subPattern": "Profit Counting",
+        "relatedPatterns": [
+            "State DP"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "State tracks members used and achieved profit.",
+        "intuition": "Each crime introduces new resource-profit transitions.",
+        "commonMistakes": [
+            "Incorrect modulo handling"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 42,
+        "title": "Find Target Sum Ways",
+        "slug": "find-target-sum-ways",
+        "leetcodeId": 494,
+        "leetcodeUrl": "https://leetcode.com/problems/target-sum/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Subset Sum",
+        "subPattern": "Count Partitions",
+        "relatedPatterns": [
+            "Target Sum"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Convert sign assignment into subset sum counting.",
+        "intuition": "Positive-negative separation determines target formation.",
+        "commonMistakes": [
+            "Ignoring parity constraints"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 43,
+        "title": "Rod Cutting",
+        "slug": "rod-cutting",
+        "leetcodeId": null,
+        "leetcodeUrl": "",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Unbounded Knapsack",
+        "subPattern": "Maximum Profit",
+        "relatedPatterns": [
+            "Coin Change"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Classic DP"
+        ],
+        "hint": "Each cut size can be reused multiple times.",
+        "intuition": "Best rod value comes from optimal smaller cuts.",
+        "commonMistakes": [
+            "Treating as 0/1 knapsack"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 44,
+        "title": "Partition to K Equal Sum Subsets",
+        "slug": "partition-to-k-equal-sum-subsets",
+        "leetcodeId": 698,
+        "leetcodeUrl": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Bitmask DP",
+        "subPattern": "Subset Partition",
+        "relatedPatterns": [
+            "Backtracking"
+        ],
+        "tags": [
+            "dp",
+            "bitmask"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track used elements and current subset sum.",
+        "intuition": "Subset completion naturally transitions into next bucket.",
+        "commonMistakes": [
+            "Exploring duplicate states repeatedly"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 45,
+        "title": "Tallest Billboard",
+        "slug": "tallest-billboard",
+        "leetcodeId": 956,
+        "leetcodeUrl": "https://leetcode.com/problems/tallest-billboard/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Difference DP",
+        "subPattern": "Balanced Partition",
+        "relatedPatterns": [
+            "Subset Sum"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "State represents difference between two supports.",
+        "intuition": "Balancing heights matters more than exact subsets.",
+        "commonMistakes": [
+            "Tracking only total sums"
+        ],
+        "timeEstimate": 65,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 46,
+        "title": "Reducing Dishes",
+        "slug": "reducing-dishes",
+        "leetcodeId": 1402,
+        "leetcodeUrl": "https://leetcode.com/problems/reducing-dishes/",
+        "difficulty": "HARD",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Decision DP",
+        "subPattern": "Order Contribution",
+        "relatedPatterns": [
+            "Greedy"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Decide whether including current dish improves total score.",
+        "intuition": "Earlier chosen dishes affect all future multipliers.",
+        "commonMistakes": [
+            "Ignoring sorting"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 47,
+        "title": "Russian Doll Envelopes",
+        "slug": "russian-doll-envelopes",
+        "leetcodeId": 354,
+        "leetcodeUrl": "https://leetcode.com/problems/russian-doll-envelopes/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "LIS",
+        "subPattern": "2D LIS",
+        "relatedPatterns": [
+            "Binary Search"
+        ],
+        "tags": [
+            "dp",
+            "sorting"
+        ],
+        "companies": [
+            "Google",
+            "Amazon"
+        ],
+        "hint": "Sort width ascending and height descending before LIS.",
+        "intuition": "Proper sorting converts nesting into 1D LIS.",
+        "commonMistakes": [
+            "Sorting equal widths incorrectly"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 48,
+        "title": "Longest String Chain",
+        "slug": "longest-string-chain",
+        "leetcodeId": 1048,
+        "leetcodeUrl": "https://leetcode.com/problems/longest-string-chain/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "LIS",
+        "subPattern": "String Transformation",
+        "relatedPatterns": [
+            "HashMap DP"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Sort words by length and try removing one character.",
+        "intuition": "Smaller valid words build larger valid chains.",
+        "commonMistakes": [
+            "Processing longer words too early"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 49,
+        "title": "Maximum Length of Pair Chain",
+        "slug": "maximum-length-of-pair-chain",
+        "leetcodeId": 646,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-length-of-pair-chain/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "LIS",
+        "subPattern": "Pair Sequences",
+        "relatedPatterns": [
+            "Greedy"
+        ],
+        "tags": [
+            "dp",
+            "greedy"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Extend chains only when current pair can follow previous.",
+        "intuition": "Pair ordering forms increasing subsequence relationships.",
+        "commonMistakes": [
+            "Sorting incorrectly"
+        ],
+        "timeEstimate": 30,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 50,
+        "title": "Largest Divisible Subset",
+        "slug": "largest-divisible-subset",
+        "leetcodeId": 368,
+        "leetcodeUrl": "https://leetcode.com/problems/largest-divisible-subset/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "LIS",
+        "subPattern": "Divisibility Chain",
+        "relatedPatterns": [
+            "Subset DP"
+        ],
+        "tags": [
+            "dp",
+            "math"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Sort numbers and extend divisible chains.",
+        "intuition": "Divisibility behaves similarly to increasing ordering.",
+        "commonMistakes": [
+            "Not reconstructing subset properly"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 51,
+        "title": "Best Team With No Conflicts",
+        "slug": "best-team-with-no-conflicts",
+        "leetcodeId": 1626,
+        "leetcodeUrl": "https://leetcode.com/problems/best-team-with-no-conflicts/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Weighted LIS",
+        "subPattern": "Score Maximization",
+        "relatedPatterns": [
+            "Sorting"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Sort by age and build best valid score sequence.",
+        "intuition": "Conflict constraints create LIS-like ordering.",
+        "commonMistakes": [
+            "Wrong sorting priority"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 52,
+        "title": "Number of Longest Increasing Subsequence",
+        "slug": "number-of-longest-increasing-subsequence",
+        "leetcodeId": 673,
+        "leetcodeUrl": "https://leetcode.com/problems/number-of-longest-increasing-subsequence/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "LIS",
+        "subPattern": "Count LIS",
+        "relatedPatterns": [
+            "Longest Increasing Subsequence"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track both LIS length and count.",
+        "intuition": "Multiple subsequences may share optimal length.",
+        "commonMistakes": [
+            "Overwriting counts incorrectly"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 53,
+        "title": "Increasing Triplet Subsequence",
+        "slug": "increasing-triplet-subsequence",
+        "leetcodeId": 334,
+        "leetcodeUrl": "https://leetcode.com/problems/increasing-triplet-subsequence/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Greedy LIS",
+        "subPattern": "Length-3 Detection",
+        "relatedPatterns": [
+            "Greedy"
+        ],
+        "tags": [
+            "dp",
+            "greedy"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Maintain smallest and second smallest values.",
+        "intuition": "A third larger value confirms increasing triplet existence.",
+        "commonMistakes": [
+            "Updating second value incorrectly"
+        ],
+        "timeEstimate": 25,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 54,
+        "title": "Minimum Number of Removals to Make Mountain Array",
+        "slug": "minimum-number-of-removals-to-make-mountain-array",
+        "leetcodeId": 1671,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-number-of-removals-to-make-mountain-array/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bitonic LIS",
+        "subPattern": "Mountain Sequence",
+        "relatedPatterns": [
+            "Longest Increasing Subsequence"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Compute LIS from left and right for every index.",
+        "intuition": "Mountain arrays require increasing then decreasing subsequences.",
+        "commonMistakes": [
+            "Using invalid peak positions"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 55,
+        "title": "Longest Common Subsequence",
+        "slug": "longest-common-subsequence",
+        "leetcodeId": 1143,
+        "leetcodeUrl": "https://leetcode.com/problems/longest-common-subsequence/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "2D String DP",
+        "subPattern": "LCS",
+        "relatedPatterns": [
+            "Edit Distance"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "If characters match, extend diagonally.",
+        "intuition": "Matching characters contribute to common subsequences.",
+        "commonMistakes": [
+            "Incorrect transition when chars differ"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 56,
+        "title": "Edit Distance",
+        "slug": "edit-distance",
+        "leetcodeId": 72,
+        "leetcodeUrl": "https://leetcode.com/problems/edit-distance/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "2D String DP",
+        "subPattern": "Transformation Cost",
+        "relatedPatterns": [
+            "Longest Common Subsequence"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Try insert, delete, and replace operations.",
+        "intuition": "Optimal transformations depend on smaller prefixes.",
+        "commonMistakes": [
+            "Wrong base initialization"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 57,
+        "title": "Distinct Subsequences",
+        "slug": "distinct-subsequences",
+        "leetcodeId": 115,
+        "leetcodeUrl": "https://leetcode.com/problems/distinct-subsequences/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Subsequence DP",
+        "subPattern": "Count Subsequences",
+        "relatedPatterns": [
+            "LCS"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "When characters match, choose take or skip.",
+        "intuition": "Every matching character creates branching possibilities.",
+        "commonMistakes": [
+            "Double counting subsequences"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 58,
+        "title": "Longest Palindromic Subsequence",
+        "slug": "longest-palindromic-subsequence",
+        "leetcodeId": 516,
+        "leetcodeUrl": "https://leetcode.com/problems/longest-palindromic-subsequence/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Interval String DP",
+        "subPattern": "Palindrome DP",
+        "relatedPatterns": [
+            "LCS"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Expand inward using left and right pointers.",
+        "intuition": "Matching outer characters extend palindrome length.",
+        "commonMistakes": [
+            "Incorrect substring traversal order"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 59,
+        "title": "Palindromic Substrings",
+        "slug": "palindromic-substrings",
+        "leetcodeId": 647,
+        "leetcodeUrl": "https://leetcode.com/problems/palindromic-substrings/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Palindrome DP",
+        "subPattern": "Substring Expansion",
+        "relatedPatterns": [
+            "Expand Around Center"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "A substring is palindrome if inner substring is palindrome.",
+        "intuition": "Larger palindromes build from smaller valid centers.",
+        "commonMistakes": [
+            "Missing length 1 or 2 cases"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 60,
+        "title": "Regular Expression Matching",
+        "slug": "regular-expression-matching",
+        "leetcodeId": 10,
+        "leetcodeUrl": "https://leetcode.com/problems/regular-expression-matching/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "String Matching DP",
+        "subPattern": "Wildcard Matching",
+        "relatedPatterns": [
+            "Wildcard Matching"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Google",
+            "Meta"
+        ],
+        "hint": "Handle '.' and '*' separately in transitions.",
+        "intuition": "Wildcard operators create branching match possibilities.",
+        "commonMistakes": [
+            "Incorrect '*' handling"
+        ],
+        "timeEstimate": 65,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 61,
+        "title": "Wildcard Matching",
+        "slug": "wildcard-matching",
+        "leetcodeId": 44,
+        "leetcodeUrl": "https://leetcode.com/problems/wildcard-matching/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "String Matching DP",
+        "subPattern": "Pattern Matching",
+        "relatedPatterns": [
+            "Regular Expression Matching"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "'*' can represent empty or multiple characters.",
+        "intuition": "Wildcard expansion creates multiple valid transitions.",
+        "commonMistakes": [
+            "Greedy-only approaches failing edge cases"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 62,
+        "title": "Shortest Common Supersequence",
+        "slug": "shortest-common-supersequence",
+        "leetcodeId": 1092,
+        "leetcodeUrl": "https://leetcode.com/problems/shortest-common-supersequence/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "LCS Reconstruction",
+        "subPattern": "String Merge",
+        "relatedPatterns": [
+            "Longest Common Subsequence"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Build result using LCS transitions.",
+        "intuition": "Common subsequences avoid duplicate insertions.",
+        "commonMistakes": [
+            "Incorrect reconstruction order"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 63,
+        "title": "Interleaving String",
+        "slug": "interleaving-string",
+        "leetcodeId": 97,
+        "leetcodeUrl": "https://leetcode.com/problems/interleaving-string/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "2D String DP",
+        "subPattern": "Merge Validation",
+        "relatedPatterns": [
+            "Memoization"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "State depends on positions in both source strings.",
+        "intuition": "Each character must come from one valid source progression.",
+        "commonMistakes": [
+            "Incorrect index calculations"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 64,
+        "title": "Minimum ASCII Delete Sum for Two Strings",
+        "slug": "minimum-ascii-delete-sum-for-two-strings",
+        "leetcodeId": 712,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-ascii-delete-sum-for-two-strings/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "2D String DP",
+        "subPattern": "Minimum Cost Alignment",
+        "relatedPatterns": [
+            "Edit Distance"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Delete mismatched characters with minimum total cost.",
+        "intuition": "Optimal alignment minimizes deletion penalties.",
+        "commonMistakes": [
+            "Using character count instead of ASCII values"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 65,
+        "title": "Count Different Palindromic Subsequences",
+        "slug": "count-different-palindromic-subsequences",
+        "leetcodeId": 730,
+        "leetcodeUrl": "https://leetcode.com/problems/count-different-palindromic-subsequences/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Interval DP",
+        "subPattern": "Palindrome Counting",
+        "relatedPatterns": [
+            "Longest Palindromic Subsequence"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Handle duplicate boundary characters carefully.",
+        "intuition": "Duplicate palindrome generation must be avoided systematically.",
+        "commonMistakes": [
+            "Double counting subsequences"
+        ],
+        "timeEstimate": 70,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 66,
+        "title": "Strange Printer",
+        "slug": "strange-printer",
+        "leetcodeId": 664,
+        "leetcodeUrl": "https://leetcode.com/problems/strange-printer/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Interval DP",
+        "subPattern": "Merge Optimization",
+        "relatedPatterns": [
+            "Palindrome DP"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Merge print operations when characters match.",
+        "intuition": "Matching characters can share printing turns.",
+        "commonMistakes": [
+            "Using greedy splitting"
+        ],
+        "timeEstimate": 65,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 67,
+        "title": "Burst Balloons",
+        "slug": "burst-balloons",
+        "leetcodeId": 312,
+        "leetcodeUrl": "https://leetcode.com/problems/burst-balloons/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Interval DP",
+        "subPattern": "Last Operation",
+        "relatedPatterns": [
+            "Matrix Chain Multiplication"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google",
+            "Amazon"
+        ],
+        "hint": "Think about which balloon bursts last inside an interval.",
+        "intuition": "Last operation fixes neighboring balloon relationships.",
+        "commonMistakes": [
+            "Trying forward greedy bursting"
+        ],
+        "timeEstimate": 70,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 68,
+        "title": "Matrix Chain Multiplication",
+        "slug": "matrix-chain-multiplication",
+        "leetcodeId": null,
+        "leetcodeUrl": "",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Interval DP",
+        "subPattern": "Partition Optimization",
+        "relatedPatterns": [
+            "Burst Balloons"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Classic DP"
+        ],
+        "hint": "Try every partition point between matrices.",
+        "intuition": "Optimal multiplication order minimizes repeated computation cost.",
+        "commonMistakes": [
+            "Wrong cost formula"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 69,
+        "title": "Minimum Cost Tree From Leaf Values",
+        "slug": "minimum-cost-tree-from-leaf-values",
+        "leetcodeId": 1130,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-cost-tree-from-leaf-values/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Interval DP",
+        "subPattern": "Partition Cost",
+        "relatedPatterns": [
+            "Monotonic Stack"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Partition interval at every possible split point.",
+        "intuition": "Optimal subtree cost depends on optimal subinterval costs.",
+        "commonMistakes": [
+            "Recomputing interval maximums repeatedly"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 70,
+        "title": "Palindrome Partitioning III",
+        "slug": "palindrome-partitioning-iii",
+        "leetcodeId": 1278,
+        "leetcodeUrl": "https://leetcode.com/problems/palindrome-partitioning-iii/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Interval DP",
+        "subPattern": "Partition Minimization",
+        "relatedPatterns": [
+            "Palindrome Partitioning II"
+        ],
+        "tags": [
+            "dp",
+            "string"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Precompute palindrome conversion costs for substrings.",
+        "intuition": "Optimal partitions depend on smaller interval partitions.",
+        "commonMistakes": [
+            "Calculating palindrome costs repeatedly"
+        ],
+        "timeEstimate": 65,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 71,
+        "title": "Guess Number Higher or Lower II",
+        "slug": "guess-number-higher-or-lower-ii",
+        "leetcodeId": 375,
+        "leetcodeUrl": "https://leetcode.com/problems/guess-number-higher-or-lower-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Minimax DP",
+        "subPattern": "Worst Case Cost",
+        "relatedPatterns": [
+            "Game DP"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Choose pivot minimizing worst future cost.",
+        "intuition": "Every wrong guess splits the search interval.",
+        "commonMistakes": [
+            "Optimizing average instead of worst case"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 72,
+        "title": "Stone Game",
+        "slug": "stone-game",
+        "leetcodeId": 877,
+        "leetcodeUrl": "https://leetcode.com/problems/stone-game/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Interval Game DP",
+        "subPattern": "Optimal Play",
+        "relatedPatterns": [
+            "Minimax DP"
+        ],
+        "tags": [
+            "dp",
+            "game-theory"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Players choose leftmost or rightmost pile optimally.",
+        "intuition": "Optimal decisions depend on opponent’s future responses.",
+        "commonMistakes": [
+            "Using greedy largest-pile choice"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 73,
+        "title": "Best Time to Buy and Sell Stock",
+        "slug": "best-time-to-buy-and-sell-stock",
+        "leetcodeId": 121,
+        "leetcodeUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock/",
+        "difficulty": "EASY",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Stock DP",
+        "subPattern": "Single Transaction",
+        "relatedPatterns": [
+            "Kadane"
+        ],
+        "tags": [
+            "dp",
+            "array"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Track minimum buying price while scanning.",
+        "intuition": "Maximum profit depends on cheapest previous buy price.",
+        "commonMistakes": [
+            "Selling before buying"
+        ],
+        "timeEstimate": 20,
+        "revisionPriority": 10,
+        "isPro": false
+    },
+    {
+        "order": 74,
+        "title": "Best Time to Buy and Sell Stock II",
+        "slug": "best-time-to-buy-and-sell-stock-ii",
+        "leetcodeId": 122,
+        "leetcodeUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Stock DP",
+        "subPattern": "Unlimited Transactions",
+        "relatedPatterns": [
+            "Greedy"
+        ],
+        "tags": [
+            "dp",
+            "greedy"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Take every profitable upward movement.",
+        "intuition": "Unlimited transactions allow capturing all positive gains.",
+        "commonMistakes": [
+            "Trying to find global peaks only"
+        ],
+        "timeEstimate": 20,
+        "revisionPriority": 9,
+        "isPro": false
+    },
+    {
+        "order": 75,
+        "title": "Best Time to Buy and Sell Stock with Cooldown",
+        "slug": "best-time-to-buy-and-sell-stock-with-cooldown",
+        "leetcodeId": 309,
+        "leetcodeUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "State DP",
+        "subPattern": "Cooldown State",
+        "relatedPatterns": [
+            "State Machine"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track buy, sell, and cooldown states separately.",
+        "intuition": "Selling temporarily restricts future buying actions.",
+        "commonMistakes": [
+            "Buying immediately after selling"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 76,
+        "title": "Best Time to Buy and Sell Stock with Transaction Fee",
+        "slug": "best-time-to-buy-and-sell-stock-with-transaction-fee",
+        "leetcodeId": 714,
+        "leetcodeUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "State DP",
+        "subPattern": "Fee Adjustment",
+        "relatedPatterns": [
+            "Greedy"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Subtract fee during sell transition.",
+        "intuition": "Transaction costs affect optimal selling decisions.",
+        "commonMistakes": [
+            "Applying fee twice"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 77,
+        "title": "Best Time to Buy and Sell Stock III",
+        "slug": "best-time-to-buy-and-sell-stock-iii",
+        "leetcodeId": 123,
+        "leetcodeUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iii/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Stock DP",
+        "subPattern": "Two Transactions",
+        "relatedPatterns": [
+            "State DP"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Track states after each buy and sell.",
+        "intuition": "Every transaction stage becomes a separate DP state.",
+        "commonMistakes": [
+            "Mixing transaction order"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 78,
+        "title": "Best Time to Buy and Sell Stock IV",
+        "slug": "best-time-to-buy-and-sell-stock-iv",
+        "leetcodeId": 188,
+        "leetcodeUrl": "https://leetcode.com/problems/best-time-to-buy-and-sell-stock-iv/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "State DP",
+        "subPattern": "K Transactions",
+        "relatedPatterns": [
+            "Stock III"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Generalize buy/sell states for k transactions.",
+        "intuition": "Each transaction introduces another decision layer.",
+        "commonMistakes": [
+            "Using exponential recursion"
+        ],
+        "timeEstimate": 65,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 79,
+        "title": "Maximum Profit in Job Scheduling",
+        "slug": "maximum-profit-in-job-scheduling",
+        "leetcodeId": 1235,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-profit-in-job-scheduling/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Weighted Interval DP",
+        "subPattern": "Profit Scheduling",
+        "relatedPatterns": [
+            "Binary Search"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Binary search next compatible job.",
+        "intuition": "Optimal profit depends on future non-overlapping choices.",
+        "commonMistakes": [
+            "Linear searching next valid job"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 80,
+        "title": "Delete and Earn",
+        "slug": "delete-and-earn",
+        "leetcodeId": 740,
+        "leetcodeUrl": "https://leetcode.com/problems/delete-and-earn/",
+        "difficulty": "MEDIUM",
+        "priority": "OPTIONAL",
+        "frequency": "HIGH",
+        "pattern": "House Robber DP",
+        "subPattern": "Value Compression",
+        "relatedPatterns": [
+            "House Robber"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Transform values into indexed earnings array.",
+        "intuition": "Adjacent values create rob-like restrictions.",
+        "commonMistakes": [
+            "Processing unsorted numbers directly"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 81,
+        "title": "House Robber III",
+        "slug": "house-robber-iii",
+        "leetcodeId": 337,
+        "leetcodeUrl": "https://leetcode.com/problems/house-robber-iii/",
+        "difficulty": "MEDIUM",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Tree DP",
+        "subPattern": "Pick or Skip",
+        "relatedPatterns": [
+            "House Robber"
+        ],
+        "tags": [
+            "dp",
+            "tree"
+        ],
+        "companies": [
+            "Amazon",
+            "Google"
+        ],
+        "hint": "Return both rob and skip values from each node.",
+        "intuition": "Choosing a node restricts choosing its children.",
+        "commonMistakes": [
+            "Using global recursion without memoization"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 82,
+        "title": "Binary Tree Maximum Path Sum",
+        "slug": "binary-tree-maximum-path-sum",
+        "leetcodeId": 124,
+        "leetcodeUrl": "https://leetcode.com/problems/binary-tree-maximum-path-sum/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Tree DP",
+        "subPattern": "Path Contribution",
+        "relatedPatterns": [
+            "Kadane"
+        ],
+        "tags": [
+            "dp",
+            "tree"
+        ],
+        "companies": [
+            "Amazon",
+            "Google",
+            "Meta"
+        ],
+        "hint": "Each node contributes maximum one-side gain upward.",
+        "intuition": "Best path may pass through current root node.",
+        "commonMistakes": [
+            "Returning split path upward"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 83,
+        "title": "Unique Binary Search Trees",
+        "slug": "unique-binary-search-trees",
+        "leetcodeId": 96,
+        "leetcodeUrl": "https://leetcode.com/problems/unique-binary-search-trees/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Catalan DP",
+        "subPattern": "Tree Counting",
+        "relatedPatterns": [
+            "Recursion"
+        ],
+        "tags": [
+            "dp",
+            "tree"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Choose each node as root and multiply subtree combinations.",
+        "intuition": "Left and right subtree combinations are independent.",
+        "commonMistakes": [
+            "Adding instead of multiplying subtree counts"
+        ],
+        "timeEstimate": 35,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 84,
+        "title": "All Possible Full Binary Trees",
+        "slug": "all-possible-full-binary-trees",
+        "leetcodeId": 894,
+        "leetcodeUrl": "https://leetcode.com/problems/all-possible-full-binary-trees/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree Construction DP",
+        "subPattern": "Recursive Composition",
+        "relatedPatterns": [
+            "Memoization"
+        ],
+        "tags": [
+            "dp",
+            "tree"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Split remaining nodes between left and right subtrees.",
+        "intuition": "Full binary trees require odd node distributions.",
+        "commonMistakes": [
+            "Generating duplicate trees repeatedly"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 85,
+        "title": "Count Nodes With the Highest Score",
+        "slug": "count-nodes-with-the-highest-score",
+        "leetcodeId": 2049,
+        "leetcodeUrl": "https://leetcode.com/problems/count-nodes-with-the-highest-score/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Tree DP",
+        "subPattern": "Subtree Contribution",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "dp",
+            "tree"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Compute subtree sizes using DFS.",
+        "intuition": "Removing a node splits tree into independent components.",
+        "commonMistakes": [
+            "Incorrect remaining subtree calculation"
+        ],
+        "timeEstimate": 40,
+        "revisionPriority": 6,
+        "isPro": true
+    },
+    {
+        "order": 86,
+        "title": "Sum of Distances in Tree",
+        "slug": "sum-of-distances-in-tree",
+        "leetcodeId": 834,
+        "leetcodeUrl": "https://leetcode.com/problems/sum-of-distances-in-tree/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Rerooting DP",
+        "subPattern": "Tree Recalculation",
+        "relatedPatterns": [
+            "DFS"
+        ],
+        "tags": [
+            "dp",
+            "tree"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Use one DFS for subtree info and another for rerooting.",
+        "intuition": "Changing root updates distance contributions systematically.",
+        "commonMistakes": [
+            "Recomputing all distances from scratch"
+        ],
+        "timeEstimate": 70,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 87,
+        "title": "Can I Win",
+        "slug": "can-i-win",
+        "leetcodeId": 464,
+        "leetcodeUrl": "https://leetcode.com/problems/can-i-win/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Bitmask DP",
+        "subPattern": "Game State",
+        "relatedPatterns": [
+            "Minimax DP"
+        ],
+        "tags": [
+            "dp",
+            "bitmask"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Memoize used-number states with bitmasking.",
+        "intuition": "Winning depends entirely on remaining available numbers.",
+        "commonMistakes": [
+            "Using array state instead of bitmask"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 88,
+        "title": "Matchsticks to Square",
+        "slug": "matchsticks-to-square",
+        "leetcodeId": 473,
+        "leetcodeUrl": "https://leetcode.com/problems/matchsticks-to-square/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bitmask DP",
+        "subPattern": "Subset Formation",
+        "relatedPatterns": [
+            "Backtracking"
+        ],
+        "tags": [
+            "dp",
+            "bitmask"
+        ],
+        "companies": [
+            "Amazon"
+        ],
+        "hint": "Track used matchsticks and current side length.",
+        "intuition": "Completed sides reduce future placement complexity.",
+        "commonMistakes": [
+            "Ignoring impossible total length early"
+        ],
+        "timeEstimate": 50,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 89,
+        "title": "Shortest Path Visiting All Nodes",
+        "slug": "shortest-path-visiting-all-nodes",
+        "leetcodeId": 847,
+        "leetcodeUrl": "https://leetcode.com/problems/shortest-path-visiting-all-nodes/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Bitmask BFS",
+        "subPattern": "Visited State",
+        "relatedPatterns": [
+            "Graph BFS"
+        ],
+        "tags": [
+            "dp",
+            "graph",
+            "bitmask"
+        ],
+        "companies": [
+            "Google",
+            "Amazon"
+        ],
+        "hint": "State = current node + visited nodes mask.",
+        "intuition": "Different visited sets create unique traversal states.",
+        "commonMistakes": [
+            "Tracking only current node"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 90,
+        "title": "Partition to K Equal Sum Subsets",
+        "slug": "partition-to-k-equal-sum-subsets",
+        "leetcodeId": 698,
+        "leetcodeUrl": "https://leetcode.com/problems/partition-to-k-equal-sum-subsets/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "Bitmask DP",
+        "subPattern": "Subset Partition",
+        "relatedPatterns": [
+            "Backtracking"
+        ],
+        "tags": [
+            "dp",
+            "bitmask"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Memoize subset states instead of recalculating partitions.",
+        "intuition": "Used-number combinations define future possibilities.",
+        "commonMistakes": [
+            "Exploring duplicate subset states"
+        ],
+        "timeEstimate": 55,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 91,
+        "title": "Beautiful Arrangement",
+        "slug": "beautiful-arrangement",
+        "leetcodeId": 526,
+        "leetcodeUrl": "https://leetcode.com/problems/beautiful-arrangement/",
+        "difficulty": "MEDIUM",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bitmask DP",
+        "subPattern": "Permutation Counting",
+        "relatedPatterns": [
+            "Backtracking"
+        ],
+        "tags": [
+            "dp",
+            "bitmask"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track used numbers with bitmask.",
+        "intuition": "Position constraints determine valid future choices.",
+        "commonMistakes": [
+            "Generating all permutations blindly"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 92,
+        "title": "Maximum Students Taking Exam",
+        "slug": "maximum-students-taking-exam",
+        "leetcodeId": 1349,
+        "leetcodeUrl": "https://leetcode.com/problems/maximum-students-taking-exam/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bitmask DP",
+        "subPattern": "Row State Transition",
+        "relatedPatterns": [
+            "State Compression"
+        ],
+        "tags": [
+            "dp",
+            "bitmask"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Represent each row seating arrangement as bitmask states.",
+        "intuition": "Valid row configurations transition independently.",
+        "commonMistakes": [
+            "Allowing adjacent cheating positions"
+        ],
+        "timeEstimate": 70,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 93,
+        "title": "Number of Ways to Wear Different Hats to Each Other",
+        "slug": "number-of-ways-to-wear-different-hats-to-each-other",
+        "leetcodeId": 1434,
+        "leetcodeUrl": "https://leetcode.com/problems/number-of-ways-to-wear-different-hats-to-each-other/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Bitmask DP",
+        "subPattern": "Assignment DP",
+        "relatedPatterns": [
+            "State Compression"
+        ],
+        "tags": [
+            "dp",
+            "bitmask"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Assign hats one-by-one while tracking assigned people.",
+        "intuition": "Bitmask efficiently represents assignment completion.",
+        "commonMistakes": [
+            "Assigning hats greedily"
+        ],
+        "timeEstimate": 70,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 94,
+        "title": "Minimum XOR Sum of Two Arrays",
+        "slug": "minimum-xor-sum-of-two-arrays",
+        "leetcodeId": 1879,
+        "leetcodeUrl": "https://leetcode.com/problems/minimum-xor-sum-of-two-arrays/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "Assignment DP",
+        "subPattern": "Bitmask Matching",
+        "relatedPatterns": [
+            "State Compression"
+        ],
+        "tags": [
+            "dp",
+            "bitmask"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Bitmask tracks which nums2 elements are already used.",
+        "intuition": "Each assignment choice affects all future matching costs.",
+        "commonMistakes": [
+            "Trying all permutations directly"
+        ],
+        "timeEstimate": 65,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 95,
+        "title": "Frog Jump",
+        "slug": "frog-jump",
+        "leetcodeId": 403,
+        "leetcodeUrl": "https://leetcode.com/problems/frog-jump/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "State DP",
+        "subPattern": "Jump State",
+        "relatedPatterns": [
+            "Memoization"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google",
+            "Amazon"
+        ],
+        "hint": "State depends on current stone and previous jump length.",
+        "intuition": "Future reachable jumps depend on previous movement size.",
+        "commonMistakes": [
+            "Trying greedy jumps"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 96,
+        "title": "Freedom Trail",
+        "slug": "freedom-trail",
+        "leetcodeId": 514,
+        "leetcodeUrl": "https://leetcode.com/problems/freedom-trail/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "VERY_HIGH",
+        "pattern": "State DP",
+        "subPattern": "Rotational DP",
+        "relatedPatterns": [
+            "Memoization"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "State = ring position + key index.",
+        "intuition": "Every rotation changes future movement costs.",
+        "commonMistakes": [
+            "Rotating only one direction"
+        ],
+        "timeEstimate": 65,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 97,
+        "title": "Race Car",
+        "slug": "race-car",
+        "leetcodeId": 818,
+        "leetcodeUrl": "https://leetcode.com/problems/race-car/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "State DP",
+        "subPattern": "Movement Optimization",
+        "relatedPatterns": [
+            "BFS"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Overshoot and reverse can sometimes be optimal.",
+        "intuition": "Position-speed states define future movement possibilities.",
+        "commonMistakes": [
+            "Using simple greedy acceleration"
+        ],
+        "timeEstimate": 70,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 98,
+        "title": "Split Array Largest Sum",
+        "slug": "split-array-largest-sum",
+        "leetcodeId": 410,
+        "leetcodeUrl": "https://leetcode.com/problems/split-array-largest-sum/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Partition DP",
+        "subPattern": "Minimize Maximum",
+        "relatedPatterns": [
+            "Binary Search"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google",
+            "Amazon"
+        ],
+        "hint": "Partition array into k groups optimally.",
+        "intuition": "Best partition minimizes worst subarray sum.",
+        "commonMistakes": [
+            "Using greedy partitioning only"
+        ],
+        "timeEstimate": 60,
+        "revisionPriority": 10,
+        "isPro": true
+    },
+    {
+        "order": 99,
+        "title": "Remove Boxes",
+        "slug": "remove-boxes",
+        "leetcodeId": 546,
+        "leetcodeUrl": "https://leetcode.com/problems/remove-boxes/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "3D Interval DP",
+        "subPattern": "Merge State",
+        "relatedPatterns": [
+            "Interval DP"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Carry count of same-colored boxes while shrinking interval.",
+        "intuition": "Delayed removals can increase future rewards.",
+        "commonMistakes": [
+            "Using only 2D interval state"
+        ],
+        "timeEstimate": 80,
+        "revisionPriority": 9,
+        "isPro": true
+    },
+    {
+        "order": 100,
+        "title": "Number of Digit One",
+        "slug": "number-of-digit-one",
+        "leetcodeId": 233,
+        "leetcodeUrl": "https://leetcode.com/problems/number-of-digit-one/",
+        "difficulty": "HARD",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Digit DP",
+        "subPattern": "Digit Counting",
+        "relatedPatterns": [
+            "Math DP"
+        ],
+        "tags": [
+            "dp",
+            "math"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Process digits position-by-position.",
+        "intuition": "Digit restrictions create overlapping prefix states.",
+        "commonMistakes": [
+            "Brute forcing every number"
+        ],
+        "timeEstimate": 70,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 101,
+        "title": "Numbers At Most N Given Digit Set",
+        "slug": "numbers-at-most-n-given-digit-set",
+        "leetcodeId": 902,
+        "leetcodeUrl": "https://leetcode.com/problems/numbers-at-most-n-given-digit-set/",
+        "difficulty": "HARD",
+        "priority": "OPTIONAL",
+        "frequency": "MEDIUM",
+        "pattern": "Digit DP",
+        "subPattern": "Bounded Counting",
+        "relatedPatterns": [
+            "Digit DP"
+        ],
+        "tags": [
+            "dp",
+            "math"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Track whether current prefix already became smaller than limit.",
+        "intuition": "Prefix tightness determines future digit choices.",
+        "commonMistakes": [
+            "Ignoring shorter-length numbers"
+        ],
+        "timeEstimate": 65,
+        "revisionPriority": 5,
+        "isPro": false
+    },
+    {
+        "order": 102,
+        "title": "Count Vowels Permutation",
+        "slug": "count-vowels-permutation",
+        "leetcodeId": 1220,
+        "leetcodeUrl": "https://leetcode.com/problems/count-vowels-permutation/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "State Transition DP",
+        "subPattern": "Graph State",
+        "relatedPatterns": [
+            "Matrix Exponentiation"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Each vowel can transition only into specific vowels.",
+        "intuition": "Character rules form a directed transition graph.",
+        "commonMistakes": [
+            "Missing modulo operations"
+        ],
+        "timeEstimate": 45,
+        "revisionPriority": 7,
+        "isPro": true
+    },
+    {
+        "order": 103,
+        "title": "Paint House III",
+        "slug": "paint-house-iii",
+        "leetcodeId": 1473,
+        "leetcodeUrl": "https://leetcode.com/problems/paint-house-iii/",
+        "difficulty": "HARD",
+        "priority": "GOOD",
+        "frequency": "HIGH",
+        "pattern": "3D DP",
+        "subPattern": "Neighborhood State",
+        "relatedPatterns": [
+            "State DP"
+        ],
+        "tags": [
+            "dp"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "State tracks house index, previous color, and neighborhoods formed.",
+        "intuition": "Color transitions directly affect neighborhood counts.",
+        "commonMistakes": [
+            "Ignoring already painted houses"
+        ],
+        "timeEstimate": 75,
+        "revisionPriority": 8,
+        "isPro": true
+    },
+    {
+        "order": 104,
+        "title": "Cherry Pickup",
+        "slug": "cherry-pickup",
+        "leetcodeId": 741,
+        "leetcodeUrl": "https://leetcode.com/problems/cherry-pickup/",
+        "difficulty": "HARD",
+        "priority": "MUST_DO",
+        "frequency": "VERY_HIGH",
+        "pattern": "Multi Agent DP",
+        "subPattern": "Double Traversal",
+        "relatedPatterns": [
+            "Cherry Pickup II"
+        ],
+        "tags": [
+            "dp",
+            "grid"
+        ],
+        "companies": [
+            "Google"
+        ],
+        "hint": "Treat both traversals as simultaneous movements.",
+        "intuition": "Two synchronized paths avoid duplicate cherry counting.",
+        "commonMistakes": [
+            "Running two separate traversals"
+        ],
+        "timeEstimate": 80,
+        "revisionPriority": 10,
+        "isPro": true
+    }
+]
