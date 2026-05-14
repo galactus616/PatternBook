@@ -30,10 +30,15 @@ export const googleLogin = async (accessToken) => {
             }
         });
     } else {
-        // Update picture if it exists or has changed
+        // Update picture ONLY if hasCustomPicture is false
+        const dataToUpdate = { provider: "GOOGLE" };
+        if (!user.hasCustomPicture) {
+            dataToUpdate.picture = picture;
+        }
+
         user = await prisma.user.update({
             where: { email },
-            data: { picture, provider: "GOOGLE" }
+            data: dataToUpdate
         });
     }
 
@@ -56,12 +61,14 @@ export const registerUser = async ({ email, password, name }) => {
     }
 
     const hashed = await bcrypt.hash(password, 10);
+    const defaultPicture = `avvatar:${email}`;
 
     const user = await prisma.user.create({
         data: {
             email,
             password: hashed,
             name,
+            picture: defaultPicture,
             provider: "EMAIL",
         },
     });

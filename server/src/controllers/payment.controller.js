@@ -4,7 +4,7 @@ import * as couponService from "../services/coupon.service.js";
 export const createOrder = async (req, res) => {
   try {
     const { planType, couponCode } = req.body;
-    const userId = req.user.userId; // JWT payload key is 'userId'
+    const userId = req.user.userId;
 
     const { order, couponApplied } = await paymentService.createOrder(userId, planType, couponCode);
     res.json({ success: true, order, couponApplied });
@@ -55,6 +55,16 @@ export const validateCouponPreview = async (req, res) => {
         savings: originalAmount - discountedAmount,
       },
     });
+  } catch (err) {
+    res.status(400).json({ success: false, message: err.message });
+  }
+};
+
+export const getHistory = async (req, res) => {
+  try {
+    const userId = req.user.userId;
+    const history = await paymentService.getPaymentHistory(userId);
+    res.json({ success: true, data: history });
   } catch (err) {
     res.status(400).json({ success: false, message: err.message });
   }

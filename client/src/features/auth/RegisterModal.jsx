@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { X, Loader2, Eye, EyeOff, CheckCircle2 } from "lucide-react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useAuth } from "./useAuth";
+import AvatarDisplay from "../../components/ui/AvatarDisplay";
 
 export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
   const navigate = useNavigate();
@@ -161,16 +162,28 @@ export default function RegisterModal({ isOpen, onClose, onSwitchToLogin }) {
                 </div>
               </div>
 
-              <div>
+              <div className="relative">
                 <label className="block font-mono text-[10px] uppercase tracking-wider text-muted mb-2">Email Address</label>
-                <input
-                  type="email"
-                  required
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="alex@example.com"
-                  className="w-full bg-white/50 border border-rule px-4 py-3 rounded-[4px] font-sans text-[14px] text-ink placeholder:text-faint focus:border-ink focus:bg-white transition-all outline-none"
-                />
+                <div className="flex items-center gap-4">
+                  <div className="flex-1">
+                    <input
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="alex@example.com"
+                      className="w-full bg-white/50 border border-rule px-4 py-3 rounded-[4px] font-sans text-[14px] text-ink placeholder:text-faint focus:border-ink focus:bg-white transition-all outline-none"
+                    />
+                  </div>
+                  
+                  {/* Real-time Avatar Preview */}
+                  <div className="shrink-0 flex flex-col items-center">
+                    <div className="w-12 h-12 rounded-full border-2 border-ink bg-white overflow-hidden shadow-md animate-in fade-in zoom-in-50 duration-500">
+                        <AvatarDisplay user={{ picture: `avvatar:${email || 'new_user'}` }} size={48} />
+                    </div>
+                  </div>
+                </div>
+                <p className="font-mono text-[8px] uppercase tracking-widest text-muted mt-2 opacity-60">Identity generated from email</p>
               </div>
 
               <div>

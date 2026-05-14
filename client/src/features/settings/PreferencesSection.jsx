@@ -103,7 +103,7 @@ const PreferencesSection = () => {
                 className="bg-white border border-rule px-3 py-2 rounded-[4px] font-sans text-[12px] text-ink focus:border-ink outline-none cursor-pointer max-w-[180px]"
               >
                 {topics?.map((topic) => (
-                  <option key={topic} value={topic}>{topic}</option>
+                  <option key={topic.id || topic.name} value={topic.name}>{topic.name}</option>
                 ))}
                 {!topics?.length && <option value="Arrays">Arrays</option>}
               </select>

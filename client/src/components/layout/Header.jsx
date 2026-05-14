@@ -1,6 +1,7 @@
 import { Search, Bell, User, Flame } from "lucide-react";
 import { useAuth } from "../../features/auth/useAuth";
 import { useDashboard } from "../../features/dashboard/useDashboard";
+import AvatarDisplay from "../ui/AvatarDisplay";
 
 const Header = () => {
   const { user } = useAuth();
@@ -54,12 +55,8 @@ const Header = () => {
                 {user?.plan === "PRO" ? "Pro Member" : user?.plan === "TEAM" ? "Team Member" : "Free Plan"}
               </p>
           </div>
-          <div className={`w-9 h-9 rounded-full bg-ink flex items-center justify-center border overflow-hidden cursor-pointer transition-colors ${(user?.plan === "PRO" || user?.plan === "TEAM") ? "border-2 border-cream" : "border-rule hover:border-brand-red"}`}>
-            {user?.picture ? (
-              <img src={user.picture} alt={user.name} className="w-full h-full object-cover" />
-            ) : (
-              <User size={20} className="text-cream" />
-            )}
+          <div className={`w-9 h-9 rounded-full bg-white flex items-center justify-center border overflow-hidden cursor-pointer transition-colors shadow-sm ${(user?.plan === "PRO" || user?.plan === "TEAM") ? "border-2 border-ink" : "border-ink hover:border-brand-red"}`}>
+            <AvatarDisplay user={user} size={36} />
           </div>
         </div>
       </div>

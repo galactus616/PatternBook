@@ -14,7 +14,7 @@ const TopicMasteryList = ({ topics = [] }) => {
         {topics.map((topic, i) => (
           <div key={topic.id} className="space-y-2">
             <div className="flex items-center justify-between">
-              <Link 
+              <Link
                 to={`/problems?topic=${topic.name}`}
                 className="font-sans text-[13px] font-bold text-ink hover:text-brand-red transition-colors flex items-center gap-1"
               >
@@ -25,8 +25,8 @@ const TopicMasteryList = ({ topics = [] }) => {
               </span>
             </div>
             <div className="h-1.5 w-full bg-rule/10 rounded-full overflow-hidden">
-              <div 
-                className={`h-full bg-ink transition-all duration-700`} 
+              <div
+                className={`h-full bg-ink transition-all duration-700`}
                 style={{ width: `${topic.percentage}%` }}
               />
             </div>

@@ -15,11 +15,11 @@ const RecentActivity = ({ activity = [] }) => {
             <div key={i} className="px-6 py-4 hover:bg-cream-dark/20 transition-colors flex items-center justify-between group">
               <div className="flex items-center gap-4">
                 <div className={`
-                  ${item.status === 'SOLVED_INDEPENDENTLY' ? 'text-lime-dark' : 
+                  ${item.status === 'SOLVED_INDEPENDENTLY' ? 'text-lime-dark' :
                     item.status === 'ATTEMPTED' ? 'text-accent' : 'text-muted'}
                 `}>
-                  {item.status === 'SOLVED_INDEPENDENTLY' ? <CheckCircle2 size={18} /> : 
-                   item.status === 'ATTEMPTED' ? <Clock size={18} /> : <Circle size={18} />}
+                  {item.status === 'SOLVED_INDEPENDENTLY' ? <CheckCircle2 size={18} /> :
+                    item.status === 'ATTEMPTED' ? <Clock size={18} /> : <Circle size={18} />}
                 </div>
                 <div>
                   <h4 className="font-sans text-[14px] font-bold text-ink leading-tight group-hover:text-brand-red transition-colors">

@@ -8,5 +8,6 @@ const router = express.Router();
 router.post("/create-order", authMiddleware, paymentController.createOrder);
 router.post("/verify-payment", authMiddleware, paymentController.verifyPayment);
 router.post("/validate-coupon", authMiddleware, paymentController.validateCouponPreview);
+router.get("/history", authMiddleware, paymentController.getHistory);
 
 export default router;

@@ -37,7 +37,7 @@ const DashboardHero = ({ stats }) => {
 
               {/* 5:30 AM Boundary Info */}
               <div className="absolute left-0 top-full mt-2 hidden group-hover:block w-56 p-2 bg-ink text-cream text-[9px] normal-case rounded-[4px] z-50 shadow-xl leading-relaxed">
-                Our "day" ends at <span className="font-mono text-lime font-bold">5:30 AM</span>.<br/> Solve or attempt a problem daily to keep your Streak alive!
+                Our "day" ends at <span className="font-mono text-lime font-bold">5:30 AM</span>.<br /> Solve or attempt a problem daily to keep your Streak alive!
               </div>
             </div>
             {stats?.overall?.longestStreak > 0 && (

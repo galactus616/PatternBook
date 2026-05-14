@@ -47,7 +47,7 @@ const DangerZoneSection = () => {
   return (
     <div className="bg-white border border-brand-red/20 rounded-[4px] shadow-sm overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-brand-red/15 bg-brand-red/[0.03] flex items-center justify-between">
+      <div className="px-6 py-4 border-b border-brand-red/15 bg-brand-red/3 flex items-center justify-between">
         <div className="flex items-center gap-3">
           <AlertTriangle size={16} className="text-brand-red" />
           <h3 className="font-serif text-[18px] font-black text-ink">Danger Zone</h3>

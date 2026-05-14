@@ -318,68 +318,86 @@ const ProblemsTable = ({ problems, isLoading }) => {
                             <Zap size={16} />
                           </div>
                         </div>
-                        <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-8">
-                          
-                          {/* Col 1: Common Mistakes */}
-                          <div className="col-span-1 md:col-span-2 space-y-4">
-                             <div>
-                               <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-brand-red font-bold mb-3 flex items-center gap-1.5">
-                                 <TriangleAlert size={10} /> Common Mistakes
-                               </p>
-                               {prob.commonMistakes?.length > 0 ? (
-                                 <ul className="space-y-2">
-                                   {prob.commonMistakes.map((mistake, idx) => (
-                                      <li key={idx} className="font-sans text-[13px] text-ink/80 leading-relaxed flex items-start gap-2">
-                                        <span className="text-brand-red mt-0.5">•</span> {mistake}
-                                      </li>
-                                   ))}
-                                 </ul>
-                               ) : (
-                                 <p className="text-[12px] text-muted italic">No common mistakes recorded for this problem yet.</p>
-                               )}
-                             </div>
+                        {prob.isPro && !isPro ? (
+                          <div className="flex-1 bg-white border border-dashed border-rule p-8 rounded-[4px] flex flex-col items-center text-center">
+                            <div className="w-10 h-10 rounded-full bg-faint flex items-center justify-center mb-4 text-muted">
+                              <Lock size={18} />
+                            </div>
+                            <h4 className="font-serif text-[18px] font-black text-ink mb-1">Deep Insights are Locked</h4>
+                            <p className="text-[12px] text-muted mb-4 max-w-[320px]">
+                              Upgrade to Pro to unlock common mistakes, related patterns, and advanced metrics for this problem.
+                            </p>
+                            <button 
+                              onClick={() => openCheckout("PRO")}
+                              className="px-4 py-2 bg-lime text-lime-dark font-sans text-[11px] font-bold rounded-[4px] cursor-pointer hover:bg-lime-light transition-colors"
+                            >
+                              Unlock Now →
+                            </button>
                           </div>
-
-                          {/* Col 2: Context & Meta */}
-                          <div className="space-y-6 md:border-l border-rule/50 md:pl-8">
-                            <div>
-                               <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Revision Priority</p>
-                               <div className="flex items-end gap-1">
-                                  <span className={`font-serif text-[32px] font-black leading-none ${(prob.revisionPriority || 5) >= 8 ? 'text-brand-red' : 'text-ink'}`}>
-                                    {prob.revisionPriority || 5}
-                                  </span>
-                                  <span className="font-mono text-[12px] text-muted font-bold mb-1">/10</span>
+                        ) : (
+                          <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-8">
+                            
+                            {/* Col 1: Common Mistakes */}
+                            <div className="col-span-1 md:col-span-2 space-y-4">
+                               <div>
+                                 <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-brand-red font-bold mb-3 flex items-center gap-1.5">
+                                   <TriangleAlert size={10} /> Common Mistakes
+                                 </p>
+                                 {prob.commonMistakes?.length > 0 ? (
+                                   <ul className="space-y-2">
+                                     {prob.commonMistakes.map((mistake, idx) => (
+                                        <li key={idx} className="font-sans text-[13px] text-ink/80 leading-relaxed flex items-start gap-2">
+                                          <span className="text-brand-red mt-0.5">•</span> {mistake}
+                                        </li>
+                                     ))}
+                                   </ul>
+                                 ) : (
+                                   <p className="text-[12px] text-muted italic">No common mistakes recorded for this problem yet.</p>
+                                 )}
                                </div>
                             </div>
 
-                            {prob.tags?.length > 0 && (
+                            {/* Col 2: Context & Meta */}
+                            <div className="space-y-6 md:border-l border-rule/50 md:pl-8">
                               <div>
-                                 <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Tags</p>
-                                 <div className="flex flex-wrap gap-1.5">
-                                   {prob.tags.map(tag => (
-                                     <span key={tag} className="px-2 py-1 bg-white border border-rule/60 text-ink font-mono text-[9px] uppercase tracking-wider rounded-[2px]">
-                                       {tag}
-                                     </span>
-                                   ))}
+                                 <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Revision Priority</p>
+                                 <div className="flex items-end gap-1">
+                                    <span className={`font-serif text-[32px] font-black leading-none ${(prob.revisionPriority || 5) >= 8 ? 'text-brand-red' : 'text-ink'}`}>
+                                      {prob.revisionPriority || 5}
+                                    </span>
+                                    <span className="font-mono text-[12px] text-muted font-bold mb-1">/10</span>
                                  </div>
                               </div>
-                            )}
 
-                            {prob.relatedPatterns?.length > 0 && (
-                              <div>
-                                 <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Related Patterns</p>
-                                 <div className="flex flex-col gap-1.5">
-                                   {prob.relatedPatterns.map(rp => (
-                                     <a key={rp} href="#" className="font-sans text-[12px] font-bold text-ink underline decoration-rule hover:decoration-ink hover:text-brand-red transition-colors w-max">
-                                       ↗ {rp}
-                                     </a>
-                                   ))}
-                                 </div>
-                              </div>
-                            )}
+                              {prob.tags?.length > 0 && (
+                                <div>
+                                   <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Tags</p>
+                                   <div className="flex flex-wrap gap-1.5">
+                                     {prob.tags.map(tag => (
+                                       <span key={tag} className="px-2 py-1 bg-white border border-rule/60 text-ink font-mono text-[9px] uppercase tracking-wider rounded-[2px]">
+                                         {tag}
+                                       </span>
+                                     ))}
+                                   </div>
+                                </div>
+                              )}
+
+                              {prob.relatedPatterns?.length > 0 && (
+                                <div>
+                                   <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Related Patterns</p>
+                                   <div className="flex flex-col gap-1.5">
+                                     {prob.relatedPatterns.map(rp => (
+                                       <a key={rp} href="#" className="font-sans text-[12px] font-bold text-ink underline decoration-rule hover:decoration-ink hover:text-brand-red transition-colors w-max">
+                                         ↗ {rp}
+                                       </a>
+                                     ))}
+                                   </div>
+                                </div>
+                              )}
+                            </div>
+
                           </div>
-
-                        </div>
+                        )}
                       </div>
                     </div>
                   )}
