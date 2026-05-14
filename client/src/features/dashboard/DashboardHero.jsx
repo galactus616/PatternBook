@@ -70,28 +70,66 @@ const DashboardHero = ({ stats }) => {
           </div>
         </div>
 
-        {/* Global Progress Disk */}
-        <div className="relative w-32 h-32 flex items-center justify-center shrink-0">
-          <svg className="w-full h-full -rotate-90">
-            <circle
-              cx="64"
-              cy="64"
-              r="60"
-              className="fill-none stroke-rule/20 stroke-[8px]"
-            />
-            <circle
-              cx="64"
-              cy="64"
-              r="60"
-              className="fill-none stroke-brand-red stroke-[8px] transition-all duration-1000 ease-out"
-              strokeDasharray={377}
-              strokeDashoffset={377 - (377 * masteryPercentage) / 100}
-              strokeLinecap="round"
-            />
-          </svg>
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-            <span className="font-serif text-[28px] font-black text-ink leading-none">{masteryPercentage}%</span>
-            <span className="font-mono text-[8px] uppercase tracking-widest text-muted mt-1">Mastery</span>
+        {/* Right Side: Vitals Grid */}
+        <div className="flex flex-col md:flex-row gap-6 md:items-center">
+          {/* Main Mastery Disk (Smaller & More Stylized) */}
+          <div className="relative w-24 h-24 flex items-center justify-center shrink-0">
+            <svg className="w-full h-full -rotate-90">
+              <circle
+                cx="48"
+                cy="48"
+                r="44"
+                className="fill-none stroke-rule/20 stroke-[6px]"
+              />
+              <circle
+                cx="48"
+                cy="48"
+                r="44"
+                className="fill-none stroke-brand-red stroke-[6px] transition-all duration-1000 ease-out"
+                strokeDasharray={276}
+                strokeDashoffset={276 - (276 * masteryPercentage) / 100}
+                strokeLinecap="butt"
+              />
+            </svg>
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
+              <span className="font-serif text-[20px] font-black text-ink leading-none">{masteryPercentage}%</span>
+              <span className="font-mono text-[7px] uppercase tracking-widest text-muted mt-1">Mastery</span>
+            </div>
+          </div>
+
+          <div className="h-20 w-px bg-rule/50 hidden md:block" />
+
+          {/* Vitals Breakdown */}
+          <div className="grid grid-cols-2 gap-x-8 gap-y-4">
+            <div>
+              <p className="font-mono text-[8px] uppercase tracking-widest text-muted mb-1">Attempted</p>
+              <div className="flex items-baseline gap-2">
+                <span className="font-serif text-[24px] font-black text-ink leading-none">
+                  {stats?.overall?.attemptedCount || 0}
+                </span>
+                <span className="font-mono text-[9px] text-muted">PROBS</span>
+              </div>
+            </div>
+            <div>
+              <p className="font-mono text-[8px] uppercase tracking-widest text-muted mb-1">Target</p>
+              <div className="flex items-baseline gap-2">
+                <span className="font-serif text-[24px] font-black text-ink leading-none">
+                  {localStorage.getItem("dailyGoal") || 2}
+                </span>
+                <span className="font-mono text-[9px] text-muted">/ DAY</span>
+              </div>
+            </div>
+            <div className="col-span-2">
+               <div className="flex items-center gap-2">
+                 <div className="flex-1 h-1 bg-rule/20 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-ink transition-all duration-700" 
+                      style={{ width: `${Math.min(100, ((stats?.overall?.solvedCount || 0) / (localStorage.getItem("dailyGoal") || 2)) * 100)}%` }}
+                    />
+                 </div>
+                 <span className="font-mono text-[8px] text-ink font-bold uppercase tracking-widest shrink-0">Daily Goal</span>
+               </div>
+            </div>
           </div>
         </div>
       </div>

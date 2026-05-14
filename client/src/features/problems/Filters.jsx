@@ -29,13 +29,13 @@ const Filters = ({ filters, setFilters, patterns = [] }) => {
               key={diff}
               onClick={() => setFilters({ ...filters, difficulty: filters.difficulty === diff ? "" : diff })}
               className={`
-                px-2 py-1 rounded-[1px] font-mono text-[9px] font-bold uppercase tracking-wider transition-colors duration-150 cursor-pointer
+                px-2.5 py-1 rounded-[1px] font-mono text-[9px] font-bold uppercase tracking-wider transition-colors duration-150 cursor-pointer
                 ${filters.difficulty === diff
                   ? "bg-ink text-cream"
                   : "text-muted hover:text-ink hover:bg-ink/4"}
               `}
             >
-              {diff.charAt(0)}
+              {diff}
             </button>
           ))}
         </div>

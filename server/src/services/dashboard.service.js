@@ -1,7 +1,10 @@
 import { prisma } from "../db/client.js";
 
-export const getDashboardStats = async (userId) => {
+export const getDashboardStats = async (userId, year = new Date().getFullYear()) => {
   // 1. Get User and Overall Stats
+  const startOfYear = new Date(year, 0, 1);
+  const endOfYear = new Date(year, 11, 31, 23, 59, 59);
+
   const [user, totalProblems, userProgress] = await Promise.all([
     prisma.user.findUnique({
       where: { id: userId },
@@ -15,7 +18,8 @@ export const getDashboardStats = async (userId) => {
         problem: {
           select: {
             difficulty: true,
-            topicId: true
+            topicId: true,
+            patternId: true
           }
         }
       }
@@ -32,7 +36,6 @@ export const getDashboardStats = async (userId) => {
     HARD: { total: 0, solved: 0 }
   };
 
-  // Get total difficulty counts from all problems
   const allProblemsDifficulty = await prisma.problem.groupBy({
     by: ['difficulty'],
     _count: true
@@ -42,7 +45,6 @@ export const getDashboardStats = async (userId) => {
     difficultyStats[stat.difficulty].total = stat._count;
   });
 
-  // Calculate solved per difficulty
   userProgress.forEach(p => {
     if (p.status === 'SOLVED_INDEPENDENTLY') {
       difficultyStats[p.problem.difficulty].solved++;
@@ -77,10 +79,60 @@ export const getDashboardStats = async (userId) => {
     };
   });
 
-  // 4. Recent Activity
+  // 4. Pattern-wise Mastery
+  const patterns = await prisma.pattern.findMany({
+    select: {
+      id: true,
+      name: true,
+      _count: {
+        select: { problems: true }
+      }
+    }
+  });
+
+  const patternMastery = patterns.map(pattern => {
+    const solvedInPattern = userProgress.filter(p => 
+      p.status === 'SOLVED_INDEPENDENTLY' && p.problem.patternId === pattern.id
+    ).length;
+
+    return {
+      pattern: pattern.name,
+      solved: solvedInPattern,
+      total: pattern._count.problems,
+      percentage: pattern._count.problems > 0 
+        ? Math.round((solvedInPattern / pattern._count.problems) * 100) 
+        : 0
+    };
+  }).sort((a, b) => b.percentage - a.percentage);
+
+  // 5. Heatmap Data (Specific Year)
+  const activities = await prisma.userProgress.findMany({
+    where: {
+      userId,
+      updatedAt: { gte: startOfYear, lte: endOfYear }
+    },
+    select: {
+      updatedAt: true,
+      status: true
+    }
+  });
+
+  const heatmapMap = {};
+  activities.forEach(act => {
+    const date = act.updatedAt.toISOString().split('T')[0];
+    if (!heatmapMap[date]) heatmapMap[date] = 0;
+    if (act.status === 'SOLVED_INDEPENDENTLY') heatmapMap[date] += 1;
+  });
+
+  const heatmapData = Object.keys(heatmapMap).map(date => ({
+    date,
+    count: heatmapMap[date]
+  }));
+
+  // 6. Recent Activity
   const recentActivity = await prisma.userProgress.findMany({
     where: { userId },
-    take: 5,
+    take: 6,
     orderBy: { updatedAt: 'desc' },
     include: {
       problem: {
@@ -105,6 +157,9 @@ export const getDashboardStats = async (userId) => {
     },
     difficultyStats,
     topicProgress,
-    recentActivity
+    patternMastery,
+    heatmapData,
+    recentActivity,
+    availableYears: [2025, 2026]
   };
 };
