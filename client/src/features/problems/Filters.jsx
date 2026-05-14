@@ -32,7 +32,7 @@ const Filters = ({ filters, setFilters, patterns = [] }) => {
                 px-2 py-1 rounded-[1px] font-mono text-[9px] font-bold uppercase tracking-wider transition-colors duration-150 cursor-pointer
                 ${filters.difficulty === diff
                   ? "bg-ink text-cream"
-                  : "text-muted hover:text-ink hover:bg-ink/[0.04]"}
+                  : "text-muted hover:text-ink hover:bg-ink/4"}
               `}
             >
               {diff.charAt(0)}
@@ -55,7 +55,7 @@ const Filters = ({ filters, setFilters, patterns = [] }) => {
                 px-2 py-1 rounded-[1px] font-mono text-[9px] font-bold uppercase tracking-wider transition-colors duration-150 cursor-pointer
                 ${filters.priority === prio
                   ? "bg-brand-red text-white"
-                  : "text-muted hover:text-ink hover:bg-ink/[0.04]"}
+                  : "text-muted hover:text-ink hover:bg-ink/4"}
               `}
             >
               {prio === "MUST_DO" ? "Must" : prio === "GOOD" ? "Good" : "Opt"}
@@ -95,7 +95,7 @@ const Filters = ({ filters, setFilters, patterns = [] }) => {
                  }}
                  className={`
                    w-full text-left px-3 py-1.5 font-mono text-[9px] tracking-wider transition-colors cursor-pointer
-                   ${!filters.pattern ? "bg-ink/[0.04] text-ink font-bold" : "text-muted hover:text-ink hover:bg-cream-dark"}
+                   ${!filters.pattern ? "bg-ink/4 text-ink font-bold" : "text-muted hover:text-ink hover:bg-cream-dark"}
                  `}
               >
                 ALL PATTERNS
@@ -111,7 +111,7 @@ const Filters = ({ filters, setFilters, patterns = [] }) => {
                   className={`
                     w-full text-left px-3 py-1.5 font-mono text-[9px] tracking-wider transition-colors cursor-pointer flex items-center justify-between
                     ${filters.pattern === pattern
-                      ? "bg-ink/[0.04] text-ink font-bold"
+                      ? "bg-ink/4 text-ink font-bold"
                       : "text-muted hover:text-ink hover:bg-cream-dark"}
                   `}
                 >
@@ -145,4 +145,4 @@ const Filters = ({ filters, setFilters, patterns = [] }) => {
   );
 };
 
-export default Filters;
+export default Filters

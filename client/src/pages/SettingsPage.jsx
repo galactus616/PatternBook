@@ -39,8 +39,8 @@ const SettingsPage = () => {
                   ${active === id
                     ? id === 'danger'
                       ? 'bg-brand-red/8 text-brand-red'
-                      : 'bg-ink/[0.05] text-ink'
-                    : 'text-muted/70 hover:text-ink hover:bg-ink/[0.02]'
+                      : 'bg-ink/5 text-ink'
+                    : 'text-muted/70 hover:text-ink hover:bg-ink/2'
                   }
                 `}
               >

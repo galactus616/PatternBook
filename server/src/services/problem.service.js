@@ -54,6 +54,12 @@ export const getAllProblems = async (filters, userId, userPlan = "FREE") => {
             priority: true,
             isPro: true,
             timeEstimate: true,
+            revisionPriority: true,
+            frequency: true,
+            companies: true,
+            tags: true,
+            commonMistakes: true,
+            relatedPatterns: true,
             hint: true,
             leetcodeUrl: true,
             pattern: {

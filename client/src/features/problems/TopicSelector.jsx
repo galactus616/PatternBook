@@ -55,7 +55,7 @@ const TopicSelector = ({ selectedTopic, onSelectTopic }) => {
                 className={`
                   w-full text-left px-3 py-2 font-sans text-[13px] transition-colors cursor-pointer flex items-center justify-between
                   ${isActive
-                    ? "bg-ink/[0.04] text-ink font-bold"
+                    ? "bg-ink/4 text-ink font-bold"
                     : "text-muted hover:text-ink hover:bg-cream-dark"}
                 `}
               >
@@ -70,4 +70,4 @@ const TopicSelector = ({ selectedTopic, onSelectTopic }) => {
   );
 };
 
-export default TopicSelector;
+export default TopicSelector

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ExternalLink, CheckCircle2, Circle, Clock, Eye, ChevronDown, Target, FileText, Lock } from "lucide-react";
+import { ExternalLink, CheckCircle2, Circle, Clock, Eye, ChevronDown, Target, FileText, Lock, Zap, Activity, TriangleAlert } from "lucide-react";
 import { useAuth } from "../auth/useAuth";
 import { usePaymentStore } from "../../store/usePaymentStore";
 import Skeleton from "../../components/ui/Skeleton";
@@ -13,16 +13,25 @@ const ProblemsTable = ({ problems, isLoading }) => {
   const { mutate: updateStatus } = useUpdateProgress();
   const [revealedHints, setRevealedHints] = useState({});
   const [expandedNotes, setExpandedNotes] = useState({});
+  const [expandedInsights, setExpandedInsights] = useState({});
   const [activeMenu, setActiveMenu] = useState(null);
 
   const toggleHint = (id) => {
     setRevealedHints(prev => ({ ...prev, [id]: !prev[id] }));
     if (expandedNotes[id]) setExpandedNotes(prev => ({ ...prev, [id]: false }));
+    if (expandedInsights[id]) setExpandedInsights(prev => ({ ...prev, [id]: false }));
   };
 
   const toggleNotes = (id) => {
     setExpandedNotes(prev => ({ ...prev, [id]: !prev[id] }));
     if (revealedHints[id]) setRevealedHints(prev => ({ ...prev, [id]: false }));
+    if (expandedInsights[id]) setExpandedInsights(prev => ({ ...prev, [id]: false }));
+  };
+
+  const toggleInsights = (id) => {
+    setExpandedInsights(prev => ({ ...prev, [id]: !prev[id] }));
+    if (revealedHints[id]) setRevealedHints(prev => ({ ...prev, [id]: false }));
+    if (expandedNotes[id]) setExpandedNotes(prev => ({ ...prev, [id]: false }));
   };
 
   const statuses = [
@@ -86,7 +95,7 @@ const ProblemsTable = ({ problems, isLoading }) => {
               const statusObj = statuses.find(s => s.id === currentStatus) || statuses[0];
 
               return (
-                <React.Fragment key={prob.id}>
+                  <React.Fragment key={prob.id}>
                   <div
                     className={`
                       grid grid-cols-[auto_1fr_auto_auto] items-center gap-6 p-5 bg-white hover:bg-cream/90 transition-colors group relative
@@ -134,14 +143,17 @@ const ProblemsTable = ({ problems, isLoading }) => {
 
                     {/* Info */}
                     <div>
-                      <div className="flex items-center gap-3">
-                        <h3 className="font-sans text-[15px] font-bold text-ink group-hover:text-brand-red transition-colors flex items-center gap-2">
-                          {prob.title}
-                          {prob.isPro && (
-                            <span className="bg-ink text-lime text-[8px] font-mono px-1.5 py-0.5 rounded-sm tracking-widest uppercase">Pro</span>
-                          )}
-                        </h3>
-                      </div>
+                      <h3 className="font-sans text-[15px] font-bold text-ink group-hover:text-brand-red transition-colors leading-snug">
+                        {prob.title}
+                        {prob.isPro && (
+                          <span className="ml-2 inline-flex align-middle bg-ink text-lime text-[8px] font-mono px-1.5 py-[2px] rounded-[2px] tracking-widest uppercase mb-0.5">Pro</span>
+                        )}
+                        {prob.companies?.length > 0 && prob.companies.slice(0, 2).map(company => (
+                          <span key={company} className="ml-1.5 inline-flex align-middle px-1.5 py-[2px] bg-ink/5 border border-ink/10 rounded-[2px] font-mono text-[8px] font-bold text-ink/70 uppercase tracking-wider mb-0.5">
+                            {company}
+                          </span>
+                        ))}
+                      </h3>
                       <div className="flex items-center gap-4 mt-2">
                         {/* High Contrast Difficulty Badge */}
                         <div className={`
@@ -161,6 +173,14 @@ const ProblemsTable = ({ problems, isLoading }) => {
                         <div className="w-1 h-1 rounded-full bg-rule/50" />
                         <span className="font-mono text-[9px] text-muted uppercase tracking-widest flex items-center gap-1">
                           <Clock size={10} /> {prob.timeEstimate || 30} min
+                        </span>
+
+                        <div className="w-1 h-1 rounded-full bg-rule/50" />
+                        <span className={`font-mono text-[9px] uppercase tracking-widest flex items-center gap-1 font-bold ${
+                           prob.frequency === "VERY_HIGH" ? "text-brand-red" : 
+                           prob.frequency === "HIGH" ? "text-accent" : "text-muted"
+                        }`}>
+                          <Activity size={10} /> FREQ: {(prob.frequency || "MEDIUM").replace('_', ' ')}
                         </span>
                       </div>
                     </div>
@@ -191,6 +211,20 @@ const ProblemsTable = ({ problems, isLoading }) => {
                         </button>
                       )}
 
+                      {/* Insights Toggle */}
+                      <button
+                        onClick={() => toggleInsights(prob.id)}
+                        className={`
+                          flex items-center gap-1.5 px-3 py-1.5 rounded-[4px] font-mono text-[10px] uppercase tracking-wider transition-all cursor-pointer border
+                          ${expandedInsights[prob.id]
+                            ? 'bg-ink text-brand-red border-ink'
+                            : 'bg-white text-muted border-rule hover:border-ink hover:text-ink'}
+                        `}
+                      >
+                        <Zap size={12} className={expandedInsights[prob.id] ? "fill-brand-red text-brand-red" : ""} />
+                        Insights
+                      </button>
+
                       {/* Note Toggle */}
                       <button
                         onClick={() => toggleNotes(prob.id)}
@@ -202,7 +236,7 @@ const ProblemsTable = ({ problems, isLoading }) => {
                         `}
                       >
                         <FileText size={12} />
-                        {expandedNotes[prob.id] ? "Hide Notes" : "Notes"}
+                        {expandedNotes[prob.id] ? "Hide Notes" : "Show Notes"}
                       </button>
 
                       {prob.isPro && !isPro ? (
@@ -274,6 +308,82 @@ const ProblemsTable = ({ problems, isLoading }) => {
                       </div>
                     </div>
                   )}
+
+                  {/* Expandable Insights Drawer */}
+                  {expandedInsights[prob.id] && (
+                    <div className="bg-cream border-x border-b border-rule/50 p-6 animate-in slide-in-from-top-2 duration-200">
+                      <div className="flex gap-6 max-w-5xl">
+                        <div className="shrink-0 pt-1">
+                          <div className="w-8 h-8 rounded-full bg-ink/5 flex items-center justify-center text-ink/30">
+                            <Zap size={16} />
+                          </div>
+                        </div>
+                        <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-8">
+                          
+                          {/* Col 1: Common Mistakes */}
+                          <div className="col-span-1 md:col-span-2 space-y-4">
+                             <div>
+                               <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-brand-red font-bold mb-3 flex items-center gap-1.5">
+                                 <TriangleAlert size={10} /> Common Mistakes
+                               </p>
+                               {prob.commonMistakes?.length > 0 ? (
+                                 <ul className="space-y-2">
+                                   {prob.commonMistakes.map((mistake, idx) => (
+                                      <li key={idx} className="font-sans text-[13px] text-ink/80 leading-relaxed flex items-start gap-2">
+                                        <span className="text-brand-red mt-0.5">•</span> {mistake}
+                                      </li>
+                                   ))}
+                                 </ul>
+                               ) : (
+                                 <p className="text-[12px] text-muted italic">No common mistakes recorded for this problem yet.</p>
+                               )}
+                             </div>
+                          </div>
+
+                          {/* Col 2: Context & Meta */}
+                          <div className="space-y-6 md:border-l border-rule/50 md:pl-8">
+                            <div>
+                               <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Revision Priority</p>
+                               <div className="flex items-end gap-1">
+                                  <span className={`font-serif text-[32px] font-black leading-none ${(prob.revisionPriority || 5) >= 8 ? 'text-brand-red' : 'text-ink'}`}>
+                                    {prob.revisionPriority || 5}
+                                  </span>
+                                  <span className="font-mono text-[12px] text-muted font-bold mb-1">/10</span>
+                               </div>
+                            </div>
+
+                            {prob.tags?.length > 0 && (
+                              <div>
+                                 <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Tags</p>
+                                 <div className="flex flex-wrap gap-1.5">
+                                   {prob.tags.map(tag => (
+                                     <span key={tag} className="px-2 py-1 bg-white border border-rule/60 text-ink font-mono text-[9px] uppercase tracking-wider rounded-[2px]">
+                                       {tag}
+                                     </span>
+                                   ))}
+                                 </div>
+                              </div>
+                            )}
+
+                            {prob.relatedPatterns?.length > 0 && (
+                              <div>
+                                 <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted mb-2">Related Patterns</p>
+                                 <div className="flex flex-col gap-1.5">
+                                   {prob.relatedPatterns.map(rp => (
+                                     <a key={rp} href="#" className="font-sans text-[12px] font-bold text-ink underline decoration-rule hover:decoration-ink hover:text-brand-red transition-colors w-max">
+                                       ↗ {rp}
+                                     </a>
+                                   ))}
+                                 </div>
+                              </div>
+                            )}
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
                   {/* Expandable Notes Drawer */}
                   {expandedNotes[prob.id] && (
                     <div className="bg-cream border-x border-b border-rule/50 p-6 animate-in slide-in-from-top-2 duration-200">
