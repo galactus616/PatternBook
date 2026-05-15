@@ -41,3 +41,18 @@ export const deleteAccount = async (req, res) => {
     res.status(400).json({ success: false, message: err.message });
   }
 };
+export const checkUsername = async (req, res) => {
+  try {
+    const { username } = req.query;
+    const userId = req.user?.userId;
+    
+    if (!username) {
+      return res.status(400).json({ success: false, message: "Username is required" });
+    }
+    
+    const result = await userService.checkUsername(username, userId);
+    res.json({ success: true, ...result });
+  } catch (err) {
+    res.status(400).json({ success: false, message: err.message });
+  }
+};

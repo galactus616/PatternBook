@@ -4,6 +4,7 @@ import { authMiddleware } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
+router.get("/check-username", authMiddleware, userController.checkUsername);
 router.patch("/me", authMiddleware, userController.updateProfile);
 router.post("/me/export-data", authMiddleware, userController.exportData);
 router.post("/me/reset-progress", authMiddleware, userController.resetProgress);

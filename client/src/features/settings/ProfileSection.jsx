@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { User, Loader2, Camera, CheckCircle2, Lock, Mail, KeyRound, Globe, X, Dices, Crown } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { User, Loader2, Camera, CheckCircle2, Lock, Mail, KeyRound, Globe, X, Dices, Crown, AlertCircle, Check } from "lucide-react";
 import { useAuth } from "../auth/useAuth";
 import { useUpdateProfile } from "./useSettings";
 import { useToastStore } from "../../store/useToastStore";
@@ -7,6 +7,7 @@ import AvatarDisplay from "../../components/ui/AvatarDisplay";
 import { usePaymentStore } from "../../store/usePaymentStore";
 import { AVATAR_STYLES, getAvatarUrl } from "../../lib/avatars";
 import ChangePasswordModal from "./ChangePasswordModal";
+import { checkUsernameAvailability } from "./settings.api";
 
 const ProfileSection = () => {
   const { user } = useAuth();
@@ -15,6 +16,9 @@ const ProfileSection = () => {
   const { openCheckout } = usePaymentStore();
 
   const [name, setName] = useState(user?.name || "");
+  const [username, setUsername] = useState(user?.username || "");
+  const [isCheckingUsername, setIsCheckingUsername] = useState(false);
+  const [usernameStatus, setUsernameStatus] = useState("idle"); // idle, checking, available, taken, invalid
   const [showPasswordModal, setShowPasswordModal] = useState(false);
   const [showAvatarModal, setShowAvatarModal] = useState(false);
 
@@ -39,9 +43,43 @@ const ProfileSection = () => {
   const isGoogleUser = user?.provider === "GOOGLE";
   const isPro = user?.plan === "PRO" || user?.plan === "TEAM";
 
+  // Debounced username check
+  useEffect(() => {
+    if (!username || username === user?.username) {
+      setUsernameStatus("idle");
+      return;
+    }
+
+    if (!/^[a-z0-9_]{3,20}$/.test(username)) {
+      setUsernameStatus("invalid");
+      return;
+    }
+
+    const timer = setTimeout(async () => {
+      setIsCheckingUsername(true);
+      setUsernameStatus("checking");
+      try {
+        const res = await checkUsernameAvailability(username);
+        setUsernameStatus(res.available ? "available" : "taken");
+      } catch (err) {
+        setUsernameStatus("idle");
+      } finally {
+        setIsCheckingUsername(false);
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [username, user?.username]);
+
   const handleSave = () => {
     if (!name.trim()) return;
-    updateProfile({ name: name.trim() }, {
+    
+    const data = { name: name.trim() };
+    if (username !== user?.username && usernameStatus === "available") {
+      data.username = username;
+    }
+
+    updateProfile(data, {
       onSuccess: () => {
         addToast("Profile updated successfully", "success");
       },
@@ -136,8 +174,45 @@ const ProfileSection = () => {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 className="w-full bg-white/50 border border-rule px-4 py-3 rounded-[4px] font-sans text-[14px] text-ink focus:border-ink focus:bg-white transition-all outline-none"
+                placeholder="Your name"
               />
             </div>
+            <div>
+              <label className="block font-mono text-[10px] uppercase tracking-wider text-muted mb-2 flex items-center justify-between">
+                <span>Username</span>
+                {usernameStatus !== "idle" && (
+                  <span className={`text-[9px] lowercase tracking-normal flex items-center gap-1 ${
+                    usernameStatus === "available" ? "text-lime-dark" : 
+                    usernameStatus === "checking" ? "text-muted" : "text-brand-red"
+                  }`}>
+                    {usernameStatus === "checking" && <Loader2 size={10} className="animate-spin" />}
+                    {usernameStatus === "available" && <Check size={10} />}
+                    {usernameStatus === "taken" && <AlertCircle size={10} />}
+                    {usernameStatus === "invalid" && <AlertCircle size={10} />}
+                    {usernameStatus === "available" && "Available"}
+                    {usernameStatus === "taken" && "Taken"}
+                    {usernameStatus === "invalid" && "3-20 chars, a-z, 0-9, _"}
+                    {usernameStatus === "checking" && "Checking..."}
+                  </span>
+                )}
+              </label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-muted font-mono text-[14px]">@</span>
+                <input
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value.toLowerCase().replace(/[^a-z0-9_]/g, ""))}
+                  className={`w-full bg-white/50 border px-4 py-3 pl-8 rounded-[4px] font-sans text-[14px] text-ink focus:bg-white transition-all outline-none ${
+                    usernameStatus === "available" ? "border-lime-dark/50 focus:border-lime-dark" : 
+                    usernameStatus === "taken" || usernameStatus === "invalid" ? "border-brand-red/50 focus:border-brand-red" : "border-rule focus:border-ink"
+                  }`}
+                  placeholder="unique_handle"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-5">
             <div>
               <label className="block font-mono text-[10px] uppercase tracking-wider text-muted mb-2">Email Address</label>
               <div className="flex items-center gap-2">
@@ -156,13 +231,13 @@ const ProfileSection = () => {
           <div className="flex items-center gap-3">
             <button
               onClick={handleSave}
-              disabled={isPending || name === user?.name}
+              disabled={isPending || (name === user?.name && username === user?.username) || (username !== user?.username && usernameStatus !== "available")}
               className="bg-ink text-cream font-sans text-[12px] font-bold py-2.5 px-6 rounded-[4px] tracking-wide hover:bg-ink-light transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed flex items-center gap-2"
             >
               {isPending && <Loader2 size={14} className="animate-spin" />}
               Save Changes
             </button>
-            {name !== user?.name && (
+            {(name !== user?.name || (username !== user?.username && usernameStatus === "available")) && (
               <span className="font-mono text-[9px] text-brand-red uppercase tracking-wider">Unsaved changes</span>
             )}
           </div>

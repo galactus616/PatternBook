@@ -12,6 +12,8 @@ import paymentRoutes from "./routes/payment.routes.js";
 import waitlistRoutes from "./routes/waitlist.routes.js";
 import topicRoutes from "./routes/topic.routes.js";
 import userRoutes from "./routes/user.routes.js";
+import profileRoutes from "./routes/profile.routes.js";
+import friendRoutes from "./routes/friend.routes.js";
 
 
 const app = express();
@@ -36,6 +38,8 @@ app.use("/v1/progress", progressRoutes);
 app.use("/v1/dashboard", dashboardRoutes);
 app.use("/v1/payments", paymentRoutes);
 app.use("/v1/waitlist", waitlistRoutes);
+app.use("/v1/profile", profileRoutes);
+app.use("/v1/friends", friendRoutes);
 
 app.get("/", (req, res) => {
     res.send("API is running");

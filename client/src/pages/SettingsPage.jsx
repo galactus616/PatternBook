@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { User, CreditCard, SlidersHorizontal, Shield, Users } from 'lucide-react';
+import { User, CreditCard, Shield, Users, LogOut } from 'lucide-react';
+import { useAuth } from '../features/auth/useAuth';
 import ProfileSection from '../features/settings/ProfileSection';
 import SubscriptionSection from '../features/settings/SubscriptionSection';
 import DangerZoneSection from '../features/settings/DangerZoneSection';
@@ -22,6 +23,7 @@ const SECTION_MAP = {
 const SettingsPage = () => {
   const [active, setActive] = useState('profile');
   const ActiveSection = SECTION_MAP[active];
+  const { logout } = useAuth();
 
   return (
     <div className="max-w-[1200px] mx-auto px-8 flex flex-col md:flex-row gap-10 pt-8 pb-10">
@@ -55,6 +57,17 @@ const SettingsPage = () => {
                 )}
               </button>
             ))}
+          </div>
+
+          {/* Sign Out — at the bottom of the nav */}
+          <div className="mt-4 pt-4 border-t border-rule/40">
+            <button
+              onClick={logout}
+              className="w-full flex items-center gap-2.5 px-2 py-[7px] rounded-[3px] font-sans text-[12px] font-medium tracking-wide text-muted/60 hover:text-brand-red hover:bg-brand-red/5 border border-transparent hover:border-brand-red/10 transition-all duration-150 cursor-pointer group"
+            >
+              <LogOut size={13} strokeWidth={1.8} className="group-hover:-translate-x-0.5 transition-transform duration-150" />
+              Sign Out
+            </button>
           </div>
         </div>
       </nav>

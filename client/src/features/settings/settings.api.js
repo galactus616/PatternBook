@@ -6,6 +6,12 @@ export const updateProfile = async (data) => {
   return res.data;
 };
 
+// Check username availability
+export const checkUsernameAvailability = async (username) => {
+  const res = await axios.get(`/users/check-username?username=${username}`);
+  return res.data;
+};
+
 // Get payment history
 export const getPaymentHistory = async () => {
   const res = await axios.get("/payments/history");

@@ -16,6 +16,24 @@ export const updateProfile = async (userId, data) => {
     updateData.hasCustomPicture = true;
   }
 
+  if (data.username) {
+    // Check if taken by another user
+    const existing = await prisma.user.findFirst({
+      where: { 
+        username: data.username,
+        NOT: { id: userId }
+      }
+    });
+    if (existing) throw new Error("Username is already taken");
+    
+    // Simple validation
+    if (!/^[a-z0-9_]{3,20}$/.test(data.username)) {
+      throw new Error("Username must be 3-20 characters and only contain lowercase letters, numbers, and underscores");
+    }
+    
+    updateData.username = data.username;
+  }
+
   if (data.newPassword && data.currentPassword) {
     if (user.provider === "GOOGLE") {
       throw new Error("Cannot change password for Google accounts");
@@ -34,6 +52,7 @@ export const updateProfile = async (userId, data) => {
       id: true,
       name: true,
       email: true,
+      username: true,
       picture: true,
       provider: true,
       plan: true,
@@ -98,4 +117,15 @@ export const deleteAccount = async (userId) => {
   await prisma.user.delete({ where: { id: userId } });
 
   return { success: true };
+};
+
+export const checkUsername = async (username, excludeUserId = null) => {
+  const user = await prisma.user.findUnique({
+    where: { username }
+  });
+
+  if (!user) return { available: true };
+  if (excludeUserId && user.id === excludeUserId) return { available: true };
+
+  return { available: false };
 };

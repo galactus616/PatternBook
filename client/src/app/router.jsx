@@ -10,6 +10,8 @@ const LandingPage = lazy(() => import("../pages/LandingPage"));
 const DashboardPage = lazy(() => import("../pages/DashboardPage"));
 const ProblemsPage = lazy(() => import("../pages/ProblemsPage"));
 const SettingsPage = lazy(() => import("../pages/SettingsPage"));
+const ProfilePage = lazy(() => import("../pages/ProfilePage"));
+const FriendsPage = lazy(() => import("../pages/FriendsPage"));
 
 const AppRouter = () => {
   return (
@@ -49,6 +51,39 @@ const AppRouter = () => {
               <ProtectedRoute>
                 <DashboardLayout>
                   <SettingsPage />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <ProfilePage />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/friends"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <FriendsPage />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/u/:userId"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <ProfilePage isPublic />
                 </DashboardLayout>
               </ProtectedRoute>
             }

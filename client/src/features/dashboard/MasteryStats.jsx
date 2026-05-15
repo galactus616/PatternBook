@@ -44,7 +44,7 @@ const MasteryStats = ({ stats }) => {
         return (
           <div key={i} className={`group relative p-6 bg-white border border-rule rounded-[4px] shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden`}>
             {/* Background Gradient */}
-            <div className={`absolute inset-0 bg-gradient-to-br ${stat.bg} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+            <div className={`absolute inset-0 bg-linear-to-br ${stat.bg} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
             
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-8">

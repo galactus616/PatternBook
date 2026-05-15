@@ -5,6 +5,30 @@ import { prisma } from "../db/client.js";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
+// Helper to generate a unique username
+const generateUniqueUsername = async (name, email) => {
+    const base = (name || email.split("@")[0])
+        .toLowerCase()
+        .replace(/[^a-z0-9]/g, "_")
+        .slice(0, 15);
+    
+    let isUnique = false;
+    let username = base;
+    let attempts = 0;
+
+    while (!isUnique && attempts < 5) {
+        const existing = await prisma.user.findUnique({ where: { username } });
+        if (!existing) {
+            isUnique = true;
+        } else {
+            const random = Math.random().toString(36).substring(2, 6);
+            username = `${base}_${random}`;
+            attempts++;
+        }
+    }
+    return username;
+};
+
 // Google Login
 export const googleLogin = async (accessToken) => {
     // 1. Fetch User Profile from Google using the Access Token
@@ -20,10 +44,12 @@ export const googleLogin = async (accessToken) => {
     });
 
     if (!user) {
+        const username = await generateUniqueUsername(name, email);
         user = await prisma.user.create({
             data: {
                 email,
                 name,
+                username,
                 picture, 
                 provider: "GOOGLE",
                 password: await bcrypt.hash(Math.random().toString(36), 10),
@@ -44,7 +70,7 @@ export const googleLogin = async (accessToken) => {
 
     // 3. Generate local PatternBook JWT
     const token = jwt.sign(
-        { userId: user.id, email: user.email, plan: user.plan },
+        { userId: user.id, email: user.email, username: user.username, plan: user.plan },
         JWT_SECRET,
         { expiresIn: "7d" }
     );
@@ -62,12 +88,14 @@ export const registerUser = async ({ email, password, name }) => {
 
     const hashed = await bcrypt.hash(password, 10);
     const defaultPicture = `avvatar:${email}`;
+    const username = await generateUniqueUsername(name, email);
 
     const user = await prisma.user.create({
         data: {
             email,
             password: hashed,
             name,
+            username,
             picture: defaultPicture,
             provider: "EMAIL",
         },
@@ -90,6 +118,7 @@ export const loginUser = async ({ email, password }) => {
         {
             userId: user.id,
             email: user.email,
+            username: user.username,
             plan: user.plan
         },
         JWT_SECRET,
