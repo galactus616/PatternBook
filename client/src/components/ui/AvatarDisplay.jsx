@@ -19,18 +19,31 @@ import { User } from 'lucide-react';
  *   wrapperClassName — classes for the container div (for round clipping, borders, etc.)
  */
 const AvatarDisplay = ({ user, size = 32, className = '', wrapperClassName = '' }) => {
+  const [imgError, setImgError] = React.useState(false);
+
+  // Reset error state when user or picture changes
+  React.useEffect(() => {
+    setImgError(false);
+  }, [user?.id, user?.picture]);
+
+  const renderFallback = () => (
+    <div
+      className={`flex items-center justify-center bg-faint rounded-full ${wrapperClassName} ${className}`}
+      style={{ width: size, height: size }}
+    >
+      <User size={size / 2} className="text-muted" />
+    </div>
+  );
+
   if (!user) {
-    return (
-      <div
-        className={`flex items-center justify-center bg-faint rounded-full ${wrapperClassName}`}
-        style={{ width: size, height: size }}
-      >
-        <User size={size / 2} className="text-muted" />
-      </div>
-    );
+    return renderFallback();
   }
 
-  const picture = user.picture || `avvatar:${user.id || user.email || 'seeker'}`;
+  const picture = user.picture;
+
+  if (!picture || imgError) {
+    return renderFallback();
+  }
 
   // 1. HTTP URL — Google OAuth photo or any direct URL
   if (picture.startsWith('http')) {
@@ -39,6 +52,7 @@ const AvatarDisplay = ({ user, size = 32, className = '', wrapperClassName = '' 
         src={picture}
         alt={user.name || 'Avatar'}
         className={`w-full h-full object-cover ${className}`}
+        onError={() => setImgError(true)}
       />
     );
   }
@@ -55,6 +69,7 @@ const AvatarDisplay = ({ user, size = 32, className = '', wrapperClassName = '' 
         alt="Avatar"
         className={`w-full h-full object-cover ${className}`}
         loading="lazy"
+        onError={() => setImgError(true)}
       />
     );
   }
@@ -86,8 +101,7 @@ const AvatarDisplay = ({ user, size = 32, className = '', wrapperClassName = '' 
     );
   }
 
-  // Fallback — unknown format
-  return <User size={size / 2} className="text-cream" />;
+  return renderFallback();
 };
 
 export default AvatarDisplay;

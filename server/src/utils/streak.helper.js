@@ -1,4 +1,5 @@
 import { prisma } from "../db/client.js";
+import * as notificationService from "../services/notification.service.js";
 
 export const updateStreak = async (userId) => {
   const user = await prisma.user.findUnique({
@@ -42,7 +43,7 @@ export const updateStreak = async (userId) => {
 
   const updatedLongest = Math.max(newStreak, user.longestStreak);
 
-  return await prisma.user.update({
+  const updatedUser = await prisma.user.update({
     where: { id: userId },
     data: {
       currentStreak: newStreak,
@@ -50,4 +51,12 @@ export const updateStreak = async (userId) => {
       lastActiveDate: now
     }
   });
+
+  notificationService.createNotification(
+    userId,
+    "SYSTEM",
+    `You are on a ${newStreak}-day solving streak. Keep it going today.`
+  );
+
+  return updatedUser;
 };

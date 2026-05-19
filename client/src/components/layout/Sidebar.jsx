@@ -99,7 +99,7 @@ const Sidebar = () => {
             onClick={() => usePaymentStore.getState().openCheckout("PRO")}
             className="w-full flex items-center justify-center gap-2 px-4 py-2.5 bg-lime text-lime-dark rounded-[4px] font-sans text-[12px] font-bold tracking-wide hover:bg-lime-light transition-all duration-200 cursor-pointer"
           >
-            ⚡ Upgrade to Pro
+            <Zap size={13} className="fill-lime-dark" /> Upgrade to Pro
           </button>
         </div>
       )}

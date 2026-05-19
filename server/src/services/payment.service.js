@@ -2,6 +2,7 @@ import { razorpay } from "../config/razorpay.js";
 import { prisma } from "../db/client.js";
 import crypto from "crypto";
 import * as couponService from "./coupon.service.js";
+import * as notificationService from "./notification.service.js";
 
 export const createOrder = async (userId, planType, couponCode) => {
   const prices = {
@@ -78,6 +79,12 @@ export const verifyPayment = async (userId, { razorpay_order_id, razorpay_paymen
       subscriptionId: razorpay_order_id,
     },
   });
+
+  notificationService.createNotification(
+    userId,
+    "PRO_UPGRADE",
+    "Welcome to PatternBook Pro! Premium patterns and features are now unlocked."
+  );
 
   return { success: true, transaction };
 };

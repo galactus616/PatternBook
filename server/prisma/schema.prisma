@@ -99,6 +99,8 @@ model User {
 
   sentRequests     Friendship[] @relation("SentRequests")
   receivedRequests Friendship[] @relation("ReceivedRequests")
+  
+  notifications    Notification[]
 }
 
 model Topic {
@@ -313,3 +315,25 @@ model Friendship {
 
   @@unique([senderId, receiverId])
 }
+
+enum NotificationType {
+  WELCOME
+  FRIEND_REQUEST_RECEIVED
+  FRIEND_REQUEST_ACCEPTED
+  SYSTEM
+  PRO_UPGRADE
+}
+
+model Notification {
+  id          String           @id @default(uuid())
+  userId      String
+  user        User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  type        NotificationType
+  message     String           @default("")
+  isRead      Boolean          @default(false)
+  
+  referenceId String?
+  
+  createdAt   DateTime         @default(now())
+}

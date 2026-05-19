@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Library, Brain, LineChart } from "lucide-react";
 import { useAuth } from "../features/auth/useAuth";
 import LoginModal from "../features/auth/LoginModal";
 import RegisterModal from "../features/auth/RegisterModal";
@@ -24,7 +24,6 @@ function useReveal() {
   return setRef;
 }
 
-/* ─── Data ───────────────────────────────────────────────────────────────── */
 const MARQUEE_ITEMS = [
   "Arrays & Hashing", "Two Pointers", "Sliding Window", "Stack", "Binary Search",
   "Linked Lists", "Trees", "Tries", "Heap / Priority Queue", "Graphs",
@@ -32,9 +31,9 @@ const MARQUEE_ITEMS = [
 ];
 
 const STEPS = [
-  { n: "01", icon: "🗂", title: "Pick a Pattern", desc: "Browse our curated pattern library — from Two Pointers to Segment Trees. Each pattern has a dedicated track with progressive problems." },
-  { n: "02", icon: "🧠", title: "Understand Deeply", desc: "Every pattern comes with an illustrated breakdown, time complexity analysis, and the exact mental model to apply it in any variant." },
-  { n: "03", icon: "📈", title: "Track Mastery", desc: "Your mastery score updates in real-time. See exactly which patterns need more reps — no more wondering if you're actually ready." },
+  { n: "01", icon: Library, title: "Pick a Pattern", desc: "Browse our curated pattern library — from Two Pointers to Segment Trees. Each pattern has a dedicated track with progressive problems." },
+  { n: "02", icon: Brain, title: "Understand Deeply", desc: "Every pattern comes with an illustrated breakdown, time complexity analysis, and the exact mental model to apply it in any variant." },
+  { n: "03", icon: LineChart, title: "Track Mastery", desc: "Your mastery score updates in real-time. See exactly which patterns need more reps — no more wondering if you're actually ready." },
 ];
 
 const FEATURES = [
@@ -54,9 +53,7 @@ const FREE_FEATURES = ["3 Fundamental Pattern Tracks", "50+ Curated Problems", "
 const PRO_FEATURES = ["All 18+ Advanced Patterns", "500+ Progressive Problems", "Personalized SRS Engine", "Handwritten Pattern Notes", "Mock Interview Focus Mode", "Detailed Mastery Analytics"];
 const TEAM_FEATURES = ["Everything in Pro", "Team Progress Dashboard", "Collaborative Study Groups", "Custom Pattern Curations", "Priority Support"];
 
-/* ═══════════════════════════════════════════════════════════════════════════
-   LANDING PAGE
-   ═══════════════════════════════════════════════════════════════════════════ */
+
 export default function LandingPage() {
   const navigate = useNavigate();
   const { isAuthenticated, user, logout } = useAuth();
@@ -274,7 +271,9 @@ export default function LandingPage() {
           {STEPS.map(s => (
             <div key={s.n} className="p-12 md:p-9 border-b md:border-b-0 md:border-r border-rule last:border-r-0 hover:bg-cream-dark transition-colors duration-250 cursor-default">
               <div className="font-mono text-[10px] text-muted tracking-widest mb-6 flex items-center gap-2.5 after:content-[''] after:flex-1 after:h-px after:bg-faint">Step {s.n}</div>
-              <div className="w-10 h-10 border border-rule rounded-lg flex items-center justify-center text-[18px] mb-5 bg-white shadow-sm">{s.icon}</div>
+              <div className="w-10 h-10 border border-rule rounded-lg flex items-center justify-center text-[18px] mb-5 bg-white shadow-sm">
+                <s.icon size={18} className="text-ink" />
+              </div>
               <div className="font-serif text-[22px] font-black text-ink leading-[1.15] mb-3">{s.title}</div>
               <div className="text-[13px] leading-[1.7] text-muted">{s.desc}</div>
             </div>

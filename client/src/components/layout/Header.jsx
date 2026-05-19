@@ -3,6 +3,7 @@ import { useAuth } from "../../features/auth/useAuth";
 import { useSocket } from "../../features/auth/SocketContext";
 import { useDashboard } from "../../features/dashboard/useDashboard";
 import AvatarDisplay from "../ui/AvatarDisplay";
+import NotificationBell from "./NotificationBell";
 
 const Header = () => {
   const { user } = useAuth();
@@ -30,7 +31,7 @@ const Header = () => {
         {/* Community Pulse - Refined Style */}
         <div className="flex items-center gap-2 px-3 py-1 border border-rule/60 rounded-[4px] bg-faint/30">
           <span className="w-1.5 h-1.5 rounded-full bg-online"></span>
-          <span className="font-mono text-[9px] uppercase tracking-[0.1em] text-ink font-bold flex items-center gap-1.5">
+          <span className="font-mono text-[9px] uppercase tracking-widest text-ink font-bold flex items-center gap-1.5">
             Live <span className="opacity-40 text-[10px] font-normal">[{onlineUsers?.length?.toString().padStart(2, '0') || '00'}]</span>
           </span>
         </div>
@@ -47,10 +48,7 @@ const Header = () => {
           </div>
         )}
 
-        <button className="p-2 text-muted hover:text-ink hover:bg-cream-dark rounded-full transition-all cursor-pointer relative">
-          <Bell size={18} />
-          <span className="absolute top-2 right-2 w-1.5 h-1.5 bg-brand-red rounded-full border border-cream" />
-        </button>
+        <NotificationBell />
 
         <div className="h-8 w-px bg-rule mx-1" />
 

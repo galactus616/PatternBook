@@ -1,5 +1,6 @@
 import { prisma } from "../db/client.js";
 import { io, getReceiverSocketId } from "../socket.js";
+import * as notificationService from "./notification.service.js";
 
 export const sendFriendRequest = async (senderId, receiverIdentifier) => {
     // 1. Find receiver
@@ -42,6 +43,14 @@ export const sendFriendRequest = async (senderId, receiverIdentifier) => {
         io.to(receiverSocketId).emit("newFriendRequest", newRequest);
     }
 
+    // Save notification
+    notificationService.createNotification(
+        receiver.id,
+        "FRIEND_REQUEST_RECEIVED",
+        `${newRequest.sender.name || newRequest.sender.username} sent you a friend request.`,
+        newRequest.id
+    );
+
     return newRequest;
 };
 
@@ -66,6 +75,14 @@ export const acceptFriendRequest = async (userId, requestId) => {
             user: request.receiver // The person who accepted
         });
     }
+
+    // Save notification for sender
+    notificationService.createNotification(
+        request.senderId,
+        "FRIEND_REQUEST_ACCEPTED",
+        `${request.receiver.name || request.receiver.username} accepted your friend request.`,
+        updated.id
+    );
 
     return updated;
 };

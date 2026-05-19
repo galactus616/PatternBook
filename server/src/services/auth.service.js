@@ -3,6 +3,7 @@ import bcrypt from "bcrypt";
 import axios from "axios";
 import { prisma } from "../db/client.js";
 import { generateUniqueUsername } from "../utils/username.helper.js";
+import * as notificationService from "./notification.service.js";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
@@ -31,6 +32,12 @@ export const googleLogin = async (accessToken) => {
                 password: await bcrypt.hash(Math.random().toString(36), 10),
             }
         });
+        // Create welcome notification
+        notificationService.createNotification(
+            user.id,
+            "WELCOME",
+            "Welcome to PatternBook! Start tracking your DSA progress today."
+        );
     } else {
         // Update picture ONLY if hasCustomPicture is false
         const dataToUpdate = { provider: "GOOGLE" };
@@ -75,6 +82,13 @@ export const registerUser = async ({ email, password, name }) => {
             provider: "EMAIL",
         },
     });
+
+    // Create welcome notification
+    notificationService.createNotification(
+        user.id,
+        "WELCOME",
+        "Welcome to PatternBook! Start tracking your DSA progress today."
+    );
 
     const { password: _, ...safeUser } = user;
 

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { User, CreditCard, Shield, Users, LogOut } from 'lucide-react';
+import { useSearchParams } from 'react-router-dom';
 import { useAuth } from '../features/auth/useAuth';
 import ProfileSection from '../features/settings/ProfileSection';
 import SubscriptionSection from '../features/settings/SubscriptionSection';
@@ -21,9 +22,22 @@ const SECTION_MAP = {
 };
 
 const SettingsPage = () => {
-  const [active, setActive] = useState('profile');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const tab = searchParams.get('tab');
+  const [active, setActive] = useState(SECTION_MAP[tab] ? tab : 'profile');
   const ActiveSection = SECTION_MAP[active];
   const { logout } = useAuth();
+
+  React.useEffect(() => {
+    if (tab && SECTION_MAP[tab]) {
+      setActive(tab);
+    }
+  }, [tab]);
+
+  const handleTabChange = (tabId) => {
+    setActive(tabId);
+    setSearchParams({ tab: tabId });
+  };
 
   return (
     <div className="max-w-[1200px] mx-auto px-8 flex flex-col md:flex-row gap-10 pt-8 pb-10">
@@ -35,7 +49,7 @@ const SettingsPage = () => {
             {SECTIONS.map(({ id, label, icon: Icon }) => (
               <button
                 key={id}
-                onClick={() => !id.disabled && setActive(id)}
+                onClick={() => !id.disabled && handleTabChange(id)}
                 disabled={id === 'team'}
                 className={`
                   w-auto md:w-full flex items-center justify-between px-3 md:px-2 py-[7px] rounded-[3px] font-sans text-[12px] font-medium tracking-wide transition-all duration-150 whitespace-nowrap

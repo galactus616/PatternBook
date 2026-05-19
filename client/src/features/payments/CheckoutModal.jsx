@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { X, Loader2, CheckCircle2, Tag, AlertCircle, ShieldCheck, Zap } from "lucide-react";
+import { X, Loader2, CheckCircle2, Tag, AlertCircle, ShieldCheck, Zap, Unlock, Link2, FileText, BarChart2 } from "lucide-react";
 import { validateCoupon } from "./payments.api";
 import { useRazorpay } from "./useRazorpay";
 import { useAuthStore } from "../../store/useAuthStore";
 import { usePaymentStore } from "../../store/usePaymentStore";
 
 const PRO_FEATURES = [
-  { icon: "🔓", text: "All Pro problem hints unlocked" },
-  { icon: "🔗", text: "Direct LeetCode links for every problem" },
-  { icon: "📝", text: "Personal notes on any problem" },
-  { icon: "📊", text: "Full mastery analytics & breakdown" },
-  { icon: "⚡", text: "Early access to new patterns & features" },
+  { icon: Unlock, text: "All Pro problem hints unlocked" },
+  { icon: Link2, text: "Direct LeetCode links for every problem" },
+  { icon: FileText, text: "Personal notes on any problem" },
+  { icon: BarChart2, text: "Full mastery analytics & breakdown" },
+  { icon: Zap, text: "Early access to new patterns & features" },
 ];
 
 const PLAN_PRICES = { PRO: 49900 };
@@ -124,7 +124,9 @@ export default function CheckoutModal({ onPaymentSuccess }) {
             <div className="flex flex-col gap-4 flex-1">
               {PRO_FEATURES.map((f) => (
                 <div key={f.text} className="flex items-start gap-3">
-                  <span className="text-[16px] leading-none mt-0.5">{f.icon}</span>
+                  <span className="text-[16px] leading-none mt-0.5">
+                    <f.icon size={14} className="text-lime" />
+                  </span>
                   <span className="font-sans text-[13px] text-cream/70 leading-snug">{f.text}</span>
                 </div>
               ))}

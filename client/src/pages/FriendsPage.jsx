@@ -116,34 +116,7 @@ const FriendsPage = () => {
     }
   });
 
-  // Real-time Listeners
-  useEffect(() => {
-    if (!socket) return;
 
-    socket.on("newFriendRequest", (newRequest) => {
-      queryClient.setQueryData(["pendingRequests"], (old) => [newRequest, ...(old || [])]);
-      addToast(`${newRequest.sender.name} sent you a friend request!`, "success");
-    });
-
-    socket.on("friendRequestAccepted", ({ requestId, user }) => {
-      // Add to friends
-      queryClient.setQueryData(["friends"], (old) => [...(old || []), user]);
-      // Remove from my search results status if applicable
-      queryClient.invalidateQueries(["userSearch"]);
-      addToast(`${user.name} accepted your friend request!`, "success");
-    });
-
-    socket.on("friendRemoved", ({ requestId }) => {
-      queryClient.setQueryData(["friends"], (old) => old?.filter(f => f.id !== requestId && f.friendshipId !== requestId));
-      queryClient.invalidateQueries(["friends"]);
-    });
-
-    return () => {
-      socket.off("newFriendRequest");
-      socket.off("friendRequestAccepted");
-      socket.off("friendRemoved");
-    };
-  }, [socket, queryClient]);
 
   return (
     <div className="max-w-5xl mx-auto px-8 py-10 space-y-10 animate-in fade-in duration-500">
