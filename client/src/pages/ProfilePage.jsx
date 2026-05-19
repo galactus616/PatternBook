@@ -196,7 +196,7 @@ const ProfilePage = ({ isPublic = false }) => {
     <div className={`space-y-8 ${embedded ? 'max-w-4xl mx-auto px-8 py-8' : 'max-w-4xl mx-auto px-6 py-10'}`}>
 
       {isPublic && (
-        <button 
+        <button
           onClick={() => navigate(-1)}
           className="flex items-center gap-2 text-muted hover:text-ink transition-colors font-mono text-[11px] uppercase tracking-widest cursor-pointer group"
         >
@@ -250,7 +250,7 @@ const ProfilePage = ({ isPublic = false }) => {
               </div>
             )}
             {profile.friendshipStatus === 'PENDING_RECEIVED' && (
-              <button 
+              <button
                 onClick={() => acceptRequestMutation.mutate(profile.requestId)}
                 disabled={acceptRequestMutation.isPending}
                 className="flex items-center gap-2 bg-ink text-cream px-6 py-2.5 rounded-[4px] font-mono text-[12px] font-black uppercase hover:bg-ink-light transition-all cursor-pointer shadow-sm disabled:opacity-50"
@@ -263,7 +263,7 @@ const ProfilePage = ({ isPublic = false }) => {
         )}
 
         {profile.friendshipStatus === 'NONE' && authUser && (
-          <button 
+          <button
             onClick={() => sendRequestMutation.mutate(profile.username || profile.id)}
             disabled={sendRequestMutation.isPending}
             className="flex items-center gap-2 bg-ink text-cream px-6 py-2.5 rounded-[4px] font-mono text-[12px] font-black uppercase hover:bg-ink-light transition-all cursor-pointer shadow-sm disabled:opacity-50"
@@ -272,7 +272,7 @@ const ProfilePage = ({ isPublic = false }) => {
             Add Friend
           </button>
         )}
-        
+
         <MasteryRing percentage={animateRing ? (profile.stats?.masteryPercentage || 0) : 0} />
       </div>
 
@@ -382,11 +382,10 @@ const ProfilePage = ({ isPublic = false }) => {
           </div>
           <button
             onClick={handleCopyLink}
-            className={`flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-widest px-3 py-1.5 rounded-[3px] transition-all duration-200 cursor-pointer ${
-              copied
+            className={`flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-widest px-3 py-1.5 rounded-[3px] transition-all duration-200 cursor-pointer ${copied
                 ? 'bg-lime-dark text-cream'
                 : 'bg-ink text-cream hover:bg-ink/80'
-            }`}
+              }`}
           >
             {copied ? <Check size={11} /> : <Copy size={11} />}
             {copied ? 'Copied!' : 'Copy Link'}
@@ -400,15 +399,6 @@ const ProfilePage = ({ isPublic = false }) => {
   if (isPublic) {
     return (
       <div className="min-h-screen bg-cream grain font-sans">
-        {/* Minimal header */}
-        <div className="h-[58px] border-b border-rule bg-cream flex items-center justify-between px-8">
-          <div className="font-serif text-[18px] font-black tracking-tight">
-            Pattern<em className="text-brand-red italic">Book</em>
-          </div>
-          <Link to="/dashboard" className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-widest text-muted hover:text-ink transition-colors">
-            <ArrowLeft size={12} /> Dashboard
-          </Link>
-        </div>
         {content}
       </div>
     );

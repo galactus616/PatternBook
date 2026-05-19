@@ -10,7 +10,8 @@ import {
   Loader2,
   ExternalLink,
   MessageSquare,
-  Clock
+  Clock,
+  MoreVertical
 } from "lucide-react";
 import { Link, useSearchParams } from "react-router-dom";
 import {
@@ -33,6 +34,19 @@ const FriendsPage = () => {
   const { user: authUser } = useAuth();
   
   const isOnline = (userId) => onlineUsers?.includes(userId);
+
+  const [activeMenuId, setActiveMenuId] = useState(null);
+  const [showConfirmUnfriend, setShowConfirmUnfriend] = useState(false);
+
+  // Close menus on click outside
+  useEffect(() => {
+    const handleOutsideClick = () => {
+      setActiveMenuId(null);
+      setShowConfirmUnfriend(false);
+    };
+    document.addEventListener("click", handleOutsideClick);
+    return () => document.removeEventListener("click", handleOutsideClick);
+  }, []);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get("q") || "";
@@ -105,10 +119,19 @@ const FriendsPage = () => {
   const removeFriendshipMutation = useMutation({
     mutationFn: removeFriendship,
     onSuccess: (data, requestId) => {
+      // Check if they were an active friend
+      const activeFriends = queryClient.getQueryData(["friends"]);
+      const wasFriend = activeFriends?.some(f => f.friendshipId === requestId || f.id === requestId);
+
       // Manual remove for instant swap
       queryClient.setQueryData(["friends"], old => old?.filter(f => f.id !== requestId && f.friendshipId !== requestId));
       queryClient.setQueryData(["pendingRequests"], old => old?.filter(r => r.id !== requestId));
-      addToast("Friendship updated", "success");
+      
+      if (wasFriend) {
+        addToast("Friend removed", "success");
+      } else {
+        addToast("Request cancelled", "success");
+      }
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["friends"] });
@@ -155,58 +178,67 @@ const FriendsPage = () => {
 
             {/* Search Results Dropdown-style */}
             {searchQuery.length >= 2 && searchResults && (
-              <div className="bg-white border border-rule rounded-[4px] divide-y divide-rule shadow-md overflow-hidden">
+              <div className="bg-white border border-rule/50 rounded-[6px] divide-y divide-rule/30 shadow-md overflow-hidden">
                 {searchResults.length === 0 ? (
                   <div className="p-8 text-center">
-                    <p className="font-mono text-[12px] text-muted">No users found matching "{searchQuery}"</p>
+                    <p className="font-mono text-[11px] text-muted uppercase tracking-wider">No seekers found matching "{searchQuery}"</p>
                   </div>
                 ) : (
                   searchResults.map((user) => (
-                    <div key={user.id} className="p-4 flex items-center justify-between hover:bg-cream/30 transition-colors">
-                      <div className="flex items-center gap-4">
+                    <div key={user.id} className="p-3.5 flex items-center justify-between hover:bg-cream/20 transition-colors">
+                      <div className="flex items-center gap-3.5 overflow-hidden">
                         <div className="relative shrink-0">
-                          <div className="w-12 h-12 rounded-full border border-rule overflow-hidden bg-white flex items-center justify-center">
-                            <AvatarDisplay user={user} size={48} />
+                          <div className="w-11 h-11 rounded-full border border-rule/30 overflow-hidden bg-cream flex items-center justify-center">
+                            <AvatarDisplay user={user} size={44} />
                           </div>
                           {isOnline(user.id) && (
-                            <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-online border-2 border-white rounded-full z-10 shadow-sm" />
+                            <span className="absolute bottom-0 right-0 w-3 h-3 bg-online border-2 border-white rounded-full z-10 shadow-sm" />
                           )}
                         </div>
-                        <div>
-                          <p className="font-sans text-[15px] font-bold text-ink">{user.name}</p>
-                          <p className="font-mono text-[11px] text-muted lowercase tracking-wide">@{user.username}</p>
+                        <div className="truncate">
+                          <Link 
+                            to={`/u/${user.username || user.id}`}
+                            className="font-sans text-[14px] font-bold text-ink hover:text-brand-red transition-colors truncate block"
+                          >
+                            {user.name}
+                          </Link>
+                          <p className="font-mono text-[10px] text-muted lowercase tracking-wide truncate">@{user.username}</p>
                         </div>
                       </div>
-                      <div className="flex items-center gap-2">
-                        <Link to={`/u/${user.username || user.id}`} className="p-2 border border-rule rounded-[4px] hover:bg-cream-dark transition-all cursor-pointer">
-                          <ExternalLink size={16} />
+                      <div className="flex items-center gap-1.5">
+                        <Link 
+                          to={`/u/${user.username || user.id}`} 
+                          className="p-2 text-muted hover:text-ink hover:bg-cream rounded-full transition-all cursor-pointer"
+                          title="View Profile"
+                        >
+                          <Users size={15} />
                         </Link>
 
                         {user.friendshipStatus === "NONE" ? (
                           <button
                             onClick={() => sendRequestMutation.mutate(user.username || user.id)}
                             disabled={sendRequestMutation.isPending}
-                            className="flex items-center gap-2 bg-ink text-cream px-4 py-2 rounded-[4px] font-mono text-[11px] uppercase font-bold hover:bg-ink-light transition-all disabled:opacity-50 cursor-pointer"
+                            className="flex items-center gap-1.5 bg-ink text-cream px-3 py-1.5 rounded-[4px] font-mono text-[10px] uppercase font-bold hover:bg-ink-light transition-all disabled:opacity-50 cursor-pointer"
                           >
-                            {sendRequestMutation.isPending ? <Loader2 size={14} className="animate-spin" /> : <UserPlus size={14} />}
+                            {sendRequestMutation.isPending ? <Loader2 size={12} className="animate-spin" /> : <UserPlus size={12} />}
                             Add
                           </button>
                         ) : user.friendshipStatus === "PENDING_SENT" ? (
-                          <div className="flex items-center gap-2 bg-faint border border-rule px-4 py-2 rounded-[4px] text-muted font-mono text-[11px] uppercase tracking-wider">
-                            <Clock size={14} />
+                          <div className="flex items-center gap-1.5 bg-cream/80 border border-rule px-3 py-1.5 rounded-[4px] text-muted font-mono text-[10px] uppercase tracking-wider">
+                            <Clock size={12} />
                             Sent
                           </div>
                         ) : user.friendshipStatus === "PENDING_RECEIVED" ? (
                           <button
-                            onClick={() => acceptRequestMutation.mutate(user.id)}
-                            className="flex items-center gap-2 bg-lime text-ink border border-ink px-4 py-2 rounded-[4px] font-mono text-[11px] uppercase font-bold hover:bg-lime-dark transition-all cursor-pointer"
+                            onClick={() => acceptRequestMutation.mutate(user.friendshipId)}
+                            className="flex items-center gap-1.5 bg-ink text-cream px-3 py-1.5 rounded-[4px] font-mono text-[10px] uppercase font-bold hover:bg-ink-light transition-all cursor-pointer"
                           >
-                            <UserCheck size={14} />
+                            <Check size={12} />
                             Accept
                           </button>
                         ) : (
-                          <div className="flex items-center gap-2 bg-faint border border-rule px-4 py-2 rounded-[4px] text-ink font-mono text-[11px] font-bold uppercase">
-                            <Check size={14} className="text-lime-dark" />
+                          <div className="flex items-center gap-1.5 bg-cream/80 border border-rule px-3 py-1.5 rounded-[4px] text-muted font-mono text-[10px] font-bold uppercase">
+                            <Check size={12} className="text-lime-dark" />
                             Friends
                           </div>
                         )}
@@ -226,36 +258,114 @@ const FriendsPage = () => {
             </h3>
 
             {friends?.length === 0 ? (
-              <div className="p-12 border-2 border-dashed border-rule rounded-[8px] text-center bg-faint/20">
-                <Users size={32} className="mx-auto text-rule mb-3" />
-                <p className="font-sans text-[15px] text-muted">Your friends list is currently empty.</p>
-                <p className="font-mono text-[11px] text-muted mt-1 uppercase tracking-widest">Search above to find and add seekers</p>
+              <div className="p-12 border-2 border-dashed border-rule/50 rounded-[6px] text-center bg-faint/10">
+                <Users size={28} className="mx-auto text-muted/30 mb-3" />
+                <p className="font-sans text-[15px] text-muted font-bold">Your friends list is empty.</p>
+                <p className="font-mono text-[10px] text-muted/50 mt-1 uppercase tracking-widest">Search above to find and add other seekers</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {friends?.map((friend) => (
-                  <div key={friend.id} className="bg-white border border-rule p-5 rounded-[4px] flex items-center justify-between hover:border-ink transition-all group shadow-sm">
-                    <div className="flex items-center gap-4 overflow-hidden">
+                  <div 
+                    key={friend.id} 
+                    className="bg-white border border-rule/50 p-4 rounded-[6px] flex items-center justify-between hover:shadow-xs hover:border-rule transition-all duration-200 group"
+                  >
+                    <div className="flex items-center gap-3.5 overflow-hidden">
                       <div className="relative shrink-0">
-                        <div className="w-14 h-14 rounded-full border border-rule overflow-hidden bg-white flex items-center justify-center">
-                          <AvatarDisplay user={friend} size={56} />
+                        <div className="w-12 h-12 rounded-full border border-rule/30 overflow-hidden bg-cream flex items-center justify-center">
+                          <AvatarDisplay user={friend} size={48} />
                         </div>
                         {isOnline(friend.id) && (
-                          <span className="absolute bottom-0 right-0 w-4 h-4 bg-online border-2 border-white rounded-full z-10 shadow-sm animate-pulse" />
+                          <span className="absolute bottom-0 right-0 w-3 h-3 bg-online border-2 border-white rounded-full z-10 shadow-sm" />
                         )}
                       </div>
                       <div className="truncate">
-                        <p className="font-sans text-[15px] font-bold text-ink truncate group-hover:text-brand-red transition-colors">{friend.name}</p>
-                        <p className="font-mono text-[11px] text-muted lowercase tracking-wide truncate">@{friend.username}</p>
+                        <Link 
+                          to={`/u/${friend.username || friend.id}`} 
+                          className="font-sans text-[14px] font-bold text-ink hover:text-brand-red transition-colors truncate block"
+                        >
+                          {friend.name}
+                        </Link>
+                        <p className="font-mono text-[10px] text-muted lowercase tracking-wide truncate">@{friend.username}</p>
                       </div>
                     </div>
-                    <div className="flex items-center gap-2 shrink-0">
-                      <Link to={`/u/${friend.username || friend.id}`} className="p-2 border border-rule rounded-[4px] hover:bg-cream-dark transition-all cursor-pointer" title="View Profile">
-                        <ExternalLink size={16} />
-                      </Link>
-                      <button className="p-2 border border-rule rounded-[4px] hover:bg-cream-dark transition-all text-muted hover:text-ink cursor-pointer" title="Message">
-                        <MessageSquare size={16} />
+                    <div className="relative shrink-0">
+                      <button 
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          if (activeMenuId === friend.id) {
+                            setActiveMenuId(null);
+                            setShowConfirmUnfriend(false);
+                          } else {
+                            setActiveMenuId(friend.id);
+                            setShowConfirmUnfriend(false);
+                          }
+                        }}
+                        className="p-2 text-muted hover:text-ink hover:bg-cream rounded-full transition-all cursor-pointer"
+                        title="More Options"
+                      >
+                        <MoreVertical size={15} />
                       </button>
+
+                      {activeMenuId === friend.id && (
+                        <div className="absolute right-0 mt-1 w-44 bg-white border border-rule/50 rounded-[4px] shadow-lg py-1 z-20 animate-in fade-in slide-in-from-top-1 duration-150">
+                          {!showConfirmUnfriend ? (
+                            <>
+                              <Link 
+                                to={`/u/${friend.username || friend.id}`}
+                                className="w-full text-left px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-muted hover:text-ink hover:bg-cream transition-colors flex items-center gap-2"
+                              >
+                                <Users size={12} />
+                                Profile
+                              </Link>
+                              <button 
+                                onClick={() => addToast("Messaging feature coming soon!", "info")}
+                                className="w-full text-left px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-muted hover:text-ink hover:bg-cream transition-colors flex items-center gap-2 cursor-pointer"
+                              >
+                                <MessageSquare size={12} />
+                                Message
+                              </button>
+                              <div className="border-t border-rule/30 my-1" />
+                              <button 
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setShowConfirmUnfriend(true);
+                                }}
+                                className="w-full text-left px-3 py-1.5 font-mono text-[10px] uppercase tracking-wider text-brand-red hover:bg-brand-red/5 transition-colors flex items-center gap-2 cursor-pointer font-bold"
+                              >
+                                <UserMinus size={12} />
+                                Unfriend
+                              </button>
+                            </>
+                          ) : (
+                            <div className="px-3 py-2 space-y-2">
+                              <p className="font-mono text-[9px] uppercase tracking-wider text-ink font-bold leading-tight">Unfriend {friend.name}?</p>
+                              <div className="flex gap-1.5">
+                                <button 
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    removeFriendshipMutation.mutate(friend.friendshipId || friend.id);
+                                    setActiveMenuId(null);
+                                    setShowConfirmUnfriend(false);
+                                  }}
+                                  className="flex-1 bg-brand-red text-cream py-1 rounded-[3px] font-mono text-[9px] font-black uppercase hover:bg-brand-red/90 transition-all cursor-pointer text-center"
+                                >
+                                  Yes
+                                </button>
+                                <button 
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    setShowConfirmUnfriend(false);
+                                  }}
+                                  className="flex-1 bg-cream-dark text-muted py-1 rounded-[3px] font-mono text-[9px] font-black uppercase hover:bg-cream-dark/80 transition-all cursor-pointer text-center"
+                                >
+                                  No
+                                </button>
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}
@@ -269,17 +379,17 @@ const FriendsPage = () => {
         <div className="space-y-10">
 
           {/* Pending Requests */}
-          <div className="bg-white border border-rule rounded-[4px] shadow-sm overflow-hidden">
+          <div className="bg-white border border-rule/50 rounded-[6px] shadow-sm overflow-hidden">
             <div className="px-5 py-4 border-b border-rule bg-faint/30 flex items-center justify-between">
-              <h4 className="font-mono text-[12px] font-bold uppercase tracking-widest flex items-center gap-2">
+              <h4 className="font-mono text-[11px] font-bold uppercase tracking-widest flex items-center gap-2">
                 <Clock size={14} /> Requests
               </h4>
               {pendingRequests?.length > 0 && (
-                <span className="bg-brand-red text-white font-mono text-[10px] px-2 py-0.5 rounded-full">{pendingRequests.length}</span>
+                <span className="bg-brand-red text-white font-mono text-[9px] px-2 py-0.5 rounded-full font-bold">{pendingRequests.length}</span>
               )}
             </div>
 
-            <div className="p-2 divide-y divide-rule/50">
+            <div className="p-2 divide-y divide-rule/30">
               {pendingRequests?.length === 0 ? (
                 <div className="p-6 text-center">
                   <p className="font-mono text-[10px] text-muted uppercase tracking-wider">No pending requests</p>
@@ -288,11 +398,16 @@ const FriendsPage = () => {
                 pendingRequests?.map((req) => (
                   <div key={req.id} className="p-4 space-y-3">
                     <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 rounded-full border border-ink overflow-hidden bg-white shrink-0">
+                      <div className="w-10 h-10 rounded-full border border-rule/30 overflow-hidden bg-cream shrink-0">
                         <AvatarDisplay user={req.sender} size={40} />
                       </div>
                       <div className="overflow-hidden">
-                        <p className="font-sans text-[13px] font-bold text-ink truncate">{req.sender.name}</p>
+                        <Link 
+                          to={`/u/${req.sender.username || req.sender.id}`}
+                          className="font-sans text-[13px] font-bold text-ink hover:text-brand-red transition-colors truncate block"
+                        >
+                          {req.sender.name}
+                        </Link>
                         <p className="font-mono text-[10px] text-muted lowercase truncate">@{req.sender.username}</p>
                       </div>
                     </div>
@@ -300,7 +415,7 @@ const FriendsPage = () => {
                       <button
                         onClick={() => acceptRequestMutation.mutate(req.id)}
                         disabled={acceptRequestMutation.isPending}
-                        className="flex-1 bg-ink text-cream border border-ink py-1.5 rounded-[2px] font-mono text-[10px] font-black uppercase hover:bg-ink-light transition-all cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
+                        className="flex-1 bg-ink text-cream py-1.5 rounded-[4px] font-mono text-[10px] font-black uppercase hover:bg-ink-light transition-all cursor-pointer flex items-center justify-center gap-1.5 disabled:opacity-50"
                       >
                         {acceptRequestMutation.isPending && <Loader2 size={12} className="animate-spin" />}
                         Accept
@@ -308,9 +423,9 @@ const FriendsPage = () => {
                       <button
                         onClick={() => removeFriendshipMutation.mutate(req.id)}
                         disabled={removeFriendshipMutation.isPending}
-                        className="p-1.5 border border-rule text-muted hover:text-brand-red hover:border-brand-red rounded-[2px] transition-all cursor-pointer disabled:opacity-50"
+                        className="p-1.5 border border-rule text-muted hover:text-brand-red hover:bg-brand-red/5 rounded-[4px] transition-all cursor-pointer disabled:opacity-50"
                       >
-                        {removeFriendshipMutation.isPending ? <Loader2 size={14} className="animate-spin" /> : <X size={14} />}
+                        {removeFriendshipMutation.isPending ? <Loader2 size={12} className="animate-spin" /> : <X size={12} />}
                       </button>
                     </div>
                   </div>

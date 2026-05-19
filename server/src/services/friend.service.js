@@ -127,8 +127,11 @@ export const getFriends = async (userId) => {
         }
     });
 
-    // Return the "other" person in the friendship
-    return friendships.map(f => f.senderId === userId ? f.receiver : f.sender);
+    // Return the "other" person in the friendship with the friendshipId attached
+    return friendships.map(f => {
+        const friendObj = f.senderId === userId ? f.receiver : f.sender;
+        return { ...friendObj, friendshipId: f.id };
+    });
 };
 
 export const getPendingRequests = async (userId) => {
@@ -166,7 +169,7 @@ export const searchUsers = async (userId, query) => {
         take: 10
     });
 
-    // Enrich with friendship status
+    // Enrich with friendship status and friendshipId
     const enrichedUsers = await Promise.all(users.map(async (user) => {
         const friendship = await prisma.friendship.findFirst({
             where: {
@@ -178,14 +181,16 @@ export const searchUsers = async (userId, query) => {
         });
 
         let status = "NONE";
+        let friendshipId = null;
         if (friendship) {
+            friendshipId = friendship.id;
             if (friendship.status === "ACCEPTED") status = "FRIEND";
             else if (friendship.status === "PENDING") {
                 status = friendship.senderId === userId ? "PENDING_SENT" : "PENDING_RECEIVED";
             }
         }
 
-        return { ...user, friendshipStatus: status };
+        return { ...user, friendshipStatus: status, friendshipId };
     }));
 
     return enrichedUsers;
