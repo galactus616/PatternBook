@@ -7,6 +7,11 @@ import { useQueryClient } from "@tanstack/react-query";
 
 const SocketContext = createContext();
 
+const getSocketUrl = () => {
+    const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:5000/v1";
+    return apiUrl.replace(/\/v1\/?$/, "");
+};
+
 export const useSocket = () => {
     return useContext(SocketContext);
 };
@@ -19,7 +24,7 @@ export const SocketContextProvider = ({ children }) => {
 
     useEffect(() => {
         if (user) {
-            const socket = io("http://localhost:5000", {
+            const socket = io(getSocketUrl(), {
                 query: {
                     userId: user.id,
                 },
