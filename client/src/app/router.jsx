@@ -12,6 +12,7 @@ const ProblemsPage = lazy(() => import("../pages/ProblemsPage"));
 const SettingsPage = lazy(() => import("../pages/SettingsPage"));
 const ProfilePage = lazy(() => import("../pages/ProfilePage"));
 const FriendsPage = lazy(() => import("../pages/FriendsPage"));
+const LeaderboardPage = lazy(() => import("../pages/LeaderboardPage"));
 
 const AppRouter = () => {
   return (
@@ -40,6 +41,17 @@ const AppRouter = () => {
               <ProtectedRoute>
                 <DashboardLayout>
                   <ProblemsPage />
+                </DashboardLayout>
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/leaderboard"
+            element={
+              <ProtectedRoute>
+                <DashboardLayout>
+                  <LeaderboardPage />
                 </DashboardLayout>
               </ProtectedRoute>
             }

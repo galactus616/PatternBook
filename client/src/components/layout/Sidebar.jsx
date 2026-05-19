@@ -20,13 +20,11 @@ const Sidebar = () => {
   const { user } = useAuth();
 
   const navItems = [
-    { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard, disabled: false },
-    { name: "Problems", path: "/problems", icon: Database, disabled: false },
-    { name: "Roadmap", path: "/roadmap", icon: Target, disabled: true },
-    { name: "Leaderboard", path: "/leaderboard", icon: Trophy, disabled: true },
-    { name: "Friends", path: "/friends", icon: Users, disabled: false },
-    { name: "Resources", path: "/resources", icon: BookOpen, disabled: true },
-    { name: "Settings", path: "/settings", icon: Settings, disabled: false },
+    { name: "Dashboard", path: "/dashboard", icon: LayoutDashboard },
+    { name: "Problems", path: "/problems", icon: Database },
+    { name: "Leaderboard", path: "/leaderboard", icon: Trophy },
+    { name: "Friends", path: "/friends", icon: Users },
+    { name: "Settings", path: "/settings", icon: Settings },
   ];
 
   return (
@@ -55,17 +53,14 @@ const Sidebar = () => {
           return (
             <NavLink
               key={item.name}
-              to={item.disabled ? "#" : item.path}
-              onClick={(e) => { if (item.disabled) e.preventDefault(); }}
+              to={item.path}
               className={({ isActive }) => {
                 const active = isItemActive(window.location.pathname);
                 return `
-                  group flex items-center gap-3 px-4 py-3 rounded-[4px] transition-all duration-200
-                  ${item.disabled
-                    ? "opacity-40 cursor-not-allowed text-muted grayscale"
-                    : active
-                      ? "bg-ink text-cream shadow-lg shadow-ink/10"
-                      : "text-muted hover:text-ink hover:bg-cream-dark cursor-pointer"}
+                  group flex items-center gap-3 px-4 py-3 rounded-[4px] transition-all duration-200 cursor-pointer
+                  ${active
+                    ? "bg-ink text-cream shadow-lg shadow-ink/10"
+                    : "text-muted hover:text-ink hover:bg-cream-dark"}
                 `;
               }}
             >
@@ -73,17 +68,11 @@ const Sidebar = () => {
                 const active = isItemActive(window.location.pathname);
                 return (
                   <>
-                    <item.icon size={18} className={active && !item.disabled ? "text-lime" : ""} />
+                    <item.icon size={18} className={active ? "text-lime" : ""} />
                     <span className="font-sans text-[13px] font-semibold tracking-wide flex-1">{item.name}</span>
-                    {item.disabled ? (
-                      <span className="font-mono text-[8px] uppercase tracking-widest px-1.5 py-0.5 border border-rule/50 rounded-[2px]">
-                        Soon
-                      </span>
-                    ) : (
-                      <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
-                        <div className="w-1 h-1 rounded-full bg-brand-red" />
-                      </div>
-                    )}
+                    <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="w-1 h-1 rounded-full bg-brand-red" />
+                    </div>
                   </>
                 );
               }}
