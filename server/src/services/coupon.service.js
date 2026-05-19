@@ -1,9 +1,5 @@
 import { prisma } from "../db/client.js";
 
-/**
- * Validates a coupon code for a specific user
- * { coupon, discountedAmount }
- */
 export const validateCoupon = async (code, userId, originalAmount) => {
   if (!code) return { coupon: null, discountedAmount: originalAmount };
 
@@ -50,9 +46,6 @@ export const validateCoupon = async (code, userId, originalAmount) => {
   return { coupon, discountedAmount };
 };
 
-/**
- * Record coupon usage (called after successful payment)
- */
 export const recordUsage = async (couponId, userId) => {
   await prisma.$transaction([
     prisma.couponUsage.create({

@@ -1,7 +1,7 @@
 # Node modules
 node_modules/
 
-# Env files (VERY IMPORTANT)
+# Env files
 .env
 .env.*
 
@@ -26,9 +26,6 @@ build/
 
 # Prisma
 prisma/migrations/
-
-# Optional (if using next later)
-.next/
 
 # Coverage
 coverage/

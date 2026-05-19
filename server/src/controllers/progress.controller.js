@@ -3,10 +3,9 @@ import {
   fetchUserProgress,
 } from "../services/progress.service.js";
 
-// 🔥 UPDATE PROGRESS
 export const updateProgress = async (req, res) => {
   try {
-    const userId = req.user.userId; // ✅ from JWT
+    const userId = req.user.userId;
     const { problemId, status, notes, attempts } = req.body;
 
     const result = await upsertProgress({
@@ -26,7 +25,6 @@ export const updateProgress = async (req, res) => {
   }
 };
 
-// 🔥 GET PROGRESS
 export const getProgress = async (req, res) => {
   try {
     const userId = req.user.userId;

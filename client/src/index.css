@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Custom theme variables */
 @theme {
   --color-brand-dark: #111111;
   --color-brand-white: #ffffff;
@@ -23,6 +22,7 @@
   --color-lime: #b8ff57;
   --color-lime-light: #a0e83a;
   --color-lime-dark: #2a3d00;
+  --color-online: #16a34a;
   --color-brand-red: #d63a2f;
 
   /* Fonts */

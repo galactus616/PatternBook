@@ -178,7 +178,7 @@ const ProfileSection = () => {
               />
             </div>
             <div>
-              <label className="block font-mono text-[10px] uppercase tracking-wider text-muted mb-2 flex items-center justify-between">
+              <label className="font-mono text-[10px] uppercase tracking-wider text-muted mb-2 flex items-center justify-between">
                 <span>Username</span>
                 {usernameStatus !== "idle" && (
                   <span className={`text-[9px] lowercase tracking-normal flex items-center gap-1 ${

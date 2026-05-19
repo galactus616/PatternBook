@@ -2,43 +2,19 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import axios from "axios";
 import { prisma } from "../db/client.js";
+import { generateUniqueUsername } from "../utils/username.helper.js";
 
 const JWT_SECRET = process.env.JWT_SECRET;
 
-// Helper to generate a unique username
-const generateUniqueUsername = async (name, email) => {
-    const base = (name || email.split("@")[0])
-        .toLowerCase()
-        .replace(/[^a-z0-9]/g, "_")
-        .slice(0, 15);
-    
-    let isUnique = false;
-    let username = base;
-    let attempts = 0;
-
-    while (!isUnique && attempts < 5) {
-        const existing = await prisma.user.findUnique({ where: { username } });
-        if (!existing) {
-            isUnique = true;
-        } else {
-            const random = Math.random().toString(36).substring(2, 6);
-            username = `${base}_${random}`;
-            attempts++;
-        }
-    }
-    return username;
-};
-
-// Google Login
 export const googleLogin = async (accessToken) => {
-    // 1. Fetch User Profile from Google using the Access Token
+    // Fetch User Profile from Google using the Access Token
     const googleRes = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
         headers: { Authorization: `Bearer ${accessToken}` }
     });
 
     const { email, name, picture, sub: googleId } = googleRes.data;
 
-    // 2. Upsert User in Database
+    // Upsert User in Database
     let user = await prisma.user.findUnique({
         where: { email }
     });
@@ -68,7 +44,6 @@ export const googleLogin = async (accessToken) => {
         });
     }
 
-    // 3. Generate local PatternBook JWT
     const token = jwt.sign(
         { userId: user.id, email: user.email, username: user.username, plan: user.plan },
         JWT_SECRET,

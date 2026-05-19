@@ -41,6 +41,7 @@ export const deleteAccount = async (req, res) => {
     res.status(400).json({ success: false, message: err.message });
   }
 };
+
 export const checkUsername = async (req, res) => {
   try {
     const { username } = req.query;

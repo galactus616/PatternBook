@@ -3,20 +3,15 @@ import { prisma } from "../db/client.js";
 import crypto from "crypto";
 import * as couponService from "./coupon.service.js";
 
-/**
- * Create a new Razorpay Order
- */
 export const createOrder = async (userId, planType, couponCode) => {
-  // Define prices (In Paise: ₹499 = 49900)
   const prices = {
     PRO: 49900,
-    TEAM: 29900, // Per seat, simplified for now
+    TEAM: 29900,
   };
 
   const originalAmount = prices[planType];
   if (!originalAmount) throw new Error("Invalid plan type");
 
-  // Validate Coupon
   const { coupon, discountedAmount } = await couponService.validateCoupon(
     couponCode,
     userId,
@@ -31,7 +26,6 @@ export const createOrder = async (userId, planType, couponCode) => {
 
   const order = await razorpay.orders.create(options);
 
-  // Store the transaction as 'created'
   await prisma.transaction.create({
     data: {
       userId,
@@ -46,11 +40,7 @@ export const createOrder = async (userId, planType, couponCode) => {
   return { order, couponApplied: !!coupon };
 };
 
-/**
- * Verify Razorpay Signature and Update User Plan
- */
 export const verifyPayment = async (userId, { razorpay_order_id, razorpay_payment_id, razorpay_signature }) => {
-  // 1. Verify signature
   const body = razorpay_order_id + "|" + razorpay_payment_id;
   const expectedSignature = crypto
     .createHmac("sha256", process.env.RAZORPAY_KEY_SECRET)
@@ -63,7 +53,6 @@ export const verifyPayment = async (userId, { razorpay_order_id, razorpay_paymen
     throw new Error("Payment verification failed: Invalid signature");
   }
 
-  // 2. Update transaction record
   const transaction = await prisma.transaction.update({
     where: { razorpayOrderId: razorpay_order_id },
     data: {
@@ -73,7 +62,6 @@ export const verifyPayment = async (userId, { razorpay_order_id, razorpay_paymen
     },
   });
 
-  // 2b. If coupon was used, record usage
   if (transaction.couponId) {
     await couponService.recordUsage(transaction.couponId, userId);
   }
@@ -94,9 +82,6 @@ export const verifyPayment = async (userId, { razorpay_order_id, razorpay_paymen
   return { success: true, transaction };
 };
 
-/**
- * Get Payment History for a user
- */
 export const getPaymentHistory = async (userId) => {
   return await prisma.transaction.findMany({
     where: { userId },

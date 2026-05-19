@@ -17,7 +17,6 @@ export const updateProfile = async (userId, data) => {
   }
 
   if (data.username) {
-    // Check if taken by another user
     const existing = await prisma.user.findFirst({
       where: { 
         username: data.username,
@@ -26,7 +25,6 @@ export const updateProfile = async (userId, data) => {
     });
     if (existing) throw new Error("Username is already taken");
     
-    // Simple validation
     if (!/^[a-z0-9_]{3,20}$/.test(data.username)) {
       throw new Error("Username must be 3-20 characters and only contain lowercase letters, numbers, and underscores");
     }
@@ -90,12 +88,10 @@ export const exportData = async (userId) => {
 };
 
 export const resetProgress = async (userId) => {
-  // Delete all progress
   await prisma.userProgress.deleteMany({
     where: { userId },
   });
 
-  // Reset streaks
   await prisma.user.update({
     where: { id: userId },
     data: {
@@ -108,8 +104,6 @@ export const resetProgress = async (userId) => {
 };
 
 export const deleteAccount = async (userId) => {
-  // Prisma relations will cascade delete or we might need to delete manually depending on schema
-  // We'll delete progress and transactions first to be safe
   await prisma.userProgress.deleteMany({ where: { userId } });
   await prisma.transaction.deleteMany({ where: { userId } });
   await prisma.couponUsage.deleteMany({ where: { userId } });

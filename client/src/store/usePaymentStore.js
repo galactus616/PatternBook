@@ -1,10 +1,5 @@
 import { create } from "zustand";
 
-/**
- * Global UI store for payment modals.
- * Lets any component (Sidebar, UpgradeBanner, Problems page) trigger
- * the checkout flow without prop drilling.
- */
 export const usePaymentStore = create((set) => ({
   showCheckout: false,
   showWaitlist: false,

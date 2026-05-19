@@ -22,7 +22,6 @@ export const getPublicProfile = async (identifier, viewerId = null) => {
 
   if (!user) return null;
 
-  // Friendship status
   let friendshipStatus = "NONE";
   let requestId = null;
 
@@ -72,7 +71,6 @@ export const getPublicProfile = async (identifier, viewerId = null) => {
   const masteryPercentage =
     totalProblems > 0 ? Math.round((solvedCount / totalProblems) * 100) : 0;
 
-  // Rank system
   const getRank = (count) => {
     if (count >= 300) return "Architect";
     if (count >= 150) return "Grandmaster";
@@ -81,7 +79,6 @@ export const getPublicProfile = async (identifier, viewerId = null) => {
     return "Novice";
   };
 
-  // Difficulty breakdown
   const difficultyStats = { EASY: 0, MEDIUM: 0, HARD: 0 };
   userProgress.forEach((p) => {
     if (p.status === "SOLVED_INDEPENDENTLY") {

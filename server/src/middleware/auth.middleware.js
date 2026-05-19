@@ -16,7 +16,6 @@ export const authMiddleware = async (req, res, next) => {
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-        // Verify user still exists in DB
         const user = await prisma.user.findUnique({
             where: { id: decoded.userId }
         });
@@ -51,7 +50,6 @@ export const optionalAuth = async (req, res, next) => {
         req.user = decoded;
         next();
     } catch (err) {
-        // Just continue without user if token is invalid
         next();
     }
-};
+};

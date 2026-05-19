@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import {
   Users,
@@ -22,11 +22,17 @@ import {
   removeFriendship
 } from "../features/friends/friends.api";
 import { useToastStore } from "../store/useToastStore";
+import { useAuth } from "../features/auth/useAuth";
+import { useSocket } from "../features/auth/SocketContext";
 import AvatarDisplay from "../components/ui/AvatarDisplay";
 
 const FriendsPage = () => {
   const queryClient = useQueryClient();
   const { addToast } = useToastStore();
+  const { socket, onlineUsers } = useSocket();
+  const { user: authUser } = useAuth();
+  
+  const isOnline = (userId) => onlineUsers?.includes(userId);
 
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get("q") || "";
@@ -110,6 +116,35 @@ const FriendsPage = () => {
     }
   });
 
+  // Real-time Listeners
+  useEffect(() => {
+    if (!socket) return;
+
+    socket.on("newFriendRequest", (newRequest) => {
+      queryClient.setQueryData(["pendingRequests"], (old) => [newRequest, ...(old || [])]);
+      addToast(`${newRequest.sender.name} sent you a friend request!`, "success");
+    });
+
+    socket.on("friendRequestAccepted", ({ requestId, user }) => {
+      // Add to friends
+      queryClient.setQueryData(["friends"], (old) => [...(old || []), user]);
+      // Remove from my search results status if applicable
+      queryClient.invalidateQueries(["userSearch"]);
+      addToast(`${user.name} accepted your friend request!`, "success");
+    });
+
+    socket.on("friendRemoved", ({ requestId }) => {
+      queryClient.setQueryData(["friends"], (old) => old?.filter(f => f.id !== requestId && f.friendshipId !== requestId));
+      queryClient.invalidateQueries(["friends"]);
+    });
+
+    return () => {
+      socket.off("newFriendRequest");
+      socket.off("friendRequestAccepted");
+      socket.off("friendRemoved");
+    };
+  }, [socket, queryClient]);
+
   return (
     <div className="max-w-5xl mx-auto px-8 py-10 space-y-10 animate-in fade-in duration-500">
       {/* ── Header ─────────────────────────────────────── */}
@@ -156,8 +191,13 @@ const FriendsPage = () => {
                   searchResults.map((user) => (
                     <div key={user.id} className="p-4 flex items-center justify-between hover:bg-cream/30 transition-colors">
                       <div className="flex items-center gap-4">
-                        <div className="w-12 h-12 rounded-full border border-rule overflow-hidden bg-white flex items-center justify-center shrink-0">
-                          <AvatarDisplay user={user} size={48} />
+                        <div className="relative shrink-0">
+                          <div className="w-12 h-12 rounded-full border border-rule overflow-hidden bg-white flex items-center justify-center">
+                            <AvatarDisplay user={user} size={48} />
+                          </div>
+                          {isOnline(user.id) && (
+                            <span className="absolute bottom-0 right-0 w-3.5 h-3.5 bg-online border-2 border-white rounded-full z-10 shadow-sm" />
+                          )}
                         </div>
                         <div>
                           <p className="font-sans text-[15px] font-bold text-ink">{user.name}</p>
@@ -223,8 +263,13 @@ const FriendsPage = () => {
                 {friends?.map((friend) => (
                   <div key={friend.id} className="bg-white border border-rule p-5 rounded-[4px] flex items-center justify-between hover:border-ink transition-all group shadow-sm">
                     <div className="flex items-center gap-4 overflow-hidden">
-                      <div className="w-14 h-14 rounded-full border border-rule overflow-hidden bg-white flex items-center justify-center shrink-0">
-                        <AvatarDisplay user={friend} size={56} />
+                      <div className="relative shrink-0">
+                        <div className="w-14 h-14 rounded-full border border-rule overflow-hidden bg-white flex items-center justify-center">
+                          <AvatarDisplay user={friend} size={56} />
+                        </div>
+                        {isOnline(friend.id) && (
+                          <span className="absolute bottom-0 right-0 w-4 h-4 bg-online border-2 border-white rounded-full z-10 shadow-sm animate-pulse" />
+                        )}
                       </div>
                       <div className="truncate">
                         <p className="font-sans text-[15px] font-bold text-ink truncate group-hover:text-brand-red transition-colors">{friend.name}</p>

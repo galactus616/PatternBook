@@ -1,7 +1,6 @@
 import { prisma } from "../db/client.js";
 
 export const getDashboardStats = async (userId, year = new Date().getFullYear()) => {
-  // 1. Get User and Overall Stats
   const startOfYear = new Date(year, 0, 1);
   const endOfYear = new Date(year, 11, 31, 23, 59, 59);
 
@@ -29,7 +28,6 @@ export const getDashboardStats = async (userId, year = new Date().getFullYear())
   const solvedCount = userProgress.filter(p => p.status === 'SOLVED_INDEPENDENTLY').length;
   const attemptedCount = userProgress.filter(p => p.status === 'ATTEMPTED' || p.status === 'SOLVED_WITH_HELP').length;
 
-  // 2. Breakdown by Difficulty
   const difficultyStats = {
     EASY: { total: 0, solved: 0 },
     MEDIUM: { total: 0, solved: 0 },
@@ -51,7 +49,6 @@ export const getDashboardStats = async (userId, year = new Date().getFullYear())
     }
   });
 
-  // 3. Topic-wise Progress
   const topics = await prisma.topic.findMany({
     orderBy: { order: "asc" },
     include: {
@@ -79,7 +76,6 @@ export const getDashboardStats = async (userId, year = new Date().getFullYear())
     };
   });
 
-  // 4. Pattern-wise Mastery
   const patterns = await prisma.pattern.findMany({
     select: {
       id: true,
@@ -105,7 +101,6 @@ export const getDashboardStats = async (userId, year = new Date().getFullYear())
     };
   }).sort((a, b) => b.percentage - a.percentage);
 
-  // 5. Heatmap Data (Specific Year)
   const activities = await prisma.userProgress.findMany({
     where: {
       userId,
@@ -129,7 +124,6 @@ export const getDashboardStats = async (userId, year = new Date().getFullYear())
     count: heatmapMap[date]
   }));
 
-  // 6. Recent Activity
   const recentActivity = await prisma.userProgress.findMany({
     where: { userId },
     take: 6,

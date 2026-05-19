@@ -1,10 +1,12 @@
 import { Search, Bell, User, Flame } from "lucide-react";
 import { useAuth } from "../../features/auth/useAuth";
+import { useSocket } from "../../features/auth/SocketContext";
 import { useDashboard } from "../../features/dashboard/useDashboard";
 import AvatarDisplay from "../ui/AvatarDisplay";
 
 const Header = () => {
   const { user } = useAuth();
+  const { onlineUsers } = useSocket();
   const { data: stats } = useDashboard();
 
   const currentStreak = stats?.overall?.currentStreak || 0;
@@ -25,6 +27,14 @@ const Header = () => {
 
       {/* Actions */}
       <div className="flex items-center gap-5">
+        {/* Community Pulse - Refined Style */}
+        <div className="flex items-center gap-2 px-3 py-1 border border-rule/60 rounded-[4px] bg-faint/30">
+          <span className="w-1.5 h-1.5 rounded-full bg-online"></span>
+          <span className="font-mono text-[9px] uppercase tracking-[0.1em] text-ink font-bold flex items-center gap-1.5">
+            Live <span className="opacity-40 text-[10px] font-normal">[{onlineUsers?.length?.toString().padStart(2, '0') || '00'}]</span>
+          </span>
+        </div>
+
         {/* Streak Flame */}
         {currentStreak > 0 && (
           <div className="flex items-center gap-1.5 px-3 py-1 bg-brand-red/5 border border-brand-red/20 rounded-full group relative cursor-help">

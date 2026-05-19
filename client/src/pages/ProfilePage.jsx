@@ -300,7 +300,7 @@ const ProfilePage = ({ isPublic = false }) => {
           </div>
           <div className="mt-5 pt-4 border-t border-rule/30">
             <div className="h-1.5 w-full bg-rule/10 rounded-full overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-lime-dark via-accent to-brand-red"
+              <div className="h-full bg-linear-to-r from-lime-dark via-accent to-brand-red"
                 style={{ width: `${profile.stats?.masteryPercentage || 0}%`, transition: 'width 1.2s ease-out' }} />
             </div>
             <p className="font-mono text-[8px] text-muted/50 uppercase tracking-widest mt-2 text-right">

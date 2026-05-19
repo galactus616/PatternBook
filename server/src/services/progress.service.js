@@ -1,7 +1,6 @@
 import { prisma } from "../db/client.js";
 import { updateStreak } from "../utils/streak.helper.js";
 
-// 🔥 UPSERT PROGRESS
 export const upsertProgress = async ({
   userId,
   problemId,
@@ -42,7 +41,6 @@ export const upsertProgress = async ({
   return progress;
 };
 
-// 🔥 FETCH USER PROGRESS
 export const fetchUserProgress = async (userId) => {
   if (!userId) {
     throw new Error("userId is required");

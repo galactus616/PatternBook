@@ -5,7 +5,6 @@ export const getAllProblems = async (filters, userId, userPlan = "FREE") => {
 
     const where = {};
 
-    // Topic filter — supports both topic name and slug
     if (topic) {
         const matchingTopic = await prisma.topic.findFirst({
             where: {
@@ -16,7 +15,6 @@ export const getAllProblems = async (filters, userId, userPlan = "FREE") => {
         if (matchingTopic) {
             where.topicId = matchingTopic.id;
         } else {
-            // No matching topic → return empty
             return [];
         }
     }

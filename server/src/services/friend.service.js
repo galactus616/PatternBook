@@ -1,21 +1,19 @@
 import { prisma } from "../db/client.js";
+import { io, getReceiverSocketId } from "../socket.js";
 
-/**
- * Send a friend request
- */
 export const sendFriendRequest = async (senderId, receiverIdentifier) => {
-    // 1. Find receiver (could be ID or username)
+    // 1. Find receiver
     const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(receiverIdentifier);
     
     const receiver = await prisma.user.findUnique({
         where: isUuid ? { id: receiverIdentifier } : { username: receiverIdentifier },
-        select: { id: true }
+        select: { id: true, name: true, username: true }
     });
 
     if (!receiver) throw new Error("User not found");
     if (receiver.id === senderId) throw new Error("You cannot add yourself as a friend");
 
-    // 2. Check if relationship already exists
+    // 2. Check existing
     const existing = await prisma.friendship.findFirst({
         where: {
             OR: [
@@ -31,61 +29,69 @@ export const sendFriendRequest = async (senderId, receiverIdentifier) => {
             if (existing.senderId === senderId) throw new Error("Request already sent");
             else throw new Error("This user has already sent you a request");
         }
-        if (existing.status === "BLOCKED") throw new Error("Cannot send request");
     }
 
-    // 3. Create request
-    return await prisma.friendship.create({
-        data: {
-            senderId,
-            receiverId: receiver.id,
-            status: "PENDING"
-        }
+    const newRequest = await prisma.friendship.create({
+        data: { senderId, receiverId: receiver.id, status: "PENDING" },
+        include: { sender: { select: { id: true, name: true, username: true, picture: true } } }
     });
+
+    // REAL-TIME: Notify receiver
+    const receiverSocketId = getReceiverSocketId(receiver.id);
+    if (receiverSocketId) {
+        io.to(receiverSocketId).emit("newFriendRequest", newRequest);
+    }
+
+    return newRequest;
 };
 
-/**
- * Accept a friend request
- */
 export const acceptFriendRequest = async (userId, requestId) => {
     const request = await prisma.friendship.findUnique({
-        where: { id: requestId }
+        where: { id: requestId },
+        include: { sender: true, receiver: true }
     });
 
-    if (!request || request.receiverId !== userId) {
-        throw new Error("Request not found or unauthorized");
-    }
+    if (!request || request.receiverId !== userId) throw new Error("Unauthorized");
 
-    if (request.status !== "PENDING") {
-        throw new Error("Request is no longer pending");
-    }
-
-    return await prisma.friendship.update({
+    const updated = await prisma.friendship.update({
         where: { id: requestId },
         data: { status: "ACCEPTED" }
     });
+
+    // REAL-TIME: Notify the person who sent the request
+    const senderSocketId = getReceiverSocketId(request.senderId);
+    if (senderSocketId) {
+        io.to(senderSocketId).emit("friendRequestAccepted", {
+            requestId: updated.id,
+            user: request.receiver // The person who accepted
+        });
+    }
+
+    return updated;
 };
 
-/**
- * Reject / Cancel friend request
- */
 export const removeFriendship = async (userId, requestId) => {
     const friendship = await prisma.friendship.findUnique({
         where: { id: requestId }
     });
 
     if (!friendship || (friendship.senderId !== userId && friendship.receiverId !== userId)) {
-        throw new Error("Friendship not found or unauthorized");
+        throw new Error("Unauthorized");
     }
 
-    return await prisma.friendship.delete({
-        where: { id: requestId }
-    });
+    const otherId = friendship.senderId === userId ? friendship.receiverId : friendship.senderId;
+
+    await prisma.friendship.delete({ where: { id: requestId } });
+
+    // REAL-TIME: Notify other person
+    const otherSocketId = getReceiverSocketId(otherId);
+    if (otherSocketId) {
+        io.to(otherSocketId).emit("friendRemoved", { requestId });
+    }
+
+    return { success: true };
 };
 
-/**
- * Get all friends
- */
 export const getFriends = async (userId) => {
     const friendships = await prisma.friendship.findMany({
         where: {
@@ -108,9 +114,6 @@ export const getFriends = async (userId) => {
     return friendships.map(f => f.senderId === userId ? f.receiver : f.sender);
 };
 
-/**
- * Get pending requests
- */
 export const getPendingRequests = async (userId) => {
     return await prisma.friendship.findMany({
         where: {
@@ -125,9 +128,6 @@ export const getPendingRequests = async (userId) => {
     });
 };
 
-/**
- * Search users to add
- */
 export const searchUsers = async (userId, query) => {
     if (!query || query.length < 2) return [];
 

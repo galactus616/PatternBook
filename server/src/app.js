@@ -1,6 +1,7 @@
+import "dotenv/config";
+import { app, server } from "./socket.js";
 import express from "express";
 import cors from "cors";
-import "dotenv/config";
 
 import { prisma } from "./db/client.js";
 
@@ -14,9 +15,6 @@ import topicRoutes from "./routes/topic.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import profileRoutes from "./routes/profile.routes.js";
 import friendRoutes from "./routes/friend.routes.js";
-
-
-const app = express();
 
 app.use(cors({
   origin: process.env.CLIENT_URL,
@@ -42,7 +40,7 @@ app.use("/v1/profile", profileRoutes);
 app.use("/v1/friends", friendRoutes);
 
 app.get("/", (req, res) => {
-    res.send("API is running");
+  res.send("API is running");
 });
 
 const PORT = process.env.PORT || 5000;
@@ -51,7 +49,7 @@ async function startServer() {
     try {
         await prisma.$connect();
 
-        app.listen(PORT, () => {
+        server.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);
         });
 
