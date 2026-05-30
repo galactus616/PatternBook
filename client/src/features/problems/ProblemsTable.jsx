@@ -97,6 +97,7 @@ const ProblemsTable = ({ problems, isLoading }) => {
               return (
                 <React.Fragment key={prob.id}>
                   <div
+                    id={`problem-${prob.id}`}
                     className={`
                       grid grid-cols-[auto_1fr_auto_auto] items-center gap-6 p-5 bg-white hover:bg-cream/90 transition-colors group relative
                       ${activeMenu === prob.id ? 'z-50' : 'z-10'}

@@ -66,6 +66,9 @@ export const getAllProblems = async (filters, userId, userPlan = "FREE") => {
             subPattern: {
                 select: { name: true }
             },
+            topic: {
+                select: { name: true, slug: true }
+            },
             progress: {
                 where: userId ? { userId } : { userId: "unauthenticated" },
                 select: {

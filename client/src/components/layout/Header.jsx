@@ -1,16 +1,76 @@
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import { Search, Bell, User, Flame } from "lucide-react";
 import { useAuth } from "../../features/auth/useAuth";
 import { useSocket } from "../../features/auth/SocketContext";
 import { useDashboard } from "../../features/dashboard/useDashboard";
 import AvatarDisplay from "../ui/AvatarDisplay";
 import NotificationBell from "./NotificationBell";
+import SearchDropdown from "./SearchDropdown";
 
 const Header = () => {
   const { user } = useAuth();
   const { onlineUsers } = useSocket();
   const { data: stats } = useDashboard(new Date().getFullYear());
+  const navigate = useNavigate();
+
+  const [query, setQuery] = useState("");
+  const [isFocused, setIsFocused] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+
+  const inputRef = useRef(null);
+  const flatResultsRef = useRef([]);
 
   const currentStreak = stats?.overall?.currentStreak || 0;
+
+  // Listen for global ⌘K or Ctrl+K shortcut to focus input
+  useEffect(() => {
+    const handleGlobalKey = (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        inputRef.current?.focus();
+      }
+    };
+    window.addEventListener("keydown", handleGlobalKey);
+    return () => window.removeEventListener("keydown", handleGlobalKey);
+  }, []);
+
+  const handleSelect = (item) => {
+    if (!item) return;
+
+    setQuery("");
+    setIsFocused(false);
+    inputRef.current?.blur();
+
+    if (item.type === "topic") {
+      navigate(`/problems?topic=${item.name.toLowerCase()}`);
+    } else if (item.type === "pattern") {
+      navigate(`/problems?topic=${item.topic.toLowerCase()}&pattern=${encodeURIComponent(item.name)}`);
+    } else if (item.type === "problem") {
+      const topicName = item.topic?.name || "arrays";
+      navigate(`/problems?topic=${topicName.toLowerCase()}&problemId=${item.id}`);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    const flatResults = flatResultsRef.current;
+    if (!flatResults || flatResults.length === 0) return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setSelectedIndex((prev) => (prev + 1) % flatResults.length);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setSelectedIndex((prev) => (prev - 1 + flatResults.length) % flatResults.length);
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      handleSelect(flatResults[selectedIndex]);
+    } else if (e.key === "Escape") {
+      e.preventDefault();
+      setIsFocused(false);
+      inputRef.current?.blur();
+    }
+  };
 
   return (
     <header className="h-[58px] bg-cream/80 backdrop-blur-md border-b border-rule flex items-center justify-between px-8 sticky top-0 z-100">
@@ -19,10 +79,29 @@ const Header = () => {
         <div className="relative group">
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted group-focus-within:text-ink transition-colors" />
           <input
+            ref={inputRef}
             type="text"
             placeholder="Search patterns or problems... (⌘K)"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => {
+              // short delay to let click actions run
+              setTimeout(() => setIsFocused(false), 150);
+            }}
+            onKeyDown={handleKeyDown}
             className="bg-cream-dark/50 border border-rule/50 rounded-[4px] pl-10 pr-4 py-1.5 text-[12px] w-[320px] focus:outline-none focus:border-ink focus:bg-white transition-all placeholder:text-muted/60"
           />
+          {isFocused && (
+            <SearchDropdown
+              query={query}
+              onClose={() => setIsFocused(false)}
+              onSelect={handleSelect}
+              selectedIndex={selectedIndex}
+              setSelectedIndex={setSelectedIndex}
+              flatResultsRef={flatResultsRef}
+            />
+          )}
         </div>
       </div>
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { CheckCircle2 } from 'lucide-react';
 import TopicSelector from '../features/problems/TopicSelector';
 import Filters from '../features/problems/Filters';
@@ -6,14 +7,57 @@ import ProblemsTable from '../features/problems/ProblemsTable';
 import { useProblems } from '../features/problems/useProblems';
 
 const ProblemsPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const queryTopic = searchParams.get("topic");
+  const queryPattern = searchParams.get("pattern");
+
   const [filters, setFilters] = useState({
-    topic: localStorage.getItem("defaultTopic")?.toLowerCase() || "arrays",
+    topic: queryTopic?.toLowerCase() || localStorage.getItem("defaultTopic")?.toLowerCase() || "arrays",
     difficulty: "",
     priority: "",
-    pattern: ""
+    pattern: queryPattern || ""
   });
 
   const { data: allProblems, isLoading } = useProblems({ topic: filters.topic });
+
+  // Sync URL search params to filters state when URL changes (e.g. from global search)
+  React.useEffect(() => {
+    const topic = searchParams.get("topic");
+    const pattern = searchParams.get("pattern");
+    
+    if (topic || pattern) {
+      setFilters(prev => ({
+        ...prev,
+        topic: topic?.toLowerCase() || prev.topic,
+        pattern: pattern || ""
+      }));
+    }
+  }, [searchParams]);
+
+  // Scroll to and highlight a specific problem if query param is set
+  const problemId = searchParams.get("problemId");
+  React.useEffect(() => {
+    if (problemId && !isLoading) {
+      const timer = setTimeout(() => {
+        const element = document.getElementById(`problem-${problemId}`);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          element.classList.add('!bg-brand-red/5', 'ring-2', 'ring-brand-red/30', 'rounded-[4px]');
+          
+          // Remove highlight after 2.5 seconds
+          setTimeout(() => {
+            element.classList.remove('!bg-brand-red/5', 'ring-2', 'ring-brand-red/30', 'rounded-[4px]');
+          }, 2500);
+          
+          // Clear problemId from URL so it doesn't trigger scroll again
+          const newParams = new URLSearchParams(searchParams);
+          newParams.delete("problemId");
+          setSearchParams(newParams, { replace: true });
+        }
+      }, 300);
+      return () => clearTimeout(timer);
+    }
+  }, [problemId, isLoading, searchParams, setSearchParams]);
 
   // Extract unique pattern names from loaded problems
   const patterns = React.useMemo(() => {
@@ -64,7 +108,10 @@ const ProblemsPage = () => {
         <div className="max-w-[1200px] mx-auto px-8 py-2.5 flex flex-col md:flex-row md:items-center gap-4 justify-between">
           <TopicSelector
             selectedTopic={filters.topic}
-            onSelectTopic={(topic) => setFilters({ ...filters, topic, pattern: "" })}
+            onSelectTopic={(topic) => {
+              setFilters({ ...filters, topic, pattern: "" });
+              setSearchParams({ topic });
+            }}
           />
           <div className="w-full md:w-auto flex md:justify-end">
             <Filters filters={filters} setFilters={setFilters} patterns={patterns} />
