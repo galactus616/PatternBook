@@ -8,7 +8,7 @@ import NotificationBell from "./NotificationBell";
 const Header = () => {
   const { user } = useAuth();
   const { onlineUsers } = useSocket();
-  const { data: stats } = useDashboard();
+  const { data: stats } = useDashboard(new Date().getFullYear());
 
   const currentStreak = stats?.overall?.currentStreak || 0;
 
@@ -18,8 +18,8 @@ const Header = () => {
       <div className="flex items-center gap-6">
         <div className="relative group">
           <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted group-focus-within:text-ink transition-colors" />
-          <input 
-            type="text" 
+          <input
+            type="text"
             placeholder="Search patterns or problems... (⌘K)"
             className="bg-cream-dark/50 border border-rule/50 rounded-[4px] pl-10 pr-4 py-1.5 text-[12px] w-[320px] focus:outline-none focus:border-ink focus:bg-white transition-all placeholder:text-muted/60"
           />
@@ -41,7 +41,7 @@ const Header = () => {
           <div className="flex items-center gap-1.5 px-3 py-1 bg-brand-red/5 border border-brand-red/20 rounded-full group relative cursor-help">
             <Flame size={16} className="text-brand-red fill-brand-red animate-pulse" />
             <span className="font-mono text-[11px] font-bold text-brand-red">{currentStreak}</span>
-            
+
             <div className="absolute right-0 top-full mt-2 hidden group-hover:block w-48 p-2 bg-ink text-cream text-[9px] normal-case rounded-[4px] z-50 shadow-xl leading-relaxed text-center">
               Your <span className="text-brand-red font-bold">{currentStreak} day streak</span> is active! Next day resets at 5:30 AM.
             </div>
@@ -55,13 +55,12 @@ const Header = () => {
         <div className="flex items-center gap-3 pl-2">
           <div className="text-right hidden sm:block">
             <p className="text-[12px] font-bold text-ink leading-none mb-1">{user?.name || "Developer"}</p>
-            <p className={`font-mono text-[9px] uppercase tracking-wider ${
-                user?.plan === "PRO" || user?.plan === "TEAM"
-                  ? "text-lime-dark"
-                  : "text-muted"
+            <p className={`font-mono text-[9px] uppercase tracking-wider ${user?.plan === "PRO" || user?.plan === "TEAM"
+                ? "text-lime-dark"
+                : "text-muted"
               }`}>
-                {user?.plan === "PRO" ? "Pro Member" : user?.plan === "TEAM" ? "Team Member" : "Free Plan"}
-              </p>
+              {user?.plan === "PRO" ? "Pro Member" : user?.plan === "TEAM" ? "Team Member" : "Free Plan"}
+            </p>
           </div>
           <div className={`w-9 h-9 rounded-full bg-white flex items-center justify-center border overflow-hidden cursor-pointer transition-colors shadow-sm ${(user?.plan === "PRO" || user?.plan === "TEAM") ? "border-2 border-ink" : "border-ink hover:border-brand-red"}`}>
             <AvatarDisplay user={user} size={36} />

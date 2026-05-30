@@ -56,6 +56,8 @@ export const useUpdateProgress = () => {
     },
     onSettled: () => {
       queryClient.invalidateQueries({ queryKey: ["problems"] });
+      queryClient.invalidateQueries({ queryKey: ["dashboard-stats"] });
+      queryClient.invalidateQueries({ queryKey: ["leaderboard"] });
     },
   });
 };

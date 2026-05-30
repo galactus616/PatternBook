@@ -26,7 +26,7 @@ const ProblemsPage = () => {
   // Frontend Filtering Logic
   const problems = React.useMemo(() => {
     if (!allProblems) return [];
-    
+
     return allProblems.filter(prob => {
       const matchDifficulty = !filters.difficulty || prob.difficulty === filters.difficulty;
       const matchPriority = !filters.priority || prob.priority === filters.priority;
