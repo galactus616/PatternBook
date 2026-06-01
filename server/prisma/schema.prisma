@@ -64,6 +64,12 @@ enum FriendshipStatus {
   BLOCKED
 }
 
+enum Role {
+  ADMIN
+  MODERATOR
+  USER
+}
+
 model User {
   id        String   @id @default(uuid())
 
@@ -75,6 +81,8 @@ model User {
   hasCustomPicture Boolean @default(false)
 
   provider  AuthProvider @default(EMAIL)
+  role      Role         @default(USER)
+  permissions String[]   @default([])
 
   currentStreak  Int       @default(0)
   longestStreak  Int       @default(0)
@@ -170,11 +178,11 @@ model Problem {
   topicId String
   topic   Topic @relation(fields: [topicId], references: [id])
 
-  patternId String
-  pattern   Pattern @relation(fields: [patternId], references: [id])
+  patternId String?
+  pattern   Pattern? @relation(fields: [patternId], references: [id])
 
-  subPatternId String
-  subPattern   SubPattern @relation(fields: [subPatternId], references: [id])
+  subPatternId String?
+  subPattern   SubPattern? @relation(fields: [subPatternId], references: [id])
 
   hint             String?
   intuition        String?
@@ -233,6 +241,7 @@ model Transaction {
   currency String @default("INR")
 
   status String
+  plan   Plan   @default(PRO)
 
   couponId String?
   coupon   Coupon? @relation(fields: [couponId], references: [id])

@@ -36,12 +36,25 @@
   --animate-blink: blink 1.8s infinite;
 
   @keyframes marquee {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
   }
+
   @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
+
+    0%,
+    100% {
+      opacity: 1;
+    }
+
+    50% {
+      opacity: 0.3;
+    }
   }
 }
 
@@ -50,6 +63,7 @@
     scroll-behavior: smooth;
     scrollbar-gutter: stable;
   }
+
   body {
     @apply font-sans bg-cream text-ink overflow-x-hidden overflow-y-scroll;
   }
@@ -116,8 +130,13 @@
 }
 
 @keyframes progress {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
 }
 
 .animate-progress {

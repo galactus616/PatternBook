@@ -17,6 +17,7 @@ import profileRoutes from "./routes/profile.routes.js";
 import friendRoutes from "./routes/friend.routes.js";
 import notificationRoutes from "./routes/notification.routes.js";
 import leaderboardRoutes from "./routes/leaderboard.routes.js";
+import adminRoutes from "./routes/admin.route.js";
 
 app.use(cors({
   origin: process.env.CLIENT_URL,
@@ -42,6 +43,7 @@ app.use("/v1/profile", profileRoutes);
 app.use("/v1/friends", friendRoutes);
 app.use("/v1/notifications", notificationRoutes);
 app.use("/v1/leaderboard", leaderboardRoutes);
+app.use("/v1/admin", adminRoutes);
 
 app.get("/", (req, res) => {
   res.send("API is running");

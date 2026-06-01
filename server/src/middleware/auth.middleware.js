@@ -27,7 +27,7 @@ export const authMiddleware = async (req, res, next) => {
             });
         }
 
-        req.user = decoded;
+        req.user = { ...decoded, ...user, userId: user.id };
 
         next();
     } catch (err) {
@@ -47,7 +47,10 @@ export const optionalAuth = async (req, res, next) => {
 
         const token = authHeader.split(" ")[1];
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded;
+        const user = await prisma.user.findUnique({
+            where: { id: decoded.userId }
+        });
+        req.user = user ? { ...decoded, ...user, userId: user.id } : decoded;
         next();
     } catch (err) {
         next();
