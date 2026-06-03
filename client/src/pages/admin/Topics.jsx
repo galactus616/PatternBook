@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { useAdmin } from '../../features/admin/useAdmin';
+import { useAuth } from '../../features/auth/useAuth';
+import { useAdmin, hasPermission, PERMISSIONS } from '../../features/admin/useAdmin';
 import { BookOpen, Search, Plus, Pencil, Trash2, Hash, ArrowUpRight, Layers, GripVertical } from 'lucide-react';
 import AdminModal from '../../components/ui/AdminModal';
 import TopicForm from '../../features/admin/components/TopicForm';
@@ -7,7 +8,7 @@ import ConfirmDelete from '../../features/admin/components/ConfirmDelete';
 
 // ─── Topic Card ───────────────────────────────────────────────────────────────
 
-function TopicCard({ topic, index, onEdit, onDelete }) {
+function TopicCard({ topic, index, onEdit, onDelete, canEdit, canDelete }) {
   const maxProblems = 30;
   const barPct = Math.min(100, Math.round(((topic.problemCount ?? 0) / maxProblems) * 100));
 
@@ -43,20 +44,24 @@ function TopicCard({ topic, index, onEdit, onDelete }) {
 
         {/* Action buttons — always visible on card */}
         <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-          <button
-            onClick={() => onEdit(topic)}
-            className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-ink hover:bg-cream-dark transition-all"
-            title="Edit"
-          >
-            <Pencil size={13} />
-          </button>
-          <button
-            onClick={() => onDelete(topic)}
-            className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-brand-red hover:bg-brand-red/5 transition-all"
-            title="Delete"
-          >
-            <Trash2 size={13} />
-          </button>
+          {canEdit && (
+            <button
+              onClick={() => onEdit(topic)}
+              className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-ink hover:bg-cream-dark transition-all"
+              title="Edit"
+            >
+              <Pencil size={13} />
+            </button>
+          )}
+          {canDelete && (
+            <button
+              onClick={() => onDelete(topic)}
+              className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-brand-red hover:bg-brand-red/5 transition-all"
+              title="Delete"
+            >
+              <Trash2 size={13} />
+            </button>
+          )}
         </div>
       </div>
 
@@ -98,12 +103,14 @@ function EmptyState({ onAdd }) {
       </div>
       <h3 className="font-serif text-[20px] font-black text-ink mb-1">No topics yet</h3>
       <p className="font-mono text-[11px] text-muted uppercase tracking-widest mb-6">Create your first topic to get started</p>
-      <button
-        onClick={onAdd}
-        className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-2.5 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm"
-      >
-        <Plus size={14} /> Create Topic
-      </button>
+      {onAdd && (
+        <button
+          onClick={onAdd}
+          className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-2.5 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm"
+        >
+          <Plus size={14} /> Create Topic
+        </button>
+      )}
     </div>
   );
 }
@@ -111,9 +118,14 @@ function EmptyState({ onAdd }) {
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function Topics() {
+  const { user } = useAuth();
   const { topics, addTopic, updateTopic, deleteTopic } = useAdmin();
   const [search, setSearch] = useState('');
   const [modal, setModal] = useState(null);
+
+  const canAdd = hasPermission(user?.role, user?.permissions, PERMISSIONS.TOPICS_CREATE);
+  const canEdit = hasPermission(user?.role, user?.permissions, PERMISSIONS.TOPICS_EDIT);
+  const canDelete = hasPermission(user?.role, user?.permissions, PERMISSIONS.TOPICS_DELETE);
 
   const filtered = topics.filter(t =>
     t.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -154,14 +166,16 @@ export default function Topics() {
           </div>
         </div>
 
-        <button
-          onClick={() => setModal({ type: 'add' })}
-          className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-3 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm hover:shadow-md group"
-        >
-          <Plus size={15} />
-          New Topic
-          <ArrowUpRight size={12} className="opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-        </button>
+        {canAdd && (
+          <button
+            onClick={() => setModal({ type: 'add' })}
+            className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-3 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm hover:shadow-md group"
+          >
+            <Plus size={15} />
+            New Topic
+            <ArrowUpRight size={12} className="opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+          </button>
+        )}
       </div>
 
       {/* ── Toolbar ──────────────────────────────────────────────────────── */}
@@ -201,11 +215,13 @@ export default function Topics() {
                 key={t.id}
                 topic={t}
                 index={i}
+                canEdit={canEdit}
+                canDelete={canDelete}
                 onEdit={topic => setModal({ type: 'edit', topic })}
                 onDelete={topic => setModal({ type: 'delete', topic })}
               />
             ))
-          : <EmptyState onAdd={() => setModal({ type: 'add' })} />
+          : <EmptyState onAdd={canAdd ? () => setModal({ type: 'add' }) : null} />
         }
       </div>
 

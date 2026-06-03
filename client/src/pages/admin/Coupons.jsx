@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { useAdmin } from '../../features/admin/useAdmin';
+import { useAuth } from '../../features/auth/useAuth';
+import { useAdmin, hasPermission, PERMISSIONS } from '../../features/admin/useAdmin';
 import { Search, Plus, Pencil, Trash2, ToggleLeft, ToggleRight, Tag, ArrowUpRight } from 'lucide-react';
 import AdminModal from '../../components/ui/AdminModal';
 
@@ -16,12 +17,14 @@ function EmptyState({ onAdd }) {
       </div>
       <h3 className="font-serif text-[22px] font-black text-ink mb-1">No coupons found</h3>
       <p className="font-mono text-[11px] text-muted uppercase tracking-widest mb-6">Create promotional codes for your users</p>
-      <button
-        onClick={onAdd}
-        className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-2.5 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all"
-      >
-        <Plus size={14} /> Create Coupon
-      </button>
+      {onAdd && (
+        <button
+          onClick={onAdd}
+          className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-2.5 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all"
+        >
+          <Plus size={14} /> Create Coupon
+        </button>
+      )}
     </div>
   );
 }
@@ -29,10 +32,15 @@ function EmptyState({ onAdd }) {
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function Coupons() {
+  const { user } = useAuth();
   const { coupons, addCoupon, updateCoupon, deleteCoupon, toggleCoupon } = useAdmin();
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState('ALL');
   const [modal, setModal] = useState(null);
+
+  const canAdd = hasPermission(user?.role, user?.permissions, PERMISSIONS.COUPONS_CREATE);
+  const canEdit = hasPermission(user?.role, user?.permissions, PERMISSIONS.COUPONS_EDIT);
+  const canDelete = hasPermission(user?.role, user?.permissions, PERMISSIONS.COUPONS_DELETE);
 
   const filtered = useMemo(() => coupons.filter(c => {
     const matchSearch = c.code.toLowerCase().includes(search.toLowerCase());
@@ -74,14 +82,16 @@ export default function Coupons() {
             </div>
           </div>
         </div>
-        <button 
-          onClick={() => setModal({ type: 'add' })} 
-          className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-3 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm hover:shadow-md group"
-        >
-          <Plus size={15} />
-          New Coupon
-          <ArrowUpRight size={12} className="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-        </button>
+        {canAdd && (
+          <button 
+            onClick={() => setModal({ type: 'add' })} 
+            className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-3 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm hover:shadow-md group"
+          >
+            <Plus size={15} />
+            New Coupon
+            <ArrowUpRight size={12} className="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+          </button>
+        )}
       </div>
 
       {/* ── Toolbar ──────────────────────────────────────────────────────── */}
@@ -171,7 +181,11 @@ export default function Coupons() {
                   </td>
                   <td className="px-5 py-4 font-mono text-[11px] text-muted">{c.expiryDate || '—'}</td>
                   <td className="px-5 py-4">
-                    <button onClick={() => toggleCoupon(c.id)} className="flex items-center cursor-pointer gap-2 transition-all">
+                    <button 
+                      onClick={() => toggleCoupon(c.id)} 
+                      disabled={!canEdit}
+                      className="flex items-center cursor-pointer gap-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
                       {c.isActive
                         ? <><ToggleRight size={22} className="text-lime-dark" /><span className="font-mono text-[10px] text-lime-dark uppercase tracking-wider font-bold">Active</span></>
                         : <><ToggleLeft size={22} className="text-muted/60" /><span className="font-mono text-[10px] text-muted/60 uppercase tracking-wider">Inactive</span></>
@@ -180,12 +194,16 @@ export default function Coupons() {
                   </td>
                   <td className="px-5 py-4 text-right">
                     <div className="flex items-center justify-end gap-1 opacity-0 group-hover/row:opacity-100 transition-opacity">
-                      <button onClick={() => setModal({ type: 'edit', coupon: c })} className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-ink hover:bg-cream-dark transition-all" title="Edit">
-                        <Pencil size={13} />
-                      </button>
-                      <button onClick={() => setModal({ type: 'delete', coupon: c })} className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-brand-red hover:bg-brand-red/5 transition-all" title="Delete">
-                        <Trash2 size={13} />
-                      </button>
+                      {canEdit && (
+                        <button onClick={() => setModal({ type: 'edit', coupon: c })} className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-ink hover:bg-cream-dark transition-all" title="Edit">
+                          <Pencil size={13} />
+                        </button>
+                      )}
+                      {canDelete && (
+                        <button onClick={() => setModal({ type: 'delete', coupon: c })} className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-brand-red hover:bg-brand-red/5 transition-all" title="Delete">
+                          <Trash2 size={13} />
+                        </button>
+                      )}
                     </div>
                   </td>
                 </tr>
@@ -194,7 +212,7 @@ export default function Coupons() {
           </table>
         </div>
       ) : (
-        <EmptyState onAdd={() => setModal({ type: 'add' })} />
+        <EmptyState onAdd={canAdd ? () => setModal({ type: 'add' }) : null} />
       )}
 
       {/* ── Modals ───────────────────────────────────────────────────────── */}

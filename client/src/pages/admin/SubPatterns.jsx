@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useRef } from 'react';
-import { useAdmin } from '../../features/admin/useAdmin';
+import { useAuth } from '../../features/auth/useAuth';
+import { useAdmin, hasPermission, PERMISSIONS } from '../../features/admin/useAdmin';
 import { Network, Search, Plus, Pencil, Trash2, ArrowUpRight, ChevronDown, ChevronLeft, ChevronRight, Share2 } from 'lucide-react';
 import AdminModal from '../../components/ui/AdminModal';
 import SubPatternForm from '../../features/admin/components/SubPatternForm';
@@ -86,7 +87,7 @@ function PillsScroller({ items, active, onChange }) {
 
 // ─── Sub-Pattern Row ───────────────────────────────────────────────────────────
 
-function SubPatternRow({ subPattern, index, onEdit, onDelete }) {
+function SubPatternRow({ subPattern, index, onEdit, onDelete, canEdit, canDelete }) {
   return (
     <div className="flex items-center gap-4 px-5 py-3.5 hover:bg-cream/70 transition-colors group/row border-b border-rule/30 last:border-0">
       <span className="font-mono text-[10px] text-muted/40 w-5 shrink-0 text-right select-none">{index + 1}</span>
@@ -106,18 +107,22 @@ function SubPatternRow({ subPattern, index, onEdit, onDelete }) {
       </div>
 
       <div className="flex items-center gap-0.5 shrink-0 opacity-0 group-hover/row:opacity-100 transition-all duration-150">
-        <button
-          onClick={() => onEdit(subPattern)}
-          className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-ink hover:bg-cream-dark transition-all"
-        >
-          <Pencil size={12} />
-        </button>
-        <button
-          onClick={() => onDelete(subPattern)}
-          className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-brand-red hover:bg-brand-red/5 transition-all"
-        >
-          <Trash2 size={12} />
-        </button>
+        {canEdit && (
+          <button
+            onClick={() => onEdit(subPattern)}
+            className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-ink hover:bg-cream-dark transition-all"
+          >
+            <Pencil size={12} />
+          </button>
+        )}
+        {canDelete && (
+          <button
+            onClick={() => onDelete(subPattern)}
+            className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-brand-red hover:bg-brand-red/5 transition-all"
+          >
+            <Trash2 size={12} />
+          </button>
+        )}
       </div>
     </div>
   );
@@ -125,7 +130,7 @@ function SubPatternRow({ subPattern, index, onEdit, onDelete }) {
 
 // ─── Pattern Group ────────────────────────────────────────────────────────────
 
-function PatternGroup({ patternName, subPatterns, onEdit, onDelete, defaultOpen }) {
+function PatternGroup({ patternName, subPatterns, onEdit, onDelete, defaultOpen, canEdit, canDelete }) {
   const [open, setOpen] = useState(defaultOpen);
 
   const totalProblems = subPatterns.reduce((s, p) => s + (p.problemCount ?? 0), 0);
@@ -174,6 +179,8 @@ function PatternGroup({ patternName, subPatterns, onEdit, onDelete, defaultOpen 
               key={sp.id}
               subPattern={sp}
               index={i}
+              canEdit={canEdit}
+              canDelete={canDelete}
               onEdit={onEdit}
               onDelete={onDelete}
             />
@@ -194,12 +201,14 @@ function EmptyState({ onAdd }) {
       </div>
       <h3 className="font-serif text-[22px] font-black text-ink mb-1">No sub-patterns found</h3>
       <p className="font-mono text-[11px] text-muted uppercase tracking-widest mb-6">Create variants of your main patterns</p>
-      <button
-        onClick={onAdd}
-        className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-2.5 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all"
-      >
-        <Plus size={14} /> Create Sub-Pattern
-      </button>
+      {onAdd && (
+        <button
+          onClick={onAdd}
+          className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-2.5 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all"
+        >
+          <Plus size={14} /> Create Sub-Pattern
+        </button>
+      )}
     </div>
   );
 }
@@ -207,10 +216,15 @@ function EmptyState({ onAdd }) {
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function SubPatterns() {
+  const { user } = useAuth();
   const { patterns, subPatterns, addSubPattern, updateSubPattern, deleteSubPattern } = useAdmin();
   const [search, setSearch]             = useState('');
   const [patternFilter, setPatternFilter] = useState('ALL');
   const [modal, setModal]               = useState(null);
+
+  const canAdd = hasPermission(user?.role, user?.permissions, PERMISSIONS.SUBPATTERNS_CREATE);
+  const canEdit = hasPermission(user?.role, user?.permissions, PERMISSIONS.SUBPATTERNS_EDIT);
+  const canDelete = hasPermission(user?.role, user?.permissions, PERMISSIONS.SUBPATTERNS_DELETE);
 
   const closeModal = () => setModal(null);
 
@@ -260,14 +274,16 @@ export default function SubPatterns() {
           </div>
         </div>
 
-        <button
-          onClick={() => setModal({ type: 'add' })}
-          className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-3 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm hover:shadow-md group"
-        >
-          <Plus size={15} />
-          New Sub-Pattern
-          <ArrowUpRight size={12} className="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-        </button>
+        {canAdd && (
+          <button
+            onClick={() => setModal({ type: 'add' })}
+            className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-3 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm hover:shadow-md group"
+          >
+            <Plus size={15} />
+            New Sub-Pattern
+            <ArrowUpRight size={12} className="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+          </button>
+        )}
       </div>
 
       {/* ── Toolbar ──────────────────────────────────────────────────────── */}
@@ -307,11 +323,13 @@ export default function SubPatterns() {
                 patternName={patternName}
                 subPatterns={subs}
                 defaultOpen={grouped.length <= 4}
+                canEdit={canEdit}
+                canDelete={canDelete}
                 onEdit={sp => setModal({ type: 'edit', subPattern: sp })}
                 onDelete={sp => setModal({ type: 'delete', subPattern: sp })}
               />
             ))
-          : <EmptyState onAdd={() => setModal({ type: 'add' })} />
+          : <EmptyState onAdd={canAdd ? () => setModal({ type: 'add' }) : null} />
         }
       </div>
 

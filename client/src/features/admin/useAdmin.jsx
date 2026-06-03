@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import * as api from './admin.api';
+import { useToastStore } from '../../store/useToastStore';
 
 const AdminContext = createContext(null);
 
@@ -98,7 +99,7 @@ export function AdminProvider({ children }) {
       }
     } catch (err) {
       console.error(err);
-      alert(err.response?.data?.message || 'Action failed');
+      useToastStore.getState().addToast(err.response?.data?.message || 'Action failed', 'error');
     }
   };
 

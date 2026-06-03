@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useRef } from 'react';
-import { useAdmin } from '../../features/admin/useAdmin';
+import { useAuth } from '../../features/auth/useAuth';
+import { useAdmin, hasPermission, PERMISSIONS } from '../../features/admin/useAdmin';
 import { Layers, Search, Plus, Pencil, Trash2, ArrowUpRight, ChevronDown, Code2, ChevronLeft, ChevronRight } from 'lucide-react';
 import AdminModal from '../../components/ui/AdminModal';
 import PatternForm from '../../features/admin/components/PatternForm';
@@ -25,7 +26,7 @@ function DiffBadge({ difficulty }) {
 
 // ─── Pattern Row ──────────────────────────────────────────────────────────────
 
-function PatternRow({ pattern, index, onEdit, onDelete }) {
+function PatternRow({ pattern, index, onEdit, onDelete, canEdit, canDelete }) {
   return (
     <div className="flex items-center gap-4 px-5 py-3.5 hover:bg-cream/70 transition-colors group/row border-b border-rule/30 last:border-0">
       <span className="font-mono text-[10px] text-muted/40 w-5 shrink-0 text-right select-none">{index + 1}</span>
@@ -47,18 +48,22 @@ function PatternRow({ pattern, index, onEdit, onDelete }) {
       </div>
 
       <div className="flex items-center gap-0.5 shrink-0 opacity-0 group-hover/row:opacity-100 transition-all duration-150">
-        <button
-          onClick={() => onEdit(pattern)}
-          className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-ink hover:bg-cream-dark transition-all"
-        >
-          <Pencil size={12} />
-        </button>
-        <button
-          onClick={() => onDelete(pattern)}
-          className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-brand-red hover:bg-brand-red/5 transition-all"
-        >
-          <Trash2 size={12} />
-        </button>
+        {canEdit && (
+          <button
+            onClick={() => onEdit(pattern)}
+            className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-ink hover:bg-cream-dark transition-all"
+          >
+            <Pencil size={12} />
+          </button>
+        )}
+        {canDelete && (
+          <button
+            onClick={() => onDelete(pattern)}
+            className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-brand-red hover:bg-brand-red/5 transition-all"
+          >
+            <Trash2 size={12} />
+          </button>
+        )}
       </div>
     </div>
   );
@@ -66,7 +71,7 @@ function PatternRow({ pattern, index, onEdit, onDelete }) {
 
 // ─── Topic Group ──────────────────────────────────────────────────────────────
 
-function TopicGroup({ topicName, patterns, onEdit, onDelete, defaultOpen }) {
+function TopicGroup({ topicName, patterns, onEdit, onDelete, defaultOpen, canEdit, canDelete }) {
   const [open, setOpen] = useState(defaultOpen);
 
   const counts = useMemo(() => ({
@@ -134,6 +139,8 @@ function TopicGroup({ topicName, patterns, onEdit, onDelete, defaultOpen }) {
               key={p.id}
               pattern={p}
               index={i}
+              canEdit={canEdit}
+              canDelete={canDelete}
               onEdit={onEdit}
               onDelete={onDelete}
             />
@@ -235,12 +242,14 @@ function EmptyState({ onAdd }) {
       </div>
       <h3 className="font-serif text-[22px] font-black text-ink mb-1">No patterns found</h3>
       <p className="font-mono text-[11px] text-muted uppercase tracking-widest mb-6">Try a different filter or create a new one</p>
-      <button
-        onClick={onAdd}
-        className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-2.5 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all"
-      >
-        <Plus size={14} /> Create Pattern
-      </button>
+      {onAdd && (
+        <button
+          onClick={onAdd}
+          className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-2.5 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all"
+        >
+          <Plus size={14} /> Create Pattern
+        </button>
+      )}
     </div>
   );
 }
@@ -248,11 +257,16 @@ function EmptyState({ onAdd }) {
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function Patterns() {
+  const { user } = useAuth();
   const { topics, patterns, addPattern, updatePattern, deletePattern } = useAdmin();
   const [search, setSearch]           = useState('');
   const [diffFilter, setDiffFilter]   = useState('ALL');
   const [topicFilter, setTopicFilter] = useState('ALL');
   const [modal, setModal]             = useState(null);
+
+  const canAdd = hasPermission(user?.role, user?.permissions, PERMISSIONS.PATTERNS_CREATE);
+  const canEdit = hasPermission(user?.role, user?.permissions, PERMISSIONS.PATTERNS_EDIT);
+  const canDelete = hasPermission(user?.role, user?.permissions, PERMISSIONS.PATTERNS_DELETE);
 
   const closeModal = () => setModal(null);
 
@@ -312,14 +326,16 @@ export default function Patterns() {
           </div>
         </div>
 
-        <button
-          onClick={() => setModal({ type: 'add' })}
-          className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-3 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm hover:shadow-md group"
-        >
-          <Plus size={15} />
-          New Pattern
-          <ArrowUpRight size={12} className="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-        </button>
+        {canAdd && (
+          <button
+            onClick={() => setModal({ type: 'add' })}
+            className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-3 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm hover:shadow-md group"
+          >
+            <Plus size={15} />
+            New Pattern
+            <ArrowUpRight size={12} className="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+          </button>
+        )}
       </div>
 
       {/* ── Toolbar ──────────────────────────────────────────────────────── */}
@@ -380,11 +396,13 @@ export default function Patterns() {
                 topicName={topicName}
                 patterns={pats}
                 defaultOpen={grouped.length <= 4}
+                canEdit={canEdit}
+                canDelete={canDelete}
                 onEdit={p => setModal({ type: 'edit', pattern: p })}
                 onDelete={p => setModal({ type: 'delete', pattern: p })}
               />
             ))
-          : <EmptyState onAdd={() => setModal({ type: 'add' })} />
+          : <EmptyState onAdd={canAdd ? () => setModal({ type: 'add' }) : null} />
         }
       </div>
 

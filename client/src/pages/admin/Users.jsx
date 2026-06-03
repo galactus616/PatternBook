@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { useAdmin } from '../../features/admin/useAdmin';
+import { useAuth } from '../../features/auth/useAuth';
+import { useAdmin, hasPermission, PERMISSIONS } from '../../features/admin/useAdmin';
 import { Search, ShieldCheck, ShieldAlert, User, ChevronRight, Crown, ArrowUpRight } from 'lucide-react';
 import AdminModal from '../../components/ui/AdminModal';
 
@@ -25,10 +26,13 @@ function PlanBadge({ plan }) {
 }
 
 export default function Users() {
+  const { user } = useAuth();
   const { users, updateUser } = useAdmin();
   const [search, setSearch] = useState('');
   const [roleFilter, setRoleFilter] = useState('ALL');
   const [selectedUser, setSelectedUser] = useState(null);
+
+  const canPromote = hasPermission(user?.role, user?.permissions, PERMISSIONS.USERS_PROMOTE);
 
   const filtered = useMemo(() => users.filter(u => {
     const q = search.toLowerCase();
@@ -160,12 +164,14 @@ export default function Users() {
                       <span className="font-mono text-[14px] font-black text-ink">{u.solvedCount}</span>
                     </td>
                     <td className="px-5 py-4 text-right">
-                      <button
-                        onClick={() => setSelectedUser(u)}
-                        className="flex items-center justify-end gap-1 ml-auto px-3 py-1.5 rounded-lg border border-rule/60 text-muted hover:text-ink hover:border-ink hover:bg-cream text-[10px] font-mono uppercase tracking-widest transition-all opacity-0 group-hover/row:opacity-100"
-                      >
-                        Manage <ChevronRight size={12} className="-mr-0.5" />
-                      </button>
+                      {canPromote && (
+                        <button
+                          onClick={() => setSelectedUser(u)}
+                          className="flex items-center justify-end gap-1 ml-auto px-3 py-1.5 rounded-lg border border-rule/60 text-muted hover:text-ink hover:border-ink hover:bg-cream text-[10px] font-mono uppercase tracking-widest transition-all opacity-0 group-hover/row:opacity-100"
+                        >
+                          Manage <ChevronRight size={12} className="-mr-0.5" />
+                        </button>
+                      )}
                     </td>
                   </tr>
                 );

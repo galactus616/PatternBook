@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
-import { useAdmin } from '../../features/admin/useAdmin';
+import { useAuth } from '../../features/auth/useAuth';
+import { useAdmin, hasPermission, PERMISSIONS } from '../../features/admin/useAdmin';
 import { Search, Plus, Pencil, Trash2, Code2, Lock, ArrowUpRight } from 'lucide-react';
 import AdminModal from '../../components/ui/AdminModal';
 
@@ -34,12 +35,14 @@ function EmptyState({ onAdd }) {
       </div>
       <h3 className="font-serif text-[22px] font-black text-ink mb-1">No problems found</h3>
       <p className="font-mono text-[11px] text-muted uppercase tracking-widest mb-6">Try a different filter or add a new one</p>
-      <button
-        onClick={onAdd}
-        className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-2.5 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all"
-      >
-        <Plus size={14} /> Add Problem
-      </button>
+      {onAdd && (
+        <button
+          onClick={onAdd}
+          className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-2.5 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all"
+        >
+          <Plus size={14} /> Add Problem
+        </button>
+      )}
     </div>
   );
 }
@@ -47,10 +50,15 @@ function EmptyState({ onAdd }) {
 // ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function Problems() {
+  const { user } = useAuth();
   const { topics, patterns, subPatterns, problems, addProblem, updateProblem, deleteProblem } = useAdmin();
   const [search, setSearch] = useState('');
   const [diffFilter, setDiffFilter] = useState('ALL');
   const [modal, setModal] = useState(null);
+
+  const canAdd = hasPermission(user?.role, user?.permissions, PERMISSIONS.PROBLEMS_CREATE);
+  const canEdit = hasPermission(user?.role, user?.permissions, PERMISSIONS.PROBLEMS_EDIT);
+  const canDelete = hasPermission(user?.role, user?.permissions, PERMISSIONS.PROBLEMS_DELETE);
 
   const filtered = useMemo(() => problems.filter(p => {
     const q = search.toLowerCase();
@@ -93,14 +101,16 @@ export default function Problems() {
             </div>
           </div>
         </div>
-        <button 
-          onClick={() => setModal({ type: 'add' })} 
-          className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-3 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm hover:shadow-md group"
-        >
-          <Plus size={15} />
-          New Problem
-          <ArrowUpRight size={12} className="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-        </button>
+        {canAdd && (
+          <button 
+            onClick={() => setModal({ type: 'add' })} 
+            className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-3 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm hover:shadow-md group"
+          >
+            <Plus size={15} />
+            New Problem
+            <ArrowUpRight size={12} className="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+          </button>
+        )}
       </div>
 
       {/* ── Toolbar ──────────────────────────────────────────────────────── */}
@@ -189,12 +199,16 @@ export default function Problems() {
                   </td>
                   <td className="px-5 py-4 text-right">
                     <div className="flex items-center justify-end gap-1 opacity-0 group-hover/row:opacity-100 transition-opacity">
-                      <button onClick={() => setModal({ type: 'edit', problem: p })} className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-ink hover:bg-cream-dark transition-all" title="Edit">
-                        <Pencil size={13} />
-                      </button>
-                      <button onClick={() => setModal({ type: 'delete', problem: p })} className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-brand-red hover:bg-brand-red/5 transition-all" title="Delete">
-                        <Trash2 size={13} />
-                      </button>
+                      {canEdit && (
+                        <button onClick={() => setModal({ type: 'edit', problem: p })} className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-ink hover:bg-cream-dark transition-all" title="Edit">
+                          <Pencil size={13} />
+                        </button>
+                      )}
+                      {canDelete && (
+                        <button onClick={() => setModal({ type: 'delete', problem: p })} className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-brand-red hover:bg-brand-red/5 transition-all" title="Delete">
+                          <Trash2 size={13} />
+                        </button>
+                      )}
                     </div>
                   </td>
                 </tr>
@@ -203,7 +217,7 @@ export default function Problems() {
           </table>
         </div>
       ) : (
-        <EmptyState onAdd={() => setModal({ type: 'add' })} />
+        <EmptyState onAdd={canAdd ? () => setModal({ type: 'add' }) : null} />
       )}
 
       {/* ── Modals ───────────────────────────────────────────────────────── */}
