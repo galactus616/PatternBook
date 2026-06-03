@@ -1,82 +1,76 @@
 import React from 'react';
-import { BarChart3, ShieldCheck, Zap } from 'lucide-react';
+import { ShieldCheck, Zap, BarChart3 } from 'lucide-react';
 
 const MasteryStats = ({ stats }) => {
   const diffs = stats?.difficultyStats || {};
-  
-  const statCards = [
-    { 
-      label: "Easy Mastery", 
-      value: diffs.EASY?.solved || 0, 
+
+  const cards = [
+    {
+      label: 'Easy',
+      tag: 'Foundations',
+      value: diffs.EASY?.solved || 0,
       total: diffs.EASY?.total || 0,
       icon: ShieldCheck,
-      theme: "lime",
-      bg: "from-lime/5 to-transparent",
-      accent: "text-lime-dark",
-      bar: "bg-lime-dark"
+      accent: 'text-lime-dark',
+      bar: '#4a9c59',
+      border: '#4a9c5920',
     },
-    { 
-      label: "Med Challenge", 
-      value: diffs.MEDIUM?.solved || 0, 
+    {
+      label: 'Medium',
+      tag: 'Core Patterns',
+      value: diffs.MEDIUM?.solved || 0,
       total: diffs.MEDIUM?.total || 0,
       icon: Zap,
-      theme: "accent",
-      bg: "from-accent/5 to-transparent",
-      accent: "text-accent",
-      bar: "bg-accent"
+      accent: 'text-accent',
+      bar: '#e07b39',
+      border: '#e07b3920',
     },
-    { 
-      label: "Hard Trials", 
-      value: diffs.HARD?.solved || 0, 
+    {
+      label: 'Hard',
+      tag: 'Mastery Trials',
+      value: diffs.HARD?.solved || 0,
       total: diffs.HARD?.total || 0,
       icon: BarChart3,
-      theme: "brand-red",
-      bg: "from-brand-red/5 to-transparent",
-      accent: "text-brand-red",
-      bar: "bg-brand-red"
-    }
+      accent: 'text-brand-red',
+      bar: '#e63946',
+      border: '#e6394620',
+    },
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-      {statCards.map((stat, i) => {
-        const percentage = stat.total > 0 ? Math.round((stat.value / stat.total) * 100) : 0;
+    <div className="grid grid-cols-1 md:grid-cols-3 border border-rule rounded-[4px] overflow-hidden bg-white shadow-sm">
+      {cards.map((c, i) => {
+        const pct = c.total > 0 ? Math.round((c.value / c.total) * 100) : 0;
+        const remaining = c.total - c.value;
         return (
-          <div key={i} className={`group relative p-6 bg-white border border-rule rounded-[4px] shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden`}>
-            {/* Background Gradient */}
-            <div className={`absolute inset-0 bg-linear-to-br ${stat.bg} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-            
-            <div className="relative z-10">
-              <div className="flex items-center justify-between mb-8">
-                <div className="flex items-center gap-2">
-                  <div className={`p-1.5 rounded-[4px] bg-white border border-rule shadow-sm ${stat.accent}`}>
-                    <stat.icon size={14} />
-                  </div>
-                  <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted font-bold">{stat.label}</p>
-                </div>
-                <span className="font-mono text-[9px] text-muted/60">{stat.value} / {stat.total}</span>
+          <div key={i} className={`p-8 ${i < 2 ? 'border-b md:border-b-0 md:border-r border-rule' : ''}`}>
+            {/* Tag + icon row */}
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <p className="font-mono text-[9px] uppercase tracking-[0.2em] text-muted">{c.tag}</p>
+                <p className={`font-serif text-[20px] font-black mt-0.5 ${c.accent}`}>{c.label}</p>
               </div>
-              
-              <div className="flex items-baseline gap-2 mb-6">
-                <h3 className="font-serif text-[48px] font-black text-ink leading-none tracking-tight">
-                  {percentage}<span className="text-[18px] opacity-20 ml-1">%</span>
-                </h3>
+              <div className={`w-9 h-9 rounded-[4px] border border-rule bg-cream-dark flex items-center justify-center ${c.accent}`}>
+                <c.icon size={15} />
               </div>
+            </div>
 
-              <div className="space-y-2">
-                <div className="h-1.5 w-full bg-rule/10 rounded-[1px] overflow-hidden">
-                  <div 
-                    className={`h-full transition-all duration-1000 ease-out ${stat.bar}`} 
-                    style={{ width: `${percentage}%` }}
-                  />
-                </div>
-                <div className="flex justify-between items-center">
-                   <p className="font-mono text-[7px] uppercase tracking-widest text-muted/50">Completion</p>
-                   <p className={`font-mono text-[7px] font-bold uppercase tracking-widest ${stat.accent}`}>
-                     {stat.total - stat.value} Problems Left
-                   </p>
-                </div>
-              </div>
+            {/* Main number */}
+            <div className="flex items-baseline gap-1.5 mb-5">
+              <span className="font-serif text-[52px] font-black text-ink leading-none tracking-tight">{pct}</span>
+              <span className="font-mono text-[16px] text-muted">%</span>
+            </div>
+
+            {/* Bar */}
+            <div className="h-1.5 w-full bg-rule/20 rounded-full overflow-hidden mb-2">
+              <div
+                className="h-full rounded-full"
+                style={{ width: `${pct}%`, backgroundColor: c.bar, transition: 'width 1s cubic-bezier(0.4,0,0.2,1)' }}
+              />
+            </div>
+            <div className="flex justify-between">
+              <span className="font-mono text-[8px] text-muted uppercase tracking-widest">{c.value} solved</span>
+              <span className="font-mono text-[8px] text-muted uppercase tracking-widest">{remaining} left</span>
             </div>
           </div>
         );

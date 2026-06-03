@@ -1,88 +1,123 @@
 import React, { useState } from 'react';
-import { useAdmin } from '../../hooks/useAdmin';
-import { BookOpen, Search, Plus, Pencil, Trash2 } from 'lucide-react';
+import { useAdmin } from '../../features/admin/useAdmin';
+import { BookOpen, Search, Plus, Pencil, Trash2, Hash, ArrowUpRight, Layers, GripVertical } from 'lucide-react';
 import AdminModal from '../../components/ui/AdminModal';
+import TopicForm from '../../features/admin/components/TopicForm';
+import ConfirmDelete from '../../features/admin/components/ConfirmDelete';
 
-const EMPTY = { name: '', slug: '', order: '' };
+// ─── Topic Card ───────────────────────────────────────────────────────────────
 
-function TopicForm({ initial = EMPTY, onSave, onCancel }) {
-  const [form, setForm] = useState({ ...initial });
-  const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
+function TopicCard({ topic, index, onEdit, onDelete }) {
+  const maxProblems = 30;
+  const barPct = Math.min(100, Math.round(((topic.problemCount ?? 0) / maxProblems) * 100));
 
-  // Auto-generate slug from name
-  const handleName = (v) => {
-    set('name', v);
-    if (!initial.id) set('slug', v.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''));
-  };
+  // Brand-only palette: ink / lime / brand-red / accent / muted variants
+  const palettes = [
+    { ring: 'border-rule',         icon: 'bg-ink text-lime',            bar: 'bg-ink'        },
+    { ring: 'border-lime/50',      icon: 'bg-lime/15 text-lime-dark',   bar: 'bg-lime'       },
+    { ring: 'border-brand-red/25', icon: 'bg-brand-red/8 text-brand-red', bar: 'bg-brand-red'},
+    { ring: 'border-accent/30',    icon: 'bg-accent/10 text-orange-700', bar: 'bg-accent'    },
+    { ring: 'border-rule',         icon: 'bg-cream-dark text-muted',    bar: 'bg-muted'      },
+    { ring: 'border-ink/20',       icon: 'bg-ink/8 text-ink',           bar: 'bg-ink/40'     },
+  ];
+  const { ring, icon, bar } = palettes[index % palettes.length];
 
   return (
-    <div className="space-y-4">
-      <div>
-        <label className="font-mono text-[10px] uppercase tracking-widest text-muted block mb-1.5">Topic Name *</label>
-        <input
-          value={form.name}
-          onChange={e => handleName(e.target.value)}
-          placeholder="e.g. Arrays & Hashing"
-          className="w-full bg-cream-dark/50 border border-rule/50 rounded-[4px] px-3 py-2 text-[13px] focus:outline-none focus:border-ink transition-all"
-        />
+    <div className={`group relative bg-white border ${ring} rounded-2xl p-5 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-0.5 flex flex-col gap-4`}>
+      {/* drag handle (visual only) */}
+      <div className="absolute left-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-30 transition-opacity cursor-grab">
+        <GripVertical size={14} className="text-muted" />
       </div>
-      <div>
-        <label className="font-mono text-[10px] uppercase tracking-widest text-muted block mb-1.5">Slug *</label>
-        <input
-          value={form.slug}
-          onChange={e => set('slug', e.target.value)}
-          placeholder="e.g. arrays-hashing"
-          className="w-full bg-cream-dark/50 border border-rule/50 rounded-[4px] px-3 py-2 text-[13px] font-mono focus:outline-none focus:border-ink transition-all"
-        />
+
+      {/* Top row */}
+      <div className="flex items-start justify-between">
+        <div className="flex items-center gap-3">
+          <div className={`w-9 h-9 rounded-xl flex items-center justify-center shrink-0 ${icon}`}>
+            <BookOpen size={15} />
+          </div>
+          <div>
+            <p className="font-sans text-[14px] font-bold text-ink leading-tight">{topic.name}</p>
+            <code className="font-mono text-[10px] text-muted/70">{topic.slug}</code>
+          </div>
+        </div>
+
+        {/* Action buttons — always visible on card */}
+        <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+          <button
+            onClick={() => onEdit(topic)}
+            className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-ink hover:bg-cream-dark transition-all"
+            title="Edit"
+          >
+            <Pencil size={13} />
+          </button>
+          <button
+            onClick={() => onDelete(topic)}
+            className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-brand-red hover:bg-brand-red/5 transition-all"
+            title="Delete"
+          >
+            <Trash2 size={13} />
+          </button>
+        </div>
       </div>
-      <div>
-        <label className="font-mono text-[10px] uppercase tracking-widest text-muted block mb-1.5">Order</label>
-        <input
-          type="number"
-          value={form.order}
-          onChange={e => set('order', e.target.value)}
-          placeholder="e.g. 1"
-          className="w-full bg-cream-dark/50 border border-rule/50 rounded-[4px] px-3 py-2 text-[13px] font-mono focus:outline-none focus:border-ink transition-all"
-        />
-      </div>
-      <div className="flex gap-2 pt-2">
-        <button
-          onClick={() => onSave(form)}
-          disabled={!form.name || !form.slug}
-          className="flex-1 cursor-pointer bg-ink text-cream rounded-[4px] py-2 text-[13px] font-semibold hover:bg-ink/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
-        >
-          Save Topic
-        </button>
-        <button
-          onClick={onCancel}
-          className="px-4 py-2 cursor-pointer rounded-[4px] border border-rule text-muted hover:text-ink text-[13px] transition-all"
-        >
-          Cancel
-        </button>
+
+      {/* Stats row */}
+      <div className="flex items-center gap-4 text-center">
+        <div>
+          <p className="font-serif text-[22px] font-black text-ink leading-none">{topic.problemCount ?? 0}</p>
+          <p className="font-mono text-[8px] uppercase tracking-widest text-muted mt-0.5">problems</p>
+        </div>
+        <div className="w-px h-8 bg-rule/60" />
+        <div>
+          <div className="flex items-center gap-1">
+            <Hash size={11} className="text-muted" />
+            <p className="font-mono text-[13px] font-bold text-ink">{topic.order ?? '—'}</p>
+          </div>
+          <p className="font-mono text-[8px] uppercase tracking-widest text-muted mt-0.5">order</p>
+        </div>
+        <div className="flex-1">
+          <div className="h-1.5 bg-cream-dark rounded-full overflow-hidden mt-1">
+            <div
+              className={`h-full rounded-full transition-all duration-700 ${bar}`}
+              style={{ width: `${barPct}%` }}
+            />
+          </div>
+          <p className="font-mono text-[8px] text-muted/60 mt-1 text-right">{barPct}% capacity</p>
+        </div>
       </div>
     </div>
   );
 }
 
-function ConfirmDelete({ name, onConfirm, onCancel }) {
+// ─── Empty State ──────────────────────────────────────────────────────────────
+
+function EmptyState({ onAdd }) {
   return (
-    <div className="space-y-4">
-      <p className="text-[13px] text-ink">Are you sure you want to delete <strong>"{name}"</strong>? This cannot be undone.</p>
-      <div className="flex gap-2">
-        <button onClick={onConfirm} className="flex-1 cursor-pointer bg-brand-red text-white rounded-[4px] py-2 text-[13px] font-semibold hover:bg-brand-red/90 transition-all">Delete</button>
-        <button onClick={onCancel} className="px-4 py-2 cursor-pointer rounded-[4px] border border-rule text-muted hover:text-ink text-[13px] transition-all">Cancel</button>
+    <div className="col-span-full flex flex-col items-center justify-center py-20 text-center">
+      <div className="w-16 h-16 rounded-2xl bg-cream border border-rule flex items-center justify-center mb-4">
+        <BookOpen size={24} className="text-muted" />
       </div>
+      <h3 className="font-serif text-[20px] font-black text-ink mb-1">No topics yet</h3>
+      <p className="font-mono text-[11px] text-muted uppercase tracking-widest mb-6">Create your first topic to get started</p>
+      <button
+        onClick={onAdd}
+        className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-2.5 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm"
+      >
+        <Plus size={14} /> Create Topic
+      </button>
     </div>
   );
 }
+
+// ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function Topics() {
   const { topics, addTopic, updateTopic, deleteTopic } = useAdmin();
   const [search, setSearch] = useState('');
-  const [modal, setModal] = useState(null); // null | { type: 'add'|'edit'|'delete', topic? }
+  const [modal, setModal] = useState(null);
 
   const filtered = topics.filter(t =>
-    t.name.toLowerCase().includes(search.toLowerCase())
+    t.name.toLowerCase().includes(search.toLowerCase()) ||
+    t.slug.toLowerCase().includes(search.toLowerCase())
   );
 
   const closeModal = () => setModal(null);
@@ -102,97 +137,81 @@ export default function Topics() {
   };
 
   return (
-    <div className="max-w-[1200px] mx-auto px-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 pt-8 pb-10">
-      <div className="flex items-start justify-between">
+    <div className="max-w-[1280px] mx-auto px-8 pt-8 pb-16 animate-in fade-in slide-in-from-bottom-4 duration-500">
+
+      {/* ── Header ───────────────────────────────────────────────────────── */}
+      <div className="flex items-end justify-between mb-8">
         <div>
-          <div className="flex items-center gap-2 mb-1">
+          <div className="flex items-center gap-2 mb-2">
             <div className="w-1.5 h-1.5 rounded-full bg-brand-red animate-pulse" />
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">Content</p>
+            <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted">Content Management</p>
           </div>
-          <h1 className="font-serif text-[28px] font-black text-ink">Topics</h1>
-          <p className="text-muted text-sm mt-1">{topics.length} topics in the system</p>
+          <h1 className="font-serif text-[36px] font-black text-ink leading-none mb-2">Topics</h1>
+          <div className="flex items-center gap-4">
+            <p className="font-sans text-[13px] text-muted">
+              <span className="font-bold text-ink">{topics.length}</span> topics · <span className="font-bold text-ink">{topics.reduce((s, t) => s + (t.problemCount ?? 0), 0)}</span> problems linked
+            </p>
+          </div>
         </div>
+
         <button
           onClick={() => setModal({ type: 'add' })}
-          className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-4 py-2 rounded-[4px] text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm"
+          className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-3 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm hover:shadow-md group"
         >
-          <Plus size={14} /> Add Topic
+          <Plus size={15} />
+          New Topic
+          <ArrowUpRight size={12} className="opacity-50 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
         </button>
       </div>
 
-      <div className="bg-white border border-rule rounded-[4px] shadow-sm">
-        <div className="p-6 border-b border-rule flex items-center justify-between">
-          <div className="relative group">
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted group-focus-within:text-ink transition-colors" />
-            <input
-              type="text"
-              placeholder="Search topics..."
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              className="bg-cream-dark/50 border border-rule/50 rounded-[4px] pl-9 pr-4 py-1.5 text-[12px] w-[260px] focus:outline-none focus:border-ink focus:bg-white transition-all placeholder:text-muted/60"
-            />
-          </div>
-          <p className="font-mono text-[10px] text-muted uppercase tracking-widest">{filtered.length} results</p>
+      {/* ── Toolbar ──────────────────────────────────────────────────────── */}
+      <div className="flex items-center justify-between mb-6 gap-4">
+        <div className="relative group flex-1 max-w-sm">
+          <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted group-focus-within:text-ink transition-colors" />
+          <input
+            type="text"
+            placeholder="Search by name or slug…"
+            value={search}
+            onChange={e => setSearch(e.target.value)}
+            className="w-full bg-white border border-rule rounded-xl pl-10 pr-4 py-2.5 text-[13px] focus:outline-none focus:border-ink focus:shadow-sm transition-all placeholder:text-muted/50"
+          />
         </div>
 
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-rule">
-              <th className="text-left px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Topic</th>
-              <th className="text-left px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Slug</th>
-              <th className="text-left px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Order</th>
-              <th className="text-right px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Problems</th>
-              <th className="text-right px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.map((t) => (
-              <tr key={t.id} className="border-b border-rule/60 last:border-0 hover:bg-cream/50 transition-colors duration-150 group">
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-[4px] bg-cream border border-rule flex items-center justify-center shrink-0">
-                      <BookOpen size={13} className="text-muted" />
-                    </div>
-                    <span className="font-sans text-[13px] font-semibold text-ink">{t.name}</span>
-                  </div>
-                </td>
-                <td className="px-6 py-4">
-                  <code className="font-mono text-[11px] bg-cream px-2 py-0.5 rounded-[4px] text-muted border border-rule/60">{t.slug}</code>
-                </td>
-                <td className="px-6 py-4 font-mono text-[12px] text-muted">{t.order}</td>
-                <td className="px-6 py-4 text-right font-mono text-[13px] font-bold text-ink">{t.problemCount}</td>
-                <td className="px-6 py-4 text-right">
-                  <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button
-                      onClick={() => setModal({ type: 'edit', topic: t })}
-                      className="p-1.5 cursor-pointer rounded-[4px] text-muted hover:text-ink hover:bg-cream-dark transition-all"
-                      title="Edit"
-                    >
-                      <Pencil size={13} />
-                    </button>
-                    <button
-                      onClick={() => setModal({ type: 'delete', topic: t })}
-                      className="p-1.5 cursor-pointer rounded-[4px] text-muted hover:text-brand-red hover:bg-brand-red/5 transition-all"
-                      title="Delete"
-                    >
-                      <Trash2 size={13} />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-            {filtered.length === 0 && (
-              <tr><td colSpan={5} className="px-6 py-12 text-center">
-                <p className="font-mono text-[11px] text-muted uppercase tracking-widest">No topics found</p>
-              </td></tr>
-            )}
-          </tbody>
-        </table>
+        <div className="flex items-center gap-3">
+          <span className="font-mono text-[10px] text-muted uppercase tracking-widest">
+            {filtered.length} of {topics.length}
+          </span>
+          {/* Summary chips */}
+          <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1.5 px-2.5 py-1 bg-lime/10 border border-lime/30 rounded-lg">
+              <Layers size={11} className="text-lime-dark" />
+              <span className="font-mono text-[9px] uppercase tracking-widest text-lime-dark">
+                {topics.length} topics
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Modals */}
+      {/* ── Card Grid ────────────────────────────────────────────────────── */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {filtered.length > 0
+          ? filtered.map((t, i) => (
+              <TopicCard
+                key={t.id}
+                topic={t}
+                index={i}
+                onEdit={topic => setModal({ type: 'edit', topic })}
+                onDelete={topic => setModal({ type: 'delete', topic })}
+              />
+            ))
+          : <EmptyState onAdd={() => setModal({ type: 'add' })} />
+        }
+      </div>
+
+      {/* ── Modals ───────────────────────────────────────────────────────── */}
       {modal?.type === 'add' && (
-        <AdminModal title="Add Topic" onClose={closeModal}>
+        <AdminModal title="New Topic" onClose={closeModal}>
           <TopicForm onSave={handleSave} onCancel={closeModal} />
         </AdminModal>
       )}

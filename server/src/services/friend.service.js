@@ -119,10 +119,10 @@ export const getFriends = async (userId) => {
         },
         include: {
             sender: {
-                select: { id: true, name: true, username: true, picture: true, plan: true }
+                select: { id: true, name: true, username: true, picture: true, plan: true, lastActiveDate: true }
             },
             receiver: {
-                select: { id: true, name: true, username: true, picture: true, plan: true }
+                select: { id: true, name: true, username: true, picture: true, plan: true, lastActiveDate: true }
             }
         }
     });

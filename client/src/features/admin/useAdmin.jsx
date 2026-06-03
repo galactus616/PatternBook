@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import axios from '../lib/axios';
+import * as api from './admin.api';
 
 const AdminContext = createContext(null);
 
@@ -59,13 +59,13 @@ export function AdminProvider({ children }) {
         statsRes, topicsRes, patternsRes, subPatternsRes, 
         problemsRes, usersRes, couponsRes
       ] = await Promise.all([
-        axios.get('/admin/stats').catch(() => ({ data: {} })),
-        axios.get('/admin/topics').catch(() => ({ data: { topics: [] } })),
-        axios.get('/admin/patterns').catch(() => ({ data: { patterns: [] } })),
-        axios.get('/admin/sub-patterns').catch(() => ({ data: { subPatterns: [] } })),
-        axios.get('/admin/problems').catch(() => ({ data: { problems: [] } })),
-        axios.get('/admin/users').catch(() => ({ data: { users: [] } })),
-        axios.get('/admin/coupons').catch(() => ({ data: { coupons: [] } })),
+        api.fetchStats(),
+        api.fetchTopics(),
+        api.fetchPatterns(),
+        api.fetchSubPatterns(),
+        api.fetchProblems(),
+        api.fetchUsers(),
+        api.fetchCoupons(),
       ]);
 
       setAnalytics(statsRes.data?.analytics || null);
@@ -103,33 +103,33 @@ export function AdminProvider({ children }) {
   };
 
   // Topics
-  const addTopic = (data) => actionWrapper(() => axios.post('/admin/topics', data), res => setTopics(p => [...p, res.topic]));
-  const updateTopic = (id, data) => actionWrapper(() => axios.put(`/admin/topics/${id}`, data), res => setTopics(p => p.map(t => t.id === id ? res.topic : t)));
-  const deleteTopic = (id) => actionWrapper(() => axios.delete(`/admin/topics/${id}`), () => setTopics(p => p.filter(t => t.id !== id)));
+  const addTopic = (data) => actionWrapper(() => api.createTopic(data), res => setTopics(p => [...p, res.topic]));
+  const updateTopic = (id, data) => actionWrapper(() => api.updateTopic(id, data), res => setTopics(p => p.map(t => t.id === id ? res.topic : t)));
+  const deleteTopic = (id) => actionWrapper(() => api.deleteTopic(id), () => setTopics(p => p.filter(t => t.id !== id)));
 
   // Patterns
-  const addPattern = (data) => actionWrapper(() => axios.post('/admin/patterns', data), res => setPatterns(p => [...p, res.pattern]));
-  const updatePattern = (id, data) => actionWrapper(() => axios.put(`/admin/patterns/${id}`, data), res => setPatterns(p => p.map(pt => pt.id === id ? res.pattern : pt)));
-  const deletePattern = (id) => actionWrapper(() => axios.delete(`/admin/patterns/${id}`), () => setPatterns(p => p.filter(pt => pt.id !== id)));
+  const addPattern = (data) => actionWrapper(() => api.createPattern(data), res => setPatterns(p => [...p, res.pattern]));
+  const updatePattern = (id, data) => actionWrapper(() => api.updatePattern(id, data), res => setPatterns(p => p.map(pt => pt.id === id ? res.pattern : pt)));
+  const deletePattern = (id) => actionWrapper(() => api.deletePattern(id), () => setPatterns(p => p.filter(pt => pt.id !== id)));
 
   // SubPatterns
-  const addSubPattern = (data) => actionWrapper(() => axios.post('/admin/sub-patterns', data), res => setSubPatterns(p => [...p, res.subPattern]));
-  const updateSubPattern = (id, data) => actionWrapper(() => axios.put(`/admin/sub-patterns/${id}`, data), res => setSubPatterns(p => p.map(sp => sp.id === id ? res.subPattern : sp)));
-  const deleteSubPattern = (id) => actionWrapper(() => axios.delete(`/admin/sub-patterns/${id}`), () => setSubPatterns(p => p.filter(sp => sp.id !== id)));
+  const addSubPattern = (data) => actionWrapper(() => api.createSubPattern(data), res => setSubPatterns(p => [...p, res.subPattern]));
+  const updateSubPattern = (id, data) => actionWrapper(() => api.updateSubPattern(id, data), res => setSubPatterns(p => p.map(sp => sp.id === id ? res.subPattern : sp)));
+  const deleteSubPattern = (id) => actionWrapper(() => api.deleteSubPattern(id), () => setSubPatterns(p => p.filter(sp => sp.id !== id)));
 
   // Problems
-  const addProblem = (data) => actionWrapper(() => axios.post('/admin/problems', data), res => setProblems(p => [...p, res.problem]));
-  const updateProblem = (id, data) => actionWrapper(() => axios.put(`/admin/problems/${id}`, data), res => setProblems(p => p.map(pr => pr.id === id ? res.problem : pr)));
-  const deleteProblem = (id) => actionWrapper(() => axios.delete(`/admin/problems/${id}`), () => setProblems(p => p.filter(pr => pr.id !== id)));
+  const addProblem = (data) => actionWrapper(() => api.createProblem(data), res => setProblems(p => [...p, res.problem]));
+  const updateProblem = (id, data) => actionWrapper(() => api.updateProblem(id, data), res => setProblems(p => p.map(pr => pr.id === id ? res.problem : pr)));
+  const deleteProblem = (id) => actionWrapper(() => api.deleteProblem(id), () => setProblems(p => p.filter(pr => pr.id !== id)));
 
   // Users
-  const updateUser = (id, data) => actionWrapper(() => axios.put(`/admin/users/${id}`, data), res => setUsers(p => p.map(u => u.id === id ? { ...u, ...data } : u)));
+  const updateUser = (id, data) => actionWrapper(() => api.updateUser(id, data), res => setUsers(p => p.map(u => u.id === id ? { ...u, ...data } : u)));
 
   // Coupons
-  const addCoupon = (data) => actionWrapper(() => axios.post('/admin/coupons', data), res => setCoupons(p => [...p, res.coupon]));
-  const updateCoupon = (id, data) => actionWrapper(() => axios.put(`/admin/coupons/${id}`, data), res => setCoupons(p => p.map(c => c.id === id ? res.coupon : c)));
-  const deleteCoupon = (id) => actionWrapper(() => axios.delete(`/admin/coupons/${id}`), () => setCoupons(p => p.filter(c => c.id !== id)));
-  const toggleCoupon = (id) => actionWrapper(() => axios.patch(`/admin/coupons/${id}/toggle`), res => setCoupons(p => p.map(c => c.id === id ? { ...c, isActive: !c.isActive } : c)));
+  const addCoupon = (data) => actionWrapper(() => api.createCoupon(data), res => setCoupons(p => [...p, res.coupon]));
+  const updateCoupon = (id, data) => actionWrapper(() => api.updateCoupon(id, data), res => setCoupons(p => p.map(c => c.id === id ? res.coupon : c)));
+  const deleteCoupon = (id) => actionWrapper(() => api.deleteCoupon(id), () => setCoupons(p => p.filter(c => c.id !== id)));
+  const toggleCoupon = (id) => actionWrapper(() => api.toggleCoupon(id), res => setCoupons(p => p.map(c => c.id === id ? { ...c, isActive: !c.isActive } : c)));
 
   const value = {
     loading,

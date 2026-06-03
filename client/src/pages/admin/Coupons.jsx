@@ -1,99 +1,47 @@
-import React, { useState } from 'react';
-import { useAdmin } from '../../hooks/useAdmin';
-import { Search, Plus, Pencil, Trash2, ToggleLeft, ToggleRight, Tag } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { useAdmin } from '../../features/admin/useAdmin';
+import { Search, Plus, Pencil, Trash2, ToggleLeft, ToggleRight, Tag, ArrowUpRight } from 'lucide-react';
 import AdminModal from '../../components/ui/AdminModal';
 
-const EMPTY = { code: '', discountType: 'PERCENTAGE', discountValue: '', expiryDate: '', maxUses: '', isActive: true };
+import CouponForm from '../../features/admin/components/CouponForm';
+import ConfirmDelete from '../../features/admin/components/ConfirmDelete';
 
-function CouponForm({ initial = EMPTY, onSave, onCancel }) {
-  const [form, setForm] = useState({ ...initial });
-  const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
+// ─── Empty State ──────────────────────────────────────────────────────────────
 
+function EmptyState({ onAdd }) {
   return (
-    <div className="space-y-4">
-      <div>
-        <label className="font-mono text-[10px] uppercase tracking-widest text-muted block mb-1.5">Coupon Code *</label>
-        <input
-          value={form.code}
-          onChange={e => set('code', e.target.value.toUpperCase())}
-          placeholder="e.g. LAUNCH20"
-          className="w-full bg-cream-dark/50 border border-rule/50 rounded-[4px] px-3 py-2 text-[13px] font-mono uppercase focus:outline-none focus:border-ink transition-all"
-        />
+    <div className="flex flex-col items-center justify-center py-24 text-center bg-white border border-rule rounded-2xl">
+      <div className="w-16 h-16 rounded-2xl bg-ink flex items-center justify-center mb-4">
+        <Tag size={24} className="text-lime" />
       </div>
-      <div>
-        <label className="font-mono text-[10px] uppercase tracking-widest text-muted block mb-1.5">Discount Type</label>
-        <div className="flex gap-2">
-          {['PERCENTAGE', 'FLAT'].map(t => (
-            <button key={t} onClick={() => set('discountType', t)} type="button"
-              className={`flex-1 cursor-pointer py-2 rounded-[4px] font-mono text-[10px] uppercase tracking-widest border transition-all ${form.discountType === t ? 'bg-ink text-cream border-ink' : 'bg-cream text-muted border-rule hover:text-ink'}`}>
-              {t === 'PERCENTAGE' ? '% Percentage' : '₹ Flat'}
-            </button>
-          ))}
-        </div>
-      </div>
-      <div>
-        <label className="font-mono text-[10px] uppercase tracking-widest text-muted block mb-1.5">
-          Discount Value * {form.discountType === 'PERCENTAGE' ? '(%)' : '(₹ in paise e.g. 1000 = ₹10)'}
-        </label>
-        <input
-          type="number"
-          value={form.discountValue}
-          onChange={e => set('discountValue', e.target.value)}
-          placeholder={form.discountType === 'PERCENTAGE' ? 'e.g. 20' : 'e.g. 10000'}
-          className="w-full bg-cream-dark/50 border border-rule/50 rounded-[4px] px-3 py-2 text-[13px] font-mono focus:outline-none focus:border-ink transition-all"
-        />
-      </div>
-      <div className="grid grid-cols-2 gap-3">
-        <div>
-          <label className="font-mono text-[10px] uppercase tracking-widest text-muted block mb-1.5">Expiry Date</label>
-          <input
-            type="date"
-            value={form.expiryDate || ''}
-            onChange={e => set('expiryDate', e.target.value)}
-            className="w-full bg-cream-dark/50 border border-rule/50 rounded-[4px] px-3 py-2 text-[13px] font-mono focus:outline-none focus:border-ink transition-all"
-          />
-        </div>
-        <div>
-          <label className="font-mono text-[10px] uppercase tracking-widest text-muted block mb-1.5">Max Uses</label>
-          <input
-            type="number"
-            value={form.maxUses || ''}
-            onChange={e => set('maxUses', e.target.value)}
-            placeholder="Leave blank = unlimited"
-            className="w-full bg-cream-dark/50 border border-rule/50 rounded-[4px] px-3 py-2 text-[13px] font-mono focus:outline-none focus:border-ink transition-all"
-          />
-        </div>
-      </div>
-      <div className="flex gap-2 pt-2">
-        <button
-          onClick={() => onSave({ ...form, discountValue: Number(form.discountValue), maxUses: form.maxUses ? Number(form.maxUses) : null })}
-          disabled={!form.code || !form.discountValue}
-          className="flex-1 cursor-pointer bg-ink text-cream rounded-[4px] py-2 text-[13px] font-semibold hover:bg-ink/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
-        >Save Coupon</button>
-        <button onClick={onCancel} className="px-4 py-2 cursor-pointer rounded-[4px] border border-rule text-muted hover:text-ink text-[13px] transition-all">Cancel</button>
-      </div>
+      <h3 className="font-serif text-[22px] font-black text-ink mb-1">No coupons found</h3>
+      <p className="font-mono text-[11px] text-muted uppercase tracking-widest mb-6">Create promotional codes for your users</p>
+      <button
+        onClick={onAdd}
+        className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-2.5 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all"
+      >
+        <Plus size={14} /> Create Coupon
+      </button>
     </div>
   );
 }
 
-function ConfirmDelete({ name, onConfirm, onCancel }) {
-  return (
-    <div className="space-y-4">
-      <p className="text-[13px] text-ink">Delete coupon <strong>"{name}"</strong>? This cannot be undone.</p>
-      <div className="flex gap-2">
-        <button onClick={onConfirm} className="flex-1 cursor-pointer bg-brand-red text-white rounded-[4px] py-2 text-[13px] font-semibold">Delete</button>
-        <button onClick={onCancel} className="px-4 py-2 cursor-pointer rounded-[4px] border border-rule text-muted hover:text-ink text-[13px]">Cancel</button>
-      </div>
-    </div>
-  );
-}
+// ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function Coupons() {
   const { coupons, addCoupon, updateCoupon, deleteCoupon, toggleCoupon } = useAdmin();
   const [search, setSearch] = useState('');
+  const [statusFilter, setStatusFilter] = useState('ALL');
   const [modal, setModal] = useState(null);
 
-  const filtered = coupons.filter(c => c.code.toLowerCase().includes(search.toLowerCase()));
+  const filtered = useMemo(() => coupons.filter(c => {
+    const matchSearch = c.code.toLowerCase().includes(search.toLowerCase());
+    const matchStatus = statusFilter === 'ALL' || 
+                        (statusFilter === 'ACTIVE' && c.isActive) || 
+                        (statusFilter === 'INACTIVE' && !c.isActive);
+    return matchSearch && matchStatus;
+  }), [coupons, search, statusFilter]);
+
   const closeModal = () => setModal(null);
 
   const handleSave = (form) => {
@@ -102,93 +50,154 @@ export default function Coupons() {
     closeModal();
   };
 
+  const activeCount = coupons.filter(c => c.isActive).length;
+  const inactiveCount = coupons.length - activeCount;
+
   return (
-    <div className="max-w-[1200px] mx-auto px-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 pt-8 pb-10">
-      <div className="flex items-start justify-between">
+    <div className="max-w-[1280px] mx-auto px-8 pt-8 pb-16 animate-in fade-in slide-in-from-bottom-4 duration-500">
+
+      {/* ── Header ───────────────────────────────────────────────────────── */}
+      <div className="flex items-end justify-between mb-8">
         <div>
-          <div className="flex items-center gap-2 mb-1">
+          <div className="flex items-center gap-2 mb-2">
             <div className="w-1.5 h-1.5 rounded-full bg-brand-red animate-pulse" />
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">Promotions</p>
+            <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted">Promotions</p>
           </div>
-          <h1 className="font-serif text-[28px] font-black text-ink">Coupons</h1>
-          <p className="text-muted text-sm mt-1">{coupons.length} coupon codes in the system</p>
+          <h1 className="font-serif text-[36px] font-black text-ink leading-none mb-2">Coupons</h1>
+          <div className="flex items-center gap-3 flex-wrap">
+            <p className="font-sans text-[13px] text-muted">
+              <span className="font-bold text-ink">{coupons.length}</span> coupon codes in the system
+            </p>
+            <div className="flex items-center gap-1.5">
+              <span className="font-mono text-[9px] text-lime-dark bg-lime/10 border border-lime/30 px-2 py-0.5 rounded-lg">{activeCount} active</span>
+              <span className="font-mono text-[9px] text-muted bg-cream-dark border border-rule px-2 py-0.5 rounded-lg">{inactiveCount} inactive</span>
+            </div>
+          </div>
         </div>
-        <button onClick={() => setModal({ type: 'add' })} className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-4 py-2 rounded-[4px] text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm">
-          <Plus size={14} /> Create Coupon
+        <button 
+          onClick={() => setModal({ type: 'add' })} 
+          className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-3 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm hover:shadow-md group"
+        >
+          <Plus size={15} />
+          New Coupon
+          <ArrowUpRight size={12} className="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
         </button>
       </div>
 
-      <div className="bg-white border border-rule rounded-[4px] shadow-sm">
-        <div className="p-6 border-b border-rule flex items-center justify-between">
-          <div className="relative group">
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted group-focus-within:text-ink transition-colors" />
-            <input type="text" placeholder="Search coupons..." value={search} onChange={e => setSearch(e.target.value)} className="bg-cream-dark/50 border border-rule/50 rounded-[4px] pl-9 pr-4 py-1.5 text-[12px] w-[260px] focus:outline-none focus:border-ink focus:bg-white transition-all placeholder:text-muted/60" />
+      {/* ── Toolbar ──────────────────────────────────────────────────────── */}
+      <div className="space-y-3 mb-7">
+        <div className="flex items-center gap-3 flex-wrap">
+          <div className="relative group flex-1 min-w-[220px] max-w-md">
+            <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted/50 group-focus-within:text-ink transition-colors" />
+            <input 
+              type="text" 
+              placeholder="Search coupon code..." 
+              value={search} 
+              onChange={e => setSearch(e.target.value)} 
+              className="w-full bg-white border border-rule rounded-xl pl-10 pr-4 py-2.5 text-[13px] focus:outline-none focus:border-ink/40 focus:shadow-sm transition-all placeholder:text-muted/40" 
+            />
           </div>
-          <p className="font-mono text-[10px] text-muted uppercase tracking-widest">{filtered.length} results</p>
-        </div>
 
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-rule">
-              <th className="text-left px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Code</th>
-              <th className="text-left px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Discount</th>
-              <th className="text-left px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Usage</th>
-              <th className="text-left px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Expiry</th>
-              <th className="text-left px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Status</th>
-              <th className="text-right px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.map((c) => (
-              <tr key={c.id} className="border-b border-rule/60 last:border-0 hover:bg-cream/50 transition-colors group">
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-2">
-                    <Tag size={13} className="text-muted shrink-0" />
-                    <code className="font-mono text-[13px] font-bold text-ink">{c.code}</code>
-                  </div>
-                </td>
-                <td className="px-6 py-4">
-                  <span className="font-mono text-[13px] font-bold text-ink">
-                    {c.discountType === 'PERCENTAGE' ? `${c.discountValue}%` : `₹${c.discountValue}`}
-                  </span>
-                  <span className="font-mono text-[9px] text-muted ml-1 uppercase">{c.discountType}</span>
-                </td>
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-2">
-                    <span className="font-mono text-[12px] text-ink">{c.usedCount}</span>
-                    <span className="text-muted/40">/</span>
-                    <span className="font-mono text-[12px] text-muted">{c.maxUses ?? '∞'}</span>
-                  </div>
-                  {c.maxUses && (
-                    <div className="h-1 w-20 bg-cream rounded-full mt-1 overflow-hidden border border-rule/60">
-                      <div className="h-full bg-ink rounded-full" style={{ width: `${Math.min(100, (c.usedCount / c.maxUses) * 100)}%` }} />
-                    </div>
-                  )}
-                </td>
-                <td className="px-6 py-4 font-mono text-[11px] text-muted">{c.expiryDate || '—'}</td>
-                <td className="px-6 py-4">
-                  <button onClick={() => toggleCoupon(c.id)} className="flex items-center cursor-pointer gap-1.5 transition-all">
-                    {c.isActive
-                      ? <><ToggleRight size={20} className="text-lime-dark" /><span className="font-mono text-[10px] text-lime-dark uppercase tracking-wider">Active</span></>
-                      : <><ToggleLeft size={20} className="text-muted" /><span className="font-mono text-[10px] text-muted uppercase tracking-wider">Inactive</span></>
-                    }
-                  </button>
-                </td>
-                <td className="px-6 py-4 text-right">
-                  <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button onClick={() => setModal({ type: 'edit', coupon: c })} className="p-1.5 cursor-pointer rounded-[4px] text-muted hover:text-ink hover:bg-cream-dark transition-all"><Pencil size={13} /></button>
-                    <button onClick={() => setModal({ type: 'delete', coupon: c })} className="p-1.5 cursor-pointer rounded-[4px] text-muted hover:text-brand-red hover:bg-brand-red/5 transition-all"><Trash2 size={13} /></button>
-                  </div>
-                </td>
-              </tr>
+          <div className="flex items-center gap-1 p-1 bg-white border border-rule rounded-xl">
+            {[
+              { key: 'ALL', label: 'All', active: 'bg-ink text-cream' },
+              { key: 'ACTIVE', label: 'Active', active: 'bg-lime text-lime-dark' },
+              { key: 'INACTIVE', label: 'Inactive', active: 'bg-cream-dark text-muted border border-rule' },
+            ].map(({ key, label, active }) => (
+              <button
+                key={key}
+                onClick={() => setStatusFilter(key)}
+                className={`px-3.5 py-1.5 cursor-pointer rounded-lg font-mono text-[10px] uppercase tracking-widest transition-all
+                  ${statusFilter === key ? `${active} shadow-sm` : 'text-muted hover:text-ink'}`}
+              >
+                {label}
+              </button>
             ))}
-            {filtered.length === 0 && (
-              <tr><td colSpan={6} className="px-6 py-12 text-center"><p className="font-mono text-[11px] text-muted uppercase tracking-widest">No coupons found</p></td></tr>
-            )}
-          </tbody>
-        </table>
+          </div>
+
+          <span className="font-mono text-[10px] text-muted uppercase tracking-widest ml-auto">
+            {filtered.length} / {coupons.length}
+          </span>
+        </div>
       </div>
 
+      {/* ── Data Table ───────────────────────────────────────────────────── */}
+      {filtered.length > 0 ? (
+        <div className="bg-white border border-rule rounded-2xl overflow-hidden shadow-sm">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-cream/40 border-b border-rule">
+                <th className="text-left px-5 py-3 font-mono text-[9px] uppercase tracking-widest text-muted/70">Code</th>
+                <th className="text-left px-5 py-3 font-mono text-[9px] uppercase tracking-widest text-muted/70">Discount</th>
+                <th className="text-left px-5 py-3 font-mono text-[9px] uppercase tracking-widest text-muted/70">Usage</th>
+                <th className="text-left px-5 py-3 font-mono text-[9px] uppercase tracking-widest text-muted/70">Expiry</th>
+                <th className="text-left px-5 py-3 font-mono text-[9px] uppercase tracking-widest text-muted/70">Status</th>
+                <th className="text-right px-5 py-3 font-mono text-[9px] uppercase tracking-widest text-muted/70 w-24">Actions</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-rule/40">
+              {filtered.map((c) => (
+                <tr key={c.id} className={`transition-colors group/row ${c.isActive ? 'hover:bg-cream/60' : 'bg-cream-dark/30 hover:bg-cream-dark/60'}`}>
+                  <td className="px-5 py-4">
+                    <div className="flex items-center gap-3">
+                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${c.isActive ? 'bg-ink/5 border border-rule/60' : 'bg-transparent'}`}>
+                        <Tag size={14} className={c.isActive ? 'text-muted' : 'text-muted/40'} />
+                      </div>
+                      <code className={`font-mono text-[14px] font-bold ${c.isActive ? 'text-ink' : 'text-muted/60'}`}>
+                        {c.code}
+                      </code>
+                    </div>
+                  </td>
+                  <td className="px-5 py-4">
+                    <span className={`font-mono text-[14px] font-bold ${c.isActive ? 'text-ink' : 'text-muted/60'}`}>
+                      {c.discountType === 'PERCENTAGE' ? `${c.discountValue}%` : `₹${c.discountValue}`}
+                    </span>
+                    <span className="font-mono text-[9px] text-muted ml-1.5 uppercase">{c.discountType}</span>
+                  </td>
+                  <td className="px-5 py-4">
+                    <div className="flex items-center gap-2">
+                      <span className={`font-mono text-[12px] font-semibold ${c.isActive ? 'text-ink' : 'text-muted/60'}`}>{c.usedCount}</span>
+                      <span className="text-muted/40">/</span>
+                      <span className="font-mono text-[12px] text-muted">{c.maxUses ?? '∞'}</span>
+                    </div>
+                    {c.maxUses && (
+                      <div className="h-1.5 w-24 bg-cream rounded-full mt-1.5 overflow-hidden border border-rule/60">
+                        <div 
+                          className={`h-full rounded-full transition-all ${c.isActive ? 'bg-ink' : 'bg-muted/40'}`} 
+                          style={{ width: `${Math.min(100, (c.usedCount / c.maxUses) * 100)}%` }} 
+                        />
+                      </div>
+                    )}
+                  </td>
+                  <td className="px-5 py-4 font-mono text-[11px] text-muted">{c.expiryDate || '—'}</td>
+                  <td className="px-5 py-4">
+                    <button onClick={() => toggleCoupon(c.id)} className="flex items-center cursor-pointer gap-2 transition-all">
+                      {c.isActive
+                        ? <><ToggleRight size={22} className="text-lime-dark" /><span className="font-mono text-[10px] text-lime-dark uppercase tracking-wider font-bold">Active</span></>
+                        : <><ToggleLeft size={22} className="text-muted/60" /><span className="font-mono text-[10px] text-muted/60 uppercase tracking-wider">Inactive</span></>
+                      }
+                    </button>
+                  </td>
+                  <td className="px-5 py-4 text-right">
+                    <div className="flex items-center justify-end gap-1 opacity-0 group-hover/row:opacity-100 transition-opacity">
+                      <button onClick={() => setModal({ type: 'edit', coupon: c })} className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-ink hover:bg-cream-dark transition-all" title="Edit">
+                        <Pencil size={13} />
+                      </button>
+                      <button onClick={() => setModal({ type: 'delete', coupon: c })} className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-brand-red hover:bg-brand-red/5 transition-all" title="Delete">
+                        <Trash2 size={13} />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <EmptyState onAdd={() => setModal({ type: 'add' })} />
+      )}
+
+      {/* ── Modals ───────────────────────────────────────────────────────── */}
       {modal?.type === 'add' && (
         <AdminModal title="Create Coupon" onClose={closeModal}>
           <CouponForm onSave={handleSave} onCancel={closeModal} />

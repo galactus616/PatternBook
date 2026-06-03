@@ -1,143 +1,26 @@
-import React, { useState } from 'react';
-import { useAdmin, PERMISSION_GROUPS, ALL_PERMISSIONS } from '../../hooks/useAdmin';
-import { Search, ShieldCheck, ShieldAlert, User, ChevronRight, X, Crown } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { useAdmin } from '../../features/admin/useAdmin';
+import { Search, ShieldCheck, ShieldAlert, User, ChevronRight, Crown, ArrowUpRight } from 'lucide-react';
 import AdminModal from '../../components/ui/AdminModal';
 
+import UserDetailModal from '../../features/admin/components/UserDetailModal';
+
 const ROLE_BADGE = {
-  ADMIN:     { cls: 'bg-brand-red/10 text-brand-red border border-brand-red/20',   icon: Crown,       label: 'Admin'       },
-  MODERATOR: { cls: 'bg-accent/10 text-accent border border-accent/30',             icon: ShieldAlert, label: 'Moderator'   },
-  USER:      { cls: 'bg-cream text-muted border border-rule',                        icon: User,        label: 'User'        },
+  ADMIN:     { text: 'text-brand-red', bg: 'bg-brand-red/10 border-brand-red/20', icon: Crown,       label: 'Admin' },
+  MODERATOR: { text: 'text-accent',    bg: 'bg-accent/10 border-accent/30',       icon: ShieldAlert, label: 'Moderator' },
+  USER:      { text: 'text-muted',     bg: 'bg-cream-dark border-rule',           icon: User,        label: 'User' },
 };
 
-function UserDetailModal({ user, onSave, onClose }) {
-  const [role, setRole] = useState(user.role);
-  const [permissions, setPermissions] = useState([...user.permissions]);
-  const [plan, setPlan] = useState(user.plan);
-
-  const togglePerm = (perm) => {
-    setPermissions(prev =>
-      prev.includes(perm) ? prev.filter(p => p !== perm) : [...prev, perm]
-    );
+function PlanBadge({ plan }) {
+  const styles = {
+    PRO:  'bg-lime/10 text-lime-dark border-lime/30',
+    TEAM: 'bg-accent/10 text-orange-700 border-accent/30',
+    FREE: 'bg-cream-dark text-muted border-rule',
   };
-
-  const toggleAllGroup = (perms) => {
-    const allSet = perms.every(p => permissions.includes(p));
-    if (allSet) setPermissions(prev => prev.filter(p => !perms.includes(p)));
-    else setPermissions(prev => [...new Set([...prev, ...perms])]);
-  };
-
   return (
-    <div className="space-y-6">
-      {/* User info */}
-      <div className="flex items-center gap-3 p-4 rounded-[4px] bg-cream border border-rule">
-        <div className="w-10 h-10 rounded-full bg-ink flex items-center justify-center text-cream text-sm font-bold shrink-0">
-          {user.name[0].toUpperCase()}
-        </div>
-        <div>
-          <p className="font-sans text-[14px] font-bold text-ink">{user.name}</p>
-          <p className="font-mono text-[10px] text-muted">{user.email}</p>
-        </div>
-        <div className="ml-auto font-mono text-[9px] text-muted">Joined {user.joined}</div>
-      </div>
-
-      {/* Role */}
-      <div>
-        <label className="font-mono text-[10px] uppercase tracking-widest text-muted block mb-2">Role</label>
-        <div className="flex gap-2">
-          {['USER', 'MODERATOR'].map(r => (
-            <button
-              key={r}
-              onClick={() => setRole(r)}
-              disabled={user.role === 'ADMIN'}
-              className={`flex-1 cursor-pointer py-2 rounded-[4px] font-mono text-[10px] uppercase tracking-widest border transition-all disabled:opacity-40 disabled:cursor-not-allowed ${
-                role === r ? 'bg-ink text-cream border-ink' : 'bg-cream text-muted border-rule hover:text-ink'
-              }`}
-            >
-              {r === 'USER' ? '👤 User' : '🛡️ Moderator'}
-            </button>
-          ))}
-        </div>
-        {user.role === 'ADMIN' && (
-          <p className="font-mono text-[9px] text-muted mt-1">Admin role cannot be changed.</p>
-        )}
-      </div>
-
-      {/* Plan override */}
-      <div>
-        <label className="font-mono text-[10px] uppercase tracking-widest text-muted block mb-2">Plan Override</label>
-        <div className="flex gap-2">
-          {['FREE', 'PRO', 'TEAM'].map(p => (
-            <button
-              key={p}
-              onClick={() => setPlan(p)}
-              className={`flex-1 cursor-pointer py-2 rounded-[4px] font-mono text-[10px] uppercase tracking-widest border transition-all ${
-                plan === p ? 'bg-ink text-cream border-ink' : 'bg-cream text-muted border-rule hover:text-ink'
-              }`}
-            >
-              {p === 'PRO' ? '⚡ Pro' : p === 'TEAM' ? '🏢 Team' : '🆓 Free'}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Permissions — only shown for moderators */}
-      {role === 'MODERATOR' && (
-        <div>
-          <div className="flex items-center justify-between mb-2">
-            <label className="font-mono text-[10px] uppercase tracking-widest text-muted">Permissions</label>
-            <div className="flex gap-2">
-              <button onClick={() => setPermissions(ALL_PERMISSIONS)} className="font-mono cursor-pointer text-[9px] text-muted hover:text-ink uppercase tracking-widest transition-all">Grant All</button>
-              <span className="text-muted/40">·</span>
-              <button onClick={() => setPermissions([])} className="font-mono cursor-pointer text-[9px] text-muted hover:text-brand-red uppercase tracking-widest transition-all">Revoke All</button>
-            </div>
-          </div>
-
-          <div className="space-y-3 border border-rule rounded-[4px] p-4 bg-cream/50">
-            {PERMISSION_GROUPS.map(({ group, perms }) => (
-              <div key={group}>
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="font-mono text-[9px] uppercase tracking-widest text-muted">{group}</span>
-                  <button
-                    onClick={() => toggleAllGroup(perms)}
-                    className="font-mono cursor-pointer text-[8px] text-muted/60 hover:text-ink transition-all uppercase tracking-widest"
-                  >
-                    {perms.every(p => permissions.includes(p)) ? 'Deselect all' : 'Select all'}
-                  </button>
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  {perms.map(perm => {
-                    const label = perm.split(':')[1];
-                    const isOn = permissions.includes(perm);
-                    return (
-                      <button
-                        key={perm}
-                        onClick={() => togglePerm(perm)}
-                        className={`px-2.5 cursor-pointer py-1 rounded-[4px] font-mono text-[10px] uppercase tracking-widest border transition-all ${
-                          isOn ? 'bg-ink text-cream border-ink' : 'bg-white text-muted border-rule hover:text-ink'
-                        }`}
-                      >
-                        {label}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Save */}
-      <div className="flex gap-2">
-        <button
-          onClick={() => onSave({ role, permissions: role === 'MODERATOR' ? permissions : [], plan })}
-          className="flex-1 cursor-pointer bg-ink text-cream rounded-[4px] py-2 text-[13px] font-semibold hover:bg-ink/90 transition-all"
-        >
-          Save Changes
-        </button>
-        <button onClick={onClose} className="px-4 py-2 cursor-pointer rounded-[4px] border border-rule text-muted hover:text-ink text-[13px] transition-all">Cancel</button>
-      </div>
-    </div>
+    <span className={`font-mono text-[9px] uppercase tracking-widest px-2 py-0.5 rounded-lg border ${styles[plan] || styles.FREE}`}>
+      {plan}
+    </span>
   );
 }
 
@@ -147,108 +30,161 @@ export default function Users() {
   const [roleFilter, setRoleFilter] = useState('ALL');
   const [selectedUser, setSelectedUser] = useState(null);
 
-  const filtered = users.filter(u => {
-    const matchSearch = u.name.toLowerCase().includes(search.toLowerCase()) || u.email.toLowerCase().includes(search.toLowerCase());
+  const filtered = useMemo(() => users.filter(u => {
+    const q = search.toLowerCase();
+    const matchSearch = u.name.toLowerCase().includes(q) || u.email.toLowerCase().includes(q);
     const matchRole   = roleFilter === 'ALL' || u.role === roleFilter;
     return matchSearch && matchRole;
-  });
+  }), [users, search, roleFilter]);
 
   const handleSave = (changes) => {
     updateUser(selectedUser.id, changes);
     setSelectedUser(null);
   };
 
+  const adminCount = users.filter(u => u.role === 'ADMIN').length;
+  const modCount   = users.filter(u => u.role === 'MODERATOR').length;
+
   return (
-    <div className="max-w-[1200px] mx-auto px-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 pt-8 pb-10">
-      <div>
-        <div className="flex items-center gap-2 mb-1">
-          <div className="w-1.5 h-1.5 rounded-full bg-brand-red animate-pulse" />
-          <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">Management</p>
+    <div className="max-w-[1280px] mx-auto px-8 pt-8 pb-16 animate-in fade-in slide-in-from-bottom-4 duration-500">
+      
+      {/* ── Header ───────────────────────────────────────────────────────── */}
+      <div className="flex items-end justify-between mb-8">
+        <div>
+          <div className="flex items-center gap-2 mb-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-brand-red animate-pulse" />
+            <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted">Management</p>
+          </div>
+          <h1 className="font-serif text-[36px] font-black text-ink leading-none mb-2">Users</h1>
+          <div className="flex items-center gap-3 flex-wrap">
+            <p className="font-sans text-[13px] text-muted">
+              <span className="font-bold text-ink">{users.length}</span> registered members
+            </p>
+            <div className="flex items-center gap-1.5">
+              <span className="font-mono text-[9px] text-brand-red bg-brand-red/10 border border-brand-red/20 px-2 py-0.5 rounded-lg">{adminCount} admins</span>
+              <span className="font-mono text-[9px] text-accent bg-accent/10 border border-accent/20 px-2 py-0.5 rounded-lg">{modCount} moderators</span>
+            </div>
+          </div>
         </div>
-        <h1 className="font-serif text-[28px] font-black text-ink">Users</h1>
-        <p className="text-muted text-sm mt-1">{users.length} registered members</p>
       </div>
 
-      <div className="bg-white border border-rule rounded-[4px] shadow-sm">
-        <div className="p-6 border-b border-rule flex items-center gap-4 flex-wrap">
-          <div className="relative group flex-1 min-w-[200px]">
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted group-focus-within:text-ink transition-colors" />
-            <input type="text" placeholder="Search by name or email..." value={search} onChange={e => setSearch(e.target.value)} className="bg-cream-dark/50 border border-rule/50 rounded-[4px] pl-9 pr-4 py-1.5 text-[12px] w-full focus:outline-none focus:border-ink focus:bg-white transition-all placeholder:text-muted/60" />
+      {/* ── Toolbar ──────────────────────────────────────────────────────── */}
+      <div className="space-y-3 mb-7">
+        <div className="flex items-center gap-3 flex-wrap">
+          <div className="relative group flex-1 min-w-[220px] max-w-md">
+            <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted/50 group-focus-within:text-ink transition-colors" />
+            <input 
+              type="text" 
+              placeholder="Search by name or email..." 
+              value={search} 
+              onChange={e => setSearch(e.target.value)} 
+              className="w-full bg-white border border-rule rounded-xl pl-10 pr-4 py-2.5 text-[13px] focus:outline-none focus:border-ink/40 focus:shadow-sm transition-all placeholder:text-muted/40" 
+            />
           </div>
-          <div className="flex gap-1">
-            {['ALL', 'ADMIN', 'MODERATOR', 'USER'].map(r => (
-              <button key={r} onClick={() => setRoleFilter(r)} className={`px-3 py-1.5 cursor-pointer rounded-[4px] font-mono text-[10px] uppercase tracking-widest transition-all whitespace-nowrap ${roleFilter === r ? 'bg-ink text-cream' : 'bg-cream text-muted border border-rule hover:text-ink'}`}>
-                {r === 'ALL' ? 'All' : r.charAt(0) + r.slice(1).toLowerCase()}
+
+          <div className="flex items-center gap-1 p-1 bg-white border border-rule rounded-xl">
+            {[
+              { key: 'ALL', label: 'All', active: 'bg-ink text-cream' },
+              { key: 'ADMIN', label: 'Admin', active: 'bg-brand-red text-white' },
+              { key: 'MODERATOR', label: 'Moderator', active: 'bg-accent text-white' },
+              { key: 'USER', label: 'User', active: 'bg-cream-dark border-rule text-muted' },
+            ].map(({ key, label, active }) => (
+              <button
+                key={key}
+                onClick={() => setRoleFilter(key)}
+                className={`px-3.5 py-1.5 cursor-pointer rounded-lg font-mono text-[10px] uppercase tracking-widest transition-all
+                  ${roleFilter === key ? `${active} shadow-sm` : 'text-muted hover:text-ink'}`}
+              >
+                {label}
               </button>
             ))}
           </div>
-          <p className="font-mono text-[10px] text-muted uppercase tracking-widest">{filtered.length} results</p>
-        </div>
 
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-rule">
-              <th className="text-left px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">User</th>
-              <th className="text-left px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Email</th>
-              <th className="text-left px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Role</th>
-              <th className="text-left px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Plan</th>
-              <th className="text-left px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Joined</th>
-              <th className="text-right px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Solved</th>
-              <th className="text-right px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Manage</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.map((u) => {
-              const badge = ROLE_BADGE[u.role] ?? ROLE_BADGE.USER;
-              const RoleIcon = badge.icon;
-              return (
-                <tr key={u.id} className="border-b border-rule/60 last:border-0 hover:bg-cream/50 transition-colors group">
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-9 h-9 rounded-full bg-ink flex items-center justify-center text-cream text-[13px] font-bold shrink-0">
-                        {u.name[0].toUpperCase()}
-                      </div>
-                      <div>
-                        <p className="font-sans text-[13px] font-semibold text-ink">{u.name}</p>
-                        {u.permissions.length > 0 && u.role === 'MODERATOR' && (
-                          <p className="font-mono text-[9px] text-muted/60">{u.permissions.length} permissions</p>
-                        )}
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4 font-mono text-[11px] text-muted">{u.email}</td>
-                  <td className="px-6 py-4">
-                    <span className={`inline-flex items-center gap-1 font-mono text-[10px] px-2 py-0.5 rounded-[4px] uppercase tracking-wider ${badge.cls}`}>
-                      <RoleIcon size={10} />{badge.label}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`font-mono text-[10px] uppercase tracking-wider ${u.plan === 'PRO' ? 'text-lime-dark font-bold' : u.plan === 'TEAM' ? 'text-accent font-bold' : 'text-muted'}`}>
-                      {u.plan}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 font-mono text-[11px] text-muted">{u.joined}</td>
-                  <td className="px-6 py-4 text-right font-mono text-[13px] font-bold text-ink">{u.solvedCount}</td>
-                  <td className="px-6 py-4 text-right">
-                    <button
-                      onClick={() => setSelectedUser(u)}
-                      className="flex items-center cursor-pointer gap-1 ml-auto px-3 py-1.5 rounded-[4px] border border-rule text-muted hover:text-ink hover:border-ink text-[11px] font-mono uppercase tracking-widest transition-all opacity-0 group-hover:opacity-100"
-                    >
-                      Manage <ChevronRight size={11} />
-                    </button>
-                  </td>
-                </tr>
-              );
-            })}
-            {filtered.length === 0 && (
-              <tr><td colSpan={7} className="px-6 py-12 text-center"><p className="font-mono text-[11px] text-muted uppercase tracking-widest">No users found</p></td></tr>
-            )}
-          </tbody>
-        </table>
+          <span className="font-mono text-[10px] text-muted uppercase tracking-widest ml-auto">
+            {filtered.length} / {users.length}
+          </span>
+        </div>
       </div>
 
+      {/* ── Data Table ───────────────────────────────────────────────────── */}
+      {filtered.length > 0 ? (
+        <div className="bg-white border border-rule rounded-2xl overflow-hidden shadow-sm">
+          <table className="w-full text-sm">
+            <thead>
+              <tr className="bg-cream/40 border-b border-rule">
+                <th className="text-left px-5 py-3 font-mono text-[9px] uppercase tracking-widest text-muted/70 w-[280px]">User</th>
+                <th className="text-left px-5 py-3 font-mono text-[9px] uppercase tracking-widest text-muted/70">Role</th>
+                <th className="text-left px-5 py-3 font-mono text-[9px] uppercase tracking-widest text-muted/70">Plan</th>
+                <th className="text-left px-5 py-3 font-mono text-[9px] uppercase tracking-widest text-muted/70">Joined</th>
+                <th className="text-right px-5 py-3 font-mono text-[9px] uppercase tracking-widest text-muted/70 w-24">Solved</th>
+                <th className="text-right px-5 py-3 font-mono text-[9px] uppercase tracking-widest text-muted/70 w-28">Manage</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-rule/40">
+              {filtered.map((u) => {
+                const badge = ROLE_BADGE[u.role] ?? ROLE_BADGE.USER;
+                const RoleIcon = badge.icon;
+                return (
+                  <tr key={u.id} className="hover:bg-cream/60 transition-colors group/row">
+                    <td className="px-5 py-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-full bg-ink text-cream flex items-center justify-center text-[13px] font-bold shrink-0">
+                          {u.name[0].toUpperCase()}
+                        </div>
+                        <div className="min-w-0">
+                          <p className="font-sans text-[13px] font-bold text-ink truncate">{u.name}</p>
+                          <p className="font-mono text-[10px] text-muted truncate">{u.email}</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="px-5 py-4">
+                      <div className="flex flex-col gap-1 items-start">
+                        <span className={`inline-flex items-center gap-1.5 font-mono text-[9px] px-2 py-0.5 rounded-lg uppercase tracking-wider border ${badge.bg} ${badge.text}`}>
+                          <RoleIcon size={10} />
+                          {badge.label}
+                        </span>
+                        {u.permissions.length > 0 && u.role === 'MODERATOR' && (
+                          <span className="font-mono text-[9px] text-muted/60 ml-0.5">
+                            {u.permissions.length} perms
+                          </span>
+                        )}
+                      </div>
+                    </td>
+                    <td className="px-5 py-4">
+                      <PlanBadge plan={u.plan} />
+                    </td>
+                    <td className="px-5 py-4">
+                      <span className="font-mono text-[11px] text-muted">{u.joined}</span>
+                    </td>
+                    <td className="px-5 py-4 text-right">
+                      <span className="font-mono text-[14px] font-black text-ink">{u.solvedCount}</span>
+                    </td>
+                    <td className="px-5 py-4 text-right">
+                      <button
+                        onClick={() => setSelectedUser(u)}
+                        className="flex items-center justify-end gap-1 ml-auto px-3 py-1.5 rounded-lg border border-rule/60 text-muted hover:text-ink hover:border-ink hover:bg-cream text-[10px] font-mono uppercase tracking-widest transition-all opacity-0 group-hover/row:opacity-100"
+                      >
+                        Manage <ChevronRight size={12} className="-mr-0.5" />
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="flex flex-col items-center justify-center py-24 text-center bg-white border border-rule rounded-2xl">
+          <div className="w-16 h-16 rounded-2xl bg-ink flex items-center justify-center mb-4">
+            <User size={24} className="text-muted" />
+          </div>
+          <h3 className="font-serif text-[22px] font-black text-ink mb-1">No users found</h3>
+          <p className="font-mono text-[11px] text-muted uppercase tracking-widest mb-6">There are no users matching this filter</p>
+        </div>
+      )}
+
       {selectedUser && (
-        <AdminModal title={`Manage — ${selectedUser.name}`} onClose={() => setSelectedUser(null)} width="max-w-lg">
+        <AdminModal title={`Manage User`} onClose={() => setSelectedUser(null)} width="max-w-xl">
           <UserDetailModal user={selectedUser} onSave={handleSave} onClose={() => setSelectedUser(null)} />
         </AdminModal>
       )}

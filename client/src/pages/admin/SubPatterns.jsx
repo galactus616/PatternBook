@@ -1,84 +1,216 @@
-import React, { useState } from 'react';
-import { useAdmin } from '../../hooks/useAdmin';
-import { Network, Search, Plus, Pencil, Trash2 } from 'lucide-react';
+import React, { useState, useMemo, useRef } from 'react';
+import { useAdmin } from '../../features/admin/useAdmin';
+import { Network, Search, Plus, Pencil, Trash2, ArrowUpRight, ChevronDown, ChevronLeft, ChevronRight, Share2 } from 'lucide-react';
 import AdminModal from '../../components/ui/AdminModal';
+import SubPatternForm from '../../features/admin/components/SubPatternForm';
+import ConfirmDelete from '../../features/admin/components/ConfirmDelete';
 
-const EMPTY = { name: '', slug: '', patternId: '' };
+// ─── Filter Pills Scroller ─────────────────────────────────────────────────────
 
-function SubPatternForm({ initial = EMPTY, patterns, onSave, onCancel }) {
-  const [form, setForm] = useState({ ...initial });
-  const set = (k, v) => setForm(f => ({ ...f, [k]: v }));
+function PillsScroller({ items, active, onChange }) {
+  const scrollRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
 
-  const handleName = (v) => {
-    set('name', v);
-    if (!initial.id) set('slug', v.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, ''));
+  const checkScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+      setCanScrollLeft(scrollLeft > 0);
+      setCanScrollRight(Math.ceil(scrollLeft + clientWidth) < scrollWidth);
+    }
+  };
+
+  React.useEffect(() => {
+    checkScroll();
+    window.addEventListener('resize', checkScroll);
+    return () => window.removeEventListener('resize', checkScroll);
+  }, [items]);
+
+  const scroll = (direction) => {
+    if (scrollRef.current) {
+      const scrollAmount = 250;
+      scrollRef.current.scrollBy({ left: direction === 'left' ? -scrollAmount : scrollAmount, behavior: 'smooth' });
+      setTimeout(checkScroll, 300);
+    }
   };
 
   return (
-    <div className="space-y-4">
-      <div>
-        <label className="font-mono text-[10px] uppercase tracking-widest text-muted block mb-1.5">Sub-Pattern Name *</label>
-        <input
-          value={form.name}
-          onChange={e => handleName(e.target.value)}
-          placeholder="e.g. Opposite Direction"
-          className="w-full bg-cream-dark/50 border border-rule/50 rounded-[4px] px-3 py-2 text-[13px] focus:outline-none focus:border-ink transition-all"
-        />
-      </div>
-      <div>
-        <label className="font-mono text-[10px] uppercase tracking-widest text-muted block mb-1.5">Slug *</label>
-        <input
-          value={form.slug}
-          onChange={e => set('slug', e.target.value)}
-          placeholder="e.g. opposite-direction"
-          className="w-full bg-cream-dark/50 border border-rule/50 rounded-[4px] px-3 py-2 text-[13px] font-mono focus:outline-none focus:border-ink transition-all"
-        />
-      </div>
-      <div>
-        <label className="font-mono text-[10px] uppercase tracking-widest text-muted block mb-1.5">Parent Pattern *</label>
-        <select
-          value={form.patternId}
-          onChange={e => set('patternId', e.target.value)}
-          className="w-full bg-cream-dark/50 border border-rule/50 rounded-[4px] px-3 py-2 text-[13px] focus:outline-none focus:border-ink transition-all"
-        >
-          <option value="">Select pattern...</option>
-          {patterns.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
-        </select>
-      </div>
-      <div className="flex gap-2 pt-2">
+    <div className="flex items-center gap-3 w-full">
+      <button 
+        onClick={() => scroll('left')} 
+        disabled={!canScrollLeft}
+        className="p-1.5 bg-white border border-rule rounded-full shadow-sm text-ink hover:bg-cream transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
+      >
+        <ChevronLeft size={14} />
+      </button>
+
+      <div 
+        ref={scrollRef} 
+        onScroll={checkScroll}
+        className="flex items-center gap-2 overflow-x-auto pb-1 flex-1 hide-scrollbar" 
+        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+      >
         <button
-          onClick={() => onSave({ ...form, pattern: patterns.find(p => p.id === form.patternId)?.name || '' })}
-          disabled={!form.name || !form.slug || !form.patternId}
-          className="flex-1 cursor-pointer bg-ink text-cream rounded-[4px] py-2 text-[13px] font-semibold hover:bg-ink/90 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
+          onClick={() => onChange('ALL')}
+          className={`shrink-0 px-3.5 py-1.5 cursor-pointer rounded-xl font-mono text-[10px] uppercase tracking-widest border transition-all
+            ${active === 'ALL'
+              ? 'bg-ink text-cream border-ink'
+              : 'bg-white border-rule text-muted hover:border-ink/40 hover:text-ink'}`}
         >
-          Save Sub-Pattern
+          All Patterns
         </button>
-        <button onClick={onCancel} className="px-4 py-2 cursor-pointer rounded-[4px] border border-rule text-muted hover:text-ink text-[13px] transition-all">Cancel</button>
+        {items.map(t => (
+          <button
+            key={t}
+            onClick={() => onChange(active === t ? 'ALL' : t)}
+            className={`shrink-0 px-3.5 py-1.5 cursor-pointer rounded-xl font-mono text-[10px] uppercase tracking-widest border transition-all
+              ${active === t
+                ? 'bg-ink text-cream border-ink'
+                : 'bg-white border-rule text-muted hover:border-ink/40 hover:text-ink'}`}
+          >
+            {t}
+          </button>
+        ))}
+      </div>
+
+      <button 
+        onClick={() => scroll('right')} 
+        disabled={!canScrollRight}
+        className="p-1.5 bg-white border border-rule rounded-full shadow-sm text-ink hover:bg-cream transition-colors cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
+      >
+        <ChevronRight size={14} />
+      </button>
+    </div>
+  );
+}
+
+// ─── Sub-Pattern Row ───────────────────────────────────────────────────────────
+
+function SubPatternRow({ subPattern, index, onEdit, onDelete }) {
+  return (
+    <div className="flex items-center gap-4 px-5 py-3.5 hover:bg-cream/70 transition-colors group/row border-b border-rule/30 last:border-0">
+      <span className="font-mono text-[10px] text-muted/40 w-5 shrink-0 text-right select-none">{index + 1}</span>
+
+      <div className="w-5 h-5 rounded-md bg-ink/5 border border-rule/60 flex items-center justify-center shrink-0">
+        <Share2 size={9} className="text-muted" />
+      </div>
+
+      <div className="flex-1 min-w-0">
+        <p className="font-sans text-[13px] font-semibold text-ink truncate leading-tight">{subPattern.name}</p>
+        <code className="font-mono text-[9px] text-muted/50">/{subPattern.slug}</code>
+      </div>
+
+      <div className="flex items-center gap-1 shrink-0 w-14 justify-end">
+        <span className="font-mono text-[13px] font-bold text-ink">{subPattern.problemCount ?? 0}</span>
+        <span className="font-mono text-[9px] text-muted/50">prob</span>
+      </div>
+
+      <div className="flex items-center gap-0.5 shrink-0 opacity-0 group-hover/row:opacity-100 transition-all duration-150">
+        <button
+          onClick={() => onEdit(subPattern)}
+          className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-ink hover:bg-cream-dark transition-all"
+        >
+          <Pencil size={12} />
+        </button>
+        <button
+          onClick={() => onDelete(subPattern)}
+          className="p-1.5 cursor-pointer rounded-lg text-muted hover:text-brand-red hover:bg-brand-red/5 transition-all"
+        >
+          <Trash2 size={12} />
+        </button>
       </div>
     </div>
   );
 }
 
-function ConfirmDelete({ name, onConfirm, onCancel }) {
+// ─── Pattern Group ────────────────────────────────────────────────────────────
+
+function PatternGroup({ patternName, subPatterns, onEdit, onDelete, defaultOpen }) {
+  const [open, setOpen] = useState(defaultOpen);
+
+  const totalProblems = subPatterns.reduce((s, p) => s + (p.problemCount ?? 0), 0);
+
   return (
-    <div className="space-y-4">
-      <p className="text-[13px] text-ink">Delete <strong>"{name}"</strong>? This cannot be undone.</p>
-      <div className="flex gap-2">
-        <button onClick={onConfirm} className="flex-1 cursor-pointer bg-brand-red text-white rounded-[4px] py-2 text-[13px] font-semibold hover:bg-brand-red/90 transition-all">Delete</button>
-        <button onClick={onCancel} className="px-4 py-2 cursor-pointer rounded-[4px] border border-rule text-muted hover:text-ink text-[13px] transition-all">Cancel</button>
-      </div>
+    <div className="bg-white border border-rule rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+      {/* Header */}
+      <button
+        onClick={() => setOpen(o => !o)}
+        className="w-full flex items-center gap-4 px-5 py-4 bg-cream/50 hover:bg-cream transition-colors cursor-pointer border-b border-rule/50"
+      >
+        <div className="w-9 h-9 rounded-xl bg-ink flex items-center justify-center shrink-0">
+          <Network size={15} className="text-lime" />
+        </div>
+
+        <div className="flex-1 text-left min-w-0">
+          <p className="font-sans text-[14px] font-bold text-ink truncate">{patternName}</p>
+          <p className="font-mono text-[9px] text-muted uppercase tracking-widest mt-0.5">
+            {totalProblems} problems linked
+          </p>
+        </div>
+
+        <div className="flex items-center gap-3 shrink-0">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-muted border border-rule px-2.5 py-1 rounded-lg bg-white">
+            {subPatterns.length} variants
+          </span>
+          <div className={`w-6 h-6 rounded-lg bg-ink/5 border border-rule/60 flex items-center justify-center transition-transform duration-200 ${open ? '' : '-rotate-90'}`}>
+            <ChevronDown size={12} className="text-muted" />
+          </div>
+        </div>
+      </button>
+
+      {/* Rows */}
+      {open && (
+        <div>
+          <div className="flex items-center gap-4 px-5 py-2 bg-cream/20 border-b border-rule/30">
+            <span className="w-5 shrink-0" />
+            <span className="w-5 shrink-0" />
+            <span className="flex-1 font-mono text-[8px] uppercase tracking-widest text-muted/50">Sub-Pattern Variant</span>
+            <span className="font-mono text-[8px] uppercase tracking-widest text-muted/50 w-14 text-right">Problems</span>
+            <span className="w-14 shrink-0" />
+          </div>
+
+          {subPatterns.map((sp, i) => (
+            <SubPatternRow
+              key={sp.id}
+              subPattern={sp}
+              index={i}
+              onEdit={onEdit}
+              onDelete={onDelete}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }
+
+// ─── Empty State ──────────────────────────────────────────────────────────────
+
+function EmptyState({ onAdd }) {
+  return (
+    <div className="flex flex-col items-center justify-center py-24 text-center bg-white border border-rule rounded-2xl">
+      <div className="w-16 h-16 rounded-2xl bg-ink flex items-center justify-center mb-4">
+        <Network size={24} className="text-lime" />
+      </div>
+      <h3 className="font-serif text-[22px] font-black text-ink mb-1">No sub-patterns found</h3>
+      <p className="font-mono text-[11px] text-muted uppercase tracking-widest mb-6">Create variants of your main patterns</p>
+      <button
+        onClick={onAdd}
+        className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-2.5 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all"
+      >
+        <Plus size={14} /> Create Sub-Pattern
+      </button>
+    </div>
+  );
+}
+
+// ─── Main Page ────────────────────────────────────────────────────────────────
 
 export default function SubPatterns() {
   const { patterns, subPatterns, addSubPattern, updateSubPattern, deleteSubPattern } = useAdmin();
-  const [search, setSearch] = useState('');
-  const [modal, setModal] = useState(null);
-
-  const filtered = subPatterns.filter(sp => {
-    return sp.name.toLowerCase().includes(search.toLowerCase()) || sp.pattern.toLowerCase().includes(search.toLowerCase());
-  });
+  const [search, setSearch]             = useState('');
+  const [patternFilter, setPatternFilter] = useState('ALL');
+  const [modal, setModal]               = useState(null);
 
   const closeModal = () => setModal(null);
 
@@ -88,79 +220,104 @@ export default function SubPatterns() {
     closeModal();
   };
 
+  const uniquePatterns = useMemo(() =>
+    [...new Set(subPatterns.map(sp => sp.pattern).filter(Boolean))].sort()
+  , [subPatterns]);
+
+  const filtered = useMemo(() => subPatterns.filter(sp => {
+    const q = search.toLowerCase();
+    const matchSearch = !q || sp.name.toLowerCase().includes(q) || (sp.pattern ?? '').toLowerCase().includes(q) || sp.slug.toLowerCase().includes(q);
+    const matchPattern = patternFilter === 'ALL' || (sp.pattern ?? '') === patternFilter;
+    return matchSearch && matchPattern;
+  }), [subPatterns, search, patternFilter]);
+
+  const grouped = useMemo(() => {
+    const map = new Map();
+    filtered.forEach(sp => {
+      const key = sp.pattern || 'Uncategorised';
+      if (!map.has(key)) map.set(key, []);
+      map.get(key).push(sp);
+    });
+    return [...map.entries()].sort((a, b) => a[0].localeCompare(b[0]));
+  }, [filtered]);
+
   return (
-    <div className="max-w-[1200px] mx-auto px-8 space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700 pt-8 pb-10">
-      <div className="flex items-start justify-between">
+    <div className="max-w-[1280px] mx-auto px-8 pt-8 pb-16 animate-in fade-in slide-in-from-bottom-4 duration-500">
+
+      {/* ── Header ───────────────────────────────────────────────────────── */}
+      <div className="flex items-end justify-between mb-8">
         <div>
-          <div className="flex items-center gap-2 mb-1">
+          <div className="flex items-center gap-2 mb-2">
             <div className="w-1.5 h-1.5 rounded-full bg-brand-red animate-pulse" />
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-muted">Content</p>
+            <p className="font-mono text-[9px] uppercase tracking-[0.25em] text-muted">Content Management</p>
           </div>
-          <h1 className="font-serif text-[28px] font-black text-ink">Sub-Patterns</h1>
-          <p className="text-muted text-sm mt-1">{subPatterns.length} sub-patterns</p>
+          <h1 className="font-serif text-[36px] font-black text-ink leading-none mb-2">Sub-Patterns</h1>
+          <div className="flex items-center gap-3 flex-wrap">
+            <p className="font-sans text-[13px] text-muted">
+              <span className="font-bold text-ink">{subPatterns.length}</span> sub-patterns across{' '}
+              <span className="font-bold text-ink">{uniquePatterns.length}</span> parent patterns
+            </p>
+          </div>
         </div>
+
         <button
           onClick={() => setModal({ type: 'add' })}
-          className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-4 py-2 rounded-[4px] text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm"
+          className="flex items-center cursor-pointer gap-2 bg-ink text-cream px-5 py-3 rounded-xl text-[13px] font-semibold hover:bg-ink/90 transition-all shadow-sm hover:shadow-md group"
         >
-          <Plus size={14} /> Add Sub-Pattern
+          <Plus size={15} />
+          New Sub-Pattern
+          <ArrowUpRight size={12} className="opacity-40 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
         </button>
       </div>
 
-      <div className="bg-white border border-rule rounded-[4px] shadow-sm">
-        <div className="p-6 border-b border-rule flex items-center gap-4 flex-wrap">
-          <div className="relative group flex-1 min-w-[200px]">
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted group-focus-within:text-ink transition-colors" />
+      {/* ── Toolbar ──────────────────────────────────────────────────────── */}
+      <div className="space-y-3 mb-7">
+        <div className="flex items-center gap-3 flex-wrap">
+          <div className="relative group flex-1 min-w-[220px] max-w-md">
+            <Search size={14} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-muted/50 group-focus-within:text-ink transition-colors" />
             <input
               type="text"
-              placeholder="Search sub-patterns..."
+              placeholder="Search name, slug or parent pattern…"
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="bg-cream-dark/50 border border-rule/50 rounded-[4px] pl-9 pr-4 py-1.5 text-[12px] w-full focus:outline-none focus:border-ink focus:bg-white transition-all placeholder:text-muted/60"
+              className="w-full bg-white border border-rule rounded-xl pl-10 pr-4 py-2.5 text-[13px] focus:outline-none focus:border-ink/40 focus:shadow-sm transition-all placeholder:text-muted/40"
             />
           </div>
-          <p className="font-mono text-[10px] text-muted uppercase tracking-widest">{filtered.length} results</p>
+
+          <span className="font-mono text-[10px] text-muted uppercase tracking-widest ml-auto">
+            {filtered.length} / {subPatterns.length}
+          </span>
         </div>
 
-        <table className="w-full text-sm">
-          <thead>
-            <tr className="border-b border-rule">
-              <th className="text-left px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Sub-Pattern</th>
-              <th className="text-left px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Parent Pattern</th>
-              <th className="text-right px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Problems</th>
-              <th className="text-right px-6 py-3 font-mono text-[10px] uppercase tracking-[0.15em] text-muted">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.map((sp) => (
-              <tr key={sp.id} className="border-b border-rule/60 last:border-0 hover:bg-cream/50 transition-colors duration-150 group">
-                <td className="px-6 py-4">
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-[4px] bg-cream border border-rule flex items-center justify-center shrink-0">
-                      <Network size={13} className="text-muted" />
-                    </div>
-                    <span className="font-sans text-[13px] font-semibold text-ink">{sp.name}</span>
-                  </div>
-                </td>
-                <td className="px-6 py-4 text-muted text-[12px]">{sp.pattern}</td>
-                <td className="px-6 py-4 text-right font-mono text-[13px] font-bold text-ink">{sp.problemCount}</td>
-                <td className="px-6 py-4 text-right">
-                  <div className="flex items-center justify-end gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <button onClick={() => setModal({ type: 'edit', subPattern: sp })} className="p-1.5 cursor-pointer rounded-[4px] text-muted hover:text-ink hover:bg-cream-dark transition-all" title="Edit"><Pencil size={13} /></button>
-                    <button onClick={() => setModal({ type: 'delete', subPattern: sp })} className="p-1.5 cursor-pointer rounded-[4px] text-muted hover:text-brand-red hover:bg-brand-red/5 transition-all" title="Delete"><Trash2 size={13} /></button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-            {filtered.length === 0 && (
-              <tr><td colSpan={4} className="px-6 py-12 text-center"><p className="font-mono text-[11px] text-muted uppercase tracking-widest">No sub-patterns found</p></td></tr>
-            )}
-          </tbody>
-        </table>
+        {uniquePatterns.length > 0 && (
+          <PillsScroller
+            items={uniquePatterns}
+            active={patternFilter}
+            onChange={setPatternFilter}
+          />
+        )}
       </div>
 
+      {/* ── Grouped Sections ─────────────────────────────────────────────── */}
+      <div className="space-y-4">
+        {grouped.length > 0
+          ? grouped.map(([patternName, subs]) => (
+              <PatternGroup
+                key={patternName}
+                patternName={patternName}
+                subPatterns={subs}
+                defaultOpen={grouped.length <= 4}
+                onEdit={sp => setModal({ type: 'edit', subPattern: sp })}
+                onDelete={sp => setModal({ type: 'delete', subPattern: sp })}
+              />
+            ))
+          : <EmptyState onAdd={() => setModal({ type: 'add' })} />
+        }
+      </div>
+
+      {/* ── Modals ───────────────────────────────────────────────────────── */}
       {modal?.type === 'add' && (
-        <AdminModal title="Add Sub-Pattern" onClose={closeModal}>
+        <AdminModal title="New Sub-Pattern" onClose={closeModal}>
           <SubPatternForm patterns={patterns} onSave={handleSave} onCancel={closeModal} />
         </AdminModal>
       )}

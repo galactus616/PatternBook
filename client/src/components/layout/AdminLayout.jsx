@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useAdmin } from '../../hooks/useAdmin';
+import { useAdmin } from '../../features/admin/useAdmin';
 import AdminSidebar from './AdminSidebar';
 import AdminHeader from './AdminHeader';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { useAdmin } from '../../hooks/useAdmin';
+import { useAdmin } from '../../features/admin/useAdmin';
 
 const Bar = ({ label, value, max, colorClass, suffix = '' }) => (
   <div className="flex items-center gap-4">

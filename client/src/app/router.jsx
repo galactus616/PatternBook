@@ -17,7 +17,7 @@ import UsersPage from "../pages/admin/Users";
 import PaymentsPage from "../pages/admin/Payments";
 import CouponsPage from "../pages/admin/Coupons";
 import NotAuthorized from "../pages/NotAuthorized";
-import { AdminProvider } from "../hooks/useAdmin";
+import { AdminProvider } from "../features/admin/useAdmin";
 
 // Lazy load user pages
 const LandingPage     = lazy(() => import("../pages/LandingPage"));

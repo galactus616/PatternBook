@@ -15,6 +15,28 @@ import { useAuth } from "../features/auth/useAuth";
 import { useSocket } from "../features/auth/SocketContext";
 import AvatarDisplay from "../components/ui/AvatarDisplay";
 
+const formatLastOnline = (dateStr) => {
+  if (!dateStr) return "offline";
+  
+  const date = new Date(dateStr);
+  const now = new Date();
+  
+  const isSameDay = (d1, d2) => 
+    d1.getFullYear() === d2.getFullYear() && 
+    d1.getMonth() === d2.getMonth() && 
+    d1.getDate() === d2.getDate();
+
+  const yesterday = new Date(now);
+  yesterday.setDate(now.getDate() - 1);
+
+  const timeStr = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+
+  if (isSameDay(date, now)) return `Today at ${timeStr}`;
+  if (isSameDay(date, yesterday)) return `Yesterday at ${timeStr}`;
+  
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+};
+
 // ─── Friend Card ───────────────────────────────────────────────────────────────
 const FriendCard = ({ friend, isOnline, onMenu, activeMenuId, showConfirmUnfriend, setShowConfirmUnfriend, onRemove }) => {
   const online = isOnline(friend.id);
@@ -39,7 +61,7 @@ const FriendCard = ({ friend, isOnline, onMenu, activeMenuId, showConfirmUnfrien
           <div className="flex items-center gap-1.5 mt-0.5">
             <p className="font-mono text-[10px] text-muted lowercase tracking-wide truncate">@{friend.username}</p>
             <span className={`font-mono text-[8px] uppercase tracking-wider px-1.5 py-0.5 rounded-[2px] font-bold ${online ? "bg-online/10 text-online" : "bg-rule/30 text-muted"}`}>
-              {online ? "online" : "offline"}
+              {online ? "online" : formatLastOnline(friend.lastActiveDate)}
             </span>
           </div>
         </div>

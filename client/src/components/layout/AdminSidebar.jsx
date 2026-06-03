@@ -2,11 +2,9 @@ import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import {
   LayoutDashboard, BookOpen, Layers, Network, Code2,
-  Users, BarChart3, ChevronRight, ShieldCheck,
-  LogOut, CreditCard, Tag,
+  Users, ShieldCheck, LogOut, CreditCard, Tag,
 } from 'lucide-react';
 import { useAuth } from '../../features/auth/useAuth';
-import AvatarDisplay from '../ui/AvatarDisplay';
 
 const navItems = [
   { name: 'Dashboard', path: '/admin',            icon: LayoutDashboard, end: true },
@@ -72,39 +70,15 @@ const AdminSidebar = () => {
         ))}
       </nav>
 
-      {/* Sign out */}
-      <div className="px-4 pb-2">
+      {/* Bottom: sign out */}
+      <div className="border-t border-rule p-4 shrink-0">
         <button
           onClick={handleLogout}
-          className="w-full flex items-center gap-3 px-4 py-2.5 rounded-[4px] text-muted hover:text-ink hover:bg-cream-dark transition-all duration-200 cursor-pointer text-[13px] font-semibold font-sans"
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-[4px] text-brand-red/70 hover:text-brand-red hover:bg-brand-red/5 border border-transparent hover:border-brand-red/15 transition-all duration-200 cursor-pointer"
         >
-          <LogOut size={16} />
-          Sign Out
+          <LogOut size={14} />
+          <span className="font-sans text-[13px] font-semibold tracking-wide">Sign Out</span>
         </button>
-      </div>
-
-      {/* Profile card */}
-      <div className="border-t border-rule p-4">
-        <div className="w-full flex items-center gap-3 p-3 rounded-[6px] border border-transparent hover:bg-cream-dark hover:border-rule/40 transition-all duration-200 cursor-pointer group">
-          <div className="w-9 h-9 rounded-full overflow-hidden border-2 border-rule/40 shrink-0 bg-white flex items-center justify-center">
-            <AvatarDisplay user={user} size={36} />
-          </div>
-          <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-1.5">
-              <p className="font-sans text-[12px] font-bold text-ink truncate leading-tight">
-                {user?.name?.split(' ')[0] || 'Admin'}
-              </p>
-              <span className="flex items-center gap-0.5 bg-brand-red/10 text-brand-red font-mono text-[6px] px-1 py-0.5 rounded-[2px] uppercase tracking-wider shrink-0 border border-brand-red/20">
-                <ShieldCheck size={7} />
-                Admin
-              </span>
-            </div>
-            <p className="font-mono text-[8px] text-muted/60 uppercase tracking-widest mt-0.5 truncate">
-              {user?.email ?? 'admin@patternbook.io'}
-            </p>
-          </div>
-          <ChevronRight size={13} className="text-muted/40 shrink-0 group-hover:text-ink/60 group-hover:translate-x-0.5 transition-all duration-200" />
-        </div>
       </div>
     </aside>
   );

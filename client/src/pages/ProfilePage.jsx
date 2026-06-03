@@ -383,8 +383,8 @@ const ProfilePage = ({ isPublic = false }) => {
           <button
             onClick={handleCopyLink}
             className={`flex items-center gap-1.5 font-mono text-[9px] uppercase tracking-widest px-3 py-1.5 rounded-[3px] transition-all duration-200 cursor-pointer ${copied
-                ? 'bg-lime-dark text-cream'
-                : 'bg-ink text-cream hover:bg-ink/80'
+              ? 'bg-lime-dark text-cream'
+              : 'bg-ink text-cream hover:bg-ink/80'
               }`}
           >
             {copied ? <Check size={11} /> : <Copy size={11} />}

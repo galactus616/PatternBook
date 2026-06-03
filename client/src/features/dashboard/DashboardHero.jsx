@@ -1,141 +1,130 @@
 import React from 'react';
 import { useAuth } from '../auth/useAuth';
-import { Trophy, Target, Zap } from 'lucide-react';
+import { Trophy, Flame, Zap, Target, BookOpen } from 'lucide-react';
+import { Link } from 'react-router-dom';
+
+function getGreeting() {
+  const h = new Date().getHours();
+  if (h < 12) return 'Morning';
+  if (h < 17) return 'Afternoon';
+  return 'Evening';
+}
+
+function getRank(count) {
+  if (count >= 200) return { name: 'Grandmaster', color: 'text-brand-red' };
+  if (count >= 100) return { name: 'Expert',      color: 'text-accent' };
+  if (count >= 50)  return { name: 'Specialist',  color: 'text-lime-dark' };
+  if (count >= 20)  return { name: 'Apprentice',  color: 'text-ink' };
+  return               { name: 'Novice',       color: 'text-muted' };
+}
+
+// SVG ring
+function Ring({ pct }) {
+  const r = 44;
+  const circ = 2 * Math.PI * r;
+  const offset = circ - (circ * pct) / 100;
+  return (
+    <div className="relative w-24 h-24 shrink-0">
+      <svg width="96" height="96" viewBox="0 0 96 96" className="-rotate-90">
+        <circle cx="48" cy="48" r={r} fill="none" stroke="#e8e4dd" strokeWidth="8" />
+        <circle
+          cx="48" cy="48" r={r}
+          fill="none" stroke="#e63946"
+          strokeWidth="8" strokeLinecap="butt"
+          strokeDasharray={circ}
+          strokeDashoffset={offset}
+          style={{ transition: 'stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1)' }}
+        />
+      </svg>
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <span className="font-serif text-[18px] font-black text-ink leading-none">{pct}%</span>
+        <span className="font-mono text-[7px] uppercase tracking-widest text-muted mt-0.5">mastery</span>
+      </div>
+    </div>
+  );
+}
 
 const DashboardHero = ({ stats }) => {
   const { user } = useAuth();
+  const mastery  = stats?.overall?.masteryPercentage || 0;
+  const solved   = stats?.overall?.solvedCount || 0;
+  const attempted = stats?.overall?.attemptedCount || 0;
+  const streak   = stats?.overall?.currentStreak || 0;
+  const best     = stats?.overall?.longestStreak || 0;
+  const rank     = getRank(solved);
 
-  const masteryPercentage = stats?.overall?.masteryPercentage || 0;
-
-  // Dynamic rank based on solved problems
-  const getRank = (count) => {
-    if (count >= 50) return { name: "Grandmaster", color: "text-brand-red" };
-    if (count >= 20) return { name: "Specialist", color: "text-accent" };
-    return { name: "Novice", color: "text-muted" };
-  };
-
-  const rank = getRank(stats?.overall?.solvedCount || 0);
+  const vitals = [
+    { label: 'Solved',    val: solved,    icon: Target,   color: 'text-ink' },
+    { label: 'Attempted', val: attempted, icon: BookOpen, color: 'text-muted' },
+    { label: 'Streak',    val: `${streak}d`, icon: Flame, color: streak > 0 ? 'text-brand-red' : 'text-muted' },
+    { label: 'Best',      val: `${best}d`,   icon: Trophy, color: 'text-muted' },
+  ];
 
   return (
-    <div className="relative mb-12">
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
-        <div className="space-y-4">
-          <div className="flex items-center gap-3">
-            {(user?.plan === "PRO" || user?.plan === "TEAM") ? (
-              <span className="px-2 py-1 bg-ink text-cream font-mono text-[10px] uppercase tracking-widest rounded-[2px] flex items-center gap-1.5 border border-cream/10">
-                <Zap size={10} className="text-cream" />
+    <div className="border border-rule rounded-[4px] bg-white overflow-hidden shadow-sm">
+      
+      {/* ── Top: greeting + name ─────────────────────────────────── */}
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_auto] border-b border-rule">
+        
+        {/* Left */}
+        <div className="p-8 md:p-10 border-b md:border-b-0 md:border-r border-rule">
+          <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-muted mb-3">
+            Good {getGreeting()}
+          </p>
+          <h1 className="font-serif text-[52px] font-black text-ink leading-[0.95] tracking-tight mb-5">
+            {user?.name?.split(' ')[0] || 'Seeker'}<em className="text-brand-red not-italic">.</em>
+          </h1>
+          <div className="flex items-center gap-2.5 flex-wrap">
+            <span className={`font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-[4px] bg-cream-dark border border-rule font-bold ${rank.color}`}>
+              {rank.name}
+            </span>
+            {(user?.plan === 'PRO' || user?.plan === 'TEAM') && (
+              <span className="font-mono text-[10px] uppercase tracking-widest px-2.5 py-1 rounded-[4px] bg-ink text-lime border border-ink">
+                <Zap size={9} className="inline mr-1" />
                 Pro Member
               </span>
-            ) : (
-              <span className="px-2 py-1 bg-ink text-lime font-mono text-[10px] uppercase tracking-widest rounded-[2px]">
-                Active Session
-              </span>
             )}
-            <div className="flex items-center gap-1.5 text-ink font-mono text-[10px] uppercase tracking-widest group relative">
-              <Zap size={12} className="text-brand-red fill-brand-red animate-pulse" />
-              Day {stats?.overall?.currentStreak || 0} Streak
-
-              {/* 5:30 AM Boundary Info */}
-              <div className="absolute left-0 top-full mt-2 hidden group-hover:block w-56 p-2 bg-ink text-cream text-[9px] normal-case rounded-[4px] z-50 shadow-xl leading-relaxed">
-                Our "day" ends at <span className="font-mono text-lime font-bold">5:30 AM</span>.<br /> Solve or attempt a problem daily to keep your Streak alive!
-              </div>
-            </div>
-            {stats?.overall?.longestStreak > 0 && (
-              <div className="flex items-center gap-1.5 text-muted font-mono text-[10px] uppercase tracking-widest border-l border-rule pl-3">
-                <Trophy size={10} className="text-muted" />
-                Best: {stats?.overall?.longestStreak}
-              </div>
-            )}
-          </div>
-
-          <h1 className="font-serif text-[48px] font-black text-ink leading-[1.1]">
-            Welcome back, <br />
-            <em className="text-brand-red italic">{user?.name?.split(' ')[0] || "Seeker"}</em>.
-          </h1>
-
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <Trophy size={16} className={rank.color} />
-              <p className="font-mono text-[12px] uppercase tracking-tight font-bold text-ink">
-                Rank: <span className={rank.color}>{rank.name}</span>
-              </p>
-            </div>
-            <div className="w-px h-4 bg-rule" />
-            <div className="flex items-center gap-2 text-muted">
-              <Target size={16} />
-              <p className="font-mono text-[12px] uppercase tracking-tight font-bold">
-                {stats?.overall?.solvedCount || 0} Problems Mastered
-              </p>
-            </div>
+            <Link
+              to="/problems"
+              className="font-mono text-[10px] uppercase tracking-widest text-muted hover:text-ink transition-colors"
+            >
+              Continue practicing →
+            </Link>
           </div>
         </div>
 
-        {/* Right Side: Vitals Grid */}
-        <div className="flex flex-col md:flex-row gap-6 md:items-center">
-          {/* Main Mastery Disk (Smaller & More Stylized) */}
-          <div className="relative w-24 h-24 flex items-center justify-center shrink-0">
-            <svg className="w-full h-full -rotate-90">
-              <circle
-                cx="48"
-                cy="48"
-                r="44"
-                className="fill-none stroke-rule/20 stroke-[6px]"
-              />
-              <circle
-                cx="48"
-                cy="48"
-                r="44"
-                className="fill-none stroke-brand-red stroke-[6px] transition-all duration-1000 ease-out"
-                strokeDasharray={276}
-                strokeDashoffset={276 - (276 * masteryPercentage) / 100}
-                strokeLinecap="butt"
-              />
-            </svg>
-            <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-              <span className="font-serif text-[20px] font-black text-ink leading-none">{masteryPercentage}%</span>
-              <span className="font-mono text-[7px] uppercase tracking-widest text-muted mt-1">Mastery</span>
+        {/* Right: ring + streak */}
+        <div className="flex items-center gap-8 px-10 py-8">
+          <Ring pct={mastery} />
+          <div className="hidden md:flex flex-col gap-1">
+            <div className="flex items-center gap-2">
+              <Flame size={18} className={streak > 0 ? 'text-brand-red fill-brand-red/20' : 'text-muted'} />
+              <span className="font-serif text-[32px] font-black text-ink leading-none">{streak}</span>
             </div>
-          </div>
-
-          <div className="h-20 w-px bg-rule/50 hidden md:block" />
-
-          {/* Vitals Breakdown */}
-          <div className="grid grid-cols-2 gap-x-8 gap-y-4">
-            <div>
-              <p className="font-mono text-[8px] uppercase tracking-widest text-muted mb-1">Attempted</p>
-              <div className="flex items-baseline gap-2">
-                <span className="font-serif text-[24px] font-black text-ink leading-none">
-                  {stats?.overall?.attemptedCount || 0}
-                </span>
-                <span className="font-mono text-[9px] text-muted">PROBS</span>
-              </div>
-            </div>
-            <div>
-              <p className="font-mono text-[8px] uppercase tracking-widest text-muted mb-1">Target</p>
-              <div className="flex items-baseline gap-2">
-                <span className="font-serif text-[24px] font-black text-ink leading-none">
-                  {localStorage.getItem("dailyGoal") || 2}
-                </span>
-                <span className="font-mono text-[9px] text-muted">/ DAY</span>
-              </div>
-            </div>
-            <div className="col-span-2">
-               <div className="flex items-center gap-2">
-                 <div className="flex-1 h-1 bg-rule/20 rounded-full overflow-hidden">
-                    <div 
-                      className="h-full bg-ink transition-all duration-700" 
-                      style={{ width: `${Math.min(100, ((stats?.overall?.solvedCount || 0) / (localStorage.getItem("dailyGoal") || 2)) * 100)}%` }}
-                    />
-                 </div>
-                 <span className="font-mono text-[8px] text-ink font-bold uppercase tracking-widest shrink-0">Daily Goal</span>
-               </div>
-            </div>
+            <p className="font-mono text-[9px] uppercase tracking-widest text-muted">day streak</p>
+            {best > 0 && (
+              <p className="font-mono text-[8px] text-muted/60 mt-1">
+                best: {best} days
+              </p>
+            )}
           </div>
         </div>
       </div>
 
-      {/* Decorative Line */}
-      <div className="absolute -bottom-6 left-0 w-full h-px bg-rule/50" />
+      {/* ── Bottom: vitals ────────────────────────────────────────── */}
+      <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-y divide-rule md:divide-y-0">
+        {vitals.map(({ label, val, icon: Icon, color }) => (
+          <div key={label} className="px-7 py-5 flex items-center gap-4">
+            <div className="w-9 h-9 rounded-[4px] bg-cream-dark border border-rule flex items-center justify-center shrink-0">
+              <Icon size={15} className={color} />
+            </div>
+            <div>
+              <p className="font-serif text-[24px] font-black text-ink leading-none">{val}</p>
+              <p className="font-mono text-[8px] uppercase tracking-widest text-muted mt-0.5">{label}</p>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
