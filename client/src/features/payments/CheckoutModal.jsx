@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { X, Loader2, CheckCircle2, Tag, AlertCircle, ShieldCheck, Zap, Unlock, Link2, FileText, BarChart2 } from "lucide-react";
+import { X, Loader2, CheckCircle2, Tag, AlertCircle, ShieldCheck, Zap, Unlock, Link2, FileText, BarChart2, Users } from "lucide-react";
 import { validateCoupon } from "./payments.api";
 import { useRazorpay } from "./useRazorpay";
 import { useAuthStore } from "../../store/useAuthStore";
 import { usePaymentStore } from "../../store/usePaymentStore";
 
 const PRO_FEATURES = [
-  { icon: Unlock, text: "All Pro problem hints unlocked" },
-  { icon: Link2, text: "Direct LeetCode links for every problem" },
-  { icon: FileText, text: "Personal notes on any problem" },
-  { icon: BarChart2, text: "Full mastery analytics & breakdown" },
-  { icon: Zap, text: "Early access to new patterns & features" },
+  { icon: Unlock, text: "Access to all premium problems & sub-patterns" },
+  { icon: BarChart2, text: "Full mastery analytics & advanced radar charts" },
+  { icon: FileText, text: "Detailed intuition & common mistakes breakdowns" },
+  { icon: Users, text: "Deep social tracking and friend comparison" },
+  { icon: Zap, text: "Early access to new patterns & priority support" },
 ];
 
 const PLAN_PRICES = { PRO: 49900 };
@@ -107,7 +107,7 @@ export default function CheckoutModal({ onPaymentSuccess }) {
 
           <div className="relative z-10 flex flex-col h-full">
             {/* Badge */}
-            <div className="inline-flex items-center gap-1.5 bg-lime/10 border border-lime/20 text-lime font-mono text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full w-fit mb-8">
+            <div className="inline-flex items-center gap-1.5 bg-lime/10 border border-lime/20 text-lime font-mono text-[9px] uppercase tracking-widest px-2.5 py-1 rounded-full w-fit mb-5">
               <span className="w-1.5 h-1.5 rounded-full bg-lime animate-pulse" />
               Pro Plan · Yearly
             </div>
@@ -116,7 +116,7 @@ export default function CheckoutModal({ onPaymentSuccess }) {
               Unlock the full<br />
               <em className="text-brand-red italic">pattern system.</em>
             </h2>
-            <p className="font-sans text-[12px] text-cream/40 leading-relaxed mb-8">
+            <p className="font-sans text-[12px] text-cream/40 leading-relaxed mb-6">
               Everything you need to go from grinding to structured mastery.
             </p>
 
@@ -133,7 +133,7 @@ export default function CheckoutModal({ onPaymentSuccess }) {
             </div>
 
             {/* Social proof */}
-            <div className="mt-8 pt-6 border-t border-cream/10">
+            <div className="mt-5 pt-5 border-t border-cream/10">
               <p className="font-mono text-[9px] uppercase tracking-widest text-cream/25 mb-2">Trusted by</p>
               <p className="font-serif text-[18px] font-black text-cream/40">
                 500<em className="text-lime not-italic font-black">+</em> developers

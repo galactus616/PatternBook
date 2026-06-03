@@ -11,13 +11,12 @@ const PLAN_META = {
 };
 
 const FEATURE_COMPARE = [
-  { name: "Pattern Tracks", free: "3 fundamental", pro: "18+ all patterns" },
-  { name: "Curated Problems", free: "50+", pro: "500+" },
-  { name: "Progress Tracker", free: true, pro: true },
+  { name: "Topics & Patterns", free: "Fundamental", pro: "All 290+ Patterns" },
+  { name: "Curated Problems", free: "Basic Core", pro: "All 683 Problems" },
+  { name: "Mastery Analytics", free: "Basic", pro: "Advanced Radar" },
+  { name: "Social & Friends", free: true, pro: true },
   { name: "Problem Hints", free: false, pro: true },
-  { name: "Personal Notes", free: false, pro: true },
-  { name: "LeetCode Links", free: false, pro: true },
-  { name: "Mastery Analytics", free: "Basic", pro: "Detailed" },
+  { name: "Intuition & Mistakes", free: false, pro: true },
   { name: "Priority Support", free: false, pro: true },
 ];
 
@@ -65,7 +64,7 @@ const SubscriptionSection = () => {
               )}
               {!isPro && (
                 <p className="font-mono text-[10px] text-muted mt-1">
-                  3 fundamental tracks · 50+ problems
+                  Fundamental tracks · Core problems
                 </p>
               )}
             </div>
@@ -88,7 +87,7 @@ const SubscriptionSection = () => {
                 Unlock the full <em className="text-brand-red italic">pattern system.</em>
               </h4>
               <p className="font-sans text-[12px] text-cream/50 leading-relaxed mb-5 max-w-[380px]">
-                Access every pattern track, detailed hints, personal notes, and full mastery analytics.
+                Access all 606 sub-patterns, detailed intuition guides, and advanced mastery analytics.
               </p>
               <div className="flex items-center gap-4">
                 <button

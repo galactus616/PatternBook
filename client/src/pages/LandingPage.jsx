@@ -32,26 +32,26 @@ const MARQUEE_ITEMS = [
 
 const STEPS = [
   { n: "01", icon: Library, title: "Pick a Pattern", desc: "Browse our curated pattern library — from Two Pointers to Segment Trees. Each pattern has a dedicated track with progressive problems." },
-  { n: "02", icon: Brain, title: "Understand Deeply", desc: "Every pattern comes with an illustrated breakdown, time complexity analysis, and the exact mental model to apply it in any variant." },
-  { n: "03", icon: LineChart, title: "Track Mastery", desc: "Your mastery score updates in real-time. See exactly which patterns need more reps — no more wondering if you're actually ready." },
+  { n: "02", icon: Brain, title: "Understand Deeply", desc: "Every problem includes structured hints, core intuition breakdowns, and documented common mistakes so you never blindly look up solutions." },
+  { n: "03", icon: LineChart, title: "Track Mastery", desc: "Your mastery score updates in real-time. Dynamic heatmaps and radar charts expose exactly which patterns need more reps." },
 ];
 
 const FEATURES = [
-  { id: "F–01", title: "Visual Roadmaps", desc: "A phase-gated curriculum that sequences patterns in the exact order they build on each other. Master the foundation first." },
-  { id: "F–02", title: "Pattern Engine", desc: "Our proprietary algorithm surfaces problems right before you forget them. Build long-term retention through SRS reps." },
-  { id: "F–03", title: "Handwritten Notes", desc: "Annotate any pattern with tags, insights, and approach diagrams. Build a personal DSA knowledge base that lasts." },
-  { id: "F–04", title: "Focus Sessions", desc: "Timed deep-dives into specific pattern variants. Simulates real interview pressure with detailed post-session analytics." },
+  { id: "F–01", title: "Hierarchical Knowledge", desc: "Stop doing random problems. Master concepts progressively from 16 high-level topics down to specific patterns and variants." },
+  { id: "F–02", title: "Granular Analytics", desc: "Know exactly where you stand. Dynamic heatmaps, radar charts, and progress bars expose the exact areas where your intuition is weak." },
+  { id: "F–03", title: "Social Motivation", desc: "Studying alone is tough. Add friends, track their daily problem-solving streaks, and see when they are online to stay competitive." },
+  { id: "F–04", title: "Deep Problem Context", desc: "Every problem includes structured hints, core intuition breakdowns, and documented common mistakes so you never get stuck blindly." },
 ];
 
 const METRICS = [
-  { val: "3.2×", label: "faster pattern recognition after 21 days vs. unstructured LeetCode grinding" },
-  { val: "92%", label: "of PatternBook beta users report feeling significantly more prepared for technical rounds" },
-  { val: "500+", label: "early-access developers currently building their roadmap on PatternBook" },
+  { val: "290+", label: "unique DSA patterns broken down intuitively" },
+  { val: "16", label: "core topics spanning arrays, graphs, DP, and more" },
+  { val: "683", label: "curated progressive problems to test your mastery" },
 ];
 
-const FREE_FEATURES = ["3 Fundamental Pattern Tracks", "50+ Curated Problems", "Basic Progress Visualizer", "Public Pattern Index"];
-const PRO_FEATURES = ["All 18+ Advanced Patterns", "500+ Progressive Problems", "Personalized SRS Engine", "Handwritten Pattern Notes", "Mock Interview Focus Mode", "Detailed Mastery Analytics"];
-const TEAM_FEATURES = ["Everything in Pro", "Team Progress Dashboard", "Collaborative Study Groups", "Custom Pattern Curations", "Priority Support"];
+const FREE_FEATURES = ["Access to fundamental Topics & Patterns", "Basic Mastery Tracking", "Public Pattern Index", "Add & Track Friends"];
+const PRO_FEATURES = ["Unlock all 606 Sub-Patterns & Premium Problems", "Full Mastery Analytics & Radar Charts", "Detailed Intuition & Common Mistakes Guides", "Direct LeetCode Integrations", "Priority Access to new content"];
+const TEAM_FEATURES = ["Everything in Pro", "Team Progress Dashboards", "Collaborative Leaderboards", "Custom Pattern Curations", "Priority Support"];
 
 
 export default function LandingPage() {
@@ -208,12 +208,12 @@ export default function LandingPage() {
         <div className="hidden md:flex flex-col">
           <div className="grid grid-cols-2 border-b border-rule shrink-0">
             <div className="p-7 md:p-8 border-r border-rule">
-              <div className="font-serif text-[42px] font-black tracking-tight text-ink leading-none">12<em className="text-brand-red not-italic font-black">k+</em></div>
+              <div className="font-serif text-[42px] font-black tracking-tight text-ink leading-none">683</div>
               <div className="font-mono text-[10px] uppercase tracking-[0.08em] text-muted mt-1.5">Problems catalogued</div>
             </div>
             <div className="p-7 md:p-8">
-              <div className="font-serif text-[42px] font-black tracking-tight text-ink leading-none">94<em className="text-brand-red not-italic font-black">%</em></div>
-              <div className="font-mono text-[10px] uppercase tracking-[0.08em] text-muted mt-1.5">Interview success rate</div>
+              <div className="font-serif text-[42px] font-black tracking-tight text-ink leading-none">606</div>
+              <div className="font-mono text-[10px] uppercase tracking-[0.08em] text-muted mt-1.5">Sub-patterns mapped</div>
             </div>
           </div>
           <div className="flex-1 p-8 font-mono text-[12px] leading-[1.8] relative overflow-hidden">

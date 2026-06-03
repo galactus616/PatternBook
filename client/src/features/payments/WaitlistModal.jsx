@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { X, Loader2, CheckCircle2 } from "lucide-react";
 import { joinWaitlist } from "./payments.api";
 import { usePaymentStore } from "../../store/usePaymentStore";
+import CustomSelect from "../../components/ui/CustomSelect";
 
 const TEAM_SIZES = ["2–5 people", "5–10 people", "10–20 people", "20–50 people", "50+ people"];
 
@@ -79,7 +80,7 @@ export default function WaitlistModal() {
                   Join the Team <em className="text-brand-red italic">Waitlist.</em>
                 </h2>
                 <p className="text-[13px] text-muted leading-relaxed mt-3 italic">
-                  We're building collaborative DSA tracking for teams. Be the first to know when it launches.
+                  We're bringing our hierarchical pattern tracking and deep analytics to engineering teams. Monitor team progress, identify skill gaps, and run collaborative study groups.
                 </p>
               </div>
 
@@ -108,15 +109,13 @@ export default function WaitlistModal() {
                   <label className="block font-mono text-[10px] uppercase tracking-wider text-muted mb-2">
                     Team Size
                   </label>
-                  <select
+                  <CustomSelect
                     value={teamSize}
-                    onChange={(e) => setTeamSize(e.target.value)}
-                    required
-                    className="w-full bg-white/50 border border-rule px-4 py-3 rounded-[4px] font-sans text-[14px] text-ink focus:border-ink focus:bg-white transition-all outline-none cursor-pointer"
-                  >
-                    <option value="">Select team size...</option>
-                    {TEAM_SIZES.map((s) => <option key={s} value={s}>{s}</option>)}
-                  </select>
+                    onChange={(val) => setTeamSize(val)}
+                    className="w-full bg-white/50 border border-rule px-4 py-3 rounded-[4px] font-sans text-[14px] text-ink focus:border-ink focus:bg-white transition-all outline-none"
+                    placeholder="Select team size..."
+                    options={TEAM_SIZES}
+                  />
                 </div>
 
                 <div>

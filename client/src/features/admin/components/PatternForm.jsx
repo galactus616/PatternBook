@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Layers, Link2, BookOpen } from 'lucide-react';
+import CustomSelect from '../../../components/ui/CustomSelect';
 
 const EMPTY = { name: '', slug: '', topicId: '', difficulty: 'MEDIUM' };
 
@@ -94,16 +95,13 @@ export default function PatternForm({ initial = EMPTY, topics, onSave, onCancel 
           <BookOpen size={11} className="text-muted" />
           <label className="font-mono text-[10px] uppercase tracking-widest text-muted">Topic *</label>
         </div>
-        <select
+        <CustomSelect
           value={form.topicId}
-          onChange={e => set('topicId', e.target.value)}
+          onChange={val => set('topicId', val)}
           className={inputCls}
-        >
-          <option value="">Select a topic…</option>
-          {topics.map(t => (
-            <option key={t.id} value={t.id}>{t.name}</option>
-          ))}
-        </select>
+          placeholder="Select a topic…"
+          options={topics.map(t => ({ value: t.id, label: t.name }))}
+        />
       </div>
 
       {/* Difficulty toggle */}

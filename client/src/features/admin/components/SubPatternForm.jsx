@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Network, Link2, Share2 } from 'lucide-react';
+import CustomSelect from '../../../components/ui/CustomSelect';
 
 const EMPTY = { name: '', slug: '', patternId: '' };
 
@@ -79,16 +80,13 @@ export default function SubPatternForm({ initial = EMPTY, patterns, onSave, onCa
           <Network size={11} className="text-muted" />
           <label className="font-mono text-[10px] uppercase tracking-widest text-muted">Parent Pattern *</label>
         </div>
-        <select
+        <CustomSelect
           value={form.patternId}
-          onChange={e => set('patternId', e.target.value)}
+          onChange={val => set('patternId', val)}
           className={inputCls}
-        >
-          <option value="">Select a pattern…</option>
-          {patterns.map(p => (
-            <option key={p.id} value={p.id}>{p.name}</option>
-          ))}
-        </select>
+          placeholder="Select a pattern…"
+          options={patterns.map(p => ({ value: p.id, label: p.name }))}
+        />
       </div>
 
       {/* Actions */}

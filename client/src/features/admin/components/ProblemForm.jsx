@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Lock, Code2, Link2, Folder, Layers, Network, Hash, Link as UrlIcon, Lightbulb, Brain, Tags, Building2, Share2, AlertTriangle, Clock } from 'lucide-react';
+import CustomSelect from '../../../components/ui/CustomSelect';
 
 const EMPTY = {
   title: '', slug: '', topicId: '', patternId: '', subPatternId: '',
@@ -92,22 +93,39 @@ export default function ProblemForm({ initial = EMPTY, topics, patterns, subPatt
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Field label="Topic *" icon={Folder}>
-            <select value={form.topicId} onChange={e => { set('topicId', e.target.value); set('patternId', ''); set('subPatternId', ''); }} className={inputCls}>
-              <option value="">Select topic...</option>
-              {topics.map(t => <option key={t.id} value={t.id}>{t.name}</option>)}
-            </select>
+            <CustomSelect 
+              value={form.topicId} 
+              onChange={val => { set('topicId', val); set('patternId', ''); set('subPatternId', ''); }} 
+              className={inputCls}
+              placeholder="Select topic..."
+              options={topics.map(t => ({ value: t.id, label: t.name }))}
+            />
           </Field>
           <Field label="Pattern" icon={Layers}>
-            <select value={form.patternId} onChange={e => { set('patternId', e.target.value); set('subPatternId', ''); }} className={inputCls} disabled={!form.topicId}>
-              <option value="">None</option>
-              {filteredPatterns.map(p => <option key={p.id} value={p.id}>{p.name}</option>)}
-            </select>
+            <CustomSelect 
+              value={form.patternId} 
+              onChange={val => { set('patternId', val); set('subPatternId', ''); }} 
+              className={inputCls} 
+              disabled={!form.topicId}
+              placeholder="None"
+              options={[
+                { value: '', label: 'None' },
+                ...filteredPatterns.map(p => ({ value: p.id, label: p.name }))
+              ]}
+            />
           </Field>
           <Field label="Sub-Pattern" icon={Network}>
-            <select value={form.subPatternId} onChange={e => set('subPatternId', e.target.value)} className={inputCls} disabled={!form.patternId}>
-              <option value="">None</option>
-              {filteredSubPatterns.map(sp => <option key={sp.id} value={sp.id}>{sp.name}</option>)}
-            </select>
+            <CustomSelect 
+              value={form.subPatternId} 
+              onChange={val => set('subPatternId', val)} 
+              className={inputCls} 
+              disabled={!form.patternId}
+              placeholder="None"
+              options={[
+                { value: '', label: 'None' },
+                ...filteredSubPatterns.map(sp => ({ value: sp.id, label: sp.name }))
+              ]}
+            />
           </Field>
         </div>
       </div>
@@ -118,19 +136,28 @@ export default function ProblemForm({ initial = EMPTY, topics, patterns, subPatt
       <div className="space-y-4">
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <Field label="Difficulty">
-            <select value={form.difficulty} onChange={e => set('difficulty', e.target.value)} className={inputCls}>
-              {['EASY','MEDIUM','HARD'].map(d => <option key={d}>{d}</option>)}
-            </select>
+            <CustomSelect 
+              value={form.difficulty} 
+              onChange={val => set('difficulty', val)} 
+              className={inputCls}
+              options={['EASY','MEDIUM','HARD']}
+            />
           </Field>
           <Field label="Priority">
-            <select value={form.priority} onChange={e => set('priority', e.target.value)} className={inputCls}>
-              {['MUST_DO','GOOD','OPTIONAL'].map(p => <option key={p}>{p.replace('_', ' ')}</option>)}
-            </select>
+            <CustomSelect 
+              value={form.priority} 
+              onChange={val => set('priority', val)} 
+              className={inputCls}
+              options={['MUST_DO','GOOD','OPTIONAL'].map(p => ({ value: p, label: p.replace('_', ' ') }))}
+            />
           </Field>
           <Field label="Frequency">
-            <select value={form.frequency} onChange={e => set('frequency', e.target.value)} className={inputCls}>
-              {['LOW','MEDIUM','HIGH','VERY_HIGH'].map(f => <option key={f}>{f.replace('_', ' ')}</option>)}
-            </select>
+            <CustomSelect 
+              value={form.frequency} 
+              onChange={val => set('frequency', val)} 
+              className={inputCls}
+              options={['LOW','MEDIUM','HIGH','VERY_HIGH'].map(f => ({ value: f, label: f.replace('_', ' ') }))}
+            />
           </Field>
         </div>
 
