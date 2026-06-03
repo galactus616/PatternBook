@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import ProtectedRoute from "./ProtectedRoute";
 import DashboardLayout from "../components/layout/DashboardLayout";
@@ -69,6 +69,7 @@ const AppRouter = () => {
 
           {/* ── Fallback ── */}
           <Route path="/not-authorized" element={<NotAuthorized />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
 
         </Routes>
       </Suspense>
