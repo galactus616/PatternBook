@@ -1,8 +1,10 @@
 import { prisma } from "../db/client.js";
 
 export const getLeaderboardData = async (userId) => {
-  // 1. Fetch all users and their solved independent progress
   const users = await prisma.user.findMany({
+    where: {
+      role: "USER"
+    },
     select: {
       id: true,
       name: true,

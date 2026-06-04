@@ -116,7 +116,7 @@ export const getDashboardStats = async (userId, year = new Date().getFullYear())
   activities.forEach(act => {
     const date = act.updatedAt.toISOString().split('T')[0];
     if (!heatmapMap[date]) heatmapMap[date] = 0;
-    if (act.status === 'SOLVED_INDEPENDENTLY') heatmapMap[date] += 1;
+    if (act.status === 'SOLVED_INDEPENDENTLY' || act.status === 'SOLVED_WITH_HELP') heatmapMap[date] += 1;
   });
 
   const heatmapData = Object.keys(heatmapMap).map(date => ({
